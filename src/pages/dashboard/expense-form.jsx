@@ -5,6 +5,7 @@ import { ExpenseRecordContext } from '../../contexts/expense-record-context';
 export const ExpenseForm = () => {
     
     const [ isFormOpen, setIsFormOpen ] = useState(false);
+    const [ isExpense, setIsExpense ] = useState(false);
     const [ description, setDescription ] = useState("");
     const [ amount, setAmount ] = useState("");
     const [ category, setCategory ] = useState("");
@@ -14,18 +15,32 @@ export const ExpenseForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        const newRecord = {
-            userId: userId,
-            date: new Date(),
-            description: description,
-            amount: amount,
-            category: category
-        };
-        console.log(newRecord);
+        let newRecord;
+
+        if (isExpense) {
+            newRecord = {
+                userId: userId,
+                date: new Date(),
+                description: description,
+                amount: amount * -1,
+                category: category
+            };
+        } else {
+            newRecord = {
+                userId: userId,
+                date: new Date(),
+                description: description,
+                amount: amount,
+                category: "Income"
+            };
+        }
+
         addRecord(newRecord);
         setDescription("");
         setAmount("");
         setCategory("");
+        setIsFormOpen(false);
+        setIsExpense(false);
     };
 
     let formRef = useRef(null);
@@ -42,9 +57,20 @@ export const ExpenseForm = () => {
         }
     }, [formRef]);
 
+    const openIncomeForm = () => {
+        setIsFormOpen(!isFormOpen);
+        setIsExpense(false);
+    };
+
+    const openExpenseForm = () => {
+        setIsFormOpen(!isFormOpen);
+        setIsExpense(true);
+    };
+
     return (
         <div className="expense-form-wrapper">
-            <button onClick={() => setIsFormOpen(!isFormOpen)}>Add Expense</button>
+            <button onClick={openIncomeForm}>Add Income</button>
+            <button onClick={openExpenseForm}>Add Expense</button>
             {isFormOpen? 
                 <form onSubmit={handleSubmit} className="expense-form" ref={formRef}>
                     <p>Add Your Expense</p>
@@ -56,20 +82,26 @@ export const ExpenseForm = () => {
                         <label>Amount</label>
                         <input className="input" type="text" value={amount} onChange={(e) => setAmount(e.target.value)}required></input>
                     </div>
-                    <div className="form-field">
-                        <label>Category</label>
-                        <select className="input" value={category} onChange={(e) => setCategory(e.target.value)}required>
-                            <option value="">Select a Category</option>
-                            <option value="Grocery">Grocery</option>
-                            <option value="Rent">Rent</option>
-                            <option value="Mortgage">Mortgage</option>
-                            <option value="Entertaintment">Entertaintment</option>
-                            <option value="Eat-Out">Eat-Out</option>
-                            <option value="Utility">Utility</option>
-                            <option value="Shopping">Shopping</option>
-                            <option value="Other">Other</option>
-                        </select>
-                    </div>
+                    {isExpense ? 
+                        <div className="form-field">
+                            <label>Category</label>
+                            <select className="input" value={category} onChange={(e) => setCategory(e.target.value)}required>
+                                <option value="">Select a Category</option>
+                                <option value="Grocery">Grocery</option>
+                                <option value="Rent">Rent</option>
+                                <option value="Mortgage">Mortgage</option>
+                                <option value="Entertaintment">Entertaintment</option>
+                                <option value="Eating Out">Eating-Out</option>
+                                <option value="Transportation">Transportation</option>
+                                <option value="Fuel">Fuel</option>
+                                <option value="Utility">Utility</option>
+                                <option value="Shopping">Shopping</option>
+                                <option value="Subscription">Subscription</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div> : <></>
+                    }
+                    
                     <button type="submit" className="button">Add Record</button>
                     <button className="button" onClick={() => setIsFormOpen(false)}>Close</button>
                 </form>

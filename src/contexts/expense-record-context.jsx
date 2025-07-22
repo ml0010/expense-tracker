@@ -24,7 +24,7 @@ export const ExpenseRecordContextProvider = (props) => {
         const response = await fetch(`http://localhost:3001/expense-records/${user.id}`);
         if (response.ok) {
             const records = await response.json();
-            console.log(records);
+            //console.log(records);
             setRecords(records);
         }
     };
@@ -33,7 +33,6 @@ export const ExpenseRecordContextProvider = (props) => {
         if (isSignedIn) {
             setUsername(user.externalAccounts[0].firstName);
             setUserId(user.id);
-            console.log(user);
             console.log(`Fetching ${user.externalAccounts[0].firstName}'s expenses...`);
         }
         fetchRecords();

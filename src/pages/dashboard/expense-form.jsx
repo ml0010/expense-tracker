@@ -1,5 +1,6 @@
 import { useUser } from '@clerk/clerk-react';
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
+import { ExpenseRecordContext } from '../../contexts/expense-record-context';
 
 export const ExpenseForm = () => {
     
@@ -7,17 +8,27 @@ export const ExpenseForm = () => {
     const [ amount, setAmount ] = useState("");
     const [ category, setCategory ] = useState("");
 
-    const {user} = useUser();
+    const { userId, addRecord } = useContext(ExpenseRecordContext);
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        const newRecord = {};
+        const newRecord = {
+            userId: userId,
+            date: new Date,
+            description: description,
+            amount: amount,
+            category: category
+        };
         console.log(newRecord);
+        addRecord(newRecord);
+        setDescription("");
+        setAmount("");
+        setCategory("");
     };
 
     return (
-        <div>
+        <div className="expense-form">
             <form onSubmit={handleSubmit}>
                 <div className="form-field">
                     <label>Description: </label>
@@ -25,11 +36,11 @@ export const ExpenseForm = () => {
                 </div>
                 <div className="form-field">
                     <label>Amount: </label>
-                    <input className="input" type="text" value={description} onChange={(e) => setAmount(e.target.value)}required></input>
+                    <input className="input" type="text" value={amount} onChange={(e) => setAmount(e.target.value)}required></input>
                 </div>
                 <div className="form-field">
                     <label>Category: </label>
-                    <select className="input" value={description} onChange={(e) => setCategory(e.target.value)}required>
+                    <select className="input" value={category} onChange={(e) => setCategory(e.target.value)}required>
                         <option value="">Select a Category</option>
                         <option value="Grocery">Grocery</option>
                         <option value="Rent">Rent</option>

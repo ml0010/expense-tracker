@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { ExpenseRecordContext } from '../../contexts/expense-record-context';
 import { ExpenseForm } from './expense-form';
+import { ExpsnseOutput } from './expsnse-output';
 
 export const Dashboard = () => {
 
@@ -8,8 +9,9 @@ export const Dashboard = () => {
 
     return (
         <div>
-            <h1>{username}'s dashboard</h1>
+            <h1>{username}'s expenses record</h1>
             <ExpenseForm />
+            <ExpsnseOutput />
         </div>
     )
 }

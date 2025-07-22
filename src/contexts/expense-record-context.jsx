@@ -17,10 +17,11 @@ export const ExpenseRecordContextProvider = (props) => {
 
     const [ records, setRecords ] = useState([]);
     const [ username, setUsername ] = useState("");
+    const [ userId, setUserId ] = useState("");
 
     const fetchRecords = async () => {
         if(!user) return;
-        const response = await fetch(`http://localhost:3001/expense-records/getAllByUserID/${user.id}`);
+        const response = await fetch(`http://localhost:3001/expense-records/${user.id}`);
         if (response.ok) {
             const records = await response.json();
             console.log(records);
@@ -31,13 +32,15 @@ export const ExpenseRecordContextProvider = (props) => {
     useEffect(() => {
         if (isSignedIn) {
             setUsername(user.externalAccounts[0].firstName);
+            setUserId(user.id);
+            console.log(user);
             console.log(`Fetching ${user.externalAccounts[0].firstName}'s expenses...`);
         }
-        //fetchRecords();
+        fetchRecords();
     }, [user]);
     
     const addRecord = async (record) => {
-        const response = await fetch("http://localhost:3001/financial-records", {
+        const response = await fetch("http://localhost:3001", {
             method: "POST",
             body: JSON.stringify(record),
             headers: {
@@ -49,11 +52,13 @@ export const ExpenseRecordContextProvider = (props) => {
                 const newRecord = await response.json();
                 setRecords((prev) => [...prev, newRecord]);
             }
-        } catch (err) {}
+        } catch (err) {
+            console.log(err);
+        }
     };
 
 
-    const contextValue = { username };
+    const contextValue = { username, userId, records, addRecord };
     return (
         <ExpenseRecordContext.Provider value={contextValue}>{props.children}</ExpenseRecordContext.Provider>
     )

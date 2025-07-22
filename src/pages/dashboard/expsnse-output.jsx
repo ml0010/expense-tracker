@@ -6,7 +6,7 @@ export const ExpsnseOutput = () => {
     const { records } = useContext(ExpenseRecordContext);
 
     return (
-        <table className="expense-table">
+        <table className="expense-output">
             <thead>
                 <tr>
                     <th>Date</th>

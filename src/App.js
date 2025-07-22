@@ -16,7 +16,6 @@ function App() {
         <ClerkProvider publishableKey={CLERK_PUBLISHABLE_KEY}>
             <Router>
                 <div className='navbar'>
-                    <Link to='/dashboard'>Dashboard</Link>
                     <SignedIn>
                         <UserButton showName />
                     </SignedIn>

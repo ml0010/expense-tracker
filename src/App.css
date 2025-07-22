@@ -1,2 +1,12 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
 .App {
+    font-family: 'Helvetica', sans-serif;
+}
+.navbar {
+    background-color: rgb(216, 216, 216);
+    text-align: right;
+    padding: 10px;
 }

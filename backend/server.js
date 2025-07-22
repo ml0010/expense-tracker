@@ -37,14 +37,27 @@ app.post("/", async(req, res) => {
     }
 })
 
-app.get("/expense-records/:id", async(req, res) => {
+app.get("/expense-records/:userId", async(req, res) => {
     try {
-        const userId = req.params.id;
+        const userId = req.params.userId;
         const records = await Expenses.find({userId : userId});
         if (records.length === 0) {
             return res.status(400).send("No records found for this user");
         }
         res.status(200).send(records);
+    } catch (err) {
+        res.status(500).send(err);
+    }
+});
+
+app.delete("/:id", async(req, res) => {
+    try {
+        const id = req.params.id;
+        const record = await Expenses.findByIdAndDelete(id);
+        if (!record) {
+            return res.status(400).send("No record found");
+        }
+        res.status(200).send(record);
     } catch (err) {
         res.status(500).send(err);
     }

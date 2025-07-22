@@ -1,9 +1,11 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { ExpenseRecordContext } from '../../contexts/expense-record-context'
 
 export const ExpsnseOutput = () => {
 
-    const { records } = useContext(ExpenseRecordContext);
+    const [ newValue, setNewValue ] = useState("");
+
+    const { records, deleteRecord } = useContext(ExpenseRecordContext);
 
     const totalIncome = records
                         .filter((record) => record.category === "Income")
@@ -12,6 +14,11 @@ export const ExpsnseOutput = () => {
     const totalExpenses = records
                         .filter((record) => record.category !== "Income")
                         .reduce((sum, record) => {return sum + record.amount}, 0);
+
+    const handleDelete = (id) => {
+        deleteRecord(id);
+    }
+
     return (
         <div>
             <div className="summary-output">
@@ -29,11 +36,14 @@ export const ExpsnseOutput = () => {
                 </thead>
                 <tbody>
                     {records.map((expense, index) => (
-                        <tr key={index}>
-                            <td>{expense.date}</td>
+                        <tr key={index} id={expense._id}>
+                            <td>
+                                <input className={`input`} value={expense.date}></input>
+                            </td>
                             <td>{expense.category}</td>
                             <td>{expense.description}</td>
                             <td>{expense.amount}</td>
+                            <button onClick={(e) => handleDelete(e.target.parentElement.id)}>DELETE</button>
                         </tr>
                     ))}
                 </tbody>

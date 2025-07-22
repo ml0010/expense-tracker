@@ -24,7 +24,7 @@ export const ExpenseRecordContextProvider = (props) => {
         const response = await fetch(`http://localhost:3001/expense-records/${user.id}`);
         if (response.ok) {
             const records = await response.json();
-            //console.log(records);
+            console.log(records);
             setRecords(records);
         }
     };
@@ -55,9 +55,21 @@ export const ExpenseRecordContextProvider = (props) => {
             console.log(err);
         }
     };
+    const deleteRecord = async (id) => {
+        const response = await fetch(`http://localhost:3001/${id}`, {
+            method: "DELETE"
+        });
+        try {
+            if (response.ok) {
+                const deletedRecord = await response.json();
+                setRecords((prev) => prev.filter((record) => record._id !== deletedRecord._id));
+            }
+        } catch (err) {
+            console.log(err);
+        }
+    };
 
-
-    const contextValue = { username, userId, records, addRecord };
+    const contextValue = { username, userId, records, addRecord, deleteRecord };
     return (
         <ExpenseRecordContext.Provider value={contextValue}>{props.children}</ExpenseRecordContext.Provider>
     )

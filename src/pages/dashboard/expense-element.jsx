@@ -4,6 +4,7 @@ import { ExpenseRecordContext } from '../../contexts/expense-record-context';
 export const ExpenseElement = ({record, index}) => {
 
     const [ editField, setEditField ] = useState("");
+    const [ newValue, setNewValue ] = useState("");
     const [ date, setDate ] = useState(record.date);
     const [ category, setCategory ] = useState(record.category);
     const [ description, setDescription ] = useState(record.description);
@@ -13,22 +14,22 @@ export const ExpenseElement = ({record, index}) => {
     
 
     const handleEdit = () => {
-        console.log("EDITING: ", editField);
-        console.log([editField]);
+        if (newValue === "")
+            return;
 
-
-        const newRecord = {
-            userId: record._id || "",
-            [editField] : [editField]
+        const newRecord = { 
+            [editField] : newValue
         };
-        console.log(newRecord);
-
-        //updateRecord(newRecord);
+        updateRecord(record._id, newRecord);
     };
 
     const handleOnclick = (key) => {
-        console.log(index, " CLIKED: ", key);
         setEditField(key);
+    };
+
+    const handleChange = (setState, value) => {
+        setState(value);
+        setNewValue(value);
     };
 
     const handleDelete = (id) => {
@@ -41,6 +42,7 @@ export const ExpenseElement = ({record, index}) => {
         let handler = (e)=>{
             if (expenseRef.current && !expenseRef.current.contains(e.target) && editField !== "") {
                 handleEdit();
+                setNewValue("");
                 setEditField("");
             }
         };
@@ -53,20 +55,19 @@ export const ExpenseElement = ({record, index}) => {
     return (
         <tr key={index} id={record._id} className="expense-element" ref={expenseRef}>
             <td>
-                <input className={`input ${editField === "date" ? "edit" : ""}`} id="date" value={date} onChange={(e) => setDate(e.target.value)} onClick={(e) => {handleOnclick(e.target.id)}}></input>
+                <input className={`input ${editField === "date" ? "edit" : ""}`} id="date" value={date} onChange={(e) => handleChange(setDate, e.target.value)} onClick={(e) => {handleOnclick(e.target.id)}}></input>
             </td>
             <td>
-                <input className={`input ${editField === "category" ? "edit" : ""}`} id="category" value={category} onChange={(e) => setCategory(e.target.value)} onClick={(e) => {handleOnclick(e.target.id)}}></input>
+                <input className={`input ${editField === "category" ? "edit" : ""}`} id="category" value={category} onChange={(e) => handleChange(setCategory, e.target.value)} onClick={(e) => {handleOnclick(e.target.id)}}></input>
             </td>
             <td>
-                <input className={`input ${editField === "description"  ? "edit" : ""}`} id="description" value={description} onChange={(e) => setDescription(e.target.value)} onClick={(e) => {handleOnclick(e.target.id)}}></input>
+                <input className={`input ${editField === "description"  ? "edit" : ""}`} id="description" value={description} onChange={(e) => handleChange(setDescription, e.target.value)} onClick={(e) => {handleOnclick(e.target.id)}}></input>
             </td>
             <td>
-                <input className={`input ${editField === "amount"  ? "edit" : ""}`} id="amount" value={amount} onChange={(e) => setAmount(e.target.value)} onClick={(e) => {handleOnclick(e.target.id)}}></input>
+                <input className={`input ${editField === "amount"  ? "edit" : ""}`} id="amount" value={amount} onChange={(e) => handleChange(setAmount, e.target.value)} onClick={(e) => {handleOnclick(e.target.id)}}></input>
             </td>
             <td>
                 <button onClick={(e) => handleDelete(e.target.parentElement.parentElement.id)}>DELETE</button>
-                {editField}
             </td>
         </tr>
     )

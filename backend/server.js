@@ -54,9 +54,10 @@ app.put("/:id", async(req, res) => {
     console.log("EDIT");
     try {
         const id = req.params.id;
+        const newRecordBody = req.body;
         const newRecord = await Expenses.findByIdAndUpdate(
             id,
-            newRecord,
+            newRecordBody,
             {new: true}
         );
         if (!newRecord) {

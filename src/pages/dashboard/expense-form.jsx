@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useRef, useState } from 'react'
 import { ExpenseRecordContext } from '../../contexts/expense-record-context';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
+import { Category } from './componentes/category';
 
 export const ExpenseForm = () => {
     
@@ -77,7 +78,7 @@ export const ExpenseForm = () => {
             {isFormOpen? 
             <div className="expense-form-wrapper">
                 <form onSubmit={handleSubmit} className="expense-form" ref={formRef}>
-                    <p className="form-title">Add Your Expense</p>
+                    <p className="form-title">{isExpense? 'Add Your Expense' : 'Add Your Income'}</p>
                     <div className="form-field">
                         <label>Date</label>
                         <DatePicker selected={date} dateFormat="yyyy/MM/dd" onChange={(date) => setDate(date)} />
@@ -95,17 +96,7 @@ export const ExpenseForm = () => {
                             <label>Category</label>
                             <select className="input" value={category} onChange={(e) => setCategory(e.target.value)}required>
                                 <option value="">Select a Category</option>
-                                <option value="Grocery">Grocery</option>
-                                <option value="Rent">Rent</option>
-                                <option value="Mortgage">Mortgage</option>
-                                <option value="Entertaintment">Entertaintment</option>
-                                <option value="Eating Out">Eating-Out</option>
-                                <option value="Transportation">Transportation</option>
-                                <option value="Fuel">Fuel</option>
-                                <option value="Utility">Utility</option>
-                                <option value="Shopping">Shopping</option>
-                                <option value="Subscription">Subscription</option>
-                                <option value="Other">Other</option>
+                                <Category />
                             </select>
                         </div> : <></>
                     }

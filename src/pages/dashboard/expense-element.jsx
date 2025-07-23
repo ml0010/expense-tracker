@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import { ExpenseRecordContext } from '../../contexts/expense-record-context';
 import DatePicker from 'react-datepicker';
+import { Category } from './componentes/category';
 
 export const ExpenseElement = ({record, index}) => {
 
@@ -31,12 +32,19 @@ export const ExpenseElement = ({record, index}) => {
     };
 
     const handleChange = (setState, value) => {
+        console.log(value);
         setState(value);
         setNewValue(value);
     };
 
     const handleDateChange = (date) => {
         handleEdit(editField, date);
+        setNewValue("");
+        setEditField("");
+    };
+
+    const handleCategoryChange = (category) => {
+        handleEdit(editField, category);
         setNewValue("");
         setEditField("");
     };
@@ -84,14 +92,19 @@ export const ExpenseElement = ({record, index}) => {
                 />
             </td>
             <td>
-                <input 
-                    className={`input ${editField === "category" ? "edit" : ""}`} 
+                <select
+                    className={`input ${editField === "category" ? "edit" : ""}`}
                     id="category" 
                     value={category} 
-                    onChange={(e) => handleChange(setCategory, e.target.value)} 
-                    onClick={(e) => {handleOnclick(e.target.id)}} 
-                    onKeyDown={(e) => {handleEditSubmit(e)}}
-                ></input>
+                    onChange={(e) => {
+                        handleChange(setCategory, e.target.value);
+                        handleCategoryChange(e.target.value);
+                    }} 
+                    onMouseDown={(e) => {handleOnclick(e.target.id)}} 
+                >
+                    {amount > 0 ? <option value="Income">Income</option> : <></>}
+                    <Category />
+                </select>
             </td>
             <td>
                 <input 

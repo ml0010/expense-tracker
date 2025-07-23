@@ -49,20 +49,20 @@
     font-weight: 800;
 }
 .expense-output {
-    width: 80%;
 }
 .expense-element .input {
     border: none;
     cursor: pointer;
     background-color: transparent;
     padding: 5px;
+    text-align: center;
 }
 .expense-element .input.edit {
     background-color: var(--color-background);
 }
 
 #amount {
-    text-align: center;
+    width: 100px;
 }
 
 .expense-table {

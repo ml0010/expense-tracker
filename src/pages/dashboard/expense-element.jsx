@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import { ExpenseRecordContext } from '../../contexts/expense-record-context';
+import DatePicker from 'react-datepicker';
 
 export const ExpenseElement = ({record, index}) => {
 
     const [ editField, setEditField ] = useState("");
     const [ newValue, setNewValue ] = useState("");
-    const [ date, setDate ] = useState(record.date);
+    const [ date, setDate ] = useState(new Date(record.date));
     const [ category, setCategory ] = useState(record.category);
     const [ description, setDescription ] = useState(record.description);
     const [ amount, setAmount ] = useState(record.amount);
@@ -13,13 +14,15 @@ export const ExpenseElement = ({record, index}) => {
     const { deleteRecord, updateRecord } = useContext(ExpenseRecordContext);
     
 
-    const handleEdit = () => {
-        if (newValue === "")
+    const handleEdit = (key, value) => {
+        if (value === "") {
             return;
+        }
 
         const newRecord = { 
-            [editField] : newValue
+            [key] : value
         };
+        console.log(newRecord);
         updateRecord(record._id, newRecord);
     };
 
@@ -32,13 +35,19 @@ export const ExpenseElement = ({record, index}) => {
         setNewValue(value);
     };
 
+    const handleDateChange = (date) => {
+        handleEdit(editField, date);
+        setNewValue("");
+        setEditField("");
+    };
+
     const handleDelete = (id) => {
         deleteRecord(id);
     };
 
     const handleEditSubmit = (e) => {
         if (e.key === 'Enter') {
-            handleEdit();
+            handleEdit(editField, newValue);
             setNewValue("");
             setEditField("");
         }
@@ -49,7 +58,7 @@ export const ExpenseElement = ({record, index}) => {
     useEffect(() => {
         let handler = (e)=>{
             if (expenseRef.current && !expenseRef.current.contains(e.target) && editField !== "") {
-                handleEdit();
+                handleEdit(editField, newValue);
                 setNewValue("");
                 setEditField("");
             }
@@ -62,14 +71,17 @@ export const ExpenseElement = ({record, index}) => {
 
     return (
         <tr key={index} id={record._id} className="expense-element" ref={expenseRef}>
-            <td>
-                <input 
-                    className={`input ${editField === "date" ? "edit" : ""}`} 
-                    id="date" value={date} 
-                    onChange={(e) => handleChange(setDate, e.target.value)} 
-                    onClick={(e) => {handleOnclick(e.target.id)}} 
-                    onKeyDown={(e) => {handleEditSubmit(e)}}
-                ></input>
+            <td onClick={() => {handleOnclick("date")}}>
+                <DatePicker 
+                    className={`input ${editField === "date" ? "edit" : ""}`}
+                    id="date" 
+                    selected={date} 
+                    dateFormat="yyyy-MM-dd" 
+                    onChange={(newDate) => {
+                        setDate(new Date(newDate));
+                        handleDateChange(newDate);
+                    }}
+                />
             </td>
             <td>
                 <input 

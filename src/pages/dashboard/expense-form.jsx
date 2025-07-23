@@ -1,11 +1,14 @@
 import { useUser } from '@clerk/clerk-react';
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import { ExpenseRecordContext } from '../../contexts/expense-record-context';
+import DatePicker from 'react-datepicker';
+import "react-datepicker/dist/react-datepicker.css";
 
 export const ExpenseForm = () => {
     
     const [ isFormOpen, setIsFormOpen ] = useState(false);
     const [ isExpense, setIsExpense ] = useState(false);
+    const [ date, setDate ] = useState(new Date());
     const [ description, setDescription ] = useState("");
     const [ amount, setAmount ] = useState("");
     const [ category, setCategory ] = useState("");
@@ -20,7 +23,7 @@ export const ExpenseForm = () => {
         if (isExpense) {
             newRecord = {
                 userId: userId,
-                date: new Date(),
+                date: date,
                 description: description,
                 amount: Number(amount * -1),
                 category: category
@@ -28,7 +31,7 @@ export const ExpenseForm = () => {
         } else {
             newRecord = {
                 userId: userId,
-                date: new Date(),
+                date: date,
                 description: description,
                 amount: Number(amount),
                 category: "Income"
@@ -74,6 +77,10 @@ export const ExpenseForm = () => {
             {isFormOpen? 
                 <form onSubmit={handleSubmit} className="expense-form" ref={formRef}>
                     <p>Add Your Expense</p>
+                    <div className="form-field">
+                        <label>Date</label>
+                        <DatePicker selected={date} dateFormat="yyyy/MM/dd" onChange={(date) => setDate(date)} />
+                    </div>
                     <div className="form-field">
                         <label>Description</label>
                         <input className="input" type="text" value={description} onChange={(e) => setDescription(e.target.value)}required></input>

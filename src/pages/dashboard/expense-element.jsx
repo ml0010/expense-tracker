@@ -104,9 +104,10 @@ export const ExpenseElement = ({record, index}) => {
                 ></input>
             </td>
             <td>
+                € 
                 <input 
                     className={`input ${editField === "amount"  ? "edit" : ""}`} 
-                    id="amount" value={amount} 
+                    id="amount" value={amount}
                     onChange={(e) => handleChange(setAmount, e.target.value)} 
                     onClick={(e) => {handleOnclick(e.target.id)}}
                     onKeyDown={(e) => {handleEditSubmit(e)}}

@@ -71,12 +71,13 @@ export const ExpenseForm = () => {
     };
 
     return (
-        <div className="expense-form-wrapper">
+        <div>
             <button onClick={openIncomeForm}>Add Income</button>
             <button onClick={openExpenseForm}>Add Expense</button>
             {isFormOpen? 
+            <div className="expense-form-wrapper">
                 <form onSubmit={handleSubmit} className="expense-form" ref={formRef}>
-                    <p>Add Your Expense</p>
+                    <p className="form-title">Add Your Expense</p>
                     <div className="form-field">
                         <label>Date</label>
                         <DatePicker selected={date} dateFormat="yyyy/MM/dd" onChange={(date) => setDate(date)} />
@@ -108,10 +109,12 @@ export const ExpenseForm = () => {
                             </select>
                         </div> : <></>
                     }
-                    
-                    <button type="submit" className="button">Add Record</button>
-                    <button className="button" onClick={() => setIsFormOpen(false)}>Close</button>
+                    <div className="form-buttons">
+                        <button type="submit" className="button">Add Record</button>
+                        <button onClick={() => setIsFormOpen(false)}>Close</button>
+                    </div>
                 </form>
+            </div>
             : <></>}
         </div>
     )

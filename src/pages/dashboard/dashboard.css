@@ -5,18 +5,31 @@
     align-items: center;
 }
 .expense-form-wrapper {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(255, 255, 255, 0.948);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
 
 }
 .expense-form {
     background-color: white;
-    border: 1px solid black;
     border-radius: 15px;
-    padding: 20px;
+    padding: 40px;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.366);
+
+}
+.form-title {
+    font-weight: 700;
+    font-size: 20px;
 }
 .form-field {
     display: grid;
@@ -26,13 +39,16 @@
     padding: 5px;
 }
 .form-field input {
+    width: 100%;
     padding: 3px;
+}
+.form-buttons {
+    padding-top: 30px;
 }
 .summary {
     font-weight: 800;
 }
 .expense-output {
-    text-align: center;
     width: 80%;
 }
 .expense-element .input {
@@ -43,6 +59,10 @@
 }
 .expense-element .input.edit {
     background-color: var(--color-background);
+}
+
+#amount {
+    text-align: center;
 }
 
 .expense-table {
@@ -64,7 +84,7 @@
 }
 
 .expense-table tbody tr:nth-child(odd) {
-    background-color: #f2f2f2;
+    background-color: #f7f7f7;
 }
 
 .expense-table tbody tr:hover {

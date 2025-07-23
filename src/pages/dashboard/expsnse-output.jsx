@@ -29,8 +29,8 @@ export const ExpsnseOutput = () => {
     return (
         <div>
             <div className="summary">
-                <p>Total Income: {totalIncome}</p>
-                <p>Total Expenses: {totalExpenses}</p>
+                <p>Total Income: € {totalIncome}</p>
+                <p>Total Expenses: € {totalExpenses}</p>
             </div>
             <table className="expense-table">
                 <thead>

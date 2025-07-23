@@ -51,7 +51,6 @@ app.get("/expense-records/:userId", async(req, res) => {
 });
 
 app.put("/:id", async(req, res) => {
-    console.log("EDIT");
     try {
         const id = req.params.id;
         const newRecordBody = req.body;

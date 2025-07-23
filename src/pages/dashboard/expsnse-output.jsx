@@ -28,11 +28,11 @@ export const ExpsnseOutput = () => {
 
     return (
         <div>
-            <div className="summary-output">
+            <div className="summary">
                 <p>Total Income: {totalIncome}</p>
                 <p>Total Expenses: {totalExpenses}</p>
             </div>
-            <table className="expense-output">
+            <table className="expense-table">
                 <thead>
                     <tr>
                         <th>Date</th>

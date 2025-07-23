@@ -1,6 +1,12 @@
 .dashboard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
+.expense-form-wrapper {
 
+}
 .expense-form {
     background-color: white;
     border: 1px solid black;
@@ -15,17 +21,52 @@
 .form-field {
     display: grid;
     grid-template-columns: 1fr 2fr;
+    align-items: center;
+    min-width: 300px;
+    padding: 5px;
 }
-
+.form-field input {
+    padding: 3px;
+}
+.summary {
+    font-weight: 800;
+}
 .expense-output {
     text-align: center;
     width: 80%;
-    padding: 20px;
 }
 .expense-element .input {
     border: none;
     cursor: pointer;
+    background-color: transparent;
+    padding: 5px;
 }
 .expense-element .input.edit {
-    background-color: rgb(255, 232, 185);
+    background-color: var(--color-background);
+}
+
+.expense-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.expense-table th,
+.expense-table td {
+    padding: 12px 8px;
+    text-align: center;
+}
+
+.expense-table th {
+    background-color: var(--color-font);
+    color: white;
+}
+
+.expense-table tbody tr:nth-child(odd) {
+    background-color: #f2f2f2;
+}
+
+.expense-table tbody tr:hover {
+    background-color: #e8f4f8;
 }

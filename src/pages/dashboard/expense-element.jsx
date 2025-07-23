@@ -36,6 +36,14 @@ export const ExpenseElement = ({record, index}) => {
         deleteRecord(id);
     };
 
+    const handleEditSubmit = (e) => {
+        if (e.key === 'Enter') {
+            handleEdit();
+            setNewValue("");
+            setEditField("");
+        }
+    };
+
     let expenseRef = useRef(null);
 
     useEffect(() => {
@@ -55,16 +63,42 @@ export const ExpenseElement = ({record, index}) => {
     return (
         <tr key={index} id={record._id} className="expense-element" ref={expenseRef}>
             <td>
-                <input className={`input ${editField === "date" ? "edit" : ""}`} id="date" value={date} onChange={(e) => handleChange(setDate, e.target.value)} onClick={(e) => {handleOnclick(e.target.id)}}></input>
+                <input 
+                    className={`input ${editField === "date" ? "edit" : ""}`} 
+                    id="date" value={date} 
+                    onChange={(e) => handleChange(setDate, e.target.value)} 
+                    onClick={(e) => {handleOnclick(e.target.id)}} 
+                    onKeyDown={(e) => {handleEditSubmit(e)}}
+                ></input>
             </td>
             <td>
-                <input className={`input ${editField === "category" ? "edit" : ""}`} id="category" value={category} onChange={(e) => handleChange(setCategory, e.target.value)} onClick={(e) => {handleOnclick(e.target.id)}}></input>
+                <input 
+                    className={`input ${editField === "category" ? "edit" : ""}`} 
+                    id="category" 
+                    value={category} 
+                    onChange={(e) => handleChange(setCategory, e.target.value)} 
+                    onClick={(e) => {handleOnclick(e.target.id)}} 
+                    onKeyDown={(e) => {handleEditSubmit(e)}}
+                ></input>
             </td>
             <td>
-                <input className={`input ${editField === "description"  ? "edit" : ""}`} id="description" value={description} onChange={(e) => handleChange(setDescription, e.target.value)} onClick={(e) => {handleOnclick(e.target.id)}}></input>
+                <input 
+                    className={`input ${editField === "description"  ? "edit" : ""}`} 
+                    id="description" 
+                    value={description} 
+                    onChange={(e) => handleChange(setDescription, e.target.value)} 
+                    onClick={(e) => {handleOnclick(e.target.id)}}
+                    onKeyDown={(e) => {handleEditSubmit(e)}}
+                ></input>
             </td>
             <td>
-                <input className={`input ${editField === "amount"  ? "edit" : ""}`} id="amount" value={amount} onChange={(e) => handleChange(setAmount, e.target.value)} onClick={(e) => {handleOnclick(e.target.id)}}></input>
+                <input 
+                    className={`input ${editField === "amount"  ? "edit" : ""}`} 
+                    id="amount" value={amount} 
+                    onChange={(e) => handleChange(setAmount, e.target.value)} 
+                    onClick={(e) => {handleOnclick(e.target.id)}}
+                    onKeyDown={(e) => {handleEditSubmit(e)}}
+                ></input>
             </td>
             <td>
                 <button onClick={(e) => handleDelete(e.target.parentElement.parentElement.id)}>DELETE</button>

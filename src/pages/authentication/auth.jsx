@@ -10,8 +10,8 @@ if (!PUBLISHABLE_KEY) {
 
 export const Authentication = () => {
   return (
-    <div>
-        <p>Authentication</p>
+    <div className="sign-in-container">
+        <p>Sigin In</p>
         <SignedOut>
                 <SignUpButton mode="modal" />
                 <SignInButton mode="modal" />

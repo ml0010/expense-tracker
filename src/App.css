@@ -1,12 +1,47 @@
+:root {
+    font-family: 'Helvetica', sans-serif;
+
+    --color-font: #333;
+    --color-background: #e8f4f8;
+    --color-button-hover: #c8ecf7;
+
+}
+
 html, body {
     margin: 0;
     padding: 0;
 }
 .App {
-    font-family: 'Helvetica', sans-serif;
+    color: var(--color-font);
+    width: 100vw;
+    min-height: 100vh;
 }
 .navbar {
-    background-color: rgb(216, 216, 216);
-    text-align: right;
-    padding: 10px;
+    background-color: var(--color-background);
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    width: 100%;
+    height: 60px;
+}
+
+.sign-in-container {
+    text-align: center;
+}
+
+button {
+    border-radius: 8px;
+    border: 1px solid transparent;
+    padding: 0.6em 1.2em;
+    margin: 0.2em;
+    font-size: 0.9em;
+    font-weight: 500;
+    font-family: inherit;
+    background-color: var(--color-background);
+    cursor: pointer;
+    transition: 0.25s ease-in-out;
+}
+
+button:hover {
+    background-color: var(--color-button-hover);
 }

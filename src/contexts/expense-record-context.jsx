@@ -55,6 +55,36 @@ export const ExpenseRecordContextProvider = (props) => {
             console.log(err);
         }
     };
+
+    const updateRecord = async (id, newRecord) => {
+
+        console.log(newRecord);
+
+        const response = await fetch(`http://localhost:3001/${id}`, {
+            method: "PUT",
+            body: JSON.stringify(newRecord),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+        try {
+            if (response.ok) {
+                const newRecord = await response.json();
+                setRecords((prev) => 
+                    prev.map((record) => {
+                        if(record._id === id) {
+                            return newRecord;
+                        } else {
+                            return record;
+                        }
+                    })
+                );
+            }
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
     const deleteRecord = async (id) => {
         const response = await fetch(`http://localhost:3001/${id}`, {
             method: "DELETE"
@@ -69,7 +99,7 @@ export const ExpenseRecordContextProvider = (props) => {
         }
     };
 
-    const contextValue = { username, userId, records, addRecord, deleteRecord };
+    const contextValue = { username, userId, records, addRecord, deleteRecord, updateRecord };
     return (
         <ExpenseRecordContext.Provider value={contextValue}>{props.children}</ExpenseRecordContext.Provider>
     )

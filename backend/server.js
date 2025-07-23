@@ -50,6 +50,24 @@ app.get("/expense-records/:userId", async(req, res) => {
     }
 });
 
+app.put("/:id", async(req, res) => {
+    console.log("EDIT");
+    try {
+        const id = req.params.id;
+        const newRecord = await Expenses.findByIdAndUpdate(
+            id,
+            newRecord,
+            {new: true}
+        );
+        if (!newRecord) {
+            return res.status(400).send("No record found");
+        }
+        res.status(200).send(newRecord);
+    } catch (err) {
+        res.status(500).send(err);
+    }
+});
+
 app.delete("/:id", async(req, res) => {
     try {
         const id = req.params.id;

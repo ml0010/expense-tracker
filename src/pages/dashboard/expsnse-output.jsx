@@ -1,11 +1,11 @@
 import React, { useContext, useState } from 'react'
 import { ExpenseRecordContext } from '../../contexts/expense-record-context'
+import { ExpenseElement } from './expense-element';
 
 export const ExpsnseOutput = () => {
 
-    const [ newValue, setNewValue ] = useState("");
+    const { records } = useContext(ExpenseRecordContext);
 
-    const { records, deleteRecord } = useContext(ExpenseRecordContext);
 
     const totalIncome = records
                         .filter((record) => record.category === "Income")
@@ -15,9 +15,16 @@ export const ExpsnseOutput = () => {
                         .filter((record) => record.category !== "Income")
                         .reduce((sum, record) => {return sum + record.amount}, 0);
 
-    const handleDelete = (id) => {
-        deleteRecord(id);
-    }
+
+
+    /*
+    const getRows = (expense) => {
+        if(records) {
+            for (const [key, value] of Object.entries(expense)) {
+                console.log(`${key}: ${value}`);
+            }
+        }
+    };*/
 
     return (
         <div>
@@ -32,19 +39,12 @@ export const ExpsnseOutput = () => {
                         <th>Category</th>
                         <th>Description</th>
                         <th>Amount</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                    {records.map((expense, index) => (
-                        <tr key={index} id={expense._id}>
-                            <td>
-                                <input className={`input`} value={expense.date}></input>
-                            </td>
-                            <td>{expense.category}</td>
-                            <td>{expense.description}</td>
-                            <td>{expense.amount}</td>
-                            <button onClick={(e) => handleDelete(e.target.parentElement.id)}>DELETE</button>
-                        </tr>
+                    {records.map((record ,index) => (
+                        <ExpenseElement record={record} index={index}/>
                     ))}
                 </tbody>
             </table>

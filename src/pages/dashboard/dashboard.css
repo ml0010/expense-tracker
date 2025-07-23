@@ -22,3 +22,10 @@
     width: 80%;
     padding: 20px;
 }
+.expense-element .input {
+    border: none;
+    cursor: pointer;
+}
+.expense-element .input.edit {
+    background-color: rgb(255, 232, 185);
+}

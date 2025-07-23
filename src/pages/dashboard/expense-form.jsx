@@ -22,7 +22,7 @@ export const ExpenseForm = () => {
                 userId: userId,
                 date: new Date(),
                 description: description,
-                amount: amount * -1,
+                amount: Number(amount * -1),
                 category: category
             };
         } else {
@@ -30,7 +30,7 @@ export const ExpenseForm = () => {
                 userId: userId,
                 date: new Date(),
                 description: description,
-                amount: amount,
+                amount: Number(amount),
                 category: "Income"
             };
         }

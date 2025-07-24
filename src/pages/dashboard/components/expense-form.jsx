@@ -1,9 +1,8 @@
-import { useUser } from '@clerk/clerk-react';
 import React, { useContext, useEffect, useRef, useState } from 'react'
-import { ExpenseRecordContext } from '../../contexts/expense-record-context';
+import { ExpenseRecordContext } from '../../../contexts/expense-record-context';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
-import { Category } from './componentes/category';
+import { Category } from './category';
 
 export const ExpenseForm = () => {
     

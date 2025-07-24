@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
-import { ExpenseRecordContext } from '../../contexts/expense-record-context';
+import { ExpenseRecordContext } from '../../../contexts/expense-record-context';
 import DatePicker from 'react-datepicker';
-import { Category } from './componentes/category';
+import { Category } from './category';
 
-export const ExpenseElement = ({record, index}) => {
+export const ExpenseListElement = ({record, index}) => {
 
     const [ editField, setEditField ] = useState("");
     const [ newValue, setNewValue ] = useState("");

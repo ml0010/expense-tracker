@@ -1,5 +1,5 @@
 import { ClerkProvider, SignedIn, UserButton } from '@clerk/clerk-react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import './App.css';
 import Authentication from './pages/authentication/auth';

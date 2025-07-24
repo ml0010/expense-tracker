@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { ExpenseChart, IncomeChart } from './charts';
 import { ExpenseRecordContext } from '../../../contexts/expense-record-context';
+import { BarChart } from './bar-chart';
 
 export const ExpenseSummary = () => {
 
@@ -18,8 +19,9 @@ export const ExpenseSummary = () => {
         <div className="summary">
             <h4>Total Income: € {totalIncome.toFixed(2)}</h4>
             <h4>Total Expenses: € {totalExpenses.toFixed(2) * -1}</h4>
-            <IncomeChart />
-            <ExpenseChart />
+            <IncomeChart amount={totalIncome} />
+            <ExpenseChart amount={totalExpenses} />
+            <BarChart />
         </div>
     )
 }

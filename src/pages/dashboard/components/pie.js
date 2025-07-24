@@ -2,8 +2,9 @@ import * as d3 from "d3";
 
 const Arc = ({ data, index, createArc, colors, format }) => (
     <g key={index} className="arc">
-        <path d={createArc(data)} fill={colors(index)} />
+        <path className="path" d={createArc(data)} fill={colors(index)} />
         <text
+            className="text"
             transform={`translate(${createArc.centroid(data)[0]*1.7}, ${createArc.centroid(data)[1]*1.7})`}
             y="5"
             textAnchor="middle"
@@ -13,6 +14,7 @@ const Arc = ({ data, index, createArc, colors, format }) => (
         {format(data.value)}
         </text>
         <text
+            className="text"
             transform={`translate(${createArc.centroid(data)[0]*1.7}, ${createArc.centroid(data)[1]*1.7})`}
             y="-5"
             textAnchor="middle"

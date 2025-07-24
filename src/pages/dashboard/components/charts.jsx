@@ -27,15 +27,6 @@ export const ExpenseChart = () => {
         return data;
     };
 
-    /*
-    const test = [
-        {name:"Mark", value: 90},
-        {name:"Robert", value: 12},
-        {name:"Emily", value: 34},
-        {name:"Marion", value: 53},
-        {name:"Nicolas", value: 98},
-    ];*/
-
     useEffect((() => {
        setData(getCategoryData());
     }),[records]);
@@ -63,9 +54,6 @@ export const IncomeChart = () => {
         const incomeRecords = records.filter(record => record.category === "Income");
         const incomeSources = [...new Set(incomeRecords.map(record => record.description))];
 
-        console.log(incomeSources);
-
-
         const data = [];
 
         for (let i = 0; i < incomeSources.length; i++ ) {
@@ -76,7 +64,6 @@ export const IncomeChart = () => {
             }
             data.push({name: incomeSources[i], value: sum});
         }
-        console.log(data);
         return data;
     };
 
@@ -85,7 +72,7 @@ export const IncomeChart = () => {
     }),[records]);
 
     return (
-        <div className='pie-chart'>
+        <div className="pie-chart">
             <Pie 
                 data={data}
                 width={320}
@@ -96,3 +83,12 @@ export const IncomeChart = () => {
         </div>
     )
 }
+
+    /*
+    const test = [
+        {name:"Mark", value: 90},
+        {name:"Robert", value: 12},
+        {name:"Emily", value: 34},
+        {name:"Marion", value: 53},
+        {name:"Nicolas", value: 98},
+    ];*/

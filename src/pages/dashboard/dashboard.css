@@ -46,8 +46,13 @@
     padding-top: 30px;
 }
 .summary {
+    padding: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 70px;
 }
-.expense-output {
+.summary h4 {
+    text-align: center;
 }
 .expense-element .input {
     border: none;

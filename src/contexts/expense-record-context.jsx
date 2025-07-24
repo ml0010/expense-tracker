@@ -27,6 +27,7 @@ export const ExpenseRecordContextProvider = (props) => {
         if (response.ok) {
             const records = await response.json();
             console.log(records);
+            records.sort((a, b) => {return new Date(b.date) - new Date(a.date)});
             setRecords(records);
         }
     };

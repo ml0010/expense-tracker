@@ -2,9 +2,9 @@ import * as d3 from "d3";
 
 const Arc = ({ data, index, createArc, colors, format }) => (
     <g key={index} className="arc">
-        <path className="arc" d={createArc(data)} fill={colors(index)} />
+        <path d={createArc(data)} fill={colors(index)} />
         <text
-            transform={`translate(${createArc.centroid(data)})`}
+            transform={`translate(${createArc.centroid(data)[0]*1.7}, ${createArc.centroid(data)[1]*1.7})`}
             y="5"
             textAnchor="middle"
             fill="black"
@@ -13,7 +13,7 @@ const Arc = ({ data, index, createArc, colors, format }) => (
         {format(data.value)}
         </text>
         <text
-            transform={`translate(${createArc.centroid(data)})`}
+            transform={`translate(${createArc.centroid(data)[0]*1.7}, ${createArc.centroid(data)[1]*1.7})`}
             y="-5"
             textAnchor="middle"
             fill="black"
@@ -23,6 +23,7 @@ const Arc = ({ data, index, createArc, colors, format }) => (
         </text>
     </g>
 );
+
 
 export const Pie = (props) => {
 
@@ -41,8 +42,8 @@ export const Pie = (props) => {
     const data = createPie(props.data);
 
     return (
-        <svg width={props.width} height={props.height}>
-            <g transform={`translate(${props.outerRadius} ${props.outerRadius})`}>
+        <svg width={props.width * 1.2} height={props.height  * 1.2}>
+            <g transform={`translate(${props.outerRadius * 1.5} ${props.outerRadius * 1.5})`}>
                 {data.map((data, index) => (
                     <Arc 
                         key={index}

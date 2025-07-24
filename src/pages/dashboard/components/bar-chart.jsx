@@ -6,6 +6,8 @@ export const BarChart = () => {
     const [ data, setData ] = useState([]);
     const { records } = useContext(ExpenseRecordContext);
 
+    const today = new Date();
+    console.log(today);
 
 
     return (

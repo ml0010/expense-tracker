@@ -7,16 +7,6 @@ export const ExpenseRecordContextProvider = (props) => {
 
     const { user, isSignedIn } = useUser();
 
-    /*
-    const expenseRecordDefault = {
-        _id: "",
-        userId: "",
-        date: "",
-        description: "",
-        category: ""
-    };
-    */
-
     const [ records, setRecords ] = useState([]);
     const [ username, setUsername ] = useState("");
     const [ userId, setUserId ] = useState("");

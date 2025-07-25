@@ -80,7 +80,7 @@ export const ExpenseListElement = ({record, index}) => {
     });
 
     return (
-        <tr key={index} id={record._id} className="expense-element" ref={expenseRef}>
+        <tr id={record._id} className="expense-element" ref={expenseRef}>
             <td onClick={() => {handleOnclick("date")}}>
                 <DatePicker 
                     className={`input ${editField === "date" ? "edit" : ""}`}
@@ -95,9 +95,9 @@ export const ExpenseListElement = ({record, index}) => {
             </td>
             <td>
                 <div className="category">
-                    {CategoryIcons.map((category) => {
+                    {CategoryIcons.map((category, index) => {
                         if (category.title === record.category) {
-                            return <category.icon size={22} weight="regular" style={{backgroundColor: category.color}} />;
+                            return <div className="icons" style={{backgroundColor: category.color}} key={index}><category.icon size={21} weight="regular" /></div>;
                         }
                     })}
                     <select

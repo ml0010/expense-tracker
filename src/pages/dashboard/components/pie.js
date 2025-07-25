@@ -1,4 +1,5 @@
 import * as d3 from "d3";
+import { CategoryIcons } from "./category-list";
 
 const Arc = ({ data, index, createArc, colors, format, total }) => (
     <g key={index} className="arc">
@@ -57,10 +58,23 @@ export const Pie = (props) => {
         .innerRadius(props.innerRadius)
         .outerRadius(props.outerRadius);
 
-        
-    const colors = d3.scaleOrdinal(d3.schemeSet3);
+
     const format = d3.format(".2f");
     const data = createPie(props.data);
+
+    const getColors = () => {
+        if (props.name === "expense") {
+            const colorList = [];
+            data.map((data) => {
+                const category = CategoryIcons.find((category) => category.title === data.data.name);
+                colorList.push(category.color);
+            });
+            return colorList;
+        }
+        return d3.schemeSet3;
+    };
+
+    const colors = d3.scaleOrdinal(getColors());
 
     return (
         <svg className="pie" width={props.width * 1.1} height={props.height  * 1.1}>

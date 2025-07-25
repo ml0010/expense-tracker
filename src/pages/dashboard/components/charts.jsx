@@ -34,16 +34,21 @@ export const ExpenseChart = () => {
     }),[records]);
 
     return (
-        <div className='pie-chart expense'>
-            <Pie 
-                data={data}
-                width={320}
-                height={320}
-                innerRadius={65}
-                outerRadius={120}
-                total={total}
-            />
-        </div>
+        <>
+        {data.length > 0 ? 
+            <div className="pie-chart expense">
+                <Pie 
+                    data={data}
+                    width={320}
+                    height={320}
+                    innerRadius={65}
+                    outerRadius={120}
+                    total={total}
+                    name={"expense"}
+                />
+            </div>
+            : <></>
+        }</>
     )
 }
 
@@ -77,16 +82,21 @@ export const IncomeChart = () => {
     }),[records]);
 
     return (
-        <div className="pie-chart income">
-            <Pie 
-                data={data}
-                width={320}
-                height={320}
-                innerRadius={65}
-                outerRadius={120}
-                total={total}
-            />
-        </div>
+        <>
+        {data.length > 0 ? 
+            <div className="pie-chart income">
+                <Pie 
+                    data={data}
+                    width={320}
+                    height={320}
+                    innerRadius={65}
+                    outerRadius={120}
+                    total={total}
+                    name={"income"}
+                />
+            </div>
+            : <></>
+        }</>
     )
 }
 

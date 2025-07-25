@@ -29,7 +29,7 @@ export const ExpsnseList = () => {
                 </thead>
                 <tbody>
                     {records.map((record ,index) => (
-                        <ExpenseListElement record={record} index={index}/>
+                        <ExpenseListElement record={record} key={index}/>
                     ))}
                 </tbody>
             </table>

@@ -108,12 +108,24 @@
 }
 
 .expense-element .input:hover {
-    background-color: red;
+    color: blue;
 }
 .expense-element .input.edit {
     background-color: var(--color-background);
 }
-
+.expense-element .category {
+    display: flex;
+}
+.expense-element .category svg {
+    padding: 7px;
+    border-radius: 50%;
+}
+.expense-element .delete-button {
+    padding-right: 10px;
+}
+.expense-element .delete-button:hover {
+    cursor: pointer;
+}
 #amount {
     width: 100px;
 }

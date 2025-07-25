@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useRef, useState } from 'react'
 import { ExpenseRecordContext } from '../../../contexts/expense-record-context';
 import DatePicker from 'react-datepicker';
 import { Category } from './category';
+import { XIcon } from '@phosphor-icons/react';
+import { CategoryIcons, IncomeIcon } from './category-list';
 
 export const ExpenseListElement = ({record, index}) => {
 
@@ -92,19 +94,26 @@ export const ExpenseListElement = ({record, index}) => {
                 />
             </td>
             <td>
-                <select
-                    className={`input ${editField === "category" ? "edit" : ""}`}
-                    id="category" 
-                    value={category} 
-                    onChange={(e) => {
-                        handleChange(setCategory, e.target.value);
-                        handleCategoryChange(e.target.value);
-                    }} 
-                    onMouseDown={(e) => {handleOnclick(e.target.id)}} 
-                >
-                    {amount > 0 ? <option value="Income">Income</option> : <></>}
-                    <Category />
-                </select>
+                <div className="category">
+                    {CategoryIcons.map((category) => {
+                        if (category.title === record.category) {
+                            return <category.icon size={22} weight="regular" style={{backgroundColor: category.color}} />;
+                        }
+                    })}
+                    <select
+                        className={`input ${editField === "category" ? "edit" : ""}`}
+                        id="category" 
+                        value={category} 
+                        onChange={(e) => {
+                            handleChange(setCategory, e.target.value);
+                            handleCategoryChange(e.target.value);
+                        }} 
+                        onMouseDown={(e) => {handleOnclick(e.target.id)}} 
+                    >
+                        {amount > 0 ? <option value="Income">Income</option> : <></>}
+                        <Category />
+                    </select>
+                </div>
             </td>
             <td>
                 <input 
@@ -127,7 +136,7 @@ export const ExpenseListElement = ({record, index}) => {
                 ></input>
             </td>
             <td>
-                <button onClick={(e) => handleDelete(e.target.parentElement.parentElement.id)}>DELETE</button>
+                <div className="delete-button" onClick={(e) => handleDelete(e.target.parentElement.parentElement.id)}><XIcon size={20} weight="bold" /></div>
             </td>
         </tr>
     )

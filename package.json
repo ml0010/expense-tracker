@@ -5,6 +5,7 @@
   "homepage": "https://ml0010.github.io/expense-tracker",
   "dependencies": {
     "@clerk/clerk-react": "^5.35.3",
+    "@phosphor-icons/react": "^2.1.10",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",

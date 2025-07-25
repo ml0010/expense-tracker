@@ -52,7 +52,7 @@ export const ExpenseRecordContextProvider = (props) => {
         try {
             if (response.ok) {
                 const newRecord = await response.json();
-                setRecords((prev) => [...prev, newRecord]);
+                setRecords((prev) => [newRecord, ...prev]);
             }
         } catch (err) {
             console.log(err);

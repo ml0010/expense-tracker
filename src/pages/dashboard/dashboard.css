@@ -73,6 +73,36 @@
     width: 100%;
     padding: 3px;
 }
+.expense-table-warpper {
+    margin: 30px;
+    min-width: 60vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.expense-table-warpper .search-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px;
+    border-radius: 10px;
+}
+.expense-table-warpper .search-box.active {
+    background-color: rgb(242, 242, 242);
+}
+.expense-table-warpper .search-box .close-button{
+    color: transparent;
+}
+.expense-table-warpper .search-box.active .close-button{
+    color: var(--color-font);
+}
+.expense-table-warpper .search-box input {
+    border: none;
+    background-color: transparent;
+    width: 120px;
+    font-size: 15px;
+}
 .expense-table {
     width: 100%;
     border-collapse: collapse;
@@ -125,10 +155,16 @@
     padding: 7px;
 }
 .expense-element .delete-button {
+    cursor: pointer;
     padding-right: 10px;
+    background-color: transparent;
+    border: none;
+}
+.expense-element .delete-button svg {
+    background-color: transparent;
 }
 .expense-element .delete-button:hover {
-    cursor: pointer;
+    color: blue;
 }
 #amount {
     width: 100px;

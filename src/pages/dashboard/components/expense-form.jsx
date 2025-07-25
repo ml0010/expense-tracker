@@ -73,8 +73,8 @@ export const ExpenseForm = () => {
     return (
         <div className="expense-form">
             <div className="buttons">
-                <button onClick={openIncomeForm}>Add Income</button>
-                <button onClick={openExpenseForm}>Add Expense</button>
+                <button className="button" onClick={openIncomeForm}>Add Income</button>
+                <button className="button" onClick={openExpenseForm}>Add Expense</button>
             </div>
             {isFormOpen? 
             <div className="expense-form-wrapper">
@@ -102,8 +102,8 @@ export const ExpenseForm = () => {
                         </div> : <></>
                     }
                     <div className="form-buttons">
-                        <button type="submit" className="button">Add Record</button>
-                        <button onClick={() => setIsFormOpen(false)}>Close</button>
+                        <button className="button" type="submit">Add Record</button>
+                        <button className="button" onClick={() => setIsFormOpen(false)}>Close</button>
                     </div>
                 </form>
             </div>

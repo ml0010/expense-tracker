@@ -13,7 +13,7 @@ html, body {
     padding: 0;
     overflow-x: hidden;
 }
-button {
+.button {
     border-radius: 10px;
     border: 2px solid var(--color-font);
     padding: 0.6em 1.2em;
@@ -27,7 +27,7 @@ button {
     transition: 0.25s ease-in-out;
 }
 
-button:hover {
+.button:hover {
     background-color: var(--color-button-hover);
     color: var(--color-background);
 }
@@ -40,4 +40,17 @@ button:hover {
 
 .sign-in-container {
     text-align: center;
+}
+input {
+    border-radius: 5px;
+    border: 1px solid rgb(205, 205, 205);
+    padding: 7px;
+}
+select {
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+}
+input:focus{
+    outline: none;
 }

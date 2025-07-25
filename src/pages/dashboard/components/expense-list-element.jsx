@@ -9,6 +9,7 @@ export const ExpenseListElement = ({record, index}) => {
 
     const [ editField, setEditField ] = useState("");
     const [ newValue, setNewValue ] = useState("");
+    const [ id, setId ] = useState(record._id);
     const [ date, setDate ] = useState(new Date(record.date));
     const [ category, setCategory ] = useState(record.category);
     const [ description, setDescription ] = useState(record.description);
@@ -16,6 +17,13 @@ export const ExpenseListElement = ({record, index}) => {
 
     const { deleteRecord, updateRecord } = useContext(ExpenseRecordContext);
     
+    useEffect(() => {
+        setId(record._id);
+        setDate(new Date(record.date));
+        setCategory(record.category);
+        setDescription(record.description);
+        setAmount(record.amount);
+    }, [record]);
 
     const handleEdit = (key, value) => {
         if (value === "") {
@@ -25,7 +33,6 @@ export const ExpenseListElement = ({record, index}) => {
         const newRecord = { 
             [key] : value
         };
-        console.log(newRecord);
         updateRecord(record._id, newRecord);
     };
 
@@ -34,7 +41,6 @@ export const ExpenseListElement = ({record, index}) => {
     };
 
     const handleChange = (setState, value) => {
-        console.log(value);
         setState(value);
         setNewValue(value);
     };
@@ -80,7 +86,7 @@ export const ExpenseListElement = ({record, index}) => {
     });
 
     return (
-        <tr id={record._id} className="expense-element" ref={expenseRef}>
+        <tr id={id} className="expense-element" ref={expenseRef}>
             <td onClick={() => {handleOnclick("date")}}>
                 <DatePicker 
                     className={`input ${editField === "date" ? "edit" : ""}`}
@@ -121,8 +127,8 @@ export const ExpenseListElement = ({record, index}) => {
                     id="description" 
                     value={description} 
                     onChange={(e) => handleChange(setDescription, e.target.value)} 
-                    onClick={(e) => {handleOnclick(e.target.id)}}
-                    onKeyDown={(e) => {handleEditSubmit(e)}}
+                    onClick={(e) => handleOnclick(e.target.id)}
+                    onKeyDown={(e) => handleEditSubmit(e)}
                 ></input>
             </td>
             <td>
@@ -131,12 +137,12 @@ export const ExpenseListElement = ({record, index}) => {
                     className={`input ${editField === "amount"  ? "edit" : ""}`} 
                     id="amount" value={amount}
                     onChange={(e) => handleChange(setAmount, e.target.value)} 
-                    onClick={(e) => {handleOnclick(e.target.id)}}
-                    onKeyDown={(e) => {handleEditSubmit(e)}}
+                    onClick={(e) => handleOnclick(e.target.id)}
+                    onKeyDown={(e) => handleEditSubmit(e)}
                 ></input>
             </td>
             <td>
-                <div className="delete-button" onClick={(e) => handleDelete(e.target.parentElement.parentElement.id)}><XIcon size={20} weight="bold" /></div>
+                <button className="delete-button" id={id} ><XIcon size={20} onClick={(e) => handleDelete(e.target.parentElement.id)} /></button>
             </td>
         </tr>
     )

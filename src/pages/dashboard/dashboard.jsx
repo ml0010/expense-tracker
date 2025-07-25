@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { ExpenseRecordContext } from '../../contexts/expense-record-context';
 import { ExpenseForm } from './components/expense-form';
-import { ExpsnseList } from './components/expsnse-list';
+import { ExpsnseList } from './components/expense-list';
 import './dashboard.css'
 import { ExpenseSummary } from './components/expense-summary';
 

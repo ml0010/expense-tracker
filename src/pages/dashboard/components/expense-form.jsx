@@ -71,12 +71,14 @@ export const ExpenseForm = () => {
     };
 
     return (
-        <div>
-            <button onClick={openIncomeForm}>Add Income</button>
-            <button onClick={openExpenseForm}>Add Expense</button>
+        <div className="expense-form">
+            <div className="buttons">
+                <button onClick={openIncomeForm}>Add Income</button>
+                <button onClick={openExpenseForm}>Add Expense</button>
+            </div>
             {isFormOpen? 
             <div className="expense-form-wrapper">
-                <form onSubmit={handleSubmit} className="expense-form" ref={formRef}>
+                <form onSubmit={handleSubmit} className="form" ref={formRef}>
                     <p className="form-title">{isExpense? 'Add Your Expense' : 'Add Your Income'}</p>
                     <div className="form-field">
                         <label>Date</label>

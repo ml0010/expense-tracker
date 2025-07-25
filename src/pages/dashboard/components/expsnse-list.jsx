@@ -16,8 +16,7 @@ export const ExpsnseList = () => {
     };*/
 
     return (
-        <div>
-
+        <div className="expense-table-warpper">
             <table className="expense-table">
                 <thead>
                     <tr>

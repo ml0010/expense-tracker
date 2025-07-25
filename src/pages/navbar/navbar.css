@@ -1,0 +1,18 @@
+.navbar {
+    background-color: var(--color-background);
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    width: 100vw;
+    height: 60px;
+}
+.navbar.hidden {
+    display: none;
+}
+.navbar button {
+    background-color: transparent;
+    margin-right: 5vw;
+}
+.navbar button:hover {
+    color: blue;
+}

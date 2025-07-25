@@ -1,11 +1,11 @@
 import * as d3 from "d3";
 
-const Arc = ({ data, index, createArc, colors, format }) => (
+const Arc = ({ data, index, createArc, colors, format, total }) => (
     <g key={index} className="arc">
         <path className="path" d={createArc(data)} fill={colors(index)} />
         <text
             className="text"
-            transform={`translate(${createArc.centroid(data)[0]*1.7}, ${createArc.centroid(data)[1]*1.7})`}
+            transform={`translate(${createArc.centroid(data)[0]*1.6}, ${createArc.centroid(data)[1]*1.6})`}
             y="5"
             textAnchor="middle"
             fill="black"
@@ -15,7 +15,7 @@ const Arc = ({ data, index, createArc, colors, format }) => (
         </text>
         <text
             className="text"
-            transform={`translate(${createArc.centroid(data)[0]*1.7}, ${createArc.centroid(data)[1]*1.7})`}
+            transform={`translate(${createArc.centroid(data)[0]*1.6}, ${createArc.centroid(data)[1]*1.6})`}
             y="-5"
             textAnchor="middle"
             fill="black"
@@ -23,6 +23,24 @@ const Arc = ({ data, index, createArc, colors, format }) => (
         >
         {data.data.name}
         </text>
+        {index === 0 ? <>
+                <text
+            textAnchor="middle"
+            fill="black"
+            fontSize="25"
+        >
+        € {total}
+        </text>
+        <text
+            className="total-text"
+            y="20"
+            textAnchor="middle"
+            fill="var(--color-font-light)"
+            fontSize="13"
+        >
+        Total Amount
+        </text>
+        </> : <></>}
     </g>
 );
 
@@ -39,12 +57,13 @@ export const Pie = (props) => {
         .innerRadius(props.innerRadius)
         .outerRadius(props.outerRadius);
 
+        
     const colors = d3.scaleOrdinal(d3.schemeSet3);
     const format = d3.format(".2f");
     const data = createPie(props.data);
 
     return (
-        <svg width={props.width * 1.2} height={props.height  * 1.2}>
+        <svg className="pie" width={props.width * 1.1} height={props.height  * 1.1}>
             <g transform={`translate(${props.outerRadius * 1.5} ${props.outerRadius * 1.5})`}>
                 {data.map((data, index) => (
                     <Arc 
@@ -54,6 +73,7 @@ export const Pie = (props) => {
                         createArc={createArc}
                         colors={colors}
                         format={format}
+                        total={props.total}
                     />
                 ))}
             </g>

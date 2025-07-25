@@ -4,7 +4,38 @@
     justify-content: center;
     align-items: center;
 }
-.expense-form-wrapper {
+.summary {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 50px;
+}
+.summary h2 {
+    text-align: center;
+}
+.summary .arc .path{
+    opacity: 0.8;
+}
+.summary .arc:hover .path {
+    transform: scale(1.04);
+    opacity: 1;
+    transition: transform 300ms ease 100ms;
+    transition: opacity 300ms ease 100ms;
+}
+.summary .arc:hover .text {
+    font-size: 11px;
+    font-weight: 800;
+    transition: font 300ms ease 100ms;
+}
+
+.expense-form .buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.expense-form button {
+    margin: 10px;
+}
+.expense-form .expense-form-wrapper {
     width: 100vw;
     height: 100vh;
     background-color: rgba(255, 255, 255, 0.948);
@@ -15,7 +46,7 @@
     z-index: 100;
 
 }
-.expense-form {
+.expense-form .form {
     background-color: white;
     border-radius: 15px;
     padding: 40px;
@@ -27,66 +58,21 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.366);
 
 }
-.form-title {
+.expense-form .form-title {
     font-weight: 700;
     font-size: 20px;
 }
-.form-field {
+.expense-form .form-field {
     display: grid;
     grid-template-columns: 1fr 2fr;
     align-items: center;
     min-width: 300px;
     padding: 5px;
 }
-.form-field input {
+.expense-form .form-field input {
     width: 100%;
     padding: 3px;
 }
-.form-buttons {
-    padding-top: 30px;
-}
-.summary {
-    padding: 30px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    column-gap: 70px;
-}
-.summary h4 {
-    text-align: center;
-}
-.arc .path{
-    opacity: 0.8;
-}
-.arc:hover .path {
-    transform: scale(1.04);
-    opacity: 1;
-    transition: transform 300ms ease 100ms;
-    transition: opacity 300ms ease 100ms;
-}
-.arc:hover .text {
-    font-size: 11px;
-    font-weight: 800;
-    transition: font 300ms ease 100ms;
-}
-.expense-element .input {
-    border: none;
-    cursor: pointer;
-    background-color: transparent;
-    padding: 5px;
-    text-align: center;
-}
-
-.expense-element .input:hover {
-    background-color: red;
-}
-.expense-element .input.edit {
-    background-color: var(--color-background);
-}
-
-#amount {
-    width: 100px;
-}
-
 .expense-table {
     width: 100%;
     border-collapse: collapse;
@@ -111,4 +97,23 @@
 
 .expense-table tbody tr:hover {
     background-color: #e8f4f8;
+}
+
+.expense-element .input {
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+    padding: 5px;
+    text-align: center;
+}
+
+.expense-element .input:hover {
+    background-color: red;
+}
+.expense-element .input.edit {
+    background-color: var(--color-background);
+}
+
+#amount {
+    width: 100px;
 }

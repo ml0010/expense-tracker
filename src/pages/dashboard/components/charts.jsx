@@ -3,8 +3,9 @@ import Pie from './pie';
 import { ExpenseRecordContext } from '../../../contexts/expense-record-context';
 
 export const ExpenseChart = () => {
-
+    
     const [ data, setData ] = useState([]);
+    const [ total, setTotal ] = useState(0);
     const { records } = useContext(ExpenseRecordContext);
 
     const getCategoryData = () => {
@@ -24,6 +25,7 @@ export const ExpenseChart = () => {
             }
             data.push({name: category[i], value: sum * -1});
         }
+        setTotal(data.reduce((sum, record) => {return sum + record.value}, 0).toFixed(2));
         return data;
     };
 
@@ -32,13 +34,14 @@ export const ExpenseChart = () => {
     }),[records]);
 
     return (
-        <div className='pie-chart'>
+        <div className='pie-chart expense'>
             <Pie 
                 data={data}
                 width={320}
                 height={320}
-                innerRadius={54}
+                innerRadius={65}
                 outerRadius={120}
+                total={total}
             />
         </div>
     )
@@ -48,6 +51,7 @@ export const ExpenseChart = () => {
 export const IncomeChart = () => {
 
     const [ data, setData ] = useState([]);
+    const [ total, setTotal ] = useState(0);
     const { records } = useContext(ExpenseRecordContext);
 
     const getIncomeData = () => {
@@ -63,6 +67,7 @@ export const IncomeChart = () => {
                     sum += incomeRecords[j].amount;
             }
             data.push({name: incomeSources[i], value: sum});
+            setTotal(data.reduce((sum, record) => {return sum + record.value}, 0).toFixed(2));
         }
         return data;
     };
@@ -72,13 +77,14 @@ export const IncomeChart = () => {
     }),[records]);
 
     return (
-        <div className="pie-chart">
+        <div className="pie-chart income">
             <Pie 
                 data={data}
                 width={320}
                 height={320}
-                innerRadius={54}
+                innerRadius={65}
                 outerRadius={120}
+                total={total}
             />
         </div>
     )

@@ -1,10 +1,11 @@
-import { ClerkProvider, SignedIn, UserButton } from '@clerk/clerk-react';
+import { ClerkProvider } from '@clerk/clerk-react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import './App.css';
 import Authentication from './pages/authentication/auth';
 import Dashboard from './pages/dashboard/dashboard';
 import { ExpenseRecordContextProvider } from './contexts/expense-record-context';
+import { Navbar } from './pages/navbar/navbar';
 
 
 
@@ -15,11 +16,7 @@ function App() {
     <div className="App">
         <ClerkProvider publishableKey={CLERK_PUBLISHABLE_KEY}>
             <Router>
-                <div className='navbar'>
-                    <SignedIn>
-                        <UserButton showName />
-                    </SignedIn>
-                </div>
+                <Navbar />
                 <Routes>
                     <Route path="/" element={<Authentication />} />
                     <Route path="/dashboard" element={

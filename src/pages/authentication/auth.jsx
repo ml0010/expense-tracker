@@ -17,7 +17,7 @@ export const Authentication = () => {
                 <SignInButton mode="modal" />
         </SignedOut>
         <SignedIn>
-            <p>Signed In</p>
+            <h2>Signed In</h2>
             <UserButton />
             <Navigate to="/dashboard" />
         </SignedIn>

@@ -14,12 +14,11 @@ export const Dashboard = () => {
     return (
         <div className="dashboard">
             <h1>{username}'s expenses record</h1>
-            <ExpenseFilterContextProvider>
                 <ExpenseSummary />
                 <ExpenseForm />
-                <ExpenseListFilter />
-                <ExpsnseList />
-            </ExpenseFilterContextProvider>
+                <ExpenseFilterContextProvider>
+                    <ExpsnseList />
+                </ExpenseFilterContextProvider>
         </div>
     )
 }

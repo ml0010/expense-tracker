@@ -99,6 +99,10 @@
     width: 120px;
     font-size: 15px;
 }
+.filter-table {
+    width: 100%;
+    border-collapse: collapse;
+}
 .expense-table {
     width: 100%;
     border-collapse: collapse;
@@ -167,9 +171,39 @@
 }
 
 
-
-.filter {
+.filters {
+    width: 100%;
     display: flex;
-    justify-content: space-around;
+    justify-content:space-around;
+}
+.filters select{
+    background-color: var(--color-background);
+    width: 120px;
+}
+.filters select option {
+    background-color: var(--color-background);
+}
+.category-filter button {
+    cursor: pointer;
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
     align-items: center;
+    border: 1px solid var(--color-button-hover);
+    border-radius: 15px;
+    padding: 3PX;
+    margin: 3px;
+    font-size: 12px;
+    padding-left: 7px;
+}
+.category-filter button:hover {
+    background-color: var(--color-button-hover);
+    color: var(--color-background);
+}
+.category-filter button:active {
+    background-color: blue;
+}
+.category-filter button svg {
+    background-color: transparent;
+    padding: 2px;
 }

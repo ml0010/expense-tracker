@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useRef, useState } from 'react'
 import { ExpenseListElement } from './expense-list-element';
 import { MagnifyingGlassIcon, XIcon } from '@phosphor-icons/react';
 import { ExpenseFilterContext } from '../../../contexts/expense-filter-context';
+import { ExpenseListFilter } from './expense-list-filter';
 
 export const ExpsnseList = () => {
 
@@ -50,11 +51,18 @@ export const ExpsnseList = () => {
 
     return (
         <div className="expense-table-warpper">
-            <div className={`search-box ${isSearch? "active" : ""}`}>
-                <MagnifyingGlassIcon size={23} />
-                <input className="search-input" value={searchInput} placeholder="Search" onChange={(e)=>search(e.target.value)} onClick={()=>startSearch()}></input>
-                <XIcon className={`close-button ${isSearch? "active" : ""}`}onClick={() => finishSearch()} size={23} />
-            </div>
+            <table className="filter-table">
+                <td><ExpenseListFilter /></td>
+                <td>
+                    <div className={`search-box ${isSearch? "active" : ""}`}>
+                        <MagnifyingGlassIcon size={23} />
+                        <input className="search-input" value={searchInput} placeholder="Search" onChange={(e)=>search(e.target.value)} onClick={()=>startSearch()}></input>
+                        <XIcon className={`close-button ${isSearch? "active" : ""}`}onClick={() => finishSearch()} size={23} />
+                    </div>
+                </td>
+            </table>
+            
+
             <table className="expense-table" ref={searchRef}>
                 <thead>
                     <tr>

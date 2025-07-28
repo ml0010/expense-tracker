@@ -13,7 +13,7 @@ export const ExpenseFilterContextProvider = (props) => {
     const [ categoryFilterList, setCategoryFilterList ] = useState([]);
 
     const month = new Date().getMonth()
-    const year = new Date().getFullYear();    
+    const year = new Date().getFullYear();
 
     const periodList = {
         "today" : {

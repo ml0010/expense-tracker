@@ -12,6 +12,7 @@ export const CategoryList = [
     "Coffee",
     "Transportation",
     "Fuel",
+    "Home",
     "Utility",
     "Shopping",
     "Subscription",
@@ -62,7 +63,7 @@ export const CategoryIcons = [
     },{
         title: "Shopping",
         icon: ShoppingCartIcon,
-        color: "#bdf28cff"
+        color: "#d5e9c2ff"
     },{
         title: "Subscription",
         icon: AirplayIcon,
@@ -75,5 +76,9 @@ export const CategoryIcons = [
         title: "Income",
         icon: PiggyBankIcon,
         color: "#acf2f9ff"
+    },{
+        title: "Home",
+        icon: HouseLineIcon,
+        color: "#d4c1ffff"
     }
 ];

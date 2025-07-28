@@ -1,5 +1,6 @@
 import { SignedIn, UserButton, useUser } from '@clerk/clerk-react'
 import './navbar.css'
+import { Menu } from './components/menu';
 
 export const Navbar = () => {
 
@@ -8,6 +9,7 @@ export const Navbar = () => {
     return (
         <div className={`navbar ${isSignedIn? "" : "hidden"}`}>
             <SignedIn>
+                <Menu />
                 <UserButton showName />
             </SignedIn>
         </div>

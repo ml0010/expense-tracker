@@ -1,7 +1,7 @@
 .navbar {
     background-color: var(--color-background);
     display: flex;
-    justify-content: right;
+    justify-content: space-between;
     align-items: center;
     width: 100vw;
     height: 60px;
@@ -15,4 +15,58 @@
 }
 .navbar button:hover {
     color: blue;
+}
+
+.menu {
+    padding-left: 5vw;
+    cursor: pointer;
+}
+.menu .menu-bar {
+    position: fixed;
+    left: -30vw;
+    top: 0px;
+
+    opacity: 0;
+    width: 30vw;
+    height: 100vh;
+    background-color: var(--color-background);
+    transition: 0.5s ease-in-out;
+}
+.menu .menu-bar.open {
+    opacity: 1;
+    left: 0px;
+    z-index: 100;
+}
+.menu-bar svg {
+    padding-right: 2vw;
+
+}
+.menu-bar .close-button {
+    padding-top: 10px;
+    float: right;
+}
+.menu .menu-bar .links {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu .menu-bar .link {
+    text-decoration: none;
+    color: var(--color-font);
+    font-size: 19px;
+    font-weight: 700;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    align-items: center;
+    margin-top: 30px;
+    padding: 10px;
+    border-radius: 15px;
+}
+.menu .menu-bar .link.active {
+    background-color: var(--color-button-hover);
+    color: var(--color-font-light);
+
 }

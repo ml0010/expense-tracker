@@ -5,7 +5,6 @@ import { ExpsnseList } from './components/expense-list';
 import './dashboard.css'
 import { ExpenseSummary } from './components/expense-summary';
 import { ExpenseFilterContextProvider } from '../../contexts/expense-filter-context';
-import { ExpenseListFilter } from './components/expense-list-filter';
 
 export const Dashboard = () => {
 
@@ -14,9 +13,10 @@ export const Dashboard = () => {
     return (
         <div className="dashboard">
             <h1>{username}'s expenses record</h1>
-                <ExpenseSummary />
                 <ExpenseForm />
+
                 <ExpenseFilterContextProvider>
+                    <ExpenseSummary />
                     <ExpsnseList />
                 </ExpenseFilterContextProvider>
         </div>

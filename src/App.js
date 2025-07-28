@@ -6,6 +6,9 @@ import Authentication from './pages/authentication/auth';
 import Dashboard from './pages/dashboard/dashboard';
 import { ExpenseRecordContextProvider } from './contexts/expense-record-context';
 import { Navbar } from './pages/navbar/navbar';
+import { ScrollToTop } from './pages/scroll/scroll-to-top';
+import { Income } from './pages/income/income';
+import { Expense } from './pages/expense/expense';
 
 
 
@@ -23,9 +26,18 @@ function App() {
                         <ExpenseRecordContextProvider>
                             <Dashboard />
                         </ExpenseRecordContextProvider>} />
+                    <Route path="/income" element={
+                        <ExpenseRecordContextProvider>
+                            <Income />
+                        </ExpenseRecordContextProvider>} />
+                    <Route path="/expense" element={
+                        <ExpenseRecordContextProvider>
+                            <Expense />
+                        </ExpenseRecordContextProvider>} />
                     <Route path="*" element={<Authentication />} />
                 </Routes>
             </Router>
+            <ScrollToTop />
         </ClerkProvider>
     </div>
   );

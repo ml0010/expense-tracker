@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext } from 'react'
 import { ExpenseFilterContext } from '../../../contexts/expense-filter-context';
 
 export const CategoryFilter = () => {
@@ -16,7 +16,7 @@ export const CategoryFilter = () => {
                 )}
             </select>
             {categoryFilterList.length > 0 ?                 
-                <div>
+                <div className="category">
                     <button onClick={() => deleteAllCategoryFilter()}>x</button>
                     {categoryFilterList.map((category, index) => <button key={index} id={category} onClick={(e) => deleteCategoryFilter(e.target.id)}>{category}</button>)}
                 </div> : <></>

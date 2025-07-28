@@ -35,35 +35,50 @@ export const ExpenseFilterContextProvider = (props) => {
     };
     
     useEffect(() => {
-        console.log("getting record list");
         if (records.length > 0 && currentPeriod) {
-            const newRecords = records.filter((record) => new Date(record.date) >= periodList[currentPeriod].start && new Date(record.date) <= periodList[currentPeriod].end);
-            if(categoryFilterList.length > 0) {
-                const categoryFiltered = newRecords.filter((record) => categoryFilterList.includes(record.category));
-                console.log(categoryFiltered);
+            console.log("getting record list");
+            const newRecords = filterPeriod();
+
+            if (categoryFilterList.length > 0) {
+                const categoryFiltered = filterCategory(newRecords);
+                //console.log(categoryFiltered);
                 setRecordsFiltered([...categoryFiltered]);
                 return;
             }
             setRecordsFiltered([...newRecords]);
-
+            
         }
     }, [records, currentPeriod, categoryFilterList]);
 
+    const filterPeriod = () => {
+        return records.filter((record) => 
+            new Date(record.date) >= periodList[currentPeriod].start && 
+            new Date(record.date) <= periodList[currentPeriod].end);
+    };
+
+    const filterCategory = (records) => {
+        return records.filter((record) => categoryFilterList.includes(record.category));
+    };
+
+    const updateCategoryList = () => {
+        setCategoryList([...new Set(recordsFiltered.map((records) => records.category))]);
+    };
+
     useEffect(() => {
-        if (recordsFiltered.length > 0 && categoryList.length === 0) {
-            console.log("setting category list...");
-            setCategoryList([...new Set(recordsFiltered.map((records) => records.category))]);
+        if (recordsFiltered.length > 0 && categoryFilterList.length === 0) {
+            updateCategoryList();
         }
-    }, [currentPeriod, recordsFiltered]);
+    }, [recordsFiltered]);
 
     const handlePeriodChange = (period) => {
-        setCurrentPeriod(period);
         setCategoryList([]);
         setCategoryFilterList([]);
+        setCurrentPeriod(period);
     };
 
     const addCategoryFilter = (category) => {
-        setCategoryFilterList([...categoryFilterList, category]);
+        if (!categoryFilterList.includes(category) && category !== "all")
+            setCategoryFilterList([...categoryFilterList, category]);
     };
     const deleteAllCategoryFilter = () => {
         setCategoryFilterList([]);

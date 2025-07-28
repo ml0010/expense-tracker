@@ -7,7 +7,7 @@ export const CategoryList = [
     "Rent",
     "Mortgage",
     "Entertaintment",
-    "Pets",
+    "Pet",
     "Eating-Out",
     "Coffee",
     "Transportation",
@@ -36,7 +36,7 @@ export const CategoryIcons = [
         icon: GuitarIcon,
         color: "#8cf2baff"
     },{
-        title: "Pets",
+        title: "Pet",
         icon: CatIcon,
         color: "#8ca4f2ff"
     },{

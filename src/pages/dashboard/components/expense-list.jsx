@@ -1,28 +1,18 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
-import { ExpenseRecordContext } from '../../../contexts/expense-record-context'
 import { ExpenseListElement } from './expense-list-element';
 import { MagnifyingGlassIcon, XIcon } from '@phosphor-icons/react';
+import { ExpenseFilterContext } from '../../../contexts/expense-filter-context';
 
 export const ExpsnseList = () => {
 
+    const { recordsFiltered } = useContext(ExpenseFilterContext);
     const [ isSearch, setIsSearch ] = useState(false);
     const [ searchInput, setSearchInput ] = useState("");
     const [ searchResult, setSearchResult ] = useState([]);
 
-    const { records } = useContext(ExpenseRecordContext);
-
-    /*
-    const getRows = (expense) => {
-        if(records) {
-            for (const [key, value] of Object.entries(expense)) {
-                console.log(`${key}: ${value}`);
-            }
-        }
-    };*/
-
     const startSearch = () => {
         setIsSearch(true);
-        setSearchResult([...records]);
+        setSearchResult([...recordsFiltered]);
     };
     const finishSearch = () => {
         setIsSearch(false);
@@ -31,8 +21,8 @@ export const ExpsnseList = () => {
     };
     const search = (input) => {
         setSearchInput(input);
-        const filterdRecords = records.filter((record) => record.description.toLowerCase().includes(input.toLocaleLowerCase()));
-        setSearchResult([...filterdRecords]);
+        const searchResults = recordsFiltered.filter((record) => record.description.toLowerCase().includes(input.toLocaleLowerCase()));
+        setSearchResult([...searchResults]);
     };
 
     useEffect(() => {
@@ -80,7 +70,7 @@ export const ExpsnseList = () => {
                             <ExpenseListElement record={record} key={index}/>
                         ))}
                     </> : <>
-                        {records.map((record ,index) => (
+                        {recordsFiltered.map((record ,index) => (
                             <ExpenseListElement record={record} key={index}/>
                         ))}
                     </>}
@@ -89,3 +79,11 @@ export const ExpsnseList = () => {
         </div>
     )
 }
+    /*
+    const getRows = (expense) => {
+        if(records) {
+            for (const [key, value] of Object.entries(expense)) {
+                console.log(`${key}: ${value}`);
+            }
+        }
+    };*/

@@ -6,13 +6,14 @@ export const ExpenseFilterContext = createContext(null);
 export const ExpenseFilterContextProvider = (props) => {
 
     const { records } = useContext(ExpenseRecordContext);
+
     const [ currentPeriod, setCurrentPeriod ] = useState("month");
     const [ recordsFiltered, setRecordsFiltered ] = useState([]);
+    const [ categoryList, setCategoryList ] = useState([]);
+    const [ categoryFilterList, setCategoryFilterList ] = useState([]);
 
-    const today = new Date();
     const month = new Date().getMonth()
     const year = new Date().getFullYear();    
-
 
     const periodList = {
         "today" : {
@@ -37,17 +38,41 @@ export const ExpenseFilterContextProvider = (props) => {
         console.log("getting record list");
         if (records.length > 0 && currentPeriod) {
             const newRecords = records.filter((record) => new Date(record.date) >= periodList[currentPeriod].start && new Date(record.date) <= periodList[currentPeriod].end);
-            console.log(newRecords);
+            if(categoryFilterList.length > 0) {
+                const categoryFiltered = newRecords.filter((record) => categoryFilterList.includes(record.category));
+                console.log(categoryFiltered);
+                setRecordsFiltered([...categoryFiltered]);
+                return;
+            }
             setRecordsFiltered([...newRecords]);
+
         }
-    }, [records, currentPeriod]);
+    }, [records, currentPeriod, categoryFilterList]);
 
+    useEffect(() => {
+        if (recordsFiltered.length > 0 && categoryList.length === 0) {
+            console.log("setting category list...");
+            setCategoryList([...new Set(recordsFiltered.map((records) => records.category))]);
+        }
+    }, [currentPeriod, recordsFiltered]);
 
-    const handleFilter = (filterType) => {
-        setCurrentPeriod(filterType);
+    const handlePeriodChange = (period) => {
+        setCurrentPeriod(period);
+        setCategoryList([]);
+        setCategoryFilterList([]);
     };
 
-    const contextValue = { currentPeriod, recordsFiltered, setRecordsFiltered, handleFilter };
+    const addCategoryFilter = (category) => {
+        setCategoryFilterList([...categoryFilterList, category]);
+    };
+    const deleteAllCategoryFilter = () => {
+        setCategoryFilterList([]);
+    };
+    const deleteCategoryFilter = (category) => {
+        setCategoryFilterList((prev) => prev.filter(item => item !== category));
+    };
+
+    const contextValue = { currentPeriod, recordsFiltered, setRecordsFiltered, handlePeriodChange, categoryList, categoryFilterList, addCategoryFilter, deleteCategoryFilter, deleteAllCategoryFilter};
 
     return (
         <ExpenseFilterContext.Provider value={contextValue}>{props.children}</ExpenseFilterContext.Provider>

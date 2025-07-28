@@ -165,3 +165,11 @@
 #amount {
     width: 100px;
 }
+
+
+
+.filter {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}

@@ -6,6 +6,7 @@ import { ExpenseFilterContext } from '../../../contexts/expense-filter-context';
 export const ExpsnseList = () => {
 
     const { recordsFiltered } = useContext(ExpenseFilterContext);
+    
     const [ isSearch, setIsSearch ] = useState(false);
     const [ searchInput, setSearchInput ] = useState("");
     const [ searchResult, setSearchResult ] = useState([]);

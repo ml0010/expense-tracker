@@ -15,9 +15,9 @@ export const Dashboard = () => {
         <div className="dashboard">
             <h1>{username}'s expenses record</h1>
             <ExpenseFilterContextProvider>
-                <ExpenseListFilter />
                 <ExpenseSummary />
                 <ExpenseForm />
+                <ExpenseListFilter />
                 <ExpsnseList />
             </ExpenseFilterContextProvider>
         </div>

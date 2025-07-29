@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { ExpenseRecordContext } from '../../../contexts/expense-record-context';
+import { ExpenseRecordContext } from '../../../../contexts/expense-record-context';
 import * as d3 from "d3";
 
 export const BarChart = () => {

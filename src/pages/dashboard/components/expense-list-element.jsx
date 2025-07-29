@@ -1,9 +1,8 @@
 import { useContext, useEffect, useRef, useState } from 'react'
 import { ExpenseRecordContext } from '../../../contexts/expense-record-context';
 import DatePicker from 'react-datepicker';
-import { Category } from './category';
+import { Category, CategoryIcons} from './category';
 import { XIcon } from '@phosphor-icons/react';
-import { CategoryIcons, IncomeIcon } from './category-list';
 
 export const ExpenseListElement = ({record, index}) => {
 
@@ -86,7 +85,7 @@ export const ExpenseListElement = ({record, index}) => {
     });
 
     return (
-        <tr id={id} className="expense-element" ref={expenseRef} key={index}>
+        <tr id={id} className="element" ref={expenseRef} key={index}>
             <td onClick={() => {handleOnclick("date")}}>
                 <DatePicker 
                     className={`input ${editField === "date" ? "edit" : ""}`}

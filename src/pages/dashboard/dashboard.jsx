@@ -1,11 +1,11 @@
 import './dashboard.css'
 import { useContext } from 'react'
 import { ExpenseRecordContext } from '../../contexts/expense-record-context';
-import { ExpenseForm } from './components/expense-form';
-import { ExpenseChart, IncomeChart } from './components/charts';
-import { Summary } from './components/summary';
-import { BarChart } from './components/bar-chart';
-import { RecentList } from './components/recent-list';
+import { ExpenseForm } from './components/expense-form/expense-form';
+import { ExpenseChart, IncomeChart } from './components/charts/pie-charts';
+import { Summary } from './components/summary/summary';
+import { BarChart } from './components/charts/bar-chart';
+import { RecentList } from './components/recent-list/recent-list';
 
 export const Dashboard = () => {
 

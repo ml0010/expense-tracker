@@ -1,5 +1,5 @@
 import * as d3 from "d3";
-import { CategoryIcons } from "./category-list";
+import { CategoryIcons } from "../category";
 
 const Arc = ({ data, index, createArc, colors, format, total }) => (
     <g key={index} className="arc">

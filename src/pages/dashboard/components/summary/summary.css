@@ -1,0 +1,14 @@
+
+.summary {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.summary .item {
+}
+.summary .balance .positive {
+    color: green;
+}
+.summary .balance .negative {
+    color: red;
+}

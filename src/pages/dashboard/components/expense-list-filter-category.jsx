@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import { ExpenseFilterContext } from '../../../contexts/expense-filter-context';
 import { XIcon } from '@phosphor-icons/react';
 

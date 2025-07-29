@@ -7,7 +7,7 @@ export const PeriodFilter = () => {
 
     return (
         <div className="period-filter">
-            <select defaultValue="month" onChange={(e) => handlePeriodChange(e.target.value)}>
+            <select defaultValue="all" onChange={(e) => handlePeriodChange(e.target.value)}>
                 <option value="today">Today</option>
                 <option value="month">This Month</option>
                 <option value="year">This Year</option>

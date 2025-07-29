@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
-import { ExpenseRecordContext } from '../../../contexts/expense-record-context';
+import { ExpenseRecordContext } from '../../../../contexts/expense-record-context';
+import "./summary.css"
 
 export const Summary = () => {
 

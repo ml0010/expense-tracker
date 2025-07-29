@@ -1,8 +1,8 @@
 import { useContext, useEffect, useRef, useState } from 'react'
-import { ExpenseRecordContext } from '../../../contexts/expense-record-context';
+import { ExpenseRecordContext } from '../../../../contexts/expense-record-context';
 import DatePicker from 'react-datepicker';
 import { XIcon } from '@phosphor-icons/react';
-import { CategoryIcons } from './category-list';
+import { CategoryIcons } from '../category';
 
 export const RecentListElement = ({record, index}) => {
 

@@ -9,6 +9,7 @@ import { Navbar } from './navbar/navbar';
 import { ScrollToTop } from './scroll/scroll-to-top';
 import { Income } from './pages/income/income';
 import Expense from './pages/expense/expense';
+import AllRecords from './pages/all-records/all-records';
 
 
 
@@ -36,7 +37,7 @@ function App() {
                         </ExpenseRecordContextProvider>} />
                     <Route path="/all" element={
                         <ExpenseRecordContextProvider>
-                            <Expense />
+                            <AllRecords />
                         </ExpenseRecordContextProvider>} />
                     <Route path="*" element={<Authentication />} />
                 </Routes>

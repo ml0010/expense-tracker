@@ -3,8 +3,7 @@
     display: grid;
     text-align: center;
     align-items: center;
-    max-width: 80vw;
-
+    max-width: 70vw;
 }
 .boxes {
     display: grid;
@@ -17,70 +16,6 @@
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.086);
 
 }
-
-
-.expense-form {
-    align-items: center;
-}
-
-.expense-form button {
-    width: 30vw;
-    max-width: 300px;
-    min-width: 200px;
-}
-.expense-form .expense-form-wrapper {
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(255, 255, 255, 0.948);
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 100;
-
-}
-.expense-form .form {
-    background-color: white;
-    border-radius: 15px;
-    padding: 40px;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.366);
-
-}
-.expense-form .form-title {
-    font-weight: 700;
-    font-size: 20px;
-}
-.expense-form .form-field {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    align-items: center;
-    min-width: 300px;
-    padding: 5px;
-}
-.expense-form .form-field input {
-    width: 100%;
-    padding: 3px;
-}
-
-.summary {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-}
-.summary .item {
-}
-.summary .balance .positive {
-    color: green;
-}
-.summary .balance .negative {
-    color: red;
-}
-
 h2 {
     text-align: center;
 }
@@ -99,40 +34,3 @@ h2 {
     transition: font 300ms ease 100ms;
 }
 
-
-.filters {
-    width: 100%;
-    display: flex;
-    justify-content:space-around;
-}
-.filters select{
-    background-color: var(--color-background);
-    width: 120px;
-}
-.filters select option {
-    background-color: var(--color-background);
-}
-.category-filter button {
-    cursor: pointer;
-    background-color: transparent;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid var(--color-button-hover);
-    border-radius: 15px;
-    padding: 3PX;
-    margin: 3px;
-    font-size: 12px;
-    padding-left: 7px;
-}
-.category-filter button:hover {
-    background-color: var(--color-button-hover);
-    color: var(--color-background);
-}
-.category-filter button:active {
-    background-color: blue;
-}
-.category-filter button svg {
-    background-color: transparent;
-    padding: 2px;
-}

@@ -1,8 +1,9 @@
 import { useContext, useEffect, useRef, useState } from 'react'
-import { ExpenseRecordContext } from '../../../contexts/expense-record-context';
+import { ExpenseRecordContext } from '../../../../contexts/expense-record-context';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
-import { Category } from './category';
+import { Category } from '../category';
+import './expense-form.css'
 
 export const ExpenseForm = () => {
     

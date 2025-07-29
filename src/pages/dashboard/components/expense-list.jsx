@@ -2,7 +2,8 @@ import { useContext, useEffect, useRef, useState } from 'react'
 import { ExpenseListElement } from './expense-list-element';
 import { MagnifyingGlassIcon, XIcon } from '@phosphor-icons/react';
 import { ExpenseFilterContext } from '../../../contexts/expense-filter-context';
-import { ExpenseListFilter } from './expense-list-filter';
+import { PeriodFilter } from './expense-list-filter-period';
+import { CategoryFilter } from './expense-list-filter-category';
 
 export const ExpenseList = () => {
 
@@ -49,10 +50,14 @@ export const ExpenseList = () => {
         }
     }, [searchRef]);
 
+    
     return (
-        <div className="expense-table-warpper">
+        <div className="table-warpper">
             <table className="filter-table">
-                <td><ExpenseListFilter /></td>
+                <td className="filters">
+                    <PeriodFilter />
+                    <CategoryFilter />
+                </td>
                 <td>
                     <div className={`search-box ${isSearch? "active" : ""}`}>
                         <MagnifyingGlassIcon size={23} />
@@ -62,7 +67,7 @@ export const ExpenseList = () => {
                 </td>
             </table>
             
-            <table className="expense-table" ref={searchRef}>
+            <table className="table" ref={searchRef}>
                 <thead>
                     <tr>
                         <th>Date</th>

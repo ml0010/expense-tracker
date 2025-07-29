@@ -1,25 +1,25 @@
 
-.expense-table-warpper {
+.table-warpper {
     margin: 30px;
     min-width: 60vw;
 }
-.expense-table-warpper .search-box {
+.table-warpper .search-box {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 8px;
     border-radius: 10px;
 }
-.expense-table-warpper .search-box.active {
+.table-warpper .search-box.active {
     background-color: rgb(242, 242, 242);
 }
-.expense-table-warpper .search-box .close-button{
+.table-warpper .search-box .close-button{
     color: transparent;
 }
-.expense-table-warpper .search-box.active .close-button{
+.table-warpper .search-box.active .close-button{
     color: var(--color-font);
 }
-.expense-table-warpper .search-box input {
+.table-warpper .search-box input {
     border: none;
     background-color: transparent;
     width: 120px;
@@ -29,33 +29,33 @@
     width: 100%;
     border-collapse: collapse;
 }
-.expense-table {
+.table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.expense-table th,
-.expense-table td {
+.table th,
+.table td {
     padding: 12px 8px;
     text-align: center;
 }
 
-.expense-table th {
+.table th {
     background-color: var(--color-font);
     color: white;
 }
 
-.expense-table tbody tr:nth-child(odd) {
+.table tbody tr:nth-child(odd) {
     background-color: #f7f7f7;
 }
 
-.expense-table tbody tr:hover {
+.table tbody tr:hover {
     background-color: #e8f4f8;
 }
 
-.expense-element .input {
+.element .input {
     border: none;
     cursor: pointer;
     background-color: transparent;
@@ -63,16 +63,16 @@
     text-align: center;
 }
 
-.expense-element .input:hover {
+.element .input:hover {
     color: blue;
 }
-.expense-element .input.edit {
+.element .input.edit {
     background-color: var(--color-background);
 }
-.expense-element .category {
+.element .category {
     display: flex;
 }
-.expense-element .category .icons {
+.element .category .icons {
     display: flex;
     flex-direction: center;
     align-items: center;
@@ -80,16 +80,16 @@
     border-radius: 50%;
     padding: 7px;
 }
-.expense-element .delete-button {
+.element .delete-button {
     cursor: pointer;
     padding-right: 10px;
     background-color: transparent;
     border: none;
 }
-.expense-element .delete-button svg {
+.element .delete-button svg {
     background-color: transparent;
 }
-.expense-element .delete-button:hover {
+.element .delete-button:hover {
     color: blue;
 }
 #amount {

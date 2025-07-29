@@ -5,9 +5,10 @@ export const ExpenseFilterContext = createContext(null);
 
 export const ExpenseFilterContextProvider = (props) => {
 
-    const { records } = useContext(ExpenseRecordContext);
+    const { records, expenseRecords, incomeRecords } = useContext(ExpenseRecordContext);
 
-    const [ currentPeriod, setCurrentPeriod ] = useState("month");
+    const [ dataSelection, setDataSelection ] = useState(props.data);
+    const [ currentPeriod, setCurrentPeriod ] = useState("all");
     const [ recordsFiltered, setRecordsFiltered ] = useState([]);
     const [ categoryList, setCategoryList ] = useState([]);
     const [ categoryFilterList, setCategoryFilterList ] = useState([]);
@@ -35,22 +36,23 @@ export const ExpenseFilterContextProvider = (props) => {
     };
     
     useEffect(() => {
-        if (records.length > 0 && currentPeriod) {
+        const data = (dataSelection === "income" ? [...incomeRecords] : dataSelection === "expense" ? [...expenseRecords] : [...records]);
+
+        if (data.length > 0 && currentPeriod) {
             console.log("getting record list");
-            const newRecords = filterPeriod();
+            console.log(data);
+            const newRecords = filterPeriod(data);
 
             if (categoryFilterList.length > 0) {
                 const categoryFiltered = filterCategory(newRecords);
-                //console.log(categoryFiltered);
                 setRecordsFiltered([...categoryFiltered]);
                 return;
             }
             setRecordsFiltered([...newRecords]);
-            
         }
-    }, [records, currentPeriod, categoryFilterList]);
+    }, [records, incomeRecords, expenseRecords, currentPeriod, categoryFilterList]);
 
-    const filterPeriod = () => {
+    const filterPeriod = (records) => {
         return records.filter((record) => 
             new Date(record.date) >= periodList[currentPeriod].start && 
             new Date(record.date) <= periodList[currentPeriod].end);

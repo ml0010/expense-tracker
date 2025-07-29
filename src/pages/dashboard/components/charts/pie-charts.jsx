@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react'
-import { ExpenseRecordContext } from '../../../contexts/expense-record-context';
+import { ExpenseRecordContext } from '../../../../contexts/expense-record-context';
 import Pie from './pie';
 
 export const ExpenseChart = () => {

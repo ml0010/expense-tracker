@@ -3,16 +3,16 @@ import { ExpenseFilterContextProvider } from "../../contexts/expense-filter-cont
 import { ExpenseList } from "../dashboard/components/expense-list";
 import "../expense/expense.css"
 
-export const Income = () => {
+export const AllRecords = () => {
 
     return (
-        <div className="income">
-            <h1>Income Summary</h1>
+        <div className="all-records">
+            <h1>Summary</h1>
             <div>
-                <h3>Daily Income</h3>
+                <h3>Daily Record</h3>
             </div>
             <div>
-                <h3>Monthly Income</h3>
+                <h3>Monthly Record</h3>
                 <div>
                     <div>
                         <h4>Category</h4>
@@ -22,11 +22,11 @@ export const Income = () => {
             </div>
             <div>
                 <ExpenseForm />
-                <ExpenseFilterContextProvider data="income">
+                <ExpenseFilterContextProvider>
                     <ExpenseList />
                 </ExpenseFilterContextProvider>
             </div>
         </div>
     )
 }
-export default Income;
+export default AllRecords;

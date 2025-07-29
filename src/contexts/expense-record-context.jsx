@@ -17,6 +17,16 @@ export const ExpenseRecordContextProvider = (props) => {
     const [ expenseTotal, setExpenseTotal ] = useState(null);
     const [ balance, setBalance ] = useState(null);
 
+    
+    useEffect(() => {
+        if (isSignedIn) {
+            setUsername(user.externalAccounts[0].firstName);
+            setUserId(user.id);
+            console.log(`Fetching ${user.externalAccounts[0].firstName}'s expenses...`);
+        }
+        fetchRecords();
+    }, [user]);
+    
     useEffect(() => {
         const incomeRecords = records.filter((record) => record.category === "Income");
         const incomeTotal = incomeRecords.reduce((sum, record) => {return sum + record.amount}, 0);
@@ -41,15 +51,6 @@ export const ExpenseRecordContextProvider = (props) => {
         }
     };
 
-    useEffect(() => {
-        if (isSignedIn) {
-            setUsername(user.externalAccounts[0].firstName);
-            setUserId(user.id);
-            console.log(`Fetching ${user.externalAccounts[0].firstName}'s expenses...`);
-        }
-        fetchRecords();
-    }, [user]);
-    
     const addRecord = async (record) => {
         const response = await fetch("http://localhost:3001", {
             method: "POST",

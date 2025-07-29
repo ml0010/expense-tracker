@@ -6,7 +6,7 @@ import "./expense.css"
 export const Expense = () => {
 
     return (
-        <div className="expense">
+        <div className="summary expense">
             <h1>Expenses Summary</h1>
             <div>
                 <h3>Daily Expences</h3>

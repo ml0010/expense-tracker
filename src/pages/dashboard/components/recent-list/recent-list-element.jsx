@@ -116,11 +116,10 @@ export const RecentListElement = ({record, index}) => {
                     onKeyDown={(e) => handleEditSubmit(e)}
                 ></input>
             </td>
-            <td className="amount">
-                € 
+            <td>
                 <input 
                     className={`input ${editField === "amount"  ? "edit" : ""}`} 
-                    id="amount" value={amount}
+                    id="amount" value={`€ ${amount}`}
                     onChange={(e) => handleChange(setAmount, e.target.value)} 
                     onClick={(e) => handleOnclick(e.target.id)}
                     onKeyDown={(e) => handleEditSubmit(e)}

@@ -6,7 +6,7 @@ export const RecentList = ({records}) => {
     const numberOfRecords = "5";
 
     return (
-        <table className="table">
+        <table className="recent-list table">
             <thead>
                 <tr>
                     <th>Date</th>

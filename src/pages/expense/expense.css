@@ -1,61 +1,68 @@
+.summary {
+    margin: 50px;
+    max-width: 700px;
+    display: grid;
+    align-items: center;
+    text-align: center;
+}
 
-.table-warpper {
+.summary .table-warpper {
     margin: 30px;
     min-width: 60vw;
 }
-.table-warpper .search-box {
+.summary .table-warpper .search-box {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 8px;
     border-radius: 10px;
 }
-.table-warpper .search-box.active {
+.summary .table-warpper .search-box.active {
     background-color: rgb(242, 242, 242);
 }
-.table-warpper .search-box .close-button{
+.summary .table-warpper .search-box .close-button{
     color: transparent;
 }
-.table-warpper .search-box.active .close-button{
+.summary .table-warpper .search-box.active .close-button{
     color: var(--color-font);
 }
-.table-warpper .search-box input {
+.summary .table-warpper .search-box input {
     border: none;
     background-color: transparent;
     width: 120px;
     font-size: 15px;
 }
-.filter-table {
+.summary .filter-table {
     width: 100%;
     border-collapse: collapse;
 }
-.table {
+.summary .table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.table th,
-.table td {
+.summary .table th,
+.summary .table td {
     padding: 12px 8px;
     text-align: center;
 }
 
-.table th {
+.summary .table th {
     background-color: var(--color-font);
     color: white;
 }
 
-.table tbody tr:nth-child(odd) {
+.summary .table tbody tr:nth-child(odd) {
     background-color: #f7f7f7;
 }
 
-.table tbody tr:hover {
+.summary .table tbody tr:hover {
     background-color: #e8f4f8;
 }
 
-.element .input {
+.summary .element .input {
     border: none;
     cursor: pointer;
     background-color: transparent;
@@ -63,16 +70,16 @@
     text-align: center;
 }
 
-.element .input:hover {
+.summary .element .input:hover {
     color: blue;
 }
-.element .input.edit {
+.summary .element .input.edit {
     background-color: var(--color-background);
 }
-.element .category {
+.summary .element .category {
     display: flex;
 }
-.element .category .icons {
+.summary .element .category .icons {
     display: flex;
     flex-direction: center;
     align-items: center;
@@ -80,19 +87,19 @@
     border-radius: 50%;
     padding: 7px;
 }
-.element .delete-button {
+.summary .element .delete-button {
     cursor: pointer;
     padding-right: 10px;
     background-color: transparent;
     border: none;
 }
-.element .delete-button svg {
+.summary .element .delete-button svg {
     background-color: transparent;
 }
-.element .delete-button:hover {
+.summary .element .delete-button:hover {
     color: blue;
 }
-#amount {
+.summary #amount {
     width: 100px;
 }
 

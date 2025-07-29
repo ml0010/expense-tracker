@@ -70,9 +70,6 @@ export const ExpenseRecordContextProvider = (props) => {
     };
 
     const updateRecord = async (id, newRecord) => {
-
-        console.log(newRecord);
-
         const response = await fetch(`http://localhost:3001/${id}`, {
             method: "PUT",
             body: JSON.stringify(newRecord),

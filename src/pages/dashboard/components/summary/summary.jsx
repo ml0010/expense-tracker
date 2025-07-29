@@ -7,7 +7,7 @@ export const Summary = () => {
     const { incomeTotal, expenseTotal, balance} = useContext(ExpenseRecordContext);
 
     return (
-        <div className="summary">
+        <div className="dashboard-summary">
             <div className="item income-total">
                 <h5>Income Total</h5>
                 <h3>€ {incomeTotal}</h3>

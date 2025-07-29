@@ -1,14 +1,14 @@
-
-.summary {
+.dashboard-summary {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
 }
-.summary .item {
+.dashboard-summary .item {
+    
 }
-.summary .balance .positive {
+.dashboard-summary .balance .positive {
     color: green;
 }
-.summary .balance .negative {
+.dashboard-summary .balance .negative {
     color: red;
 }

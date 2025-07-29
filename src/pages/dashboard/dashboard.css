@@ -1,39 +1,32 @@
 .dashboard {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    padding: 50px;
+    display: grid;
+    text-align: center;
     align-items: center;
+    max-width: 80vw;
+
 }
-.summary {
+.boxes {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    column-gap: 50px;
 }
-.summary h2 {
-    text-align: center;
-}
-.summary .arc .path{
-    opacity: 0.8;
-}
-.summary .arc:hover .path {
-    transform: scale(1.04);
-    opacity: 1;
-    transition: transform 300ms ease 100ms;
-    transition: opacity 300ms ease 100ms;
-}
-.summary .arc:hover .text {
-    font-size: 11px;
-    font-weight: 800;
-    transition: font 300ms ease 100ms;
+.box {
+    margin: 15px;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.086);
+
 }
 
-.expense-form .buttons {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+
+.expense-form {
+    align-items: center;
 }
 
 .expense-form button {
-    margin: 10px;
+    width: 30vw;
+    max-width: 300px;
+    min-width: 200px;
 }
 .expense-form .expense-form-wrapper {
     width: 100vw;
@@ -73,101 +66,37 @@
     width: 100%;
     padding: 3px;
 }
-.expense-table-warpper {
-    margin: 30px;
-    min-width: 60vw;
-}
-.expense-table-warpper .search-box {
+
+.summary {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
-    padding: 8px;
-    border-radius: 10px;
 }
-.expense-table-warpper .search-box.active {
-    background-color: rgb(242, 242, 242);
+.summary .item {
 }
-.expense-table-warpper .search-box .close-button{
-    color: transparent;
+.summary .balance .positive {
+    color: green;
 }
-.expense-table-warpper .search-box.active .close-button{
-    color: var(--color-font);
-}
-.expense-table-warpper .search-box input {
-    border: none;
-    background-color: transparent;
-    width: 120px;
-    font-size: 15px;
-}
-.filter-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-.expense-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.summary .balance .negative {
+    color: red;
 }
 
-.expense-table th,
-.expense-table td {
-    padding: 12px 8px;
+h2 {
     text-align: center;
 }
-
-.expense-table th {
-    background-color: var(--color-font);
-    color: white;
+.arc .path{
+    opacity: 0.8;
 }
-
-.expense-table tbody tr:nth-child(odd) {
-    background-color: #f7f7f7;
+.arc:hover .path {
+    transform: scale(1.04);
+    opacity: 1;
+    transition: transform 300ms ease 100ms;
+    transition: opacity 300ms ease 100ms;
 }
-
-.expense-table tbody tr:hover {
-    background-color: #e8f4f8;
-}
-
-.expense-element .input {
-    border: none;
-    cursor: pointer;
-    background-color: transparent;
-    padding: 5px;
-    text-align: center;
-}
-
-.expense-element .input:hover {
-    color: blue;
-}
-.expense-element .input.edit {
-    background-color: var(--color-background);
-}
-.expense-element .category {
-    display: flex;
-}
-.expense-element .category .icons {
-    display: flex;
-    flex-direction: center;
-    align-items: center;
-    color: rgb(74, 74, 74);
-    border-radius: 50%;
-    padding: 7px;
-}
-.expense-element .delete-button {
-    cursor: pointer;
-    padding-right: 10px;
-    background-color: transparent;
-    border: none;
-}
-.expense-element .delete-button svg {
-    background-color: transparent;
-}
-.expense-element .delete-button:hover {
-    color: blue;
-}
-#amount {
-    width: 100px;
+.arc:hover .text {
+    font-size: 11px;
+    font-weight: 800;
+    transition: font 300ms ease 100ms;
 }
 
 

@@ -1,11 +1,10 @@
 import { useContext, useEffect, useRef, useState } from 'react'
 import { ExpenseRecordContext } from '../../../contexts/expense-record-context';
 import DatePicker from 'react-datepicker';
-import { Category } from './category';
 import { XIcon } from '@phosphor-icons/react';
-import { CategoryIcons, IncomeIcon } from './category-list';
+import { CategoryIcons } from './category-list';
 
-export const ExpenseListElement = ({record, index}) => {
+export const RecentListElement = ({record, index}) => {
 
     const [ editField, setEditField ] = useState("");
     const [ newValue, setNewValue ] = useState("");
@@ -20,7 +19,7 @@ export const ExpenseListElement = ({record, index}) => {
     useEffect(() => {
         setId(record._id);
         setDate(new Date(record.date));
-        setCategory(record.category);
+        //setCategory(record.category);
         setDescription(record.description);
         setAmount(record.amount);
     }, [record]);
@@ -51,12 +50,13 @@ export const ExpenseListElement = ({record, index}) => {
         setEditField("");
     };
 
+    /*
     const handleCategoryChange = (category) => {
         handleEdit(editField, category);
         setNewValue("");
         setEditField("");
     };
-
+*/
     const handleDelete = (id) => {
         deleteRecord(id);
     };
@@ -86,7 +86,7 @@ export const ExpenseListElement = ({record, index}) => {
     });
 
     return (
-        <tr id={id} className="expense-element" ref={expenseRef} key={index}>
+        <tr id={id} className="element" ref={expenseRef} key={index}>
             <td onClick={() => {handleOnclick("date")}}>
                 <DatePicker 
                     className={`input ${editField === "date" ? "edit" : ""}`}
@@ -99,29 +99,14 @@ export const ExpenseListElement = ({record, index}) => {
                     }}
                 />
             </td>
-            <td>
+            <td className="description">
                 <div className="category">
                     {CategoryIcons.map((category, index) => {
                         if (category.title === record.category) {
-                            return <div className="icons" style={{backgroundColor: category.color}} key={index}><category.icon size={21} weight="regular" /></div>;
+                            return <div className="icon" style={{backgroundColor: category.color}} key={index}><category.icon size={21} weight="regular" /></div>;
                         }
                     })}
-                    <select
-                        className={`input ${editField === "category" ? "edit" : ""}`}
-                        id="category" 
-                        value={category} 
-                        onChange={(e) => {
-                            handleChange(setCategory, e.target.value);
-                            handleCategoryChange(e.target.value);
-                        }} 
-                        onMouseDown={(e) => {handleOnclick(e.target.id)}} 
-                    >
-                        {amount > 0 ? <option value="Income">Income</option> : <></>}
-                        <Category />
-                    </select>
                 </div>
-            </td>
-            <td>
                 <input 
                     className={`input ${editField === "description"  ? "edit" : ""}`} 
                     id="description" 
@@ -131,7 +116,7 @@ export const ExpenseListElement = ({record, index}) => {
                     onKeyDown={(e) => handleEditSubmit(e)}
                 ></input>
             </td>
-            <td>
+            <td className="amount">
                 € 
                 <input 
                     className={`input ${editField === "amount"  ? "edit" : ""}`} 

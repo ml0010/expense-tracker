@@ -7,7 +7,7 @@ export const BarChart = () => {
     const [ data, setData ] = useState([]);
     const { records } = useContext(ExpenseRecordContext);
 
-    const numberOfDays = "7";
+    const numberOfDays = "15";
 
     const getData = () => {
         const data = [];
@@ -24,7 +24,7 @@ export const BarChart = () => {
     };
 
     // Set up dimensions
-    const margin = { top: 0, right: 0, bottom: 30, left: 0 };
+    const margin = { top: 20, right: 0, bottom: 30, left: 30 };
     const width = 500 - margin.left - margin.right;
     const height = 300 - margin.top - margin.bottom;
 
@@ -63,6 +63,22 @@ export const BarChart = () => {
             .attr("transform", "translate(30, 10)") 
             .attr("fill", "steelblue");
 
+        svg.selectAll(".text")
+            .data(data)
+            .enter()
+            .append("text")
+            .attr("class", "bar-label")
+            .attr("x", (d) => xScale(d.date))
+            .attr("y", (d) => yScale(d.value))
+            .attr("width", xScale.bandwidth())
+            .attr("height", (d) => height - yScale(d.value))
+            .attr("transform", "translate(35, 8)") 
+            .text((d) => d.value > 0 ? "€" + d.value : "")
+            .attr("fill", "black")
+            .style("font-size", "11px")
+            .style("text-anchor", "middle");
+            
+
         // Create x-axis
         const xAxis = d3.axisBottom(xScale);
         svg.append("g")
@@ -71,10 +87,11 @@ export const BarChart = () => {
             .call(xAxis);
 
         // Create y-axis
-        const yAxis = d3.axisLeft(yScale);
+        const yAxis = d3.axisLeft(yScale).ticks(10);
+;
         svg.append("g")
             .attr("class", "y-axis")
-            .attr("transform", "translate(30, 10)") 
+            .attr("transform", "translate(30, 10)")
             .call(yAxis);
 
     }, [data]);

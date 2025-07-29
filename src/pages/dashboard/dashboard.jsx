@@ -1,24 +1,53 @@
-import React, { useContext } from 'react'
+import './dashboard.css'
+import { useContext } from 'react'
 import { ExpenseRecordContext } from '../../contexts/expense-record-context';
 import { ExpenseForm } from './components/expense-form';
-import { ExpsnseList } from './components/expense-list';
-import './dashboard.css'
-import { ExpenseSummary } from './components/expense-summary';
-import { ExpenseFilterContextProvider } from '../../contexts/expense-filter-context';
+import { ExpenseChart, IncomeChart } from './components/charts';
+import { Summary } from './components/summary';
+import { BarChart } from './components/bar-chart';
+import { RecentList } from './components/recent-list';
 
 export const Dashboard = () => {
 
     const { username } = useContext(ExpenseRecordContext); 
 
+
+    const { incomeRecords, expenseRecords } = useContext(ExpenseRecordContext);
+
     return (
         <div className="dashboard">
-            <h1>{username}'s expenses record</h1>
-                <ExpenseForm />
+            <h1>{username}'s Dashboard</h1>
+            <ExpenseForm />
+            <div className="box">
+                <h2>Summary</h2>
+                <Summary />
+            </div>
+            <div className="boxes">
+                <div className="box">
+                    <h2>Income Chart</h2>
+                    <IncomeChart />
+                </div>
+                <div className="box">
+                    <h2>Expense Chart</h2>
+                    <ExpenseChart />
+                </div>
+                <div className="box">
+                    <h2>Monthly Balance</h2>
+                </div>
+                <div className="box">
+                    <h2>15 Days Expenses</h2>
+                    <BarChart />
+                </div>
+                <div className="box">
+                    <h2>Recent Incomes</h2>
+                    <RecentList records={incomeRecords} /> 
+                </div>                    
+                <div className="box">
+                    <h2>Recent Expenses</h2>
+                    <RecentList records={expenseRecords} /> 
+                </div>
+            </div>
 
-                <ExpenseFilterContextProvider>
-                    <ExpenseSummary />
-                    <ExpsnseList />
-                </ExpenseFilterContextProvider>
         </div>
     )
 }

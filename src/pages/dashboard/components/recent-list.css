@@ -1,0 +1,72 @@
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.table th,
+.table td {
+    padding: 12px 8px;
+    text-align: center;
+    font-size: 12px;
+}
+.table th {
+    background-color: var(--color-font);
+    color: white;
+}
+.table tbody tr:nth-child(odd) {
+    background-color: #f7f7f7;
+}
+
+.table tbody tr:hover {
+    background-color: #e8f4f8;
+}
+
+.element .input {
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+    padding: 5px;
+    text-align: center;
+    font-size: 12px;
+}
+
+.element .input:hover {
+    color: blue;
+}
+.element .input.edit {
+    background-color: var(--color-background);
+}
+.element .category {
+    display: flex;
+}
+.element .category .icon {
+    display: flex;
+    flex-direction: center;
+    align-items: center;
+    color: rgb(74, 74, 74);
+    border-radius: 50%;
+    padding: 7px;
+}
+.element .delete-button {
+    cursor: pointer;
+    padding-right: 10px;
+    background-color: transparent;
+    border: none;
+}
+.element .delete-button svg {
+    background-color: transparent;
+}
+.element .delete-button:hover {
+    color: blue;
+}
+.description {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+#amount {
+    width: 40px;
+}

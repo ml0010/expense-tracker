@@ -1,12 +1,11 @@
-import React, { useContext, useEffect, useState } from 'react'
-import Pie from './pie';
+import { useContext, useEffect, useState } from 'react'
 import { ExpenseRecordContext } from '../../../contexts/expense-record-context';
+import Pie from './pie';
 
 export const ExpenseChart = () => {
     
     const [ data, setData ] = useState([]);
-    const [ total, setTotal ] = useState(0);
-    const { records } = useContext(ExpenseRecordContext);
+    const { records , expenseTotal } = useContext(ExpenseRecordContext);
 
     const getCategoryData = () => {
         const category = [...new Set(records.map(record => record.category))];
@@ -25,7 +24,6 @@ export const ExpenseChart = () => {
             }
             data.push({name: category[i], value: sum * -1});
         }
-        setTotal(data.reduce((sum, record) => {return sum + record.value}, 0).toFixed(2));
         return data;
     };
 
@@ -43,7 +41,7 @@ export const ExpenseChart = () => {
                     height={320}
                     innerRadius={65}
                     outerRadius={120}
-                    total={total}
+                    total={expenseTotal}
                     name={"expense"}
                 />
             </div>
@@ -56,8 +54,7 @@ export const ExpenseChart = () => {
 export const IncomeChart = () => {
 
     const [ data, setData ] = useState([]);
-    const [ total, setTotal ] = useState(0);
-    const { records } = useContext(ExpenseRecordContext);
+    const { records, incomeTotal } = useContext(ExpenseRecordContext);
 
     const getIncomeData = () => {
         const incomeRecords = records.filter(record => record.category === "Income");
@@ -72,7 +69,6 @@ export const IncomeChart = () => {
                     sum += incomeRecords[j].amount;
             }
             data.push({name: incomeSources[i], value: sum});
-            setTotal(data.reduce((sum, record) => {return sum + record.value}, 0).toFixed(2));
         }
         return data;
     };
@@ -91,7 +87,7 @@ export const IncomeChart = () => {
                     height={320}
                     innerRadius={65}
                     outerRadius={120}
-                    total={total}
+                    total={incomeTotal}
                     name={"income"}
                 />
             </div>

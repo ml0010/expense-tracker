@@ -1,10 +1,10 @@
-import React, { useContext, useEffect, useRef, useState } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 import { ExpenseListElement } from './expense-list-element';
 import { MagnifyingGlassIcon, XIcon } from '@phosphor-icons/react';
 import { ExpenseFilterContext } from '../../../contexts/expense-filter-context';
 import { ExpenseListFilter } from './expense-list-filter';
 
-export const ExpsnseList = () => {
+export const ExpenseList = () => {
 
     const { recordsFiltered } = useContext(ExpenseFilterContext);
     
@@ -62,7 +62,6 @@ export const ExpsnseList = () => {
                 </td>
             </table>
             
-
             <table className="expense-table" ref={searchRef}>
                 <thead>
                     <tr>

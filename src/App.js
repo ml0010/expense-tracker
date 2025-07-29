@@ -5,10 +5,10 @@ import './App.css';
 import Authentication from './pages/authentication/auth';
 import Dashboard from './pages/dashboard/dashboard';
 import { ExpenseRecordContextProvider } from './contexts/expense-record-context';
-import { Navbar } from './pages/navbar/navbar';
-import { ScrollToTop } from './pages/scroll/scroll-to-top';
+import { Navbar } from './navbar/navbar';
+import { ScrollToTop } from './scroll/scroll-to-top';
 import { Income } from './pages/income/income';
-import { Expense } from './pages/expense/expense';
+import Expense from './pages/expense/expense';
 
 
 
@@ -31,6 +31,10 @@ function App() {
                             <Income />
                         </ExpenseRecordContextProvider>} />
                     <Route path="/expense" element={
+                        <ExpenseRecordContextProvider>
+                            <Expense />
+                        </ExpenseRecordContextProvider>} />
+                    <Route path="/all" element={
                         <ExpenseRecordContextProvider>
                             <Expense />
                         </ExpenseRecordContextProvider>} />

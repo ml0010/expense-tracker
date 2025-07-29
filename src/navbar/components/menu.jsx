@@ -31,6 +31,7 @@ export const Menu = () => {
                     <Link className={`link ${currentPage === "dashboard" ? "active" : ""}`} to="dashboard" onClick={() => setMenuOpen(false)}><ChartLineIcon size={28} /> Dashboard</Link>
                     <Link className={`link ${currentPage === "income" ? "active" : ""}`} to="income" onClick={() => setMenuOpen(false)}><WalletIcon size={28} />Income</Link>
                     <Link className={`link ${currentPage === "expense" ? "active" : ""}`} to="expense" onClick={() => setMenuOpen(false)}><HandCoinsIcon size={28} /> Expense</Link>
+                    <Link className={`link ${currentPage === "expense" ? "active" : ""}`} to="all" onClick={() => setMenuOpen(false)}><HandCoinsIcon size={28} /> Expense</Link>
                 </div>
             </div>
         </div>

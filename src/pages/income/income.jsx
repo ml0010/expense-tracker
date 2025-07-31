@@ -4,29 +4,32 @@ import { ExpenseList } from "../dashboard/components/expense-list";
 import "../expense/expense.css"
 import { IncomeMonthly } from "./components/income-monthly";
 import { IncomeYearly } from "./components/income-yearly";
+import { PiggyBankIcon } from "@phosphor-icons/react";
 
 export const Income = () => {
 
     return (
-        <div className="summary income">
-            <h1>Income Summary</h1>
-            <div>
-                <h3>Monthly Income</h3>
-                <p>Items</p>
-                <IncomeMonthly />
-            </div>
-            <div>
-                <h3>Yearly Income</h3>
-                <p>Breakdown</p>
-                <IncomeYearly />
-            </div>
-            <div>
-                <ExpenseForm />
-                <ExpenseFilterContextProvider data="income">
+        <ExpenseFilterContextProvider data="income">
+            <div className="summary income">
+                <h1 className="title"><PiggyBankIcon size={50} /> Income Tracker</h1>
+                <div className="tracker">
+                    <div className="item">
+                        <h3>Monthly Income</h3>
+                        <h4>Items</h4>
+                        <IncomeMonthly />
+                    </div>
+                    <div className="item">
+                        <h3>Yearly Income</h3>
+                        <h4>Breakdown</h4>
+                        <IncomeYearly />
+                    </div>
+                </div>
+                <div>
+                    <ExpenseForm />
                     <ExpenseList />
-                </ExpenseFilterContextProvider>
+                </div>
             </div>
-        </div>
+        </ExpenseFilterContextProvider>
     )
 }
 export default Income;

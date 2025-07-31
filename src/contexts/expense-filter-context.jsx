@@ -65,6 +65,9 @@ export const ExpenseFilterContextProvider = (props) => {
     const getCategoryList = (records) => {
         return [...new Set(records.map((records) => records.category))];
     };
+    const getDescriptionList = (records) => {
+        return [...new Set(records.map((records) => records.description))];
+    };
 
     useEffect(() => {
         if (recordsFiltered.length > 0 && categoryFilterList.length === 0) {
@@ -89,7 +92,7 @@ export const ExpenseFilterContextProvider = (props) => {
         setCategoryFilterList((prev) => prev.filter(item => item !== category));
     };
 
-    const contextValue = { currentPeriod, recordsFiltered, setRecordsFiltered, handlePeriodChange, categoryList, categoryFilterList, addCategoryFilter, deleteCategoryFilter, deleteAllCategoryFilter, filterPeriod, getCategoryList};
+    const contextValue = { currentPeriod, recordsFiltered, setRecordsFiltered, handlePeriodChange, categoryList, categoryFilterList, addCategoryFilter, deleteCategoryFilter, deleteAllCategoryFilter, filterPeriod, getCategoryList, getDescriptionList};
 
     return (
         <ExpenseFilterContext.Provider value={contextValue}>{props.children}</ExpenseFilterContext.Provider>

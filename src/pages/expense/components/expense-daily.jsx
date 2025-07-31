@@ -33,7 +33,7 @@ export const ExpenseDaily = () => {
                     </tr>)}
                 </tbody>
             </table>
-            <p className="total">SUM: {(records.reduce((sum, record) => sum + record.amount, 0) * -1).toFixed(2)}</p>
+            <p className="total">Total: € {(records.reduce((sum, record) => sum + record.amount, 0) * -1).toFixed(2)}</p>
         </div>
     )
 }

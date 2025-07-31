@@ -10,7 +10,7 @@ export const RecentListElement = ({record, index}) => {
     const [ newValue, setNewValue ] = useState("");
     const [ id, setId ] = useState(record._id);
     const [ date, setDate ] = useState(new Date(record.date));
-    const [ category, setCategory ] = useState(record.category);
+    //const [ category, setCategory ] = useState(record.category);
     const [ description, setDescription ] = useState(record.description);
     const [ amount, setAmount ] = useState(record.amount);
 

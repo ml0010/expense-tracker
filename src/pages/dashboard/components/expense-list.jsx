@@ -54,17 +54,21 @@ export const ExpenseList = () => {
     return (
         <div className="table-warpper">
             <table className="filter-table">
-                <td className="filters">
-                    <PeriodFilter />
-                    <CategoryFilter />
-                </td>
-                <td>
-                    <div className={`search-box ${isSearch? "active" : ""}`}>
-                        <MagnifyingGlassIcon size={23} />
-                        <input className="search-input" value={searchInput} placeholder="Search" onChange={(e)=>search(e.target.value)} onClick={()=>startSearch()}></input>
-                        <XIcon className={`close-button ${isSearch? "active" : ""}`}onClick={() => finishSearch()} size={23} />
-                    </div>
-                </td>
+                <thead>
+                    <tr>
+                        <td className="filters">
+                            <PeriodFilter />
+                            <CategoryFilter />
+                        </td>
+                        <td>
+                            <div className={`search-box ${isSearch? "active" : ""}`}>
+                                <MagnifyingGlassIcon size={23} />
+                                <input className="search-input" value={searchInput} placeholder="Search" onChange={(e)=>search(e.target.value)} onClick={()=>startSearch()}></input>
+                                <XIcon className={`close-button ${isSearch? "active" : ""}`}onClick={() => finishSearch()} size={23} />
+                            </div>
+                        </td>
+                    </tr>
+                </thead>
             </table>
             
             <table className="table" ref={searchRef}>

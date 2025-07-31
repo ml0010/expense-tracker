@@ -140,3 +140,9 @@
     background-color: transparent;
     padding: 2px;
 }
+.summary-table {
+    font-size: 12px;
+}
+#amount {
+    text-align: right;
+}

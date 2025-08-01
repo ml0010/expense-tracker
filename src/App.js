@@ -20,7 +20,6 @@ function App() {
     <div className="App">
         <ClerkProvider publishableKey={CLERK_PUBLISHABLE_KEY}>
             <Router>
-                <Navbar />
                 <Routes>
                     <Route path="/" element={<Authentication />} />
                     <Route path="/dashboard" element={
@@ -41,6 +40,7 @@ function App() {
                         </ExpenseRecordContextProvider>} />
                     <Route path="*" element={<Authentication />} />
                 </Routes>
+                <Navbar />
             </Router>
             <ScrollToTop />
         </ClerkProvider>

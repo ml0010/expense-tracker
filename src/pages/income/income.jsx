@@ -12,6 +12,7 @@ export const Income = () => {
         <ExpenseFilterContextProvider data="income">
             <div className="summary income">
                 <h1 className="title"><PiggyBankIcon size={50} /> Income Tracker</h1>
+                <ExpenseForm />
                 <div className="tracker">
                     <div className="item">
                         <h3>Monthly Income</h3>
@@ -24,8 +25,8 @@ export const Income = () => {
                         <IncomeYearly />
                     </div>
                 </div>
-                <div>
-                    <ExpenseForm />
+                <div className="list">
+                    <h3>Income List</h3>
                     <ExpenseList />
                 </div>
             </div>

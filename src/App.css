@@ -18,8 +18,8 @@ html, body {
     color: var(--color-font);
     width: 100vw;
     min-height: 100vh;
+    background-color: ;
 }
-
 .button {
     border-radius: 10px;
     border: 2px solid var(--color-font);

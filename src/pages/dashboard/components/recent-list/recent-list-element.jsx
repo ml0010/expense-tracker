@@ -100,30 +100,35 @@ export const RecentListElement = ({record, index}) => {
                 />
             </td>
             <td className="description">
-                <div className="category">
-                    {CategoryIcons.map((category, index) => {
-                        if (category.title === record.category) {
-                            return <div className="icon" style={{backgroundColor: category.color}} key={index}><category.icon size={21} weight="regular" /></div>;
-                        }
-                    })}
+                <div  className="input-wrapper">
+                    <div className="category">
+                        {CategoryIcons.map((category, index) => {
+                            if (category.title === record.category) {
+                                return <div className="icon" style={{backgroundColor: category.color}} key={index}><category.icon size={21} weight="regular" /></div>;
+                            }
+                        })}
+                    </div>
+                    <input 
+                        className={`input ${editField === "description"  ? "edit" : ""}`} 
+                        id="description" 
+                        value={description} 
+                        onChange={(e) => handleChange(setDescription, e.target.value)} 
+                        onClick={(e) => handleOnclick(e.target.id)}
+                        onKeyDown={(e) => handleEditSubmit(e)}
+                    ></input>
                 </div>
-                <input 
-                    className={`input ${editField === "description"  ? "edit" : ""}`} 
-                    id="description" 
-                    value={description} 
-                    onChange={(e) => handleChange(setDescription, e.target.value)} 
-                    onClick={(e) => handleOnclick(e.target.id)}
-                    onKeyDown={(e) => handleEditSubmit(e)}
-                ></input>
             </td>
             <td>
-                <input 
-                    className={`input ${editField === "amount"  ? "edit" : ""}`} 
-                    id="amount" value={`€ ${amount}`}
-                    onChange={(e) => handleChange(setAmount, e.target.value)} 
-                    onClick={(e) => handleOnclick(e.target.id)}
-                    onKeyDown={(e) => handleEditSubmit(e)}
-                ></input>
+                <div  className="input-wrapper">
+                    <p>€</p> 
+                    <input 
+                        className={`input ${editField === "amount"  ? "edit" : ""}`} 
+                        id="amount" value={amount}
+                        onChange={(e) => handleChange(setAmount, e.target.value)} 
+                        onClick={(e) => handleOnclick(e.target.id)}
+                        onKeyDown={(e) => handleEditSubmit(e)}
+                    ></input>
+                </div>
             </td>
             <td>
                 <button className="delete-button" id={id} ><XIcon size={20} onClick={(e) => handleDelete(e.target.parentElement.id)} /></button>

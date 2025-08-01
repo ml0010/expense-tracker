@@ -4,6 +4,7 @@ import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import { Category } from '../category';
 import './expense-form.css'
+import { MinusCircleIcon, PlusCircleIcon } from '@phosphor-icons/react';
 
 export const ExpenseForm = () => {
     
@@ -13,8 +14,20 @@ export const ExpenseForm = () => {
     const [ description, setDescription ] = useState("");
     const [ amount, setAmount ] = useState("");
     const [ category, setCategory ] = useState("");
+    const [ showFloatingButton, setShowFloatingButton ] = useState(false);   
 
     const { userId, addRecord } = useContext(ExpenseRecordContext);
+
+    useEffect(() => {
+        const handleFloatingBttnsVisibility = () => {
+            window.pageYOffset > 150 ? setShowFloatingButton(true) : setShowFloatingButton(false);
+        };
+        window.addEventListener('scroll', handleFloatingBttnsVisibility);
+        return () => {
+            window.addEventListener('scroll', handleFloatingBttnsVisibility);
+        };
+    });
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -77,6 +90,12 @@ export const ExpenseForm = () => {
                 <button className="button" onClick={openIncomeForm}>Add Income</button>
                 <button className="button" onClick={openExpenseForm}>Add Expense</button>
             </div>
+            {showFloatingButton? 
+            <div className="floating-buttons">
+                <div className={`floating-button income`} onClick={openIncomeForm}><PlusCircleIcon size={90} weight="fill" /></div>
+                <div className={`floating-button expense`} onClick={openExpenseForm}><MinusCircleIcon size={90} weight="fill" /></div>
+            </div>
+            : <></> }
             {isFormOpen? 
             <div className="expense-form-wrapper">
                 <form onSubmit={handleSubmit} className="form" ref={formRef}>

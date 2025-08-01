@@ -11,12 +11,11 @@ export const Dashboard = () => {
 
     const { username } = useContext(ExpenseRecordContext); 
 
-
     const { incomeRecords, expenseRecords } = useContext(ExpenseRecordContext);
 
     return (
         <div className="dashboard">
-            <h1>{username}'s Dashboard</h1>
+            <h1>Dashboard</h1>
             <ExpenseForm />
             <div className="box">
                 <h2>Summary</h2>

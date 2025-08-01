@@ -1,13 +1,14 @@
 .dashboard {
-    margin: 50px;
+    margin: 3vw;
     display: grid;
     align-items: center;
     text-align: center;
-    max-width: 700px;
 }
 .boxes {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    align-items: center;
+    text-align: center;
 }
 .box {
     margin: 15px;
@@ -36,3 +37,19 @@ h2 {
     transition: font 300ms ease 100ms;
 }
 
+
+@media only screen and (max-width: 1300px) {
+    .dashboard {
+        margin: 13vw;
+    }
+    .boxes {
+        grid-template-columns: 1fr;
+    }
+}
+@media only screen and (max-width: 900px) {
+    .dashboard {
+        margin: 2vw;
+    }
+}
+@media only screen and (max-width: 600px) {
+}

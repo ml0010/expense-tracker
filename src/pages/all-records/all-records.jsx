@@ -6,27 +6,26 @@ import "../expense/expense.css"
 export const AllRecords = () => {
 
     return (
-        <div className="summary all-records">
-            <h1>Summary</h1>
-            <div>
-                <h3>Daily Record</h3>
-            </div>
-            <div>
-                <h3>Monthly Record</h3>
-                <div>
-                    <div>
-                        <h4>Category</h4>
-                        <p>Amount</p>
+        <ExpenseFilterContextProvider data="all">
+            <div className="summary all-record">
+                <h1 className="title">All Records</h1>
+                <ExpenseForm />
+                <div className="tracker">
+                    <div className="item">
+                        <h3>Title</h3>
+                        <h4>Items</h4>                    
+                    </div>
+                    <div className="item">
+                        <h3>Title</h3>
+                        <h4>Breakdown</h4>
                     </div>
                 </div>
-            </div>
-            <div>
-                <ExpenseForm />
-                <ExpenseFilterContextProvider>
+                <div className="list">
+                    <h3>Income List</h3>
                     <ExpenseList />
-                </ExpenseFilterContextProvider>
+                </div>
             </div>
-        </div>
+        </ExpenseFilterContextProvider>
     )
 }
 export default AllRecords;

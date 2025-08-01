@@ -131,14 +131,16 @@ export const ExpenseListElement = ({record, index}) => {
                 ></input>
             </td>
             <td>
-                € 
-                <input 
-                    className={`input ${editField === "amount"  ? "edit" : ""}`} 
-                    id="amount" value={amount}
-                    onChange={(e) => handleChange(setAmount, e.target.value)} 
-                    onClick={(e) => handleOnclick(e.target.id)}
-                    onKeyDown={(e) => handleEditSubmit(e)}
-                ></input>
+                <div className="input-wrapper">
+                    <p>€</p> 
+                    <input 
+                        className={`input ${editField === "amount"  ? "edit" : ""}`} 
+                        id="amount" value={amount}
+                        onChange={(e) => handleChange(setAmount, e.target.value)} 
+                        onClick={(e) => handleOnclick(e.target.id)}
+                        onKeyDown={(e) => handleEditSubmit(e)}
+                    ></input>
+                </div>
             </td>
             <td>
                 <button className="delete-button" id={id} ><XIcon size={20} onClick={(e) => handleDelete(e.target.parentElement.id)} /></button>

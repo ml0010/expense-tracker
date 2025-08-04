@@ -1,6 +1,6 @@
-import { ExpenseForm } from "../dashboard/components/expense-form/expense-form";
+import { ExpenseForm } from "../components/expense-form/expense-form";
 import { ExpenseFilterContextProvider } from "../../contexts/expense-filter-context";
-import { ExpenseList } from "../dashboard/components/expense-list";
+import { ExpenseList } from "../components/list/expense-list";
 import "../expense/expense.css"
 
 export const AllRecords = () => {

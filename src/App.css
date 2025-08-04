@@ -3,10 +3,13 @@
 :root {
     font-family: "Inter", "Helvetica", sans-serif;
 
-    --color-font: #333;
-    --color-font-light: #a6a6a6;
+    --color-font: #313131;
+    --color-grey: #b9b9b9;
+    --color-grey-light: #f3f3f3;
     --color-background: #f9f9f9;
-    --color-button-hover: #333;
+    --color-button-hover: rgb(29, 159, 179);
+    --color-1: rgb(115, 195, 207);
+    --color-2: rgb(29, 159, 179);
 }
 html, body {
     margin: 0;
@@ -18,7 +21,7 @@ html, body {
     color: var(--color-font);
     width: 100vw;
     min-height: 100vh;
-    background-color: white;
+    background-color: var(--color-grey-light);
 }
 .button {
     border-radius: 10px;

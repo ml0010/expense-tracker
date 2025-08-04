@@ -2,7 +2,7 @@ import { useContext, useEffect, useRef, useState } from 'react'
 import { ExpenseRecordContext } from '../../../../contexts/expense-record-context';
 import DatePicker from 'react-datepicker';
 import { XIcon } from '@phosphor-icons/react';
-import { CategoryIcons } from '../category';
+import { CategoryIcons } from '../../../components/category';
 
 export const RecentListElement = ({record, index}) => {
 
@@ -86,53 +86,47 @@ export const RecentListElement = ({record, index}) => {
     });
 
     return (
-        <tr id={id} className="element" ref={expenseRef} key={index}>
-            <td onClick={() => {handleOnclick("date")}}>
-                <DatePicker 
-                    className={`input ${editField === "date" ? "edit" : ""}`}
-                    id="date" 
-                    selected={date} 
-                    dateFormat="yyyy-MM-dd" 
-                    onChange={(newDate) => {
-                        setDate(new Date(newDate));
-                        handleDateChange(newDate);
-                    }}
-                />
-            </td>
-            <td className="description">
-                <div  className="input-wrapper">
-                    <div className="category">
-                        {CategoryIcons.map((category, index) => {
-                            if (category.title === record.category) {
-                                return <div className="icon" style={{backgroundColor: category.color}} key={index}><category.icon size={21} weight="regular" /></div>;
-                            }
-                        })}
-                    </div>
-                    <input 
-                        className={`input ${editField === "description"  ? "edit" : ""}`} 
-                        id="description" 
-                        value={description} 
-                        onChange={(e) => handleChange(setDescription, e.target.value)} 
-                        onClick={(e) => handleOnclick(e.target.id)}
-                        onKeyDown={(e) => handleEditSubmit(e)}
-                    ></input>
+        <div id={id} className="element" ref={expenseRef} key={index}>
+            <div className="category">
+                {CategoryIcons.map((category, index) => {
+                    if (category.title === record.category) {
+                        return <div className="icon" style={{color: category.color}} key={index}><category.icon size={25} weight="regular" /></div>;
+                    }
+                })}
+            </div>
+            <div className="info">
+                <input 
+                    className={`input description ${editField === "description"  ? "edit" : ""}`} 
+                    id="description" 
+                    value={description} 
+                    onChange={(e) => handleChange(setDescription, e.target.value)} 
+                    onClick={(e) => handleOnclick(e.target.id)}
+                    onKeyDown={(e) => handleEditSubmit(e)}
+                ></input>
+                <div className="date" onClick={() => {handleOnclick("date")}}>
+                    <DatePicker 
+                        className={`input ${editField === "date" ? "edit" : ""}`}
+                        id="date" 
+                        selected={date} 
+                        dateFormat="yyyy-MM-dd" 
+                        onChange={(newDate) => {
+                            setDate(new Date(newDate));
+                            handleDateChange(newDate);
+                        }}
+                    />
                 </div>
-            </td>
-            <td>
-                <div  className="input-wrapper">
-                    <p>€</p> 
-                    <input 
-                        className={`input ${editField === "amount"  ? "edit" : ""}`} 
-                        id="amount" value={amount}
-                        onChange={(e) => handleChange(setAmount, e.target.value)} 
-                        onClick={(e) => handleOnclick(e.target.id)}
-                        onKeyDown={(e) => handleEditSubmit(e)}
-                    ></input>
-                </div>
-            </td>
-            <td>
-                <button className="delete-button" id={id} ><XIcon size={20} onClick={(e) => handleDelete(e.target.parentElement.id)} /></button>
-            </td>
-        </tr>
+            </div>
+            <div  className="amount">
+                <p>€</p> 
+                <input 
+                    className={`input ${editField === "amount"  ? "edit" : ""}`} 
+                    id="amount" value={amount}
+                    onChange={(e) => handleChange(setAmount, e.target.value)} 
+                    onClick={(e) => handleOnclick(e.target.id)}
+                    onKeyDown={(e) => handleEditSubmit(e)}
+                ></input>
+            </div>
+            <button className="delete-button" id={id} ><XIcon size={20} onClick={(e) => handleDelete(e.target.parentElement.id)} /></button>
+        </div>
     )
 }

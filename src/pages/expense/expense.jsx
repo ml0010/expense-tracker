@@ -1,11 +1,11 @@
-import { ExpenseForm } from "../dashboard/components/expense-form/expense-form";
+import { ExpenseForm } from "../components/expense-form/expense-form";
 import { ExpenseFilterContextProvider } from "../../contexts/expense-filter-context";
-import { ExpenseList } from "../dashboard/components/expense-list";
-import "./expense.css"
+import { ExpenseList } from "../components/list/expense-list";
 import { ExpenseDaily } from "./components/expense-daily";
 import { ExpenseMonthly } from "./components/expense-monthly";
 import { MoneyIcon } from "@phosphor-icons/react";
 import { ExpenseYearly } from "./components/expense-yearly";
+import "./expense.css"
 
 export const Expense = () => {
 

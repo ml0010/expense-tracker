@@ -8,8 +8,8 @@ import { ExpenseRecordContextProvider } from './contexts/expense-record-context'
 import { Navbar } from './navbar/navbar';
 import { ScrollToTop } from './scroll/scroll-to-top';
 import { Income } from './pages/income/income';
-import Expense from './pages/expense/expense';
-import AllRecords from './pages/all-records/all-records';
+import { Expense } from './pages/expense/expense';
+import { AllRecords}  from './pages/all-records/all-records';
 
 
 

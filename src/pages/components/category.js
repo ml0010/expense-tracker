@@ -21,7 +21,7 @@ export const CategoryIcons = [
     {
         title: "Grocery",
         icon: CherriesIcon,
-        color: "#f2f18c"
+        color: "#e9e635ff"
     },{
         title: "Rent",
         icon: HouseLineIcon,
@@ -61,7 +61,7 @@ export const CategoryIcons = [
     },{
         title: "Shopping",
         icon: ShoppingCartIcon,
-        color: "#d5e9c2ff"
+        color: "#78b43fff"
     },{
         title: "Subscription",
         icon: AirplayIcon,
@@ -73,7 +73,7 @@ export const CategoryIcons = [
     },{
         title: "Income",
         icon: PiggyBankIcon,
-        color: "#acf2f9ff"
+        color: "#2bbbc8ff"
     },{
         title: "Home",
         icon: HouseLineIcon,

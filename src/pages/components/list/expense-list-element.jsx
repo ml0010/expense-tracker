@@ -1,8 +1,9 @@
 import { useContext, useEffect, useRef, useState } from 'react'
 import { ExpenseRecordContext } from '../../../contexts/expense-record-context';
 import DatePicker from 'react-datepicker';
-import { Category, CategoryIcons} from './category';
+import { Category, CategoryIcons} from '../category';
 import { XIcon } from '@phosphor-icons/react';
+
 
 export const ExpenseListElement = ({record, index}) => {
 
@@ -102,8 +103,9 @@ export const ExpenseListElement = ({record, index}) => {
                 <div className="category">
                     {CategoryIcons.map((category, index) => {
                         if (category.title === record.category) {
-                            return <div className="icons" style={{backgroundColor: category.color}} key={index}><category.icon size={21} weight="regular" /></div>;
+                            return <div className="icons" style={{color: category.color}} key={index}><category.icon size={21} weight="regular" /></div>;
                         }
+                        return null;
                     })}
                     <select
                         className={`input ${editField === "category" ? "edit" : ""}`}

@@ -17,7 +17,10 @@ export const ExpenseRecordContextProvider = (props) => {
     const [ expenseTotal, setExpenseTotal ] = useState(null);
     const [ balance, setBalance ] = useState(null);
 
-    
+    const getTotal = (records) => {
+        return records.reduce((sum, record) => {return sum + record.amount}, 0);
+    };
+
     useEffect(() => {
         if (isSignedIn) {
             setUsername(user.externalAccounts[0].firstName);
@@ -29,9 +32,9 @@ export const ExpenseRecordContextProvider = (props) => {
     
     useEffect(() => {
         const incomeRecords = records.filter((record) => record.category === "Income");
-        const incomeTotal = incomeRecords.reduce((sum, record) => {return sum + record.amount}, 0);
+        const incomeTotal = getTotal(incomeRecords);
         const expenseRecords = records.filter((record) => record.category !== "Income");
-        const expenseTotal = expenseRecords.reduce((sum, record) => {return sum + record.amount}, 0);
+        const expenseTotal = getTotal(expenseRecords);
         setIncomeRecords(incomeRecords);
         setExpenseRecords(expenseRecords);
         setIncomeTotal(incomeTotal.toFixed(2));
@@ -109,7 +112,7 @@ export const ExpenseRecordContextProvider = (props) => {
         }
     };
 
-    const contextValue = { username, userId, records, incomeRecords, expenseRecords, incomeTotal, expenseTotal, balance, addRecord, deleteRecord, updateRecord };
+    const contextValue = { username, userId, records, incomeRecords, expenseRecords, getTotal, incomeTotal, expenseTotal, balance, addRecord, deleteRecord, updateRecord };
     return (
         <ExpenseRecordContext.Provider value={contextValue}>{props.children}</ExpenseRecordContext.Provider>
     )

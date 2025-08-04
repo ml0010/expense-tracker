@@ -1,10 +1,10 @@
 import React, { useContext } from 'react'
-import { ExpenseRecordContext } from '../../contexts/expense-record-context';
+import { ExpenseRecordContext } from '../../../../contexts/expense-record-context';
 import { ExpenseForm } from './components/expense-form';
-import { ExpsnseList } from './components/expense-list';
+import { ExpsnseList } from '../expense-list';
 import './dashboard.css'
 import { ExpenseSummary } from './components/expense-summary';
-import { ExpenseFilterContextProvider } from '../../contexts/expense-filter-context';
+import { ExpenseFilterContextProvider } from '../../../../contexts/expense-filter-context';
 
 export const Dashboard = () => {
 

@@ -1,10 +1,11 @@
-import { ExpenseForm } from "../dashboard/components/expense-form/expense-form";
+import { ExpenseForm } from "../components/expense-form/expense-form";
 import { ExpenseFilterContextProvider } from "../../contexts/expense-filter-context";
-import { ExpenseList } from "../dashboard/components/expense-list";
-import "../expense/expense.css"
+import { ExpenseList } from "../components/list/expense-list";
 import { IncomeMonthly } from "./components/income-monthly";
 import { IncomeYearly } from "./components/income-yearly";
 import { PiggyBankIcon } from "@phosphor-icons/react";
+import "../expense/expense.css"
+
 
 export const Income = () => {
 

@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { ExpenseFilterContext } from '../../../contexts/expense-filter-context';
+import { ExpenseFilterContext } from '../../../../contexts/expense-filter-context';
 
 export const PeriodFilter = () => {
 

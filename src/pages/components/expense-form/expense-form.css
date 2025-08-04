@@ -58,14 +58,13 @@
     opacity: 0.3;
     transition: 0.2s ease-in;
 }
+
+.floating-buttons .floating-button {
+    color: var(--color-grey);
+}
 .floating-buttons .floating-button:hover {
     opacity: 1;
-}
-.floating-buttons .floating-button.income {
-    color: rgb(93, 213, 93);
-}
-.floating-buttons .floating-button.expense {
-    color: rgb(214, 81, 81);
+    color: var(--color-1);
 }
 .floating-buttons .floating-button svg {
     border-radius: 50%;

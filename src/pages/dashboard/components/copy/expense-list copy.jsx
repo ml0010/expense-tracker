@@ -1,7 +1,7 @@
 import { useContext, useEffect, useRef, useState } from 'react'
 import { ExpenseListElement } from './expense-list-element';
 import { MagnifyingGlassIcon, XIcon } from '@phosphor-icons/react';
-import { ExpenseFilterContext } from '../../../contexts/expense-filter-context';
+import { ExpenseFilterContext } from '../../../../contexts/expense-filter-context';
 import { PeriodFilter } from './expense-list-filter-period';
 import { CategoryFilter } from './expense-list-filter-category';
 

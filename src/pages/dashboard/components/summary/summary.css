@@ -1,14 +1,86 @@
 .dashboard-summary {
-    display: grid;
-    width: 80%;
-    grid-template-columns: 1fr 1fr 1fr;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
 }
-.dashboard-summary .item {
-    
+.dashboard-summary .total {
+    display: flex;
+    justify-content: space-around;
 }
+.dashboard-summary .total .items {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.dashboard-summary .total .items svg {
+    color: var(--color-2);
+    padding-right: 15px;
+}
+.dashboard-summary .total .items .number{
+    font-weight: 600;
+}
+.dashboard-summary .total .items .text{
+    font-size: 14px;
+    color: var(--color-grey);
+}
+
 .dashboard-summary .balance .positive {
-    color: green;
+    color: var(--color-2);
 }
 .dashboard-summary .balance .negative {
     color: red;
+}
+.dashboard-summary .balance-title {
+    font-weight: 600;
+    margin: 0px;
+}
+.dashboard-summary .balance-number {
+    font-size: 35px;
+    margin: 20px;
+    font-weight: 600;
+}
+
+.summary-month {
+    width: 90%;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.summary-month .text {
+    font-weight: 600;
+}
+.summary-month .total {
+    color: var(--color-2);
+    font-size: 35px;
+    font-weight: 600;
+    margin: 0px;
+}
+.summary-month .days {
+    font-size: 13px;
+    color: var(--color-grey);
+}
+.summary-month .bar-container {
+    width: 100%;
+    display: flex;
+    position: relative;
+    align-items: center;
+}
+.summary-month .bar-container .income-bar {
+    border-radius: 50px;
+    background-color: var(--color-grey-light);
+    width: 100%;
+    position: absolute;
+}
+.summary-month .bar-container .expense-bar {
+    border-radius: 50px;
+    background-color: var(--color-1);
+    position: absolute;
+    color: white;
+}
+.summary-month .bar-container .percent {
+    font-size: 14px;
+    font-weight: 600;
+
 }

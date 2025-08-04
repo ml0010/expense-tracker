@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { ExpenseRecordContext } from '../../../../contexts/expense-record-context';
+import { useContext, useEffect, useState } from 'react'
+import { ExpenseRecordContext } from '../../../contexts/expense-record-context';
 import * as d3 from "d3";
 
 export const BarChart = () => {
@@ -26,7 +26,7 @@ export const BarChart = () => {
 
     // Set up dimensions
     const margin = { top: 20, right: 20, bottom: 30, left: 20 };
-    const width = 450 - margin.left - margin.right;
+    const width = 380 - margin.left - margin.right;
     const height = 300 - margin.top - margin.bottom;
 
     useEffect(() => {
@@ -62,7 +62,7 @@ export const BarChart = () => {
             .attr("width", xScale.bandwidth())
             .attr("height", (d) => height - yScale(d.value))
             .attr("transform", "translate(30, 10)") 
-            .attr("fill", "grey");
+            .attr("fill", "var(--color-1)");
 
         svg.selectAll(".text")
             .data(data)
@@ -75,7 +75,7 @@ export const BarChart = () => {
             .attr("height", (d) => height - yScale(d.value))
             .attr("transform", "translate(35, 8)") 
             .text((d) => d.value > 0 ? "€" + d.value : "")
-            .attr("fill", "black")
+            .attr("fill", "var(--color-font")
             .style("font-size", "11px")
             .style("text-anchor", "middle");
             

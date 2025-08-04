@@ -1,24 +1,34 @@
 import React, { useContext } from 'react'
 import { ExpenseRecordContext } from '../../../../contexts/expense-record-context';
 import "./summary.css"
+import { MinusCircleIcon, PlusCircleIcon } from '@phosphor-icons/react';
+
 
 export const Summary = () => {
 
-    const { incomeTotal, expenseTotal, balance} = useContext(ExpenseRecordContext);
+    const { incomeTotal, expenseTotal, balance, getNumberFormat} = useContext(ExpenseRecordContext);
 
     return (
         <div className="dashboard-summary">
-            <div className="item income-total">
-                <h5>Income Total</h5>
-                <h3>€ {incomeTotal}</h3>
+            <div className="balance">
+                <p className="balance-title">Total Balance</p>
+                <p className={`balance-number ${balance > 0 ? "positive" : "negative"}`}>€ {balance}</p>
             </div>
-            <div className="item expense-total">
-                <h5>Expense Total</h5>
-                <h3>€ {expenseTotal}</h3>
-            </div>
-            <div className="item balance">
-                <h5>Balance Total</h5>
-                <h3 className={`${balance > 0 ? "positive" : "negative"}`}>€ {balance}</h3>
+            <div className="total">
+                <div className="items">
+                    <PlusCircleIcon size={50}/>
+                    <div>
+                        <p className="text">Income</p>
+                        <p className="number">€ {incomeTotal}</p>
+                    </div>
+                </div>
+                <div className="items">
+                    <MinusCircleIcon size={50}/>
+                    <div>
+                        <p className="text">Expense</p>
+                        <p className="number">€ {expenseTotal}</p>
+                    </div>
+                </div>
             </div>
         </div>
     )

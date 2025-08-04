@@ -24,8 +24,8 @@ export const BarChart = () => {
     };
 
     // Set up dimensions
-    const margin = { top: 20, right: 0, bottom: 30, left: 30 };
-    const width = 500 - margin.left - margin.right;
+    const margin = { top: 20, right: 0, bottom: 30, left: 0 };
+    const width = 400 - margin.left - margin.right;
     const height = 300 - margin.top - margin.bottom;
 
     useEffect(() => {
@@ -61,7 +61,7 @@ export const BarChart = () => {
             .attr("width", xScale.bandwidth())
             .attr("height", (d) => height - yScale(d.value))
             .attr("transform", "translate(30, 10)") 
-            .attr("fill", "steelblue");
+            .attr("fill", "grey");
 
         svg.selectAll(".text")
             .data(data)

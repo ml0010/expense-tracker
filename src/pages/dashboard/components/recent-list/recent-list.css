@@ -70,3 +70,12 @@
 .recent-list #amount {
     width: 40px;
 }
+
+@media only screen and (max-width: 1300px) {
+
+}
+@media only screen and (max-width: 900px) {
+
+}
+@media only screen and (max-width: 600px) {
+}

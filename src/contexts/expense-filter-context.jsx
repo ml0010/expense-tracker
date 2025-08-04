@@ -39,8 +39,8 @@ export const ExpenseFilterContextProvider = (props) => {
         const data = (dataSelection === "income" ? [...incomeRecords] : dataSelection === "expense" ? [...expenseRecords] : [...records]);
 
         if (data.length > 0 && currentPeriod) {
-            console.log("getting record list");
-            console.log(data);
+            //console.log("getting record list");
+            //console.log(data);
             const newRecords = filterPeriod(data, currentPeriod);
 
             if (categoryFilterList.length > 0) {

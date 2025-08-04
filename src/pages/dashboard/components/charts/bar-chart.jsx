@@ -5,7 +5,7 @@ import * as d3 from "d3";
 export const BarChart = () => {
 
     const [ data, setData ] = useState([]);
-    const { records } = useContext(ExpenseRecordContext);
+    const { expenseRecords } = useContext(ExpenseRecordContext);
 
     const numberOfDays = "15";
 
@@ -13,29 +13,30 @@ export const BarChart = () => {
         const data = [];
         for (let i = numberOfDays; i >= 0; i--) {
             const targetDate = new Date(new Date().setDate(new Date().getDate() - i)).toDateString();
-            const recordsFiltered = records.filter((record) => new Date(record.date).toDateString()===targetDate);
+            const recordsFiltered = expenseRecords.filter((record) => new Date(record.date).toDateString()===targetDate);
             const amount = recordsFiltered.reduce((sum, record) => {return sum + record.amount}, 0);
             //console.log(targetDate);
             //console.log(recordsFiltered);
             //console.log(amount);
             data.push({date: `${new Date(targetDate).getDate()}/${new Date(targetDate).getMonth()+1}`, value: amount * -1 || 0});
         };
+        console.log(data);
         return data;
     };
 
     // Set up dimensions
-    const margin = { top: 20, right: 0, bottom: 30, left: 0 };
-    const width = 400 - margin.left - margin.right;
+    const margin = { top: 20, right: 20, bottom: 30, left: 20 };
+    const width = 450 - margin.left - margin.right;
     const height = 300 - margin.top - margin.bottom;
 
     useEffect(() => {
-        console.log(records);
-        setData(getData());
-    }, [records]);
+        if(expenseRecords.length > 0)
+            setData(getData());
+    }, [expenseRecords]);
 
     useEffect(() => {
-        console.log("bar graph");
-        console.log(data);
+        //console.log("bar graph");
+        //console.log(data);
 
         d3.select("#bar-container")
             .select("svg")

@@ -1,15 +1,17 @@
 import { useContext, useEffect, useState } from "react"
 import { ExpenseFilterContext } from "../../../contexts/expense-filter-context";
+import { ExpenseRecordContext } from "../../../contexts/expense-record-context";
 
 export const ExpenseDaily = () => {
-    const { recordsFiltered, filterPeriod } = useContext(ExpenseFilterContext);
+    const { expenseRecords } = useContext(ExpenseRecordContext);
+    const { filterPeriod } = useContext(ExpenseFilterContext);
 
-    const [ records, setRecords ] = useState(filterPeriod(recordsFiltered, "month"));
+    const [ records, setRecords ] = useState(filterPeriod(expenseRecords, "month"));
 
     useEffect(() => {
-        if (recordsFiltered.length > 0 )
-            setRecords(filterPeriod(recordsFiltered, "today"));
-    }, [recordsFiltered]);
+        if (expenseRecords.length > 0 )
+            setRecords(filterPeriod(expenseRecords, "today"));
+    }, [expenseRecords]);
 
 
     return (

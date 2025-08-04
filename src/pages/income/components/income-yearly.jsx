@@ -1,19 +1,21 @@
 import { useContext, useEffect, useState } from "react"
 import { ExpenseFilterContext } from "../../../contexts/expense-filter-context";
+import { ExpenseRecordContext } from "../../../contexts/expense-record-context";
 
 export const IncomeYearly = () => {
-    const { recordsFiltered, filterPeriod, getDescriptionList } = useContext(ExpenseFilterContext);
+    const { incomeRecords } = useContext(ExpenseRecordContext);
+    const { filterPeriod, getDescriptionList } = useContext(ExpenseFilterContext);
 
-    const [ records, setRecords ] = useState(filterPeriod(recordsFiltered, "year"));
+    const [ records, setRecords ] = useState(filterPeriod(incomeRecords, "year"));
     const [ category, setCategory ] = useState(getDescriptionList(records));
 
     useEffect(() => {
-        if (recordsFiltered.length > 0 ) {
-            const newData = filterPeriod(recordsFiltered, "year");
+        if (incomeRecords.length > 0 ) {
+            const newData = filterPeriod(incomeRecords, "year");
             setRecords(newData);
             setCategory(getDescriptionList(newData));
         }
-    }, [recordsFiltered]);
+    }, [incomeRecords]);
 
     return (
         <div>

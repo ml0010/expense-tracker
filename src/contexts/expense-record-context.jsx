@@ -45,7 +45,7 @@ export const ExpenseRecordContextProvider = (props) => {
 
     const fetchRecords = async () => {
         if(!user) return;
-        const response = await fetch(`http://localhost:3001/expense-records/${user.id}`);
+        const response = await fetch(`https://expense-tracker-qvcr.onrender.com/expense-records/${user.id}`);
         if (response.ok) {
             const records = await response.json();
             console.log(records);
@@ -55,7 +55,7 @@ export const ExpenseRecordContextProvider = (props) => {
     };
 
     const addRecord = async (record) => {
-        const response = await fetch("http://localhost:3001", {
+        const response = await fetch("https://expense-tracker-qvcr.onrender.com", {
             method: "POST",
             body: JSON.stringify(record),
             headers: {
@@ -73,7 +73,7 @@ export const ExpenseRecordContextProvider = (props) => {
     };
 
     const updateRecord = async (id, newRecord) => {
-        const response = await fetch(`http://localhost:3001/${id}`, {
+        const response = await fetch(`https://expense-tracker-qvcr.onrender.com/${id}`, {
             method: "PUT",
             body: JSON.stringify(newRecord),
             headers: {
@@ -99,7 +99,7 @@ export const ExpenseRecordContextProvider = (props) => {
     };
 
     const deleteRecord = async (id) => {
-        const response = await fetch(`http://localhost:3001/${id}`, {
+        const response = await fetch(`https://expense-tracker-qvcr.onrender.com/${id}`, {
             method: "DELETE"
         });
         try {

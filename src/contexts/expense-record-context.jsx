@@ -12,13 +12,23 @@ export const ExpenseRecordContextProvider = (props) => {
 
     const [ records, setRecords ] = useState([]);
     const [ incomeRecords, setIncomeRecords ] = useState([]);
-    const [ incomeTotal, setIncomeTotal ] = useState(null);
     const [ expenseRecords, setExpenseRecords ] = useState([]);
-    const [ expenseTotal, setExpenseTotal ] = useState(null);
-    const [ balance, setBalance ] = useState(null);
+    const [ monthlyRecords, setMonthlyRecords ] = useState([]); 
+
 
     const getTotal = (records) => {
         return records.reduce((sum, record) => {return sum + record.amount}, 0);
+    };
+
+    const sortByMonth = (records, year) => {
+        const recordsByMonth = [];
+        for (let i = 0; i < 12; i++) {
+            const recordsMonth = records.filter((record) => new Date(record.date).getFullYear() === year)
+                                        .filter((record) => new Date(record.date).getMonth() === i);
+            recordsByMonth[i] = recordsMonth;
+        }
+        console.log(recordsByMonth);
+        return recordsByMonth;
     };
 
     useEffect(() => {
@@ -32,15 +42,11 @@ export const ExpenseRecordContextProvider = (props) => {
     
     useEffect(() => {
         const incomeRecords = records.filter((record) => record.category === "Income");
-        const incomeTotal = getTotal(incomeRecords);
         const expenseRecords = records.filter((record) => record.category !== "Income");
-        const expenseTotal = getTotal(expenseRecords);
+        const MonthlyRecords = sortByMonth(records, new Date().getFullYear());
         setIncomeRecords(incomeRecords);
         setExpenseRecords(expenseRecords);
-        setIncomeTotal(incomeTotal.toFixed(2));
-        setExpenseTotal(expenseTotal.toFixed(2) * -1);
-        setBalance((incomeTotal + expenseTotal).toFixed(2));
-
+        setMonthlyRecords(MonthlyRecords);
     }, [records]);
 
     const fetchRecords = async () => {
@@ -112,7 +118,7 @@ export const ExpenseRecordContextProvider = (props) => {
         }
     };
 
-    const contextValue = { username, userId, records, incomeRecords, expenseRecords, getTotal, incomeTotal, expenseTotal, balance, addRecord, deleteRecord, updateRecord };
+    const contextValue = { username, userId, records, incomeRecords, expenseRecords, monthlyRecords, getTotal, addRecord, deleteRecord, updateRecord };
     return (
         <ExpenseRecordContext.Provider value={contextValue}>{props.children}</ExpenseRecordContext.Provider>
     )

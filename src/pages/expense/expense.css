@@ -1,8 +1,5 @@
 .summary {
     padding: 40px;
-    display: grid;
-    align-items: center;
-    text-align: center;
 }
 .title {
     display: flex;

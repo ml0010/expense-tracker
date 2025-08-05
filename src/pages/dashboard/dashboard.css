@@ -1,7 +1,5 @@
 .dashboard {
     padding: 40px;
-    display: grid;
-    align-items: center;
     text-align: center;
 }
 .boxes.two {
@@ -58,17 +56,19 @@ h2 {
 
 
 @media only screen and (max-width: 1300px) {
+    .boxes.two, .boxes.three {
+        grid-template-columns: 1fr 1fr;
+    }
 }
 @media only screen and (max-width: 900px) {
     .dashboard {
-        margin: 2vw;
+        padding-left: 10px;
+        padding-right: 10px;
     }    
-    .boxes {
+    .boxes.two, .boxes.three {
         grid-template-columns: 1fr;
     }
-    .bar-container {
-        width: 100px;
-    }
+
 }
 @media only screen and (max-width: 600px) {
 }

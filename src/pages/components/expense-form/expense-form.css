@@ -1,6 +1,7 @@
 
 .expense-form {
-    align-items: center;
+    width: 100%;
+    text-align: center;
 }
 
 .expense-form .button {

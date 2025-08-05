@@ -8,6 +8,7 @@ import { MonthlySummary } from './components/summary/summary-month';
 import { ExpenseFilterContextProvider } from '../../contexts/expense-filter-context';
 import { Link } from 'react-router-dom';
 import { BarChart } from '../components/charts/bar-chart'
+import { LineChart } from '../components/charts/line-chart';
 
 export const Dashboard = () => {
 
@@ -30,7 +31,7 @@ export const Dashboard = () => {
             <div className="boxes three">
                 <div className="box">
                     <h2>Monthly Summary</h2>
-                    <BarChart />
+                    <LineChart />
                 </div>
                 <div className="box">
                     <h2 className="title">Income</h2>

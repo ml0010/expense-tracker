@@ -23,13 +23,6 @@
     font-size: 14px;
     color: var(--color-grey);
 }
-
-.dashboard-summary .balance .positive {
-    color: var(--color-2);
-}
-.dashboard-summary .balance .negative {
-    color: red;
-}
 .dashboard-summary .balance-title {
     font-weight: 600;
     margin: 0px;
@@ -38,6 +31,7 @@
     font-size: 35px;
     margin: 20px;
     font-weight: 600;
+    color: var(--color-2);
 }
 
 .summary-month {

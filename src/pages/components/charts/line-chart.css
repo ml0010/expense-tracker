@@ -1,5 +1,9 @@
 #line-chart {
     position: relative;
+
+}
+#chart {
+    text-align: center;
 }
 .tooltip {
     padding: 4px;
@@ -10,5 +14,5 @@
     cursor: pointer;
 }
 .bar:hover {
-    fill : rgba(179, 179, 179, 0.363);
+    fill : rgba(238, 238, 238, 0.443);
 }

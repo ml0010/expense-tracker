@@ -26,9 +26,9 @@ export const LineChart = () => {
     const createGraph = async () => {
 
         const heightValue = 300;
-        const widthValue = 600;
+        const widthValue = 450;
 
-        var margin = { top: 30, right: 20, bottom: 30, left: 40 };
+        var margin = { top: 20, right: 10, bottom: 20, left: 40 };
         var width = widthValue - margin.left - margin.right;
         var height = heightValue - margin.top - margin.bottom;
 
@@ -98,7 +98,6 @@ export const LineChart = () => {
             .attr("fill", "transparent")
             .on("mouseover", (event, d) => {
                 const [mx, my] = d3.pointer(event);
-                console.log(mx, my);
                 const tooltipText = `<b>${months[d.month]}</b><br>Income: € ${d.income}<br>Expense: € ${d.expense}<br>Balance: € ${(d.income - d.expense).toFixed(2)}`;
                 
                 tooltip.style("top", `${my}px`)

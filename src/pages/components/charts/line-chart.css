@@ -1,0 +1,14 @@
+#line-chart {
+    position: relative;
+}
+.tooltip {
+    padding: 4px;
+    font-size: 11px;
+    text-align: left;
+}
+.bar {
+    cursor: pointer;
+}
+.bar:hover {
+    fill : rgba(179, 179, 179, 0.363);
+}

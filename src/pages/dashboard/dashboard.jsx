@@ -34,7 +34,7 @@ export const Dashboard = () => {
                     <LineChart />
                 </div>
                 <div className="box">
-                    <h2 className="title">Income</h2>
+                    <h2>Income</h2>
                     <div className="title">
                         <p className="text">Recent Incomes</p>
                         <Link className="link" to="../income">See All</Link>

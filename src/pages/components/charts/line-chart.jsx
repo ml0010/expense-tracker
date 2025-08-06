@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { ExpenseRecordContext } from "../../../contexts/expense-record-context";
 import * as d3 from "d3";
+import "./line-chart.css";
 
 export const LineChart = () => {
 
@@ -54,10 +55,6 @@ export const LineChart = () => {
                         .x((d) => {return xScale(d.month) + 30})
                         .y((d) => {return yScale(d.income)});
         
-        const tooltip = d3.select("#line-chart")
-                        .append("div")
-                        .attr("id", "tooltip");
-
         svg.append("path")
             .data([data])
             .attr("class", "line")
@@ -70,6 +67,7 @@ export const LineChart = () => {
                 .curve(d3.curveBasis)
                 .x((d) => {return xScale(d.month) + 30})
                 .y((d) => {return yScale(d.expense)});
+
         svg.append("path")
             .data([data])
             .attr("class", "line")
@@ -78,30 +76,35 @@ export const LineChart = () => {
             .attr("stroke-width", 1.5)
             .attr("d", expenseLine);
 
+        const tooltip = d3.select("#line-chart")
+                        .append("div")
+                        .attr("class", "tooltip")
+                        .style("position", "absolute")
+                        .style("background", "white")
+                        .style("z-index", "100");
+
         svg.selectAll(".bar")
             .data(data)
             .enter()
             .append("rect")
             .attr("class", "bar")
             .attr("x", (d) => xScale(d.month))
-            .attr("y", (d) => yScale(d.income))
+            .attr("y", (d) => 0)
             .attr("width", xScale.bandwidth())
-            .attr("height", (d) => height - yScale(d.income))
+            .attr("height", (d) => height - yScale(d3.max(data, (d) => d.income)))
             .attr("fill", "transparent")
-            .on("mouseover", (evt, d) => {
-                const [mx, my] = d3.pointer(evt);
+            .on("mouseover", (event, d) => {
+                const [mx, my] = d3.pointer(event);
                 console.log(mx, my);
-                const tooltipText = `Month: ${d.month}<br>Income Total: ${d.income}<br>Expense Total: ${d.expense}`;
-                console.log(tooltipText);
+                const tooltipText = `Month: ${months[d.month]}<br>Income Total: ${d.income}<br>Expense Total: ${d.expense}<br>Balance: ${(d.income - d.expense).toFixed(2)}`;
                 
-                tooltip.style("display", "blocked")
-                        .style("top", `${my}px`)
-                        .style("left", `${mx}px`)
+                tooltip.style("top", `${my}px`)
+                        .style("left", `${mx - 50}px`)
                         .attr("data-date", d['data-date'])
-                        .style("opacity", "1")
+                        .style("display", "block")
                         .html(tooltipText);
             })
-            .on("mouseout", () => { tooltip.style("opacity", "0")});
+            .on("mouseout", () => { tooltip.style("display", "none")});
     }
 
     useEffect(() => {

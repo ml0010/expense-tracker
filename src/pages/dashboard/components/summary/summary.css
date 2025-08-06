@@ -13,7 +13,7 @@
     align-items: center;
 }
 .dashboard-summary .total .items svg {
-    color: var(--color-2);
+    color: var(--color-1);
     padding-right: 15px;
 }
 .dashboard-summary .total .items .number{

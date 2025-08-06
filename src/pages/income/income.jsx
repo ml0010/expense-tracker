@@ -5,33 +5,44 @@ import { IncomeMonthly } from "./components/income-monthly";
 import { IncomeYearly } from "./components/income-yearly";
 import { PiggyBankIcon } from "@phosphor-icons/react";
 import "../expense/expense.css"
+import { LoadingIcon } from "../components/loading-icon/loading";
+import { useState } from "react";
 
 
 export const Income = () => {
+    const [loading, setLoading] = useState(true);
 
-    return (
-        <ExpenseFilterContextProvider data="income">
-            <div className="summary income">
-                <h1 className="title"><PiggyBankIcon size={50} /> Income Tracker</h1>
-                <ExpenseForm />
-                <div className="tracker">
-                    <div className="item">
-                        <h3>Monthly Income</h3>
-                        <h4>Items</h4>
-                        <IncomeMonthly />
+    setTimeout(() => {
+        setLoading(false);
+    }, 1500);
+
+    if (loading) {
+        return <LoadingIcon />;
+    } else {
+        return (
+            <ExpenseFilterContextProvider data="income">
+                <div className="summary income">
+                    <h1 className="title"><PiggyBankIcon size={50} /> Income Tracker</h1>
+                    <ExpenseForm />
+                    <div className="tracker">
+                        <div className="item">
+                            <h3>Monthly Income</h3>
+                            <h4>Items</h4>
+                            <IncomeMonthly />
+                        </div>
+                        <div className="item">
+                            <h3>Yearly Income</h3>
+                            <h4>Breakdown</h4>
+                            <IncomeYearly />
+                        </div>
                     </div>
-                    <div className="item">
-                        <h3>Yearly Income</h3>
-                        <h4>Breakdown</h4>
-                        <IncomeYearly />
+                    <div className="list">
+                        <h3>Income List</h3>
+                        <ExpenseList />
                     </div>
                 </div>
-                <div className="list">
-                    <h3>Income List</h3>
-                    <ExpenseList />
-                </div>
-            </div>
-        </ExpenseFilterContextProvider>
-    )
+            </ExpenseFilterContextProvider>
+        )
+    }
 }
 export default Income;

@@ -20,13 +20,12 @@
 }
 
 .recent-list .element .input:hover {
-    color: blue;
+    color: var(--color-2);
 }
 .recent-list .element .input.edit {
     background-color: var(--color-background);
 }
 .recent-list .element .category {
-    padding: 10px;
 }
 .recent-list .element .category .icon {
     display: flex;
@@ -34,7 +33,7 @@
     align-items: center;
     color: rgb(74, 74, 74);
     border-radius: 50%;
-    padding: 6px;
+    padding: 5px;
 }
 .recent-list .element .description {
     font-size: 13px;
@@ -60,13 +59,12 @@
     cursor: pointer;
     background-color: transparent;
     border: none;
-    padding-left: 20px;
 }
 .recent-list .element .delete-button svg {
     background-color: transparent;
 }
 .recent-list .element .delete-button:hover {
-    color: blue;
+    color: var(--color-2);
 }
 @media only screen and (max-width: 1300px) {
 

@@ -8,6 +8,7 @@ import { ExpenseYearly } from "./components/expense-yearly";
 import "./expense.css"
 import { useState } from "react";
 import { LoadingIcon } from "../components/loading-icon/loading";
+import { ExpenseChart } from "../components/charts/pie-charts";
 
 export const Expense = () => {
     const [loading, setLoading] = useState(true);
@@ -25,21 +26,30 @@ export const Expense = () => {
                     <h1 className="title"><MoneyIcon size={50} /> Expenses Tracker</h1>
                     <ExpenseForm />
                     <div className="tracker">
-                        <div className="item">
-                            <h3>Daily Expences</h3>
-                            <h4>Items</h4>
-                            <ExpenseDaily />
-                        </div>
                         <div className="group">
+                            <div className="item">
+                                <h3>Daily Expences</h3>
+                                <h4>Items</h4>
+                                <ExpenseDaily />
+                            </div>
                             <div className="item">
                                 <h3>Monthly Expences</h3>
                                 <h4>Breakdown</h4>
                                 <ExpenseMonthly />
-                            </div>                    
+                            </div>  
+                        </div>
+                        <div className="group">
                             <div className="item">
                                 <h3>Yearly Expences</h3>
-                                <h4>Breakdown</h4>
-                                <ExpenseYearly />
+                                <div>
+                                    <h4>Breakdown</h4>
+                                    <ExpenseYearly />
+                                </div>
+                            </div>
+                            <div className="item">
+                                <div>
+                                    <ExpenseChart />
+                                </div>
                             </div>
                         </div>
                     </div>

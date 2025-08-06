@@ -36,10 +36,10 @@ export const MonthlySummary = () => {
             <p></p>
             <div className="bar-container">
                 <div className="income-bar">
-                    <p className="percent">{100 - (expenseTotal / incomeTotal * -100).toFixed(2)}%</p>
+                    <p className="percent income-percent" style={{width: `${100 - (expenseTotal / incomeTotal * -100)}%`}}>{(100 - (expenseTotal / incomeTotal * -100)).toFixed(2)}%</p>
                 </div>
                 <div className="expense-bar" style={{width: `${expenseTotal / incomeTotal * -100}%`}}>
-                    <p className="percent">{(expenseTotal / incomeTotal * -100).toFixed(2)}%</p>
+                    <p className="percent expense-percent">{(expenseTotal / incomeTotal * -100).toFixed(2)}%</p>
                 </div>
             </div>
         </div>

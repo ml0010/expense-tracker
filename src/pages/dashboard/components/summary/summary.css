@@ -74,5 +74,8 @@
 .summary-month .bar-container .percent {
     font-size: 14px;
     font-weight: 600;
+}
+.summary-month .bar-container .percent.income-percent {
+    text-align: right;
 
 }

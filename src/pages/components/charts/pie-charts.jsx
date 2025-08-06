@@ -5,22 +5,18 @@ import Pie from './pie';
 export const ExpenseChart = () => {
     
     const [ data, setData ] = useState([]);
-    const { records , expenseTotal } = useContext(ExpenseRecordContext);
+    const { expenseRecords, getTotal } = useContext(ExpenseRecordContext);
 
     const getCategoryData = () => {
-        const category = [...new Set(records.map(record => record.category))];
-        const incomeIndex = category.indexOf("Income");
-
-        if (incomeIndex > -1)
-            category.splice(incomeIndex, 1);
+        const category = [...new Set(expenseRecords.map(record => record.category))];
 
         const data = [];
 
         for (let i = 0; i < category.length; i++ ) {
             let sum = 0;
-            for (let j = 0; j < records.length; j++) {
-                if(records[j].category === category[i])
-                    sum += records[j].amount;
+            for (let j = 0; j < expenseRecords.length; j++) {
+                if(expenseRecords[j].category === category[i])
+                    sum += expenseRecords[j].amount;
             }
             data.push({name: category[i], value: sum * -1});
         }
@@ -29,7 +25,7 @@ export const ExpenseChart = () => {
 
     useEffect((() => {
        setData(getCategoryData());
-    }),[records]);
+    }),[expenseRecords]);
 
     return (
         <>
@@ -41,7 +37,7 @@ export const ExpenseChart = () => {
                     height={320}
                     innerRadius={65}
                     outerRadius={120}
-                    total={expenseTotal}
+                    total={getTotal(expenseRecords)}
                     name={"expense"}
                 />
             </div>
@@ -54,10 +50,9 @@ export const ExpenseChart = () => {
 export const IncomeChart = () => {
 
     const [ data, setData ] = useState([]);
-    const { records, incomeTotal } = useContext(ExpenseRecordContext);
+    const { incomeRecords, getTotal } = useContext(ExpenseRecordContext);
 
     const getIncomeData = () => {
-        const incomeRecords = records.filter(record => record.category === "Income");
         const incomeSources = [...new Set(incomeRecords.map(record => record.description))];
 
         const data = [];
@@ -75,7 +70,7 @@ export const IncomeChart = () => {
 
     useEffect((() => {
        setData(getIncomeData());
-    }),[records]);
+    }),[incomeRecords]);
 
     return (
         <>
@@ -87,7 +82,7 @@ export const IncomeChart = () => {
                     height={320}
                     innerRadius={65}
                     outerRadius={120}
-                    total={incomeTotal}
+                    total={getTotal(incomeRecords)}
                     name={"income"}
                 />
             </div>

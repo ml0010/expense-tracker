@@ -1,4 +1,4 @@
-import { AirplayIcon, BusIcon, CalculatorIcon, CatIcon, CherriesIcon, CoffeeBeanIcon, GasPumpIcon, GuitarIcon, HandCoinsIcon, HouseLineIcon, PiggyBankIcon, PizzaIcon, PlugChargingIcon, ShoppingCartIcon } from '@phosphor-icons/react';
+import { AirplayIcon, BusIcon, CalculatorIcon, CatIcon, CherriesIcon, CoffeeBeanIcon, GasPumpIcon, GuitarIcon, HandCoinsIcon, HouseLineIcon, IslandIcon, PiggyBankIcon, PizzaIcon, PlugChargingIcon, ShoppingCartIcon } from '@phosphor-icons/react';
 
 export const CategoryList = [
     "Grocery",
@@ -13,6 +13,7 @@ export const CategoryList = [
     "Home",
     "Utility",
     "Shopping",
+    "Holiday",
     "Subscription",
     "Other"
 ];
@@ -21,7 +22,7 @@ export const CategoryIcons = [
     {
         title: "Grocery",
         icon: CherriesIcon,
-        color: "#e9e635ff"
+        color: "#b7b400ff"
     },{
         title: "Rent",
         icon: HouseLineIcon,
@@ -37,7 +38,7 @@ export const CategoryIcons = [
     },{
         title: "Pet",
         icon: CatIcon,
-        color: "#8ca4f2ff"
+        color: "#496bdeff"
     },{
         title: "Eating-Out",
         icon: PizzaIcon,
@@ -45,7 +46,7 @@ export const CategoryIcons = [
     },{
         title: "Coffee",
         icon: CoffeeBeanIcon,
-        color: "#c19693ff"
+        color: "#9a3f09ff"
     },{
         title: "Transportation",
         icon: BusIcon,
@@ -57,7 +58,7 @@ export const CategoryIcons = [
     },{
         title: "Utility",
         icon: PlugChargingIcon,
-        color: "#8cc2f2ff"
+        color: "#3c9bedff"
     },{
         title: "Shopping",
         icon: ShoppingCartIcon,
@@ -65,11 +66,11 @@ export const CategoryIcons = [
     },{
         title: "Subscription",
         icon: AirplayIcon,
-        color: "#93bcaeff"
+        color: "#55c6a0ff"
     },{
         title: "Other",
         icon: CalculatorIcon,
-        color: "#ddc9e9ff"
+        color: "#ff95fbff"
     },{
         title: "Income",
         icon: PiggyBankIcon,
@@ -77,7 +78,11 @@ export const CategoryIcons = [
     },{
         title: "Home",
         icon: HouseLineIcon,
-        color: "#d4c1ffff"
+        color: "#9069ebff"
+    },{
+        title: "Holiday",
+        icon: IslandIcon,
+        color: "#1c908eff"
     }
 ];
 

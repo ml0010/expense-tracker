@@ -1,4 +1,3 @@
-import React from 'react'
 import { SignedIn, SignedOut, SignInButton, SignUpButton, UserButton } from '@clerk/clerk-react';
 import { Navigate } from "react-router-dom";
 
@@ -9,20 +8,20 @@ if (!PUBLISHABLE_KEY) {
 }
 
 export const Authentication = () => {
-  return (
-    <div className="sign-in-container">
-        <h1>Expense Tracker</h1>
-        <SignedOut>
-                <SignUpButton className="button" mode="modal" />
-                <SignInButton className="button" mode="modal" />
-        </SignedOut>
-        <SignedIn>
-            <h2>Signed In</h2>
-            <UserButton />
-            <Navigate to="/dashboard" />
-        </SignedIn>
-    </div>
-  )
+    return (
+        <div className="sign-in-container">
+            <h1>Expense Tracker</h1>
+            <SignedOut>
+                    <SignUpButton className="button" mode="modal" />
+                    <SignInButton className="button" mode="modal" />
+            </SignedOut>
+            <SignedIn>
+                <h2>Signed In</h2>
+                <UserButton />
+                <Navigate to="/dashboard" />
+            </SignedIn>
+        </div>
+    )
 }
 
 export default Authentication;

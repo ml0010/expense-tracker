@@ -35,7 +35,7 @@ export const Summary = () => {
                     <MinusCircleIcon size={50}/>
                     <div>
                         <p className="text">Expense</p>
-                        <p className="number">€ {expenseTotal.toFixed(2) * -1}</p>
+                        <p className="number">€ {(expenseTotal.toFixed(2) * -1).toFixed(2)}</p>
                     </div>
                 </div>
             </div>

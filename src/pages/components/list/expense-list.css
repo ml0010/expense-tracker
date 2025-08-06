@@ -1,0 +1,170 @@
+
+.list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.table-warpper {
+    min-width: 60vw;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.filters {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 5px;
+}
+.filters .select-filter {
+    display: flex;
+}
+.filters select{
+    border-radius: 5px;
+    background-color: var(--color-1);
+    margin: 5px;
+    font-size: 14px;
+    font-weight: 500;
+    height: 30px;
+}
+.category-buttons {
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    padding: 5px;
+}
+.category-buttons .category-button {
+    cursor: pointer;
+    background-color: transparent;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid var(--color-2);
+    color: var(--color-2);
+    border-radius: 15px;
+    padding: 3PX;
+    margin: 3px;
+    font-size: 12px;
+    font-weight: 500;
+    padding-left: 7px;
+}
+.category-buttons .category-button:hover {
+    background-color: var(--color-button-hover);
+    color: var(--color-background);
+}
+.category-buttons .category-button svg {
+    background-color: transparent;
+    padding: 2px;
+}
+.category-buttons .delete-all-button {
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    font-size: 11px;
+    color: var(--color-grey);
+    text-decoration: underline;
+    padding-left: 15px;
+}
+
+.search-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    margin: auto;
+    height: 30px;
+    background-color: var(--color-1);
+}
+.search-box.active {
+    background-color: var(--color-2);
+}
+.search-box .close-button{
+    color: transparent;
+    cursor: pointer;
+    padding: 2px;
+    color: var(--color-font);
+}
+.search-box .close-button:hover{
+    color: var(--color-background);
+}
+.search-box input {
+    border: none;
+    background-color: transparent;
+    max-width: 120px;
+    font-size: 14px;
+    font-weight: 500;
+}
+.search-box svg {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.table th,
+.table td {
+    padding: 5px 6px;
+    text-align: center;
+}
+.table th {
+    background-color: var(--color-font);
+    color: white;
+}
+.table tbody tr:nth-child(odd) {
+    background-color: #f7f7f7;
+}
+
+.table tbody tr:hover {
+    background-color: #e8f4f8;
+}
+
+.element .input {
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+    text-align: center;
+}
+.element .input:hover {
+    color: var(--color-2);
+}
+.element .input.edit {
+    background-color: var(--color-background);
+}
+.element .category {
+    display: flex;
+}
+.element .category .icons {
+    display: flex;
+    flex-direction: center;
+    align-items: center;
+    color: rgb(74, 74, 74);
+    border-radius: 50%;
+}
+.element .delete-button {
+    cursor: pointer;
+    padding-right: 10px;
+    background-color: transparent;
+    border: none;
+}
+.element .delete-button svg {
+    background-color: transparent;
+}
+.element .delete-button:hover {
+    color: var(--color-2);
+}
+.element .input-wrapper {
+    display: flex;    
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+#amount {
+    width: 100px;
+}
+

@@ -38,34 +38,38 @@ export const LineChart = () => {
                     .append("g")
                     .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
-        var x = d3.scaleBand().range([0, width]).domain(data.map((d) => d.month));
-        var y = d3.scaleLinear().range([height, 0]).domain([0, d3.max(data, (d) => d.income)]);
+        var xScale = d3.scaleBand().range([0, width]).domain(data.map((d) => d.month));
+        var yScale = d3.scaleLinear().range([height, 0]).domain([0, d3.max(data, (d) => d.income)]);
 
 
         svg.append("g")
             .attr("transform", `translate(0, ${height})`)
-            .call(d3.axisBottom(x));   
+            .call(d3.axisBottom(xScale));   
             
         svg.append("g")
-            .call(d3.axisLeft(y));
+            .call(d3.axisLeft(yScale));
 
         var incomeLine = d3.line()
                         .curve(d3.curveBasis)
-                        .x((d) => {return x(d.month) + 30})
-                        .y((d) => {return y(d.income)});
+                        .x((d) => {return xScale(d.month) + 30})
+                        .y((d) => {return yScale(d.income)});
+        
+        const tooltip = d3.select("#line-chart")
+                        .append("div")
+                        .attr("id", "tooltip");
 
         svg.append("path")
             .data([data])
             .attr("class", "line")
-            .attr("fill", "none")
+            .attr("fill", "transparent")
             .attr("stroke", "var(--color-1)")
             .attr("stroke-width", 1.5)
-            .attr("d", incomeLine);
+            .attr("d", incomeLine)
 
         var expenseLine = d3.line()
                 .curve(d3.curveBasis)
-                .x((d) => {return x(d.month) + 30})
-                .y((d) => {return y(d.expense)});
+                .x((d) => {return xScale(d.month) + 30})
+                .y((d) => {return yScale(d.expense)});
         svg.append("path")
             .data([data])
             .attr("class", "line")
@@ -73,6 +77,31 @@ export const LineChart = () => {
             .attr("stroke", "var(--color-2)")
             .attr("stroke-width", 1.5)
             .attr("d", expenseLine);
+
+        svg.selectAll(".bar")
+            .data(data)
+            .enter()
+            .append("rect")
+            .attr("class", "bar")
+            .attr("x", (d) => xScale(d.month))
+            .attr("y", (d) => yScale(d.income))
+            .attr("width", xScale.bandwidth())
+            .attr("height", (d) => height - yScale(d.income))
+            .attr("fill", "transparent")
+            .on("mouseover", (evt, d) => {
+                const [mx, my] = d3.pointer(evt);
+                console.log(mx, my);
+                const tooltipText = `Month: ${d.month}<br>Income Total: ${d.income}<br>Expense Total: ${d.expense}`;
+                console.log(tooltipText);
+                
+                tooltip.style("display", "blocked")
+                        .style("top", `${my}px`)
+                        .style("left", `${mx}px`)
+                        .attr("data-date", d['data-date'])
+                        .style("opacity", "1")
+                        .html(tooltipText);
+            })
+            .on("mouseout", () => { tooltip.style("opacity", "0")});
     }
 
     useEffect(() => {

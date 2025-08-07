@@ -21,7 +21,7 @@ html, body {
     color: var(--color-font);
     width: 100vw;
     min-height: 100vh;
-    background-color: var(--color-grey-light);
+    background-color: var(--color-background);
 }
 .button {
     border-radius: 10px;

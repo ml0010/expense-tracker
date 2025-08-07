@@ -1,5 +1,5 @@
-import { SignOutButton, useClerk, useUser } from '@clerk/clerk-react';
-import { ChartDonutIcon, ClipboardTextIcon, DotsThreeOutlineIcon, MoneyIcon, PiggyBankIcon, SignOutIcon, XIcon } from '@phosphor-icons/react'
+import { useClerk, useUser } from '@clerk/clerk-react';
+import { ChartDonutIcon, ClipboardTextIcon, DotsThreeIcon, DotsThreeOutlineIcon, MoneyIcon, PiggyBankIcon, SignOutIcon, XIcon } from '@phosphor-icons/react'
 import { useEffect, useRef, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom';
 
@@ -28,10 +28,12 @@ export const Menu = () => {
 
     return (
         <div className="menu">
-            <DotsThreeOutlineIcon size={30} onClick={() => setMenuOpen(!menuOpen)}/>
+            <DotsThreeIcon size={30} onClick={() => setMenuOpen(!menuOpen)}/>
             <div className={`menu-bar ${menuOpen ? "open" : ""}`} ref={menuRef}>
-                <XIcon className="close-button" size={30} onClick={() => setMenuOpen(false)}/>
-                <p>{user.fullName}</p>
+                <div className="close-button">
+                    <XIcon size={30} onClick={() => setMenuOpen(false)}/>
+                </div>
+                <p className="username">{user.fullName}</p>
                 <div className="links">
                     <Link className={`link ${currentPage === "dashboard" ? "active" : ""}`} to="dashboard" onClick={() => setMenuOpen(false)}><ChartDonutIcon size={28} /> Dashboard</Link>
                     <Link className={`link ${currentPage === "income" ? "active" : ""}`} to="income" onClick={() => setMenuOpen(false)}><PiggyBankIcon size={28} />Income</Link>

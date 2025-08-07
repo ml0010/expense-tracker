@@ -5,6 +5,7 @@ import { ExpenseFilterContext } from '../../../contexts/expense-filter-context';
 import { EmptyList } from '../empty-list/empty-list'
 import "./expense-list.css";
 import { ExpenseRecordContext } from '../../../contexts/expense-record-context';
+import { LoadingIconSmall } from '../loading-icon/loading';
 
 export const ExpenseList = () => {
 
@@ -14,6 +15,11 @@ export const ExpenseList = () => {
     const [ isSearch, setIsSearch ] = useState(false);
     const [ searchInput, setSearchInput ] = useState("");
     const [ searchResult, setSearchResult ] = useState([]);
+    const [ loading, setLoading ] = useState(true);
+
+    setTimeout(() => {
+        setLoading(false);
+    }, 1500);
 
     const startSearch = () => {
         setIsSearch(true);
@@ -25,8 +31,9 @@ export const ExpenseList = () => {
         setSearchResult([]);
     };
     const search = (input) => {
+        setLoading(true);
         setSearchInput(input);
-        const searchResults = recordsFiltered.filter((record) => record.description.toLowerCase().includes(input.toLocaleLowerCase()));
+        const searchResults = recordsFiltered.filter((record) => (record.description.toLowerCase().includes(input.toLocaleLowerCase()) || record.category.toLowerCase().includes(input.toLocaleLowerCase())));
         setSearchResult([...searchResults]);
     };
 
@@ -50,7 +57,7 @@ export const ExpenseList = () => {
         {isRecordLoaded ? 
             <div className="table-warpper">
                 <div className="filters">
-                    <div className="select-filter">
+                    <div className="select-filter" onChange={() => setLoading(true)}>
                         <PeriodFilter />
                         <CategoryFilter />
                     </div>
@@ -75,7 +82,13 @@ export const ExpenseList = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {isSearch? <>
+                        {loading ? 
+                        <tr><td colSpan="5">
+                            <LoadingIconSmall />
+                        </td></tr> : 
+                        <>
+                        {isSearch ? 
+                            <>
                             {searchResult.length > 0 ? 
                                 <>
                                 {searchResult.map((record ,index) => (
@@ -88,9 +101,8 @@ export const ExpenseList = () => {
                                     </td>
                                 </tr>
                             }
-
-                        </> : 
-                        <>
+                            </> : 
+                            <>
                             {recordsFiltered.length > 0 ? 
                                 <>
                                 {recordsFiltered.map((record ,index) => (
@@ -103,12 +115,14 @@ export const ExpenseList = () => {
                                     </td>
                                 </tr>
                             }
+                            </>
+                        }
                         </>
                         }
                     </tbody>
                 </table>
             </div>
-            : <></>
+            : <LoadingIconSmall />
         }
         </>
     )

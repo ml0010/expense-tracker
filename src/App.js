@@ -10,6 +10,7 @@ import { ScrollToTop } from './scroll/scroll-to-top';
 import { Income } from './pages/income/income';
 import { Expense } from './pages/expense/expense';
 import { AllRecords}  from './pages/all-records/all-records';
+import { BackButton } from './back-button/back-button';
 
 
 
@@ -44,6 +45,7 @@ function App() {
                         </ExpenseRecordContextProvider>} />
                     <Route path="/*" element={<Authentication />} />
                 </Routes>
+                <BackButton />
                 <Navbar />
             </Router>
             <ScrollToTop />

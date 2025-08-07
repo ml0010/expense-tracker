@@ -1,13 +1,12 @@
 .navbar {
-    background-color: rgba(255, 255, 255, 0.927);
+    background-color: var(--color-background);
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100vw;
-    height: 60px;
+    height: 50px;
     position: fixed;
     top: 0;
-    border-bottom: 1px solid black;
 }
 .navbar.hidden {
     display: none;
@@ -17,7 +16,7 @@
     margin-right: 5vw;
 }
 .navbar button:hover {
-    color: blue;
+    color: var(--color-2);
 }
 
 .menu {
@@ -26,26 +25,30 @@
 }
 .menu .menu-bar {
     position: fixed;
-    left: -30vw;
+    left: -500px;
     top: 0px;
     opacity: 0;
-    width: 30vw;
+    width: 300px;
     height: 100vh;
     background-color: var(--color-background);
     transition: 0.5s ease-in-out;
+    border-right: 1px solid var(--color-font);
+    display: flex;
+    flex-direction: column;
 }
 .menu .menu-bar.open {
     opacity: 1;
     left: 0px;
     z-index: 100;
 }
-.menu-bar svg {
-    padding-right: 2vw;
-
+.menu-bar .username {
+    text-align: center;
+    font-size: 25px;
+    font-weight: 600;
 }
 .menu-bar .close-button {
-    padding-top: 10px;
-    float: right;
+    text-align: end;
+    padding: 10px;
 }
 .menu .menu-bar .links {
     margin-top: 30px;
@@ -56,7 +59,9 @@
 }
 
 .menu .menu-bar .link {
+    width: 60%;
     text-decoration: none;
+    text-underline-offset: 8px;
     color: var(--color-font);
     font-size: 19px;
     font-weight: 700;
@@ -64,11 +69,17 @@
     grid-template-columns: 1fr 2fr;
     align-items: center;
     margin-top: 30px;
-    padding: 10px;
     border-radius: 15px;
+    transition: 0.2s ease-in-out;
+
+}
+.menu .menu-bar .link:hover {
+    color: var(--color-2);
 }
 .menu .menu-bar .link.active {
-    background-color: var(--color-button-hover);
-    color: var(--color-font-light);
-
+    color: var(--color-2);
+    text-decoration: underline 2px var(--color-2);
+}
+.logout-button {
+    padding-top: 20px;
 }

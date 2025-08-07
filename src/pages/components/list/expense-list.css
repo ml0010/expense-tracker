@@ -116,6 +116,9 @@
     background-color: var(--color-font);
     color: white;
 }
+.table tbody {
+    height: 200px;
+}
 .table tbody tr:nth-child(odd) {
     background-color: #f7f7f7;
 }

@@ -2,9 +2,10 @@ import { useContext, useEffect, useState } from 'react'
 import { ExpenseRecordContext } from '../../../../contexts/expense-record-context';
 import { ExpenseFilterContext } from '../../../../contexts/expense-filter-context';
 import './summary.css';
+import { LoadingIconSmall } from '../../../components/loading-icon/loading';
 
 export const MonthlySummary = () => {
-    const { incomeRecords, expenseRecords, getTotal } = useContext(ExpenseRecordContext);
+    const { isRecordLoaded, incomeRecords, expenseRecords, getTotal } = useContext(ExpenseRecordContext);
     const { filterPeriod } = useContext(ExpenseFilterContext);
 
     const getIncomeTotal = () => {
@@ -29,19 +30,24 @@ export const MonthlySummary = () => {
     }, [incomeRecords, expenseRecords]);
 
     return (
-        <div className="summary-month">
-            <p className="text">Your expense this month is </p>
-            <p className="total">€ {(expenseTotal * -1).toFixed(2)}</p>
-            <p className="days">{getDaysToGo()} days left</p>
-            <p></p>
-            <div className="bar-container">
-                <div className="income-bar">
-                    <p className="percent income-percent" style={{width: `${100 - (expenseTotal / incomeTotal * -100)}%`}}>{(100 - (expenseTotal / incomeTotal * -100)).toFixed(2)}%</p>
-                </div>
-                <div className="expense-bar" style={{width: `${expenseTotal / incomeTotal * -100}%`}}>
-                    <p className="percent expense-percent">{(expenseTotal / incomeTotal * -100).toFixed(2)}%</p>
+        <>
+        {isRecordLoaded ? 
+            <div className="summary-month">
+                <p className="text">Your expense this month is </p>
+                <p className="total">€ {(expenseTotal * -1).toFixed(2)}</p>
+                <p className="days">{getDaysToGo()} days left</p>
+                <p></p>
+                <div className="bar-container">
+                    <div className="income-bar">
+                        <p className="percent income-percent" style={{width: `${100 - (expenseTotal / incomeTotal * -100)}%`}}>{(100 - (expenseTotal / incomeTotal * -100)).toFixed(2)}%</p>
+                    </div>
+                    <div className="expense-bar" style={{width: `${expenseTotal / incomeTotal * -100}%`}}>
+                        <p className="percent expense-percent">{(expenseTotal / incomeTotal * -100).toFixed(2)}%</p>
+                    </div>
                 </div>
             </div>
-        </div>
+            : <LoadingIconSmall />
+        }
+        </>
     )
 }

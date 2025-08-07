@@ -28,7 +28,7 @@
     transition: 0.5s ease-in-out;
 }
 .scrollBttn:hover svg{
-    color: blue;
+    color: var(--color-1);
 
 }
 @media only screen and (max-width: 1300px) {

@@ -2,10 +2,11 @@ import { useContext, useEffect, useState } from "react";
 import { ExpenseRecordContext } from "../../../contexts/expense-record-context";
 import * as d3 from "d3";
 import "./line-chart.css";
+import { LoadingIconSmall } from "../loading-icon/loading";
 
 export const LineChart = () => {
 
-    const { monthlyRecords, getTotal } = useContext(ExpenseRecordContext);
+    const { isRecordLoaded, monthlyRecords, getTotal } = useContext(ExpenseRecordContext);
     
     const [ data, setData ] = useState([]);
     const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -118,6 +119,11 @@ export const LineChart = () => {
     }, [data]);
 
     return (
-        <div id="line-chart"></div>
+        <>
+        {isRecordLoaded > 0 ?
+            <div id="line-chart"></div>
+            : <LoadingIconSmall />
+        }
+        </>
     )
 }

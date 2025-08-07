@@ -11,6 +11,7 @@ export const ExpenseRecordContextProvider = (props) => {
     const [ userId, setUserId ] = useState("");
 
     const [ records, setRecords ] = useState([]);
+    const [ isRecordLoaded, setIsRecordLoaded ] = useState(false);
     const [ incomeRecords, setIncomeRecords ] = useState([]);
     const [ expenseRecords, setExpenseRecords ] = useState([]);
     const [ monthlyRecords, setMonthlyRecords ] = useState([]); 
@@ -60,6 +61,7 @@ export const ExpenseRecordContextProvider = (props) => {
                 console.log(records);
                 records.sort((a, b) => {return new Date(b.date) - new Date(a.date)});
                 setRecords(records);
+                setIsRecordLoaded(true);
             }
         } catch (err) {
             console.log(err);
@@ -124,7 +126,7 @@ export const ExpenseRecordContextProvider = (props) => {
         }
     };
 
-    const contextValue = { username, userId, records, incomeRecords, expenseRecords, monthlyRecords, getTotal, addRecord, deleteRecord, updateRecord };
+    const contextValue = { username, userId, records, isRecordLoaded, incomeRecords, expenseRecords, monthlyRecords, getTotal, addRecord, deleteRecord, updateRecord };
     return (
         <ExpenseRecordContext.Provider value={contextValue}>{props.children}</ExpenseRecordContext.Provider>
     )

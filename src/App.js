@@ -37,6 +37,10 @@ function App() {
                     <Route path="/all" element={
                         <ExpenseRecordContextProvider>
                             <AllRecords />
+                        </ExpenseRecordContextProvider>} />  
+                    <Route path="/monthly" element={
+                        <ExpenseRecordContextProvider>
+                            <AllRecords />
                         </ExpenseRecordContextProvider>} />
                     <Route path="/*" element={<Authentication />} />
                 </Routes>

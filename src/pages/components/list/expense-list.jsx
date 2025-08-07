@@ -4,9 +4,11 @@ import { MagnifyingGlassIcon, XIcon } from '@phosphor-icons/react';
 import { ExpenseFilterContext } from '../../../contexts/expense-filter-context';
 import { EmptyList } from '../empty-list/empty-list'
 import "./expense-list.css";
+import { ExpenseRecordContext } from '../../../contexts/expense-record-context';
 
 export const ExpenseList = () => {
 
+    const { isRecordLoaded } = useContext(ExpenseRecordContext);
     const { recordsFiltered } = useContext(ExpenseFilterContext);
     
     const [ isSearch, setIsSearch ] = useState(false);
@@ -44,66 +46,71 @@ export const ExpenseList = () => {
 
     
     return (
-        <div className="table-warpper">
-            <div className="filters">
-                <div className="select-filter">
-                    <PeriodFilter />
-                    <CategoryFilter />
+        <>
+        {isRecordLoaded ? 
+            <div className="table-warpper">
+                <div className="filters">
+                    <div className="select-filter">
+                        <PeriodFilter />
+                        <CategoryFilter />
+                    </div>
+                    <div className={`search-box ${isSearch? "active" : ""}`}>
+                        <MagnifyingGlassIcon size={18} />
+                        <input className="search-input" value={searchInput} placeholder="Search" onChange={(e)=>search(e.target.value)} onClick={()=>startSearch()}></input>
+                        <XIcon className={`close-button ${isSearch? "active" : ""}`} onClick={() => finishSearch()} size={13} />
+                    </div>
                 </div>
-                <div className={`search-box ${isSearch? "active" : ""}`}>
-                    <MagnifyingGlassIcon size={18} />
-                    <input className="search-input" value={searchInput} placeholder="Search" onChange={(e)=>search(e.target.value)} onClick={()=>startSearch()}></input>
-                    <XIcon className={`close-button ${isSearch? "active" : ""}`} onClick={() => finishSearch()} size={13} />
+                <div className="category-buttons">
+                    <CategoryButtons />
                 </div>
-            </div>
-            <div className="category-buttons">
-                <CategoryButtons />
-            </div>
-            
-            <table className="table" ref={searchRef}>
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Category</th>
-                        <th>Description</th>
-                        <th>Amount</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {isSearch? <>
-                        {searchResult.length > 0 ? 
-                            <>
-                            {searchResult.map((record ,index) => (
-                                <ExpenseListElement record={record} key={index}/>
-                            ))}
-                            </> : 
-                            <tr>
-                                <td colSpan="5">
-                                <EmptyList />
-                                </td>
-                            </tr>
-                        }
+                
+                <table className="table" ref={searchRef}>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Category</th>
+                            <th>Description</th>
+                            <th>Amount</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {isSearch? <>
+                            {searchResult.length > 0 ? 
+                                <>
+                                {searchResult.map((record ,index) => (
+                                    <ExpenseListElement record={record} key={index}/>
+                                ))}
+                                </> : 
+                                <tr>
+                                    <td colSpan="5">
+                                    <EmptyList />
+                                    </td>
+                                </tr>
+                            }
 
-                    </> : 
-                    <>
-                        {recordsFiltered.length > 0 ? 
-                            <>
-                            {recordsFiltered.map((record ,index) => (
-                                <ExpenseListElement record={record} key={index}/>
-                            ))}
-                            </> : 
-                            <tr>
-                                <td colSpan="5">
-                                <EmptyList />
-                                </td>
-                            </tr>
+                        </> : 
+                        <>
+                            {recordsFiltered.length > 0 ? 
+                                <>
+                                {recordsFiltered.map((record ,index) => (
+                                    <ExpenseListElement record={record} key={index}/>
+                                ))}
+                                </> : 
+                                <tr>
+                                    <td colSpan="5">
+                                    <EmptyList />
+                                    </td>
+                                </tr>
+                            }
+                        </>
                         }
-                    </>
-                    }
-                </tbody>
-            </table>
-        </div>
+                    </tbody>
+                </table>
+            </div>
+            : <></>
+        }
+        </>
     )
 }
 

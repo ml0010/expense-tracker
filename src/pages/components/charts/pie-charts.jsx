@@ -2,11 +2,12 @@ import { useContext, useEffect, useState } from 'react'
 import { ExpenseRecordContext } from '../../../contexts/expense-record-context';
 import Pie from './pie';
 import "./pie-charts.css";
+import { LoadingIconSmall } from '../loading-icon/loading';
 
 export const ExpenseChart = () => {
-    
+    const { isRecordLoaded, expenseRecords, getTotal } = useContext(ExpenseRecordContext);
+
     const [ data, setData ] = useState([]);
-    const { expenseRecords, getTotal } = useContext(ExpenseRecordContext);
 
     const getCategoryData = () => {
         const category = [...new Set(expenseRecords.map(record => record.category))];
@@ -30,7 +31,7 @@ export const ExpenseChart = () => {
 
     return (
         <>
-        {data.length > 0 ? 
+        {isRecordLoaded > 0 ? 
             <div className="pie-chart expense">
                 <Pie 
                     data={data}
@@ -42,7 +43,7 @@ export const ExpenseChart = () => {
                     name={"expense"}
                 />
             </div>
-            : <></>
+            : <LoadingIconSmall />
         }</>
     )
 }

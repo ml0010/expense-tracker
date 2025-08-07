@@ -4,7 +4,7 @@ import "./empty-list.css";
 export const EmptyList = () => {
     return (
         <div className="empty-list">
-            <SmileyXEyesIcon size={50} />
+            <SmileyXEyesIcon size={40} />
             <p>No Result</p>
         </div>
     )

@@ -87,21 +87,9 @@
     background-color: white;
 }
 
-
 @media only screen and (max-width: 1300px) {
-    .boxes.two, .boxes.three {
-        grid-template-columns: 1fr 1fr;
-    }
 }
 @media only screen and (max-width: 900px) {
-    .dashboard {
-        padding-left: 10px;
-        padding-right: 10px;
-    }    
-    .boxes.two, .boxes.three {
-        grid-template-columns: 1fr;
-    }
-
 }
 @media only screen and (max-width: 600px) {
 }

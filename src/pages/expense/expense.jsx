@@ -38,7 +38,7 @@ export const Expense = () => {
                                 <ExpenseMonthly />
                             </div>  
                         </div>
-                        <div className="group">
+                        <div className="boxes">
                             <div className="box">
                                 <h3>Yearly Expences</h3>
                                 <div>

@@ -1,9 +1,10 @@
 import { useContext, useEffect, useState } from "react"
 import { ExpenseFilterContext } from "../../../contexts/expense-filter-context";
 import { ExpenseRecordContext } from "../../../contexts/expense-record-context";
+import { LoadingIconSmall } from "../../components/loading-icon/loading";
 
 export const IncomeYearly = () => {
-    const { incomeRecords } = useContext(ExpenseRecordContext);
+    const { isRecordLoaded, incomeRecords } = useContext(ExpenseRecordContext);
     const { filterPeriod, getDescriptionList } = useContext(ExpenseFilterContext);
 
     const [ records, setRecords ] = useState(filterPeriod(incomeRecords, "year"));
@@ -18,23 +19,28 @@ export const IncomeYearly = () => {
     }, [incomeRecords]);
 
     return (
-        <div>
-            <table className="summary-table">
-                <thead>
-                    <tr>
-                        <th>Category</th>
-                        <th>Amount</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {category.map((category, index) => 
-                    <tr key={index}>
-                        <td>{category}</td>
-                        <td id="amount">{records.filter((record) => record.description === category).reduce((sum, record) => sum + record.amount, 0).toFixed(2)}</td>
-                    </tr>)}
-                </tbody>
-            </table>
-            <p className="total">Total: € {records.reduce((sum, record) => sum + record.amount, 0).toFixed(2)}</p>
-        </div>
+        <>
+        {isRecordLoaded ?
+            <div>
+                <table className="summary-table">
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {category.map((category, index) => 
+                        <tr key={index}>
+                            <td>{category}</td>
+                            <td id="amount">{records.filter((record) => record.description === category).reduce((sum, record) => sum + record.amount, 0).toFixed(2)}</td>
+                        </tr>)}
+                    </tbody>
+                </table>
+                <p className="total">Total: € {records.reduce((sum, record) => sum + record.amount, 0).toFixed(2)}</p>
+            </div>: 
+            <LoadingIconSmall />
+        }
+        </> 
     )
 }

@@ -8,11 +8,11 @@ import { MonthlySummary } from './components/summary/summary-month';
 import { ExpenseFilterContextProvider } from '../../contexts/expense-filter-context';
 import { Link } from 'react-router-dom';
 import { LineChart } from '../components/charts/line-chart';
-import { LoadingIcon } from '../components/loading-icon/loading';
+import { LoadingIcon, LoadingIconSmall } from '../components/loading-icon/loading';
 
 export const Dashboard = () => {
 
-    const { records, incomeRecords, expenseRecords } = useContext(ExpenseRecordContext);
+    const { isRecordLoaded, incomeRecords, expenseRecords } = useContext(ExpenseRecordContext);
     
     const [loading, setLoading] = useState(true);
 
@@ -24,47 +24,49 @@ export const Dashboard = () => {
         return <LoadingIcon />;
     } else {
         return (
-            <>
-            {records.length <= 0 ? 
-                <LoadingIcon /> :
-                <div className="dashboard">
-                    <h1>Dashboard</h1>
-                    <ExpenseForm />
-                    <div className="boxes two">
-                        <div className="box">
-                            <Summary />
-                        </div>
-                        <div className="box">
-                            <ExpenseFilterContextProvider>
-                                <MonthlySummary />
-                            </ExpenseFilterContextProvider>
-                        </div>
+            <div className="dashboard">
+                <h1>Dashboard</h1>
+                <ExpenseForm />
+                <div className="boxes two">
+                    <div className="box">
+                        <Summary />
                     </div>
-                    <div className="boxes three">
-                        <div className="box">
-                            <h2>Monthly Summary</h2>
-                            <LineChart />
+                    <div className="box">
+                        <ExpenseFilterContextProvider>
+                            <MonthlySummary />
+                        </ExpenseFilterContextProvider>
+                    </div>
+                </div>
+                <div className="boxes three">
+                    <div className="box">
+                        <h2>Monthly Summary</h2>
+                        <LineChart />
+                    </div>
+                    <div className="box">
+                        <h2>Income</h2>
+                        <div className="title">
+                            <p className="text">Recent Incomes</p>
+                            <Link className="link" to="../income">See All</Link>
                         </div>
-                        <div className="box">
-                            <h2>Income</h2>
-                            <div className="title">
-                                <p className="text">Recent Incomes</p>
-                                <Link className="link" to="../income">See All</Link>
-                            </div>
+                        {isRecordLoaded ?
                             <RecentList records={incomeRecords} /> 
-                        </div>
-                        <div className="box">
-                            <h2>Expense</h2>
-
-                            <div className="title">
-                                <p className="text">Recent Expenses</p>
-                                <Link className="link" to="../expense">See All</Link>
-                            </div>
-                            <RecentList records={expenseRecords} /> 
-                        </div>
+                            : <LoadingIconSmall />
+                        }
                     </div>
-                </div> }
-            </>
+                    <div className="box">
+                        <h2>Expense</h2>
+
+                        <div className="title">
+                            <p className="text">Recent Expenses</p>
+                            <Link className="link" to="../expense">See All</Link>
+                        </div>
+                        {isRecordLoaded ?
+                            <RecentList records={expenseRecords} /> 
+                            : <LoadingIconSmall />
+                        }
+                    </div>
+                </div>
+            </div>
         )
     }
 }

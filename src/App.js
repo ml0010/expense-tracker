@@ -38,7 +38,7 @@ function App() {
                         <ExpenseRecordContextProvider>
                             <AllRecords />
                         </ExpenseRecordContextProvider>} />
-                    <Route path="*" element={<Authentication />} />
+                    <Route path="/*" element={<Authentication />} />
                 </Routes>
                 <Navbar />
             </Router>

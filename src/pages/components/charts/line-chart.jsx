@@ -19,7 +19,7 @@ export const LineChart = () => {
 
             data.push({month: month, income: incomeTotal, expense: `${expenseTotal < 0 ? expenseTotal * -1 : expenseTotal}`});
         });
-        console.log(data);
+        //console.log(data);
         return data;
     };
 

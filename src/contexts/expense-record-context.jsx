@@ -41,22 +41,28 @@ export const ExpenseRecordContextProvider = (props) => {
     }, [user]);
     
     useEffect(() => {
-        const incomeRecords = records.filter((record) => record.category === "Income");
-        const expenseRecords = records.filter((record) => record.category !== "Income");
-        const MonthlyRecords = sortByMonth(records, new Date().getFullYear());
-        setIncomeRecords(incomeRecords);
-        setExpenseRecords(expenseRecords);
-        setMonthlyRecords(MonthlyRecords);
+        if (records.length > 0) {
+            const incomeRecords = records.filter((record) => record.category === "Income");
+            const expenseRecords = records.filter((record) => record.category !== "Income");
+            const MonthlyRecords = sortByMonth(records, new Date().getFullYear());
+            setIncomeRecords(incomeRecords);
+            setExpenseRecords(expenseRecords);
+            setMonthlyRecords(MonthlyRecords);
+        }
     }, [records]);
 
     const fetchRecords = async () => {
         if(!user) return;
         const response = await fetch(`https://expense-tracker-qvcr.onrender.com/expense-records/${user.id}`);
-        if (response.ok) {
-            const records = await response.json();
-            console.log(records);
-            records.sort((a, b) => {return new Date(b.date) - new Date(a.date)});
-            setRecords(records);
+        try {
+            if (response.ok) {
+                const records = await response.json();
+                console.log(records);
+                records.sort((a, b) => {return new Date(b.date) - new Date(a.date)});
+                setRecords(records);
+            }
+        } catch (err) {
+            console.log(err);
         }
     };
 

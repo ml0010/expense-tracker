@@ -49,7 +49,7 @@ html, body {
 input {
     border-radius: 5px;
     border: 1px solid rgb(205, 205, 205);
-    padding: 7px;
+    padding: 3px;
 }
 select {
     border: none;

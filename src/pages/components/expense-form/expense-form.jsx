@@ -86,9 +86,9 @@ export const ExpenseForm = () => {
 
     return (
         <div className="expense-form">
-            <div className="buttons">
-                <button className="button" onClick={openIncomeForm}>Add Income</button>
-                <button className="button" onClick={openExpenseForm}>Add Expense</button>
+            <div className="standard-buttons">
+                <button className="standard-button" onClick={openIncomeForm}><PlusCircleIcon size={90} weight="fill" /></button>
+                <button className="standard-button" onClick={openExpenseForm}><MinusCircleIcon size={90} weight="fill" /></button>
             </div>
             {showFloatingButton? 
             <div className="floating-buttons">

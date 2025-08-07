@@ -26,18 +26,22 @@ export const Income = () => {
                     <h1 className="title"><PiggyBankIcon size={50} /> Income Tracker</h1>
                     <ExpenseForm />
                     <div className="tracker">
-                        <div className="item">
-                            <h3>Monthly Income</h3>
-                            <h4>Items</h4>
-                            <IncomeMonthly />
-                        </div>
-                        <div className="item">
-                            <h3>Yearly Income</h3>
-                            <div>
-                                <h4>Breakdown</h4>
-                                <IncomeYearly />
+                        <div className="boxes">
+                            <div className="box">
+                                <h3>Monthly Income</h3>
+                                <h4>Items</h4>
+                                <IncomeMonthly />
                             </div>
-                            <div>
+                        </div>
+                        <div className="boxes">
+                            <div className="box">
+                                <h3>Yearly Income</h3>
+                                <div>
+                                    <h4>Breakdown</h4>
+                                    <IncomeYearly />
+                                </div>
+                            </div>
+                            <div className="box">
                                 <IncomeChart />
                             </div>
                         </div>

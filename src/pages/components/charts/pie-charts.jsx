@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from 'react'
 import { ExpenseRecordContext } from '../../../contexts/expense-record-context';
 import Pie from './pie';
+import "./pie-charts.css";
 
 export const ExpenseChart = () => {
     

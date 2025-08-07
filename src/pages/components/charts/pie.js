@@ -77,7 +77,7 @@ export const Pie = (props) => {
     const colors = d3.scaleOrdinal(getColors());
 
     return (
-        <svg className="pie" width={props.width * 1.1} height={props.height  * 1.1}>
+        <svg className="pie" viewBox={`0 0 ${props.width + 30} ${props.height + 30}`}>
             <g transform={`translate(${props.outerRadius * 1.5} ${props.outerRadius * 1.5})`}>
                 {data.map((data, index) => (
                     <Arc 

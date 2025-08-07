@@ -3,10 +3,6 @@
     width: 100%;
     text-align: center;
 }
-
-.expense-form .button {
-    min-width: 120px;
-}
 .expense-form .expense-form-wrapper {
     width: 100vw;
     height: 100vh;
@@ -45,23 +41,42 @@
     width: 100%;
     padding: 3px;
 }
+
+.standard-buttons .standard-button {
+    margin-right: 30px;
+    margin-left: 30px;
+    transition: 0.2s ease-in-out;
+    opacity: 0.8;
+    color: var(--color-background);
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+.standard-buttons .standard-button:hover {
+    opacity: 1;
+}
+.standard-buttons .standard-button svg {
+    border-radius: 50%;
+    background-color: var(--color-1);
+    transition: 0.5s ease-in-out;
+}
+.standard-buttons .standard-button:hover svg {
+    background-color: var(--color-2);
+}
 .floating-buttons {
     position: fixed;
     top: 92%;
     left: 50%;
     transform: translate(-50%, -50%);
-    cursor: pointer;
     display: flex;
     z-index: 100;
 }
 .floating-buttons .floating-button {
-    padding: 30px;
+    margin: 30px;
     opacity: 0.3;
     transition: 0.2s ease-in;
-}
-
-.floating-buttons .floating-button {
     color: var(--color-grey);
+    cursor: pointer;
 }
 .floating-buttons .floating-button:hover {
     opacity: 1;
@@ -72,3 +87,21 @@
     background-color: white;
 }
 
+
+@media only screen and (max-width: 1300px) {
+    .boxes.two, .boxes.three {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+@media only screen and (max-width: 900px) {
+    .dashboard {
+        padding-left: 10px;
+        padding-right: 10px;
+    }    
+    .boxes.two, .boxes.three {
+        grid-template-columns: 1fr;
+    }
+
+}
+@media only screen and (max-width: 600px) {
+}

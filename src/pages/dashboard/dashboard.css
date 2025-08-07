@@ -1,6 +1,8 @@
 .dashboard {
     padding: 40px;
     text-align: center;
+    max-width: 1400px;
+    margin: auto;
 }
 .boxes {
     display: grid;

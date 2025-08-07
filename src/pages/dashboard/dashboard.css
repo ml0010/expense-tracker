@@ -33,7 +33,11 @@
 .box .link {
     text-decoration: none;
     color: var(--color-grey);
-    font-size: 13px;
+    font-size: 11px;
+    text-align: right;
+}
+.box .link:hover {
+    color: var(--color-2);
 }
 h2 {
     text-align: center;

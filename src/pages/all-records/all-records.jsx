@@ -4,9 +4,12 @@ import { ExpenseList } from "../components/list/expense-list";
 import "../expense/expense.css"
 import { useState } from "react";
 import { LoadingIcon } from "../components/loading-icon/loading";
+import { useLocation } from "react-router-dom";
 
 export const AllRecords = () => {
     const [loading, setLoading] = useState(true);
+
+    const period = useLocation().state.period;
 
     setTimeout(() => {
         setLoading(false);
@@ -16,7 +19,7 @@ export const AllRecords = () => {
         return <LoadingIcon />;
     } else {
         return (
-            <ExpenseFilterContextProvider data="all">
+            <ExpenseFilterContextProvider period={period}>
                 <div className="summary all-record">
                     <h1 className="title">All Records</h1>
                     <ExpenseForm />
@@ -31,7 +34,7 @@ export const AllRecords = () => {
                         </div>
                     </div>
                     <div className="list">
-                        <h3>Income List</h3>
+                        <h3>List</h3>
                         <ExpenseList />
                     </div>
                 </div>

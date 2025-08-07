@@ -8,7 +8,7 @@ export const ExpenseFilterContextProvider = (props) => {
     const { records, expenseRecords, incomeRecords } = useContext(ExpenseRecordContext);
 
     const [ dataSelection, setDataSelection ] = useState(props.data);
-    const [ currentPeriod, setCurrentPeriod ] = useState("all");
+    const [ currentPeriod, setCurrentPeriod ] = useState(props.period || "all");
     const [ recordsFiltered, setRecordsFiltered ] = useState([]);
     const [ categoryList, setCategoryList ] = useState([]);
     const [ categoryFilterList, setCategoryFilterList ] = useState([]);

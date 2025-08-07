@@ -3,6 +3,7 @@ import { ExpenseRecordContext } from '../../../../contexts/expense-record-contex
 import { ExpenseFilterContext } from '../../../../contexts/expense-filter-context';
 import './summary.css';
 import { LoadingIconSmall } from '../../../components/loading-icon/loading';
+import { Link } from 'react-router-dom';
 
 export const MonthlySummary = () => {
     const { isRecordLoaded, incomeRecords, expenseRecords, getTotal } = useContext(ExpenseRecordContext);
@@ -33,6 +34,7 @@ export const MonthlySummary = () => {
         <>
         {isRecordLoaded ? 
             <div className="summary-month">
+                <Link className="link" to="/all" state={{ period: "month" }}>See More</Link>
                 <p className="text">Your expense this month is </p>
                 <p className="total">€ {(expenseTotal * -1).toFixed(2)}</p>
                 <p className="days">{getDaysToGo()} days left</p>

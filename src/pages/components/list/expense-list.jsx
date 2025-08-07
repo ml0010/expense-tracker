@@ -131,11 +131,11 @@ export const ExpenseList = () => {
 
 export const PeriodFilter = () => {
 
-    const { handlePeriodChange } = useContext(ExpenseFilterContext);
+    const { currentPeriod, handlePeriodChange } = useContext(ExpenseFilterContext);
 
     return (
         <div className="filter period-filter">
-            <select defaultValue="all" onChange={(e) => handlePeriodChange(e.target.value)}>
+            <select defaultValue={currentPeriod} onChange={(e) => handlePeriodChange(e.target.value)}>
                 <option value="all">All</option>
                 <option value="today">Today</option>
                 <option value="month">This Month</option>

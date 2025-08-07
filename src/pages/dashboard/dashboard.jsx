@@ -39,7 +39,7 @@ export const Dashboard = () => {
                 </div>
                 <div className="boxes three">
                     <div className="box">
-                        <h2>Monthly Summary</h2>
+                        <h2>Monthly Chart</h2>
                         <LineChart />
                     </div>
                     <div className="box">

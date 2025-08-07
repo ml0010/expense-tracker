@@ -20,35 +20,22 @@ function App() {
   return (
     <div className="App">
         <ClerkProvider publishableKey={CLERK_PUBLISHABLE_KEY}>
-            <Router>
-                <Routes>
-                    <Route path="/" element={<Authentication />} />
-                    <Route path="/dashboard" element={
-                        <ExpenseRecordContextProvider>
-                            <Dashboard />
-                        </ExpenseRecordContextProvider>} />
-                    <Route path="/income" element={
-                        <ExpenseRecordContextProvider>
-                            <Income />
-                        </ExpenseRecordContextProvider>} />
-                    <Route path="/expense" element={
-                        <ExpenseRecordContextProvider>
-                            <Expense />
-                        </ExpenseRecordContextProvider>} />
-                    <Route path="/all" element={
-                        <ExpenseRecordContextProvider>
-                            <AllRecords />
-                        </ExpenseRecordContextProvider>} />  
-                    <Route path="/monthly" element={
-                        <ExpenseRecordContextProvider>
-                            <AllRecords />
-                        </ExpenseRecordContextProvider>} />
-                    <Route path="/*" element={<Authentication />} />
-                </Routes>
-                <BackButton />
-                <Navbar />
-            </Router>
-            <ScrollToTop />
+            <ExpenseRecordContextProvider>
+                <Router>
+                    <Routes>
+                        <Route path="/" element={<Authentication />} />
+                        <Route path="/dashboard" element={<Dashboard />} />
+                        <Route path="/income" element={<Income />} />
+                        <Route path="/expense" element={<Expense />} />
+                        <Route path="/all" element={<AllRecords />} />  
+                        <Route path="/monthly" element={<AllRecords />} />
+                        <Route path="/*" element={<Authentication />} />
+                    </Routes>
+                    <BackButton />
+                    <ScrollToTop />
+                    <Navbar />
+                </Router>
+            </ExpenseRecordContextProvider>
         </ClerkProvider>
     </div>
   );

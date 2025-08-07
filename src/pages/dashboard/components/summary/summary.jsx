@@ -3,6 +3,7 @@ import { ExpenseRecordContext } from '../../../../contexts/expense-record-contex
 import "./summary.css"
 import { MinusCircleIcon, PlusCircleIcon } from '@phosphor-icons/react';
 import { LoadingIconSmall } from '../../../components/loading-icon/loading';
+import { Link } from 'react-router-dom';
 
 
 export const Summary = () => {
@@ -21,11 +22,11 @@ export const Summary = () => {
         <>
         {isRecordLoaded ?  
             <div className="dashboard-summary">
+                <Link className="link" to="/all" state={{ period: "all" }}>See More</Link>
                 <div className="balance">
                     <p className="balance-title">Total Balance</p>
                     <p className="balance-number">€ {(incomeTotal + expenseTotal).toFixed(2)}</p>
                 </div>
-                
                 <div className="total">
                     <div className="items">
                         <PlusCircleIcon size={50}/>

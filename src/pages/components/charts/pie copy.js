@@ -1,34 +1,66 @@
 import * as d3 from "d3";
 import { CategoryIcons } from "../category";
 
+const Arc = ({ data, index, createArc, colors, format, total }) => (
+    <g key={index} className="arc">
+        <path className="path" d={createArc(data)} fill={colors(index)} />
+        <text
+            className="text"
+            transform={`translate(${createArc.centroid(data)[0]*1.6}, ${createArc.centroid(data)[1]*1.6})`}
+            y="5"
+            textAnchor="middle"
+            fill="black"
+            fontSize="10"
+        >
+        {format(data.value)}
+        </text>
+        <text
+            className="text"
+            transform={`translate(${createArc.centroid(data)[0]*1.6}, ${createArc.centroid(data)[1]*1.6})`}
+            y="-5"
+            textAnchor="middle"
+            fill="black"
+            fontSize="10"
+        >
+        {data.data.name}
+        </text>
+        {index === 0 ? <>
+                <text
+            textAnchor="middle"
+            fill="black"
+            fontSize="25"
+        >
+        € {total}
+        </text>
+        <text
+            className="total-text"
+            y="20"
+            textAnchor="middle"
+            fill="var(--color-font-light)"
+            fontSize="13"
+        >
+        Total Amount
+        </text>
+        </> : <></>}
+    </g>
+);
+
+
 export const Pie = (props) => {
-
-    const margin = { top: 90, right: 10, bottom: 10, left: 10 };
-    const width = props.width - margin.left - margin.right;
-    const height = props.height - margin.top - margin.bottom;
-    const radius = Math.min(width, height) / 2;
-
-    const format = d3.format(".2f");
 
     const createPie = d3
         .pie()
-        .padAngle(0)
         .value(d => d.value)
         .sort(null);
 
-    const data = createPie(props.data);
-
-    //console.log(data);
-
     const createArc = d3
         .arc()
-        .innerRadius(radius * 0.5)
-        .outerRadius(radius * 0.8);
+        .innerRadius(props.innerRadius)
+        .outerRadius(props.outerRadius);
 
-    const createOuterArc = d3
-        .arc()
-        .innerRadius(radius * 0.8)
-        .outerRadius(radius * 1);
+
+    const format = d3.format(".2f");
+    const data = createPie(props.data);
 
     const getColors = () => {
         if (props.name === "expense") {
@@ -44,73 +76,8 @@ export const Pie = (props) => {
 
     const colors = d3.scaleOrdinal(getColors());
 
-    d3.select("#pie-chart")
-        .select("svg")
-        .remove();
-
-    const svg = d3
-        .select("#pie-chart")
-        .append("svg")
-        .attr("id", "chart")
-        .attr("viewBox", `0 0 ${width} ${height}`)
-        .append("g")
-        .attr("transform", `translate(${width / 2} ${height / 2})`)
-        
-    const arc = svg
-        .selectAll()
-        .data(createPie(data))
-        .enter();
-
-    arc.append("path")
-        .attr("fill", (d, i) => colors(i))
-        .attr("d", createArc);
-    
-    arc.append("text")
-        .attr("text-anchor", (d) => {
-            var midangle = d.startAngle + (d.endAngle - d.startAngle) / 2
-            return (midangle < Math.PI ? 'start' : 'end');
-        })
-        .attr("transform", function(d) {
-            var pos = createOuterArc.centroid(d);
-            var midangle = d.startAngle + (d.endAngle - d.startAngle) / 2
-            pos[0] = radius * 0.99 * (midangle < Math.PI ? 1 : -1);
-            return 'translate(' + pos + ')';
-        })
-        //.attr('alignment-baseline', 'middle')
-        .text((d) => {
-            console.log(d);
-            return d.data.data.name})
-        .attr("fill", "black")
-        .attr("font-size", "6px");
-
-
-    arc.append("polyline")
-        .attr("stroke", "black")
-        .attr("fill", "none")
-        .attr("stroke-width", 0.2)
-        .attr("points", (d) => {
-            var posA = createArc.centroid(d) // line insertion in the slice
-            var posB = createOuterArc.centroid(d) // line break: we use the other arc generator that has been built only for that
-            var posC = createOuterArc.centroid(d); // Label position = almost the same as posB
-            var midangle = d.startAngle + (d.endAngle - d.startAngle) / 2 // we need the angle to see if the X position will be at the extreme right or extreme left
-            posC[0] = radius * 0.95 * (midangle < Math.PI ? 1 : -1); // multiply by 1 or -1 to put it on the right or on the left
-            return [posA, posB, posC];
-        })
-
-
     return (
-        <div id="pie-chart"></div>
-        
-    );
-}
-
-export default Pie;
-
-
-
-/*
-
-<svg className="pie" viewBox={`0 0 ${props.width + 30} ${props.height + 30}`}>
+        <svg className="pie" viewBox={`0 0 ${props.width + 30} ${props.height + 30}`}>
             <g transform={`translate(${props.outerRadius * 1.5} ${props.outerRadius * 1.5})`}>
                 {data.map((data, index) => (
                     <Arc 
@@ -125,7 +92,14 @@ export default Pie;
                 ))}
             </g>
         </svg>
+    );
+}
 
+export default Pie;
+
+
+
+/*
 export const Pie = (props) => {
     const {
         data,

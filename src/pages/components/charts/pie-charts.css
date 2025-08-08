@@ -1,9 +1,12 @@
-.pie-chart {
+#pie-chart {
+    position: relative;
+    height: 100%;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
 }
-.pie {
-    max-width: 400px;
+#chart {
+    text-align: center;
+    margin: auto;
 }

@@ -8,7 +8,7 @@ import { ExpenseYearly } from "./components/expense-yearly";
 import "./expense.css"
 import { useState } from "react";
 import { LoadingIcon } from "../components/loading-icon/loading";
-import { ExpenseChart } from "../components/charts/pie-charts";
+import { ExpensePieChart } from "../components/charts/pie-charts";
 
 export const Expense = () => {
     const [loading, setLoading] = useState(true);
@@ -47,8 +47,9 @@ export const Expense = () => {
                                 </div>
                             </div>
                             <div className="box">
-                                <div>
-                                    <ExpenseChart />
+                                <div className="chart">
+                                    <h3>Yearly Expense Chart</h3>
+                                    <ExpensePieChart />
                                 </div>
                             </div>
                         </div>

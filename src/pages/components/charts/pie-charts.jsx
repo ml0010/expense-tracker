@@ -4,13 +4,14 @@ import Pie from './pie';
 import "./pie-charts.css";
 import { LoadingIconSmall } from '../loading-icon/loading';
 
-export const ExpenseChart = () => {
-    const { isRecordLoaded, expenseRecords, getTotal } = useContext(ExpenseRecordContext);
+export const ExpensePieChart = () => {
 
     const [ data, setData ] = useState([]);
+    const { isRecordLoaded, expenseRecords, getTotal } = useContext(ExpenseRecordContext);
 
     const getCategoryData = () => {
         const category = [...new Set(expenseRecords.map(record => record.category))];
+        console.log("getCategory");
 
         const data = [];
 
@@ -22,37 +23,38 @@ export const ExpenseChart = () => {
             }
             data.push({name: category[i], value: sum * -1});
         }
+        console.log(data);
         return data;
     };
 
     useEffect((() => {
-       setData(getCategoryData());
+        if (expenseRecords.length > 0)
+            setData(getCategoryData());
     }),[expenseRecords]);
 
     return (
         <>
-        {isRecordLoaded > 0 ? 
+        {isRecordLoaded ? 
             <div className="pie-chart expense">
                 <Pie 
                     data={data}
                     width={320}
                     height={320}
-                    innerRadius={65}
-                    outerRadius={120}
                     total={getTotal(expenseRecords)}
                     name={"expense"}
                 />
             </div>
             : <LoadingIconSmall />
-        }</>
+        }
+        </>
     )
 }
 
 
-export const IncomeChart = () => {
+export const IncomePieChart = () => {
 
     const [ data, setData ] = useState([]);
-    const { incomeRecords, getTotal } = useContext(ExpenseRecordContext);
+    const { isRecordLoaded, incomeRecords, getTotal } = useContext(ExpenseRecordContext);
 
     const getIncomeData = () => {
         const incomeSources = [...new Set(incomeRecords.map(record => record.description))];
@@ -71,25 +73,25 @@ export const IncomeChart = () => {
     };
 
     useEffect((() => {
-       setData(getIncomeData());
+        if (incomeRecords.length > 0)
+            setData(getIncomeData());
     }),[incomeRecords]);
 
     return (
         <>
-        {data.length > 0 ? 
+        {isRecordLoaded ?
             <div className="pie-chart income">
                 <Pie 
                     data={data}
                     width={320}
                     height={320}
-                    innerRadius={65}
-                    outerRadius={120}
                     total={getTotal(incomeRecords)}
                     name={"income"}
                 />
             </div>
-            : <></>
-        }</>
+        : <LoadingIconSmall />
+        }
+        </>
     )
 }
 

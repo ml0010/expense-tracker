@@ -7,7 +7,7 @@ import { PiggyBankIcon } from "@phosphor-icons/react";
 import "../expense/expense.css"
 import { LoadingIcon } from "../components/loading-icon/loading";
 import { useState } from "react";
-import { IncomeChart } from "../components/charts/pie-charts";
+import { IncomePieChart } from "../components/charts/pie-charts";
 
 
 export const Income = () => {
@@ -42,7 +42,10 @@ export const Income = () => {
                                 </div>
                             </div>
                             <div className="box">
-                                <IncomeChart />
+                                <div className="chart">
+                                    <h3>Yearly Income Chart</h3>
+                                    <IncomePieChart />
+                                </div>
                             </div>
                         </div>
                     </div>

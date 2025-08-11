@@ -97,12 +97,12 @@ export const LineChart = () => {
             .attr("width", xScale.bandwidth())
             .attr("height", (d) => height - yScale(d3.max(data, (d) => d.income)))
             .attr("fill", "transparent")
-            .on("mouseover", (event, d) => {
+            .on("mousemove", (event, d) => {
                 const [mx, my] = d3.pointer(event);
                 const tooltipText = `<b>${months[d.month]}</b><br>Income: € ${d.income}<br>Expense: € ${d.expense}<br>Balance: € ${(d.income - d.expense).toFixed(2)}`;
                 
                 tooltip.style("top", `${my}px`)
-                        .style("left", `${mx - 50}px`)
+                        .style("left", `${mx}px`)
                         .attr("data-date", d['data-date'])
                         .style("display", "block")
                         .html(tooltipText);

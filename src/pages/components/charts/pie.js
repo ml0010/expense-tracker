@@ -3,7 +3,7 @@ import { CategoryIcons } from "../category";
 
 export const Pie = (props) => {
 
-    const margin = { top: 90, right: 10, bottom: 10, left: 10 };
+    const margin = { top: 40, right: 10, bottom: 40, left: 10 };
     const width = props.width - margin.left - margin.right;
     const height = props.height - margin.top - margin.bottom;
     const radius = Math.min(width, height) / 2;
@@ -22,7 +22,7 @@ export const Pie = (props) => {
 
     const createArc = d3
         .arc()
-        .innerRadius(radius * 0.5)
+        .innerRadius(radius * 0.45)
         .outerRadius(radius * 0.8);
 
     const createOuterArc = d3
@@ -54,18 +54,59 @@ export const Pie = (props) => {
         .attr("id", "chart")
         .attr("viewBox", `0 0 ${width} ${height}`)
         .append("g")
-        .attr("transform", `translate(${width / 2} ${height / 2})`)
-        
+        .attr("transform", `translate(${width / 2} ${height / 2})`);
+
+    svg.append("text")
+        .attr("id", "total")
+        .attr("text-anchor", "middle")
+        .text(`€ ${format(props.total)}`);
+
+    svg.append("text")
+        .attr("id", "description")
+        .attr("y", "15")
+        .attr("font-size", "8px")
+        .attr("fill", "var(--color-grey)")
+        .attr("text-anchor", "middle")
+        .text("Total Amount");
+
     const arc = svg
         .selectAll()
         .data(createPie(data))
         .enter();
 
+    const tooltip = d3.select("#pie-chart")
+        .append("div")
+        .attr("class", "tooltip")
+        .style("position", "absolute")
+        .style("background", "white")
+        .style("z-index", "100");
+        
     arc.append("path")
+        .attr("class", "path")
+        .style("position", "relative")
         .attr("fill", (d, i) => colors(i))
-        .attr("d", createArc);
+        .attr("d", createArc)
+        .on("mousemove", (event, d) => {
+            //const [mx, my] = d3.pointer(event);
+            //console.log(mx, my);
+
+            const centroid = createArc.centroid(d);
+            const svgDim = svg.node().getBoundingClientRect();
+            
+            const mx = (centroid[0] + margin.left) * (svgDim.width / width);
+            const my = (centroid[1] + margin.top) * (svgDim.height / height);
+            const tooltipText = `<b>${d.data.data.name}</b><br>€ ${format(d.data.value)}<br>(${format(d.data.value / props.total * -100)}%)`;
+            
+            tooltip.style("top", `${my + 110}px`)
+                    .style("left", `${mx + 190}px`)
+                    .style("display", "block")
+                    .html(tooltipText);
+        })
+        .on("mouseout", () => { tooltip.style("display", "none")});
+
     
     arc.append("text")
+        .attr("class", "text")
         .attr("text-anchor", (d) => {
             var midangle = d.startAngle + (d.endAngle - d.startAngle) / 2
             return (midangle < Math.PI ? 'start' : 'end');
@@ -73,27 +114,26 @@ export const Pie = (props) => {
         .attr("transform", function(d) {
             var pos = createOuterArc.centroid(d);
             var midangle = d.startAngle + (d.endAngle - d.startAngle) / 2
-            pos[0] = radius * 0.99 * (midangle < Math.PI ? 1 : -1);
+            pos[0] = radius * 0.95 * (midangle < Math.PI ? 1 : -1);
             return 'translate(' + pos + ')';
         })
         //.attr('alignment-baseline', 'middle')
         .text((d) => {
-            console.log(d);
+            //console.log(d);
             return d.data.data.name})
         .attr("fill", "black")
         .attr("font-size", "6px");
-
 
     arc.append("polyline")
         .attr("stroke", "black")
         .attr("fill", "none")
         .attr("stroke-width", 0.2)
         .attr("points", (d) => {
-            var posA = createArc.centroid(d) // line insertion in the slice
-            var posB = createOuterArc.centroid(d) // line break: we use the other arc generator that has been built only for that
+            var posA = createArc.centroid(d); // line insertion in the slice
+            var posB = createOuterArc.centroid(d); // line break: we use the other arc generator that has been built only for that
             var posC = createOuterArc.centroid(d); // Label position = almost the same as posB
             var midangle = d.startAngle + (d.endAngle - d.startAngle) / 2 // we need the angle to see if the X position will be at the extreme right or extreme left
-            posC[0] = radius * 0.95 * (midangle < Math.PI ? 1 : -1); // multiply by 1 or -1 to put it on the right or on the left
+            posC[0] = radius * 0.9 * (midangle < Math.PI ? 1 : -1); // multiply by 1 or -1 to put it on the right or on the left
             return [posA, posB, posC];
         })
 

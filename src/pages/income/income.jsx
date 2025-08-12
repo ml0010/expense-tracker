@@ -50,7 +50,7 @@ export const Income = () => {
                         </div>
                     </div>
                     <div className="list">
-                        <h3>Income List</h3>
+                        <h3>Transactions</h3>
                         <ExpenseList />
                     </div>
                 </div>

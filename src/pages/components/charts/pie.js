@@ -3,7 +3,7 @@ import { CategoryIcons } from "../category";
 
 export const Pie = (props) => {
 
-    const margin = { top: 40, right: 10, bottom: 40, left: 10 };
+    const margin = { top: 50, right: 10, bottom: 50, left: 10 };
     const width = props.width - margin.left - margin.right;
     const height = props.height - margin.top - margin.bottom;
     const radius = Math.min(width, height) / 2;
@@ -93,12 +93,12 @@ export const Pie = (props) => {
             const centroid = createArc.centroid(d);
             const svgDim = svg.node().getBoundingClientRect();
             
-            const mx = (centroid[0] + margin.left) * (svgDim.width / width);
-            const my = (centroid[1] + margin.top) * (svgDim.height / height);
+            const left = (centroid[0] + margin.left) * (svgDim.width / width);
+            const top = (centroid[1] + margin.top) * (svgDim.height / height);
             const tooltipText = `<b>${d.data.data.name}</b><br>€ ${format(d.data.value)}<br>(${format(d.data.value / props.total * -100)}%)`;
             
-            tooltip.style("top", `${my + 110}px`)
-                    .style("left", `${mx + 190}px`)
+            tooltip.style("top", `${top + 110}px`)
+                    .style("left", `${left + 190}px`)
                     .style("display", "block")
                     .html(tooltipText);
         })

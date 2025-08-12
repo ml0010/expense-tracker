@@ -57,18 +57,18 @@
     display: flex;
     position: relative;
     align-items: center;
-    padding-bottom: 20px;
+    margin-bottom: 20px;
+    background-color: var(--color-grey-light);
+    border-radius: 50px;
 }
 .summary-month .bar-container .income-bar {
     border-radius: 50px;
-    background-color: var(--color-grey-light);
+    background-color: transparent;
     width: 100%;
-    position: absolute;
 }
 .summary-month .bar-container .expense-bar {
     border-radius: 50px;
     background-color: var(--color-1);
-    position: absolute;
     color: white;
 }
 .summary-month .bar-container .percent {

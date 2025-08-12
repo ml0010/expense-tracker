@@ -9,7 +9,8 @@ import { useLocation } from "react-router-dom";
 export const AllRecords = () => {
     const [loading, setLoading] = useState(true);
 
-    const period = useLocation().state.period;
+    const location = useLocation();
+    const period = location.state ? location.state.period : "all";
 
     setTimeout(() => {
         setLoading(false);

@@ -22,7 +22,7 @@ export const Summary = () => {
         <>
         {isRecordLoaded ?  
             <div className="dashboard-summary">
-                <Link className="link" to="/all" state={{ period: "all" }}>See More</Link>
+                <Link className="link" to="/all" state={{ period: "year" }}>See More</Link>
                 <div className="balance">
                     <p className="balance-title">Total Balance</p>
                     <p className="balance-number">€ {(incomeTotal + expenseTotal).toFixed(2)}</p>

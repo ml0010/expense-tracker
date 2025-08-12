@@ -27,7 +27,15 @@ export const ExpenseForm = () => {
             window.addEventListener('scroll', handleFloatingBttnsVisibility);
         };
     });
-
+    
+    const resetInputs = () => {
+        setDate(new Date());
+        setDescription("");
+        setAmount("");
+        setCategory("");
+        setIsFormOpen(false);
+        setIsExpense(false);
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -53,11 +61,7 @@ export const ExpenseForm = () => {
         }
 
         addRecord(newRecord);
-        setDescription("");
-        setAmount("");
-        setCategory("");
-        setIsFormOpen(false);
-        setIsExpense(false);
+        resetInputs();
     };
 
     let formRef = useRef(null);
@@ -84,6 +88,11 @@ export const ExpenseForm = () => {
         setIsExpense(true);
     };
 
+    const closeForm = () => {
+        setIsFormOpen(false);
+        resetInputs();
+    };
+
     return (
         <div className="expense-form">
             <div className="standard-buttons">
@@ -106,16 +115,16 @@ export const ExpenseForm = () => {
                     </div>
                     <div className="form-field">
                         <label>Description</label>
-                        <input className="input" type="text" value={description} onChange={(e) => setDescription(e.target.value)}required></input>
+                        <input className="input" type="text" value={description} onChange={(e) => setDescription(e.target.value)} required></input>
                     </div>
                     <div className="form-field">
                         <label>Amount</label>
-                        <input className="input" type="text" value={amount} onChange={(e) => setAmount(e.target.value)}required></input>
+                        <input className="input" type="text" value={amount} onChange={(e) => setAmount(e.target.value)} required></input>
                     </div>
                     {isExpense ? 
                         <div className="form-field">
                             <label>Category</label>
-                            <select className="input" value={category} onChange={(e) => setCategory(e.target.value)}required>
+                            <select className="input" value={category} onChange={(e) => setCategory(e.target.value)} required>
                                 <option value="">Select a Category</option>
                                 <Category />
                             </select>
@@ -123,7 +132,7 @@ export const ExpenseForm = () => {
                     }
                     <div className="form-buttons">
                         <button className="button" type="submit">Add Record</button>
-                        <button className="button" onClick={() => setIsFormOpen(false)}>Close</button>
+                        <button className="button" onClick={() => closeForm()}>Close</button>
                     </div>
                 </form>
             </div>

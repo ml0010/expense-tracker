@@ -110,7 +110,7 @@ export const ExpenseListElement = ({record, index}) => {
                     <select
                         className={`input ${editField === "category" ? "edit" : ""}`}
                         id="category" 
-                        value={category} 
+                        value={category || ""} 
                         onChange={(e) => {
                             handleChange(setCategory, e.target.value);
                             handleCategoryChange(e.target.value);
@@ -126,7 +126,7 @@ export const ExpenseListElement = ({record, index}) => {
                 <input 
                     className={`input ${editField === "description"  ? "edit" : ""}`} 
                     id="description" 
-                    value={description} 
+                    value={description || ""} 
                     onChange={(e) => handleChange(setDescription, e.target.value)} 
                     onClick={(e) => handleOnclick(e.target.id)}
                     onKeyDown={(e) => handleEditSubmit(e)}
@@ -137,7 +137,8 @@ export const ExpenseListElement = ({record, index}) => {
                     <p>€</p> 
                     <input 
                         className={`input ${editField === "amount"  ? "edit" : ""}`} 
-                        id="amount" value={amount}
+                        id="amount"
+                        value={amount || ""}
                         onChange={(e) => handleChange(setAmount, e.target.value)} 
                         onClick={(e) => handleOnclick(e.target.id)}
                         onKeyDown={(e) => handleEditSubmit(e)}

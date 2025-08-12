@@ -124,7 +124,7 @@ export const ExpenseForm = () => {
                     {isExpense ? 
                         <div className="form-field">
                             <label>Category</label>
-                            <select className="input" value={category} onChange={(e) => setCategory(e.target.value)} required>
+                            <select className="input" defaultValue="" onChange={(e) => setCategory(e.target.value)} required>
                                 <option value="">Select a Category</option>
                                 <Category />
                             </select>

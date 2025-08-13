@@ -21,7 +21,7 @@ function App() {
     <div className="App">
         <ClerkProvider publishableKey={CLERK_PUBLISHABLE_KEY}>
             <ExpenseRecordContextProvider>
-                <Router>
+                <Router basename="/expense-tracker" >
                     <Routes>
                         <Route path="/" element={<Authentication />} />
                         <Route path="/dashboard" element={<Dashboard />} />

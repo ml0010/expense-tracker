@@ -32,7 +32,7 @@ export const ExpenseFilterContextProvider = (props) => {
             end: new Date(year, 12, 0, 23, 59, 59)
         },
         "all" : {
-            start: new Date(0),
+            start: new Date(records[records.length-1].date || 0),
             end: new Date()
         },
         "custom" : {
@@ -46,8 +46,8 @@ export const ExpenseFilterContextProvider = (props) => {
 
         if (data.length > 0 && currentPeriod) {
             //console.log("getting record list");
-            console.log("Period Selected: ", currentPeriod);
-            console.log(periodList[currentPeriod]);
+            //console.log("Period Selected: ", currentPeriod);
+            //console.log(periodList[currentPeriod]);
             const newRecords = filterPeriod(data, currentPeriod);
 
             if (categoryFilterList.length > 0) {

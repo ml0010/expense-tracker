@@ -59,7 +59,7 @@ export const ExpenseList = () => {
             <div className="table-warpper">
                 <div className="filters">
                     <div className="select-filter" onChange={() => setLoading(true)}>
-                        <PeriodFilter />
+                        <PeriodFilter loading={setLoading}/>
                         <CategoryFilter />
                     </div>
                     <div className={`search-box ${isSearch? "active" : ""}`}>
@@ -68,10 +68,9 @@ export const ExpenseList = () => {
                         <XIcon className={`close-button ${isSearch? "active" : ""}`} onClick={() => finishSearch()} size={13} />
                     </div>
                 </div>
-                <div className="category-buttons">
-                    <CategoryButtons />
+                <div className="filter-lists">
+                    <FilterButtons />
                 </div>
-                
                 <table className="table" ref={searchRef}>
                     <thead>
                         <tr>
@@ -134,22 +133,26 @@ export const PeriodFilter = () => {
 
     const { currentPeriod, periodList, handlePeriodChange} = useContext(ExpenseFilterContext);
 
-    const [ isCustom, setIsCustom ] = useState(false);
+    const [ openForm, setOpenForm ] = useState(false);
 
     return (
         <div className="filter period-filter">
-            <h5>Period</h5>
-            <input value={`${periodList[currentPeriod].start.toISOString().split('T')[0]} to ${periodList[currentPeriod].end.toISOString().split('T')[0]}`} onClick={() => setIsCustom(true)} />
-            <div className={`date-selector ${isCustom ? "active" : ""}`}>
-                <DateSelector close={()=>setIsCustom(false)}/>
+            <p>Period</p>
+            <div className="input">
+                <input value={`${periodList[currentPeriod].start.toISOString().split('T')[0]} to ${periodList[currentPeriod].end.toISOString().split('T')[0]}`} onClick={() => setOpenForm(!openForm)} onChange={() => {}}/>
+                <button className={`date-default-button ${currentPeriod !== "all" ? "active" : ""}`} onClick={()=>handlePeriodChange("all")}><XIcon /></button>
             </div>
-            <div className={`date-default ${currentPeriod !== "all" ? "active" : ""}`}>
-                <button onClick={()=>handlePeriodChange("all")}>See All Records</button>
+            <div className={`date-selector ${openForm ? "active" : ""}`}>
+                <DateSelector close={()=>setOpenForm(false)}/>
             </div>
         </div>
     )
 }
 /*
+
+            <input value={`${periodList[currentPeriod].start.toISOString().split('T')[0]} to ${periodList[currentPeriod].end.toISOString().split('T')[0]}`} onClick={() => setOpenForm(!openForm)} onChange={() => {}}/>
+
+
             <select defaultValue={currentPeriod} onChange={(e) => handlePeriodChange(e.target.value)}>
                 <option value="all">All</option>
                 <option value="today">Today</option>
@@ -160,15 +163,18 @@ export const PeriodFilter = () => {
 */
 export const DateSelector = (props) => {
 
-    const { handlePeriodChange } = useContext(ExpenseFilterContext);
+    const { periodList, handlePeriodChange } = useContext(ExpenseFilterContext);
 
     const today = new Date();
 
+    const [periodSelected, setPeriodSelected] = useState(null);
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null);
 
     const onChange = (dates) => {
+        console.log(dates);
         const [start, end] = dates;
+        setPeriodSelected("custom");
         setStartDate(start);
         setEndDate(end);
     };
@@ -178,11 +184,16 @@ export const DateSelector = (props) => {
         props.close();
     };
 
-    const handleChange = (period, start, end) => {
-        if (start && end)
-            handlePeriodChange(period, start, endDate);
-        else 
-            handlePeriodChange(period);
+    const handleClickOptions = (period) => {
+        const start = periodList[period].start;
+        const end = periodList[period].end;
+        setPeriodSelected(period);
+        setStartDate(start);
+        setEndDate(end);
+    };
+
+    const handleSubmit = (period, start, end) => {
+        handlePeriodChange(period, start, end);
         handleClose();
     };
 
@@ -202,8 +213,13 @@ export const DateSelector = (props) => {
 
     return (
         <div className="date-filter" ref={formRef}>
-            <button onClick={handleClose}>Close</button>
             <h3>Date Selector</h3>
+            <div className="date-filter-buttons" >
+                <button className="option" value="all" onClick={(e) => handleClickOptions(e.target.value)}>All</button>
+                <button className="option" value="today" onClick={(e) => handleClickOptions(e.target.value)}>Today</button>
+                <button className="option" value="month" onClick={(e) => handleClickOptions(e.target.value)}>This Month</button>
+                <button className="option" value="year" onClick={(e) => handleClickOptions(e.target.value)}>This Year</button>
+            </div>
             <div className="date-picker">
                 <DatePicker 
                     selected={startDate}
@@ -215,12 +231,12 @@ export const DateSelector = (props) => {
                     rangeSeparator=" - "
                     isClearable={true}
                 />
-                <button value="custom" onClick={(e) => {handleChange(e.target.value, startDate, endDate)}}>Confirm</button>
+
             </div>
-            <button value="all" onClick={(e) => handleChange(e.target.value)}>All</button>
-            <button value="today" onClick={(e) => handleChange(e.target.value)}>Today</button>
-            <button value="month" onClick={(e) => handleChange(e.target.value)}>This Month</button>
-            <button value="year" onClick={(e) => handleChange(e.target.value)}>This Year</button>
+            <div>
+                <button className="button" value={periodSelected} onClick={(e) => {handleSubmit(e.target.value, startDate, endDate)}}>Confirm</button>
+                <button className="button" onClick={handleClose}>Close</button>
+            </div>
         </div>
     )
 }
@@ -231,32 +247,52 @@ export const CategoryFilter = () => {
     
     return (
         <div className="filter category-filter">
-            <h5>Category</h5>
             {categoryList.length > 1 ?
-            <select value="all" onChange={(e) => addCategoryFilter(e.target.value)}>
-                <option value="all">Categories</option>
-                {categoryList.map((category, index) => 
-                    <option key={index} value={`${category}`}>{category}</option>
-                )}
-            </select>
+            <>
+                <p>Category</p>
+                <select value="all" onChange={(e) => addCategoryFilter(e.target.value)}>
+                    <option value="all">Select</option>
+                    {categoryList.map((category, index) => 
+                        <option key={index} value={`${category}`}>{category}</option>
+                    )}
+                </select>
+            </>
             : <></>
             }
         </div>
     )
 }
 
-const CategoryButtons = () => {
-    const { categoryFilterList, deleteCategoryFilter, deleteAllCategoryFilter } = useContext(ExpenseFilterContext);
-    
+const FilterButtons = () => {
+    const { currentPeriod, periodList, handlePeriodChange, categoryFilterList, deleteCategoryFilter, deleteAllCategoryFilter } = useContext(ExpenseFilterContext);
+
+    const handleDeleteAllFilters = () => {
+        deleteAllCategoryFilter();
+        handlePeriodChange("all");
+    };
+
     return (
         <>
-        {categoryFilterList.length > 0 ? 
+        {currentPeriod !== "all" && 
+            <div className="date-buttons">
+                <button 
+                    className="date-button" 
+                    id={currentPeriod} 
+                    onClick={() => 
+                        handlePeriodChange("all")}>Date: {currentPeriod === "custom" ?  
+                        `${periodList[currentPeriod].start.toISOString().split('T')[0]} ~ ${periodList[currentPeriod].end.toISOString().split('T')[0]}` : 
+                        currentPeriod.charAt(0).toUpperCase() + currentPeriod.slice(1)} <XIcon size={13} 
+                />
+                </button>
+            </div>
+        }
+        {categoryFilterList.length > 0 &&
             <div className="category-buttons">
                 {categoryFilterList.map((category, index) => 
-                    <button className="category-button" key={index} id={category} onClick={(e) => deleteCategoryFilter(e.target.id)}>{category} <XIcon size={13} /></button>
+                    <button className="category-button" key={index} id={category} onClick={(e) => deleteCategoryFilter(e.target.id)}>Category: {category} <XIcon size={13} /></button>
                 )}
-                <button className="delete-all-button" onClick={() => deleteAllCategoryFilter()}>Delete All</button>
-            </div> : <></> 
+                <button className="delete-all-button" onClick={handleDeleteAllFilters}>Delete All</button>
+            </div>
         }
         </>
     )

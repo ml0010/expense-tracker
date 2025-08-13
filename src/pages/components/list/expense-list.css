@@ -17,55 +17,96 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     padding: 5px;
+    padding-bottom: 10px;
+
 }
 .filters .filter {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding-right: 10px;
+}
+.filters .filter p {
+    font-size: 13px;
+    padding-right: 10px;
+    font-weight: 700;
+}
+.filters .input, .filters select {
+    border-radius: 5px;
+    height: 30px;
+    border: 1px solid var(--color-grey);
+    text-align: center;
+    background-color: white;
+    display: flex;
+}
+.filters .input input {
+    border: none;
+    text-align: center;
 }
 .filters .select-filter {
     display: flex;
 }
-.filters select {
+/*.filters select {
     border-radius: 5px;
     background-color: var(--color-3);
     margin: 5px;
     font-size: 14px;
     font-weight: 500;
     height: 30px;
-}
-.filters .date-filter {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: grid;
-    z-index: 100;
-    background-color: white;
-    padding: 40px;
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.366);
-}
+}*/
+
 .filters .date-selector {
     display: none;
 }
 .filters .date-selector.active {
     display: block;
 }
-.filter .date-default {
+
+.filters .date-filter {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    background-color: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.366);
+}
+.date-filter .date-filter-buttons .option {
     border: none;
     background-color: transparent;
+    font-size: 13px;
+    color: var(--color-font);
+    text-decoration: underline;
 }
-.date-default.active {
-
+.date-filter .date-picker {
+    padding: 20px;
+    display: flex;
 }
-.category-buttons {
+.filters .date-default-button {
+    border: none;
+    background-color: transparent;
+    opacity: 0;
+}
+.filters .date-default-button.active {
+    opacity: 1;
+}
+.filter-lists {
     width: 100%;
     display: flex;
-    justify-content: start;
-    padding: 5px;
+    justify-content:start;
+    align-items: center;
+    padding-bottom: 15px;
 }
-.category-buttons .category-button {
+.filter-lists .category-buttons, .date-buttons{
+    display: flex;
+}
+.filter-lists .category-button, .date-button {
     cursor: pointer;
     background-color: transparent;
     display: flex;
@@ -81,15 +122,7 @@
     font-weight: 500;
     padding-left: 7px;
 }
-.category-buttons .category-button:hover {
-    background-color: var(--color-button-hover);
-    color: var(--color-background);
-}
-.category-buttons .category-button svg {
-    background-color: transparent;
-    padding: 2px;
-}
-.category-buttons .delete-all-button {
+.filter-lists .delete-all-button {
     cursor: pointer;
     background-color: transparent;
     border: none;
@@ -98,6 +131,15 @@
     text-decoration: underline;
     padding-left: 15px;
 }
+.category-buttons .category-button:hover, .date-button:hover{
+    background-color: var(--color-button-hover);
+    color: var(--color-background);
+}
+.category-buttons .category-button svg , .date-button svg {
+    background-color: transparent;
+    padding: 2px;
+}
+
 
 .search-box {
     display: flex;
@@ -106,17 +148,21 @@
     border-radius: 5px;
     margin: auto;
     height: 30px;
-    background-color: var(--color-3);
+    border: 1px solid var(--color-grey);
 }
 
 .search-box.active {
-    background-color: var(--color-1);
+    background-color: var(--color-3);
 }
 .search-box .close-button{
     color: transparent;
     cursor: pointer;
     padding: 2px;
     color: var(--color-font);
+    opacity: 0;
+}
+.search-box .close-button.active{
+    opacity: 1;
 }
 .search-box .close-button:hover{
     color: var(--color-background);

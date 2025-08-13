@@ -11,8 +11,6 @@ export const ExpensePieChart = () => {
 
     const getCategoryData = () => {
         const category = [...new Set(expenseRecords.map(record => record.category))];
-        console.log("getCategory");
-
         const data = [];
 
         for (let i = 0; i < category.length; i++ ) {
@@ -23,7 +21,7 @@ export const ExpensePieChart = () => {
             }
             data.push({name: category[i], value: sum * -1});
         }
-        console.log(data);
+        //console.log(data);
         return data;
     };
 

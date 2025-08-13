@@ -6,6 +6,7 @@ import { EmptyList } from '../empty-list/empty-list'
 import "./expense-list.css";
 import { ExpenseRecordContext } from '../../../contexts/expense-record-context';
 import { LoadingIconSmall } from '../loading-icon/loading';
+import DatePicker from 'react-datepicker';
 
 export const ExpenseList = () => {
 
@@ -131,16 +132,95 @@ export const ExpenseList = () => {
 
 export const PeriodFilter = () => {
 
-    const { currentPeriod, handlePeriodChange } = useContext(ExpenseFilterContext);
+    const { currentPeriod, periodList, handlePeriodChange} = useContext(ExpenseFilterContext);
+
+    const [ isCustom, setIsCustom ] = useState(false);
 
     return (
         <div className="filter period-filter">
+            <h5>Period</h5>
+            <input value={`${periodList[currentPeriod].start.toISOString().split('T')[0]} to ${periodList[currentPeriod].end.toISOString().split('T')[0]}`} onClick={() => setIsCustom(true)} />
+            <div className={`date-selector ${isCustom ? "active" : ""}`}>
+                <DateSelector close={()=>setIsCustom(false)}/>
+            </div>
+            <div className={`date-default ${currentPeriod !== "all" ? "active" : ""}`}>
+                <button onClick={()=>handlePeriodChange("all")}>See All Records</button>
+            </div>
+        </div>
+    )
+}
+/*
             <select defaultValue={currentPeriod} onChange={(e) => handlePeriodChange(e.target.value)}>
                 <option value="all">All</option>
                 <option value="today">Today</option>
                 <option value="month">This Month</option>
                 <option value="year">This Year</option>
+                <option value="custom" onClick={() => setIsCustom(true)}>Custom</option>
             </select>
+*/
+export const DateSelector = (props) => {
+
+    const { handlePeriodChange } = useContext(ExpenseFilterContext);
+
+    const today = new Date();
+
+    const [startDate, setStartDate] = useState(null);
+    const [endDate, setEndDate] = useState(null);
+
+    const onChange = (dates) => {
+        const [start, end] = dates;
+        setStartDate(start);
+        setEndDate(end);
+    };
+    const handleClose = () => {
+        setStartDate(null);
+        setEndDate(null);
+        props.close();
+    };
+
+    const handleChange = (period, start, end) => {
+        if (start && end)
+            handlePeriodChange(period, start, endDate);
+        else 
+            handlePeriodChange(period);
+        handleClose();
+    };
+
+    let formRef = useRef(null);
+
+    useEffect(() => {
+        let handler = (e)=>{
+            if(formRef.current && !formRef.current.contains(e.target)){
+                handleClose();
+            }
+        };
+        document.addEventListener("mousedown", handler);
+        return() =>{
+            document.removeEventListener("mousedown", handler);
+        }
+    }, [formRef]);
+
+    return (
+        <div className="date-filter" ref={formRef}>
+            <button onClick={handleClose}>Close</button>
+            <h3>Date Selector</h3>
+            <div className="date-picker">
+                <DatePicker 
+                    selected={startDate}
+                    onChange={onChange}
+                    startDate={startDate}
+                    endDate={endDate}
+                    maxDate={today}
+                    selectsRange
+                    rangeSeparator=" - "
+                    isClearable={true}
+                />
+                <button value="custom" onClick={(e) => {handleChange(e.target.value, startDate, endDate)}}>Confirm</button>
+            </div>
+            <button value="all" onClick={(e) => handleChange(e.target.value)}>All</button>
+            <button value="today" onClick={(e) => handleChange(e.target.value)}>Today</button>
+            <button value="month" onClick={(e) => handleChange(e.target.value)}>This Month</button>
+            <button value="year" onClick={(e) => handleChange(e.target.value)}>This Year</button>
         </div>
     )
 }
@@ -151,6 +231,7 @@ export const CategoryFilter = () => {
     
     return (
         <div className="filter category-filter">
+            <h5>Category</h5>
             {categoryList.length > 1 ?
             <select value="all" onChange={(e) => addCategoryFilter(e.target.value)}>
                 <option value="all">Categories</option>

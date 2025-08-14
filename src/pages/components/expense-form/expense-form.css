@@ -33,13 +33,19 @@
     display: grid;
     grid-template-columns: 1fr 2fr;
     align-items: center;
-    min-width: 300px;
     padding: 5px;
 }
-.expense-form .form-field input {
-    width: 100%;
-    padding: 3px;
+.expense-form .form-field label {
+    font-size: 14px;
+    font-weight: 500;
 }
+.expense-form .form-field .input {
+    width: 100%;
+    padding: 5px;
+    background-color: white;
+    border: 1px solid var(--color-grey);
+}
+
 .standard-buttons {
     padding: 20px;
 }

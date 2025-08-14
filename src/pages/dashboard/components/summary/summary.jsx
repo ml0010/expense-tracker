@@ -44,7 +44,11 @@ export const Summary = () => {
                     </div>
                 </div>
             </div>
-            : <LoadingIconSmall /> 
+            : 
+            <>
+                <h2>Yearly Summary</h2>
+                <LoadingIconSmall /> 
+            </>
         }
         </>
     )

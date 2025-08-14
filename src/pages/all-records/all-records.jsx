@@ -1,16 +1,20 @@
 import { ExpenseForm } from "../components/expense-form/expense-form";
-import { ExpenseFilterContextProvider } from "../../contexts/expense-filter-context";
+import { ExpenseFilterContext, ExpenseFilterContextProvider } from "../../contexts/expense-filter-context";
 import { ExpenseList } from "../components/list/expense-list";
 import "../expense/expense.css"
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { LoadingIcon } from "../components/loading-icon/loading";
 import { useLocation } from "react-router-dom";
 
 export const AllRecords = () => {
+
     const [loading, setLoading] = useState(true);
 
     const location = useLocation();
     const period = location.state ? location.state.period : "all";
+    const month = location.state ? location.state.month : "no month";
+
+    console.log(location);
 
     setTimeout(() => {
         setLoading(false);
@@ -20,7 +24,7 @@ export const AllRecords = () => {
         return <LoadingIcon />;
     } else {
         return (
-            <ExpenseFilterContextProvider period={period}>
+            <ExpenseFilterContextProvider period={period} >
                 <div className="summary all-record">
                     <h1 className="title">All Records</h1>
                     <ExpenseForm />

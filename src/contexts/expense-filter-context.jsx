@@ -7,16 +7,16 @@ export const ExpenseFilterContextProvider = (props) => {
 
     const { records, expenseRecords, incomeRecords } = useContext(ExpenseRecordContext);
 
-    const [ dataSelection, setDataSelection ] = useState(props.data);
-    const [ currentPeriod, setCurrentPeriod ] = useState(props.period || "all");
+    const [ dataSelection, setDataSelection ] = useState(props.data);  // income or expense
+    const [ currentPeriod, setCurrentPeriod ] = useState(props.period || "all"); // periodList options
     const [ customStartDate, setCustomStartDate ] = useState(null);
     const [ customEndDate, setCustomEndDate ] = useState(null);
     const [ recordsFiltered, setRecordsFiltered ] = useState([]);
     const [ categoryList, setCategoryList ] = useState([]);
     const [ categoryFilterList, setCategoryFilterList ] = useState([]);
 
-    const month = new Date().getMonth()
-    const year = new Date().getFullYear();
+    const [ month, setMonth ] = useState(new Date().getMonth());
+    const [ year, setYear ] = useState(new Date().getFullYear());
 
     const periodList = {
         "today" : {
@@ -32,7 +32,7 @@ export const ExpenseFilterContextProvider = (props) => {
             end: new Date(year, 12, 0, 23, 59, 59)
         },
         "all" : {
-            start: new Date(records[records.length-1].date || 0),
+            start: new Date(records.length > 0 ? records[records.length-1].date : 0),
             end: new Date()
         },
         "custom" : {
@@ -80,7 +80,7 @@ export const ExpenseFilterContextProvider = (props) => {
         if (recordsFiltered.length > 0 && categoryFilterList.length === 0) {
             setCategoryList(getCategoryList(recordsFiltered));
         }
-    }, [recordsFiltered]);
+    }, [recordsFiltered, categoryFilterList]);
 
     const handlePeriodChange = (period, start, end) => {
         setCategoryList([]);
@@ -105,7 +105,7 @@ export const ExpenseFilterContextProvider = (props) => {
         setCategoryFilterList((prev) => prev.filter(item => item !== category));
     };
 
-    const contextValue = { currentPeriod, periodList, recordsFiltered, setRecordsFiltered, handlePeriodChange, categoryList, categoryFilterList, addCategoryFilter, deleteCategoryFilter, deleteAllCategoryFilter, filterPeriod, getCategoryList, getDescriptionList};
+    const contextValue = { currentPeriod, periodList, recordsFiltered, setRecordsFiltered, handlePeriodChange, categoryList, categoryFilterList, addCategoryFilter, deleteCategoryFilter, deleteAllCategoryFilter, filterPeriod, getCategoryList, getDescriptionList };
 
     return (
         <ExpenseFilterContext.Provider value={contextValue}>{props.children}</ExpenseFilterContext.Provider>

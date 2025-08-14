@@ -44,24 +44,27 @@ export const Dashboard = () => {
                     </div>
                     <div className="box">
                         <h2>Income</h2>
-                        <div className="title">
-                            <p className="text">Recent Incomes</p>
-                            <Link className="link" to="../income">See All</Link>
-                        </div>
                         {isRecordLoaded ?
+                        <>
+                            <div className="title">
+                                <p className="text">Recent Transactions</p>
+                                <Link className="link" to="../income">See All</Link>
+                            </div>
                             <RecentList records={incomeRecords} /> 
+                        </>
                             : <LoadingIconSmall />
                         }
                     </div>
                     <div className="box">
                         <h2>Expense</h2>
-
-                        <div className="title">
-                            <p className="text">Recent Expenses</p>
-                            <Link className="link" to="../expense">See All</Link>
-                        </div>
                         {isRecordLoaded ?
+                        <>
+                            <div className="title">
+                                <p className="text">Recent Transactions</p>
+                                <Link className="link" to="../expense">See All</Link>
+                            </div>
                             <RecentList records={expenseRecords} /> 
+                        </>
                             : <LoadingIconSmall />
                         }
                     </div>

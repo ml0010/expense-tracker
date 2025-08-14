@@ -1,7 +1,6 @@
-import { ClerkProvider } from '@clerk/clerk-react';
-import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
-
 import './App.css';
+import { ClerkProvider } from '@clerk/clerk-react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Authentication from './pages/authentication/auth';
 import Dashboard from './pages/dashboard/dashboard';
 import { ExpenseRecordContextProvider } from './contexts/expense-record-context';
@@ -28,7 +27,9 @@ function App() {
 
     return (
         <div className="App">
-            <ClerkProvider publishableKey={CLERK_PUBLISHABLE_KEY}>
+            <ClerkProvider 
+                publishableKey={CLERK_PUBLISHABLE_KEY}
+            >
                 <ExpenseRecordContextProvider>
                     <Router basename="/expense-tracker" >
                         <Routes>

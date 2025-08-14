@@ -49,7 +49,11 @@ export const MonthlySummary = () => {
 
                 </div>
             </div>
-            : <LoadingIconSmall />
+            : 
+            <>
+                <h2>Monthly Summary</h2>
+                <LoadingIconSmall />
+            </>
         }
         </>
     )

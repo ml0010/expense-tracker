@@ -24,7 +24,7 @@
     display: grid;
 }
 .box .title {
-    width: 90%;
+    width: 80%;
     display: flex;
     justify-content: space-between;
 }

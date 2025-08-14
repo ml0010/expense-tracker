@@ -10,6 +10,7 @@ export const ExpenseForm = () => {
     
     const [ isFormOpen, setIsFormOpen ] = useState(false);
     const [ isExpense, setIsExpense ] = useState(false);
+    
     const [ date, setDate ] = useState(new Date());
     const [ description, setDescription ] = useState("");
     const [ amount, setAmount ] = useState("");
@@ -123,7 +124,7 @@ export const ExpenseForm = () => {
                     <p className="form-title">{isExpense? 'Add Your Expense' : 'Add Your Income'}</p>
                     <div className="form-field">
                         <label>Date</label>
-                        <DatePicker selected={date} dateFormat="yyyy/MM/dd" onChange={(date) => setDate(date)} />
+                        <DatePicker className="input" selected={date} dateFormat="yyyy/MM/dd" onChange={(date) => setDate(date)} />
                     </div>
                     <div className="form-field">
                         <label>Description</label>

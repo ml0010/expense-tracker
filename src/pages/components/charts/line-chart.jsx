@@ -3,13 +3,16 @@ import { ExpenseRecordContext } from "../../../contexts/expense-record-context";
 import * as d3 from "d3";
 import "./line-chart.css";
 import { LoadingIconSmall } from "../loading-icon/loading";
+import { useNavigate } from "react-router-dom";
 
 export const LineChart = () => {
 
     const { isRecordLoaded, monthlyRecords, getTotal } = useContext(ExpenseRecordContext);
-    
+
     const [ data, setData ] = useState([]);
     const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+    const navigate = useNavigate();
 
     const getData = () => {
         const data = [];
@@ -107,7 +110,14 @@ export const LineChart = () => {
                         .style("display", "block")
                         .html(tooltipText);
             })
-            .on("mouseout", () => { tooltip.style("display", "none")});
+            .on("mouseout", () => { tooltip.style("display", "none")})
+            .on("click", (event, d) => {
+                const year = new Date().getFullYear();
+                const start = new Date(year, d.month, 1);
+                const end = new Date(year, d.month + 1, 0, 23, 59, 59);
+                console.log(start, end);
+                navigate("/all", {state: {period: "month"}});
+            });
     }
 
     useEffect(() => {

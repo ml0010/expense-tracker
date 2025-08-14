@@ -7,6 +7,7 @@ import { XIcon } from '@phosphor-icons/react';
 
 export const ExpenseListElement = ({record, index}) => {
 
+    const [ isEdit, setIsEdit ] = useState(false);
     const [ editField, setEditField ] = useState("");
     const [ newValue, setNewValue ] = useState("");
     const [ id, setId ] = useState(record._id);
@@ -26,6 +27,7 @@ export const ExpenseListElement = ({record, index}) => {
     }, [record]);
 
     const handleEdit = (key, value) => {
+        setIsEdit(false);
         if (value === "") {
             return;
         }
@@ -37,6 +39,7 @@ export const ExpenseListElement = ({record, index}) => {
     };
 
     const handleOnclick = (key) => {
+        setIsEdit(true);
         setEditField(key);
     };
 
@@ -69,11 +72,11 @@ export const ExpenseListElement = ({record, index}) => {
         }
     };
 
-    let expenseRef = useRef(null);
+    let listRef = useRef(null);
 
     useEffect(() => {
         let handler = (e)=>{
-            if (expenseRef.current && !expenseRef.current.contains(e.target) && editField !== "") {
+            if (listRef.current && !listRef.current.contains(e.target) && editField !== "") {
                 handleEdit(editField, newValue);
                 setNewValue("");
                 setEditField("");
@@ -86,7 +89,9 @@ export const ExpenseListElement = ({record, index}) => {
     });
 
     return (
-        <tr id={id} className="element" ref={expenseRef} key={index}>
+        <>
+        <div className={`element-wrapper ${isEdit && "active"}`}></div>
+        <tr id={id} className="element" ref={listRef} key={index}>
             <td onClick={() => {handleOnclick("date")}}>
                 <DatePicker 
                     className={`input ${editField === "date" ? "edit" : ""}`}
@@ -149,5 +154,6 @@ export const ExpenseListElement = ({record, index}) => {
                 <button className="delete-button" id={id} ><XIcon size={20} onClick={(e) => handleDelete(e.target.parentElement.id)} /></button>
             </td>
         </tr>
+        </>
     )
 }

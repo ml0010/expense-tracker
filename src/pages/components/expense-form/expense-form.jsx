@@ -34,7 +34,6 @@ export const ExpenseForm = () => {
         setDescription("");
         setAmount("");
         setCategory("");
-        setIsFormOpen(false);
         setIsExpense(false);
     };
 
@@ -70,7 +69,7 @@ export const ExpenseForm = () => {
     useEffect(() => {
         let handler = (e)=>{
             if(formRef.current && !formRef.current.contains(e.target)){
-                setIsFormOpen(false);
+                closeForm();
             }
         };
         document.addEventListener("mousedown", handler);

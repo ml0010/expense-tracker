@@ -48,8 +48,8 @@
 }
 .tracker .summary-table th,
 .tracker .summary-table td {
-    border-top: 1px solid rgba(175, 175, 175, 0.481);
-    border-bottom: 1px solid rgba(175, 175, 175, 0.481);
+    border-top: 1px solid var(--color-grey-border);
+    border-bottom: 1px solid var(--color-grey-border);
     padding: 3px 25px 3px 25px;
 }
 

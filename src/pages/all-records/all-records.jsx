@@ -15,8 +15,6 @@ export const AllRecords = () => {
     const location = useLocation();
     const { period, start, end } = location.state || "";
 
-    console.log(period, start, end);
-
     useEffect(() => {
         handlePeriodChange(period, start, end);
     }, [period]);

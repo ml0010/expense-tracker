@@ -11,6 +11,7 @@ import { Expense } from './pages/expense/expense';
 import { AllRecords}  from './pages/all-records/all-records';
 import { BackButton } from './back-button/back-button';
 import { useEffect } from 'react';
+import { ExpenseFilterContextProvider } from './contexts/expense-filter-context';
 
 
 
@@ -37,7 +38,11 @@ function App() {
                             <Route path="/dashboard" element={<Dashboard />} />
                             <Route path="/income" element={<Income />} />
                             <Route path="/expense" element={<Expense />} />
-                            <Route path="/all" element={<AllRecords />} />  
+                            <Route path="/all" element={
+                                <ExpenseFilterContextProvider>
+                                    <AllRecords />
+                                </ExpenseFilterContextProvider>
+                            } />  
                             <Route path="/monthly" element={<AllRecords />} />
                             <Route path="/*" element={<Authentication />} />
                         </Routes>

@@ -102,7 +102,10 @@ export const LineChart = () => {
             .attr("fill", "transparent")
             .on("mousemove", (event, d) => {
                 const [mx, my] = d3.pointer(event);
-                const tooltipText = `<b>${months[d.month]}</b><br>Income: € ${d.income}<br>Expense: € ${d.expense}<br>Balance: € ${(d.income - d.expense).toFixed(2)}`;
+                const tooltipText = `<b>${months[d.month]}</b><br>
+                                    Income: € ${d.income}<br>
+                                    Expense: € ${d.expense}<br>
+                                    Balance: € ${(d.income - d.expense).toFixed(2)}<br>`;
                 
                 tooltip.style("top", `${my}px`)
                         .style("left", `${mx}px`)
@@ -115,8 +118,7 @@ export const LineChart = () => {
                 const year = new Date().getFullYear();
                 const start = new Date(year, d.month, 1);
                 const end = new Date(year, d.month + 1, 0, 23, 59, 59);
-                console.log(start, end);
-                navigate("/all", {state: {period: "month"}});
+                navigate("/all", {state: {period: "custom", start: start, end: end}});
             });
     }
 

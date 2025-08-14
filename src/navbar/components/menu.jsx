@@ -39,7 +39,7 @@ export const Menu = () => {
                     <Link className={`link ${currentPage === "income" ? "active" : ""}`} to="income" onClick={() => setMenuOpen(false)}><PiggyBankIcon size={28} />Income</Link>
                     <Link className={`link ${currentPage === "expense" ? "active" : ""}`} to="expense" onClick={() => setMenuOpen(false)}><MoneyIcon size={28} /> Expense</Link>
                     <Link className={`link ${currentPage === "all" ? "active" : ""}`} to="all" onClick={() => setMenuOpen(false)}><ClipboardTextIcon size={28} /> All Records</Link>
-                    <Link className={`link logout-button`} onClick={() => signOut({ redirectUrl: '/' })}><SignOutIcon size={28} />Sign Out</Link>
+                    <Link className={`link logout-button`} onClick={() => signOut({ redirectUrl: "/" })}><SignOutIcon size={28} />Sign Out</Link>
                 </div>
             </div>
         </div>

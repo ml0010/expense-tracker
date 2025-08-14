@@ -22,9 +22,9 @@ function App() {
     useEffect(() => {
         console.log(window.location.pathname);
         if (window.location.pathname === "/") {
-        window.location.replace("/expense-tracker");
+            window.location.replace("/expense-tracker");
         }
-    }, [window.location]);
+    });
 
     return (
         <div className="App">

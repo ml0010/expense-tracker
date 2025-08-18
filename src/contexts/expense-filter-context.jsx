@@ -46,7 +46,7 @@ export const ExpenseFilterContextProvider = (props) => {
 
         if (data.length > 0 && currentPeriod) {
             //console.log("getting record list");
-            //console.log("Period Selected: ", currentPeriod);
+            console.log("Period Selected: ", currentPeriod);
             //console.log(periodList[currentPeriod]);
             const newRecords = filterPeriod(data, currentPeriod);
 
@@ -56,7 +56,7 @@ export const ExpenseFilterContextProvider = (props) => {
                 return;
             }
             setRecordsFiltered([...newRecords]);
-        }
+        } 
     }, [records, incomeRecords, expenseRecords, currentPeriod, categoryFilterList]);
 
     const filterPeriod = (records, period) => {
@@ -85,6 +85,7 @@ export const ExpenseFilterContextProvider = (props) => {
     const handlePeriodChange = (period, start, end) => {
         setCategoryList([]);
         setCategoryFilterList([]);
+        console.log(start, end);
         if (start && end) {
             setCustomStartDate(new Date(start));
             setCustomEndDate(new Date(end));

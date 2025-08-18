@@ -31,7 +31,7 @@ export const IncomeMonthly = () => {
                     <tbody>
                         {records.length === 0 ? 
                             <tr>
-                                <td colspan="2">No Transaction</td>
+                                <td colSpan="2">No Transaction</td>
                             </tr> : 
                             <>
                                 {records.map((record, index) => 

@@ -30,18 +30,8 @@ export const AllRecords = () => {
             <div className="summary all-record">
                 <h1 className="title">All Records</h1>
                 <ExpenseForm />
-                <div className="tracker">
-                    <div className="item">
-                        <h3>Title</h3>
-                        <h4>Items</h4>                    
-                    </div>
-                    <div className="item">
-                        <h3>Title</h3>
-                        <h4>Breakdown</h4>
-                    </div>
-                </div>
                 <div className="list">
-                    <h3>List</h3>
+                    <h3>Transactions</h3>
                     <ExpenseList />
                 </div>
             </div>

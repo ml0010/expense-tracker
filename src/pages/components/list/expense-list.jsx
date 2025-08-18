@@ -52,7 +52,6 @@ export const ExpenseList = () => {
         }
     }, [searchRef]);
 
-    
     return (
         <>
         {isRecordLoaded ? 
@@ -83,9 +82,11 @@ export const ExpenseList = () => {
                     </thead>
                     <tbody>
                         {loading ? 
-                        <tr><td colSpan="5">
-                            <LoadingIconSmall />
-                        </td></tr> : 
+                        <tr>
+                            <td colSpan="5">
+                                <LoadingIconSmall />
+                            </td>
+                        </tr> : 
                         <>
                         {isSearch ? 
                             <>
@@ -128,6 +129,13 @@ export const ExpenseList = () => {
     )
 }
 
+const dateFormat = (date) => {
+    const y = date.getFullYear();
+    const m = date.getMonth() + 1;
+    const d = date.getDate();
+    const string = `${y}-${m < 10 ? `0${m}` : m}-${d < 10 ? `0${d}` : d}`
+    return string;
+};
 
 export const PeriodFilter = () => {
 
@@ -135,14 +143,11 @@ export const PeriodFilter = () => {
 
     const [ openForm, setOpenForm ] = useState(false);
 
-    console.log(currentPeriod);
-
     return (
-        
         <div className="filter period-filter">
             <p>Period</p>
             <div className="date-input">
-                <input className="input" value={`${periodList[currentPeriod].start.toISOString().split('T')[0]} to ${periodList[currentPeriod].end.toISOString().split('T')[0]}`} onClick={() => setOpenForm(!openForm)} onChange={() => {}}/>
+                <input className="input" value={`${dateFormat(periodList[currentPeriod].start)} to ${dateFormat(periodList[currentPeriod].end)}`} onClick={() => setOpenForm(!openForm)} onChange={() => {}}/>
                 <button className={`date-default-button ${currentPeriod !== "all" ? "active" : ""}`} onClick={()=>handlePeriodChange("all")}><XIcon /></button>
             </div>
             <div className={`date-selector ${openForm ? "active" : ""}`}>
@@ -178,9 +183,18 @@ export const DateSelector = (props) => {
         console.log(dates);
         const [start, end] = dates;
         setPeriodSelected("custom");
-        setStartDate(start);
-        setEndDate(end);
+        setStartDate(setMinHour(start));
+        setEndDate(setMaxHour(end));
     };
+    const setMaxHour = (date) => {
+        if(date)
+            return new Date(new Date(date).setHours(23, 59, 59, 0));
+    };
+    const setMinHour = (date) => {
+        if(date)
+            return new Date(new Date(date).setHours(0, 0, 0, 0));
+    };
+
     const handleClose = () => {
         setStartDate(null);
         setEndDate(null);
@@ -274,6 +288,10 @@ const FilterButtons = () => {
         handlePeriodChange("all");
     };
 
+    const start = new Date(new Date(periodList[currentPeriod].start).setDate(new Date(periodList[currentPeriod].start).getDate() + 1));
+
+    //console.log(start);
+
     return (
         <>
         {currentPeriod !== "all" && 
@@ -281,10 +299,11 @@ const FilterButtons = () => {
                 <button 
                     className="date-button" 
                     id={currentPeriod} 
-                    onClick={() => 
-                        handlePeriodChange("all")}>Date: {currentPeriod === "custom" ?  
-                        `${periodList[currentPeriod].start.toISOString().split('T')[0]} ~ ${periodList[currentPeriod].end.toISOString().split('T')[0]}` : 
-                        currentPeriod.charAt(0).toUpperCase() + currentPeriod.slice(1)} <XIcon size={13} 
+                    onClick={() => handlePeriodChange("all")}
+                >
+                    Date: {currentPeriod === "custom" ?  
+                    `${dateFormat(periodList[currentPeriod].start)} ~ ${dateFormat(periodList[currentPeriod].end)}` : 
+                    currentPeriod.charAt(0).toUpperCase() + currentPeriod.slice(1)} <XIcon size={13} 
                 />
                 </button>
             </div>

@@ -32,7 +32,7 @@ export const ExpenseDaily = () => {
                     <tbody>
                         {records.length === 0 ? 
                             <tr>
-                                <td colspan="4">No Transaction</td>
+                                <td colSpan="4">No Transaction</td>
                             </tr> : 
                             <>
                                 {records.map((record, index) => 

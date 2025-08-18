@@ -33,7 +33,7 @@ export const ExpenseMonthly = () => {
                     <tbody>
                         {category.length === 0 ? 
                             <tr>
-                                <td colspan="2">No Transaction</td>
+                                <td colSpan="2">No Transaction</td>
                             </tr> : 
                             <>
                                 {category.map((category, index) => 

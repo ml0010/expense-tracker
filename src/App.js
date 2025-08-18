@@ -30,6 +30,7 @@ function App() {
         <div className="App">
             <ClerkProvider 
                 publishableKey={CLERK_PUBLISHABLE_KEY}
+                afterSignOutUrl="/expense-tracker"
             >
                 <ExpenseRecordContextProvider>
                     <Router basename="/expense-tracker" >

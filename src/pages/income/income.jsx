@@ -28,17 +28,21 @@ export const Income = () => {
                     <div className="tracker">
                         <div className="boxes">
                             <div className="box">
-                                <h3>Monthly Income</h3>
-                                <h4>Items</h4>
-                                <IncomeMonthly />
+                                <div className="box-content">
+                                    <h3>Monthly Income</h3>
+                                    <h4>Items</h4>
+                                    <IncomeMonthly />
+                                </div>
                             </div>
                         </div>
                         <div className="boxes">
                             <div className="box">
-                                <h3>Yearly Income</h3>
-                                <div>
-                                    <h4>Breakdown</h4>
-                                    <IncomeYearly />
+                                <div className="box-content">
+                                    <h3>Yearly Income</h3>
+                                    <div>
+                                        <h4>Breakdown</h4>
+                                        <IncomeYearly />
+                                    </div>
                                 </div>
                             </div>
                             <div className="box">

@@ -28,22 +28,28 @@ export const Expense = () => {
                     <div className="tracker">
                         <div className="boxes">
                             <div className="box">
-                                <h3>Daily Expenses</h3>
-                                <h4>Items</h4>
-                                <ExpenseDaily />
+                                <div className="box-content">
+                                    <h3>Daily Expenses</h3>
+                                    <h4>Items</h4>
+                                    <ExpenseDaily />
+                                </div>
                             </div>
                             <div className="box">
-                                <h3>Monthly Expenses</h3>
-                                <h4>Breakdown</h4>
-                                <ExpenseMonthly />
+                                <div className="box-content">
+                                    <h3>Monthly Expenses</h3>
+                                    <h4>Breakdown</h4>
+                                    <ExpenseMonthly />
+                                </div>
                             </div>  
                         </div>
                         <div className="boxes">
                             <div className="box">
-                                <h3>Yearly Expenses</h3>
-                                <div>
-                                    <h4>Breakdown</h4>
-                                    <ExpenseYearly />
+                                <div className="box-content">
+                                    <h3>Yearly Expenses</h3>
+                                    <div>
+                                        <h4>Breakdown</h4>
+                                        <ExpenseYearly />
+                                    </div>
                                 </div>
                             </div>
                             <div className="box">

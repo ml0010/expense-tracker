@@ -91,7 +91,7 @@ export const Category = () => {
   return (
     <>
         {CategoryList.map((category, index) => 
-            <option key={index} value={`${category}`}>{category}</option>
+            <option className="category-option" key={index} value={`${category}`}>{category}</option>
         )}
     </>
   )

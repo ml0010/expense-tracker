@@ -138,8 +138,8 @@ export const PeriodFilter = () => {
     return (
         <div className="filter period-filter">
             <p>Period</p>
-            <div className="input">
-                <input value={`${periodList[currentPeriod].start.toISOString().split('T')[0]} to ${periodList[currentPeriod].end.toISOString().split('T')[0]}`} onClick={() => setOpenForm(!openForm)} onChange={() => {}}/>
+            <div className="date-input">
+                <input className="input" value={`${periodList[currentPeriod].start.toISOString().split('T')[0]} to ${periodList[currentPeriod].end.toISOString().split('T')[0]}`} onClick={() => setOpenForm(!openForm)} onChange={() => {}}/>
                 <button className={`date-default-button ${currentPeriod !== "all" ? "active" : ""}`} onClick={()=>handlePeriodChange("all")}><XIcon /></button>
             </div>
             <div className={`date-selector ${openForm ? "active" : ""}`}>
@@ -250,7 +250,7 @@ export const CategoryFilter = () => {
             {categoryList.length > 1 ?
             <>
                 <p>Category</p>
-                <select value="all" onChange={(e) => addCategoryFilter(e.target.value)}>
+                <select className="input" value="all" onChange={(e) => addCategoryFilter(e.target.value)}>
                     <option value="all">Select</option>
                     {categoryList.map((category, index) => 
                         <option key={index} value={`${category}`}>{category}</option>

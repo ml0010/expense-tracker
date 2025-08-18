@@ -30,11 +30,18 @@ export const IncomeYearly = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {category.map((category, index) => 
-                        <tr key={index}>
-                            <td>{category}</td>
-                            <td id="amount">{records.filter((record) => record.description === category).reduce((sum, record) => sum + record.amount, 0).toFixed(2)}</td>
-                        </tr>)}
+                        {category.length === 0 ? 
+                            <tr>
+                                <td colspan="2">No Transaction</td>
+                            </tr> : 
+                            <>
+                                {category.map((category, index) => 
+                                <tr key={index}>
+                                    <td>{category}</td>
+                                    <td id="amount">{records.filter((record) => record.description === category).reduce((sum, record) => sum + record.amount, 0).toFixed(2)}</td>
+                                </tr>)}
+                            </>
+                        }
                     </tbody>
                 </table>
                 <p className="total">Total: € {records.reduce((sum, record) => sum + record.amount, 0).toFixed(2)}</p>

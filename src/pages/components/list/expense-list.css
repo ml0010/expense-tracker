@@ -18,7 +18,6 @@
     grid-template-columns: 1fr 1fr;
     padding: 5px;
     padding-bottom: 10px;
-
 }
 .filters .filter {
     display: flex;
@@ -26,12 +25,15 @@
     align-items: center;
     padding-right: 10px;
 }
+.filters .filter .input {
+    font-size: 13px;
+}
 .filters .filter p {
     font-size: 13px;
     padding-right: 10px;
     font-weight: 700;
 }
-.filters .input, .filters select {
+.filters .date-input, .filters select {
     border-radius: 5px;
     height: 30px;
     border: 1px solid var(--color-grey);
@@ -39,7 +41,7 @@
     background-color: white;
     display: flex;
 }
-.filters .input input {
+.filters .date-input input {
     border: none;
     text-align: center;
 }
@@ -238,6 +240,7 @@
     background-color: transparent;
     text-align: center;
     padding: 5px;
+    font-size: 13px;
 }
 .element .input:hover {
     color: var(--color-2);
@@ -275,3 +278,45 @@
     width: 100px;
 }
 
+
+@media only screen and (max-width: 1300px) {
+    .element .input {
+
+        padding: 2px;
+        font-size: 12px;
+    }
+}
+@media only screen and (max-width: 900px) {
+    .table {
+        font-size: 11px;
+    }
+    .filters .filter p {
+        font-size: 11px;
+        padding-right: 5px;
+    }
+
+    .element .input {
+        padding: 2px;
+        font-size: 11px;
+    }
+    .element .category .icons svg {
+        width: 80%;
+    }
+    .filters .filter .input {
+        font-size: 12px;
+    }
+    .search-box .search-input {
+        font-size: 12px;
+    }
+    .filters .date-input, .filters select {
+        height: 25px;
+    }
+    .search-box {
+        height: 25px;
+    }
+}
+@media only screen and (max-width: 600px) {
+    .filters {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,11 +1,11 @@
 import { createContext, useContext, useEffect, useState } from 'react'
-import { ExpenseRecordContext } from './expense-record-context';
+import { TransactionRecordContext } from './transaction-record-context';
 
 export const ExpenseFilterContext = createContext(null);
 
 export const ExpenseFilterContextProvider = (props) => {
 
-    const { records, expenseRecords, incomeRecords } = useContext(ExpenseRecordContext);
+    const { records, expenseRecords, incomeRecords } = useContext(TransactionRecordContext);
 
     const [ dataSelection, setDataSelection ] = useState(props.data);  // income or expense
     const [ currentPeriod, setCurrentPeriod ] = useState(props.period || "all"); // periodList options

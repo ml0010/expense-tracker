@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { ExpenseRecordContext } from "../../../contexts/expense-record-context";
+import { TransactionRecordContext } from "../../../contexts/transaction-record-context";
 import * as d3 from "d3";
 import "./line-chart.css";
 import { LoadingIconSmall } from "../loading-icon/loading";
@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 export const LineChart = () => {
 
-    const { isRecordLoaded, monthlyRecords, getTotal } = useContext(ExpenseRecordContext);
+    const { isRecordLoaded, monthlyRecords, getTotal } = useContext(TransactionRecordContext);
 
     const [ data, setData ] = useState([]);
     const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];

@@ -1,6 +1,6 @@
-import { ExpenseForm } from "../components/expense-form/expense-form";
-import { ExpenseFilterContextProvider } from "../../contexts/expense-filter-context";
-import { ExpenseList } from "../components/list/expense-list";
+import { TransactionForm } from "../components/transaction-form/transaction-form";
+import { ExpenseFilterContextProvider } from "../../contexts/transaction-filter-context";
+import { TransactionList } from "../components/transaction-list/transaction-list";
 import { IncomeMonthly } from "./components/income-monthly";
 import { IncomeYearly } from "./components/income-yearly";
 import { PiggyBankIcon } from "@phosphor-icons/react";
@@ -24,7 +24,7 @@ export const Income = () => {
             <ExpenseFilterContextProvider data="income">
                 <div className="summary income">
                     <h1 className="title"><PiggyBankIcon size={50} /> Income Tracker</h1>
-                    <ExpenseForm />
+                    <TransactionForm />
                     <div className="tracker">
                         <div className="boxes">
                             <div className="box">
@@ -51,7 +51,7 @@ export const Income = () => {
                     </div>
                     <div className="list">
                         <h3>Transactions</h3>
-                        <ExpenseList />
+                        <TransactionList />
                     </div>
                 </div>
             </ExpenseFilterContextProvider>

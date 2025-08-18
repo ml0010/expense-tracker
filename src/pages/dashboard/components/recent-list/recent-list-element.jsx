@@ -1,5 +1,5 @@
 import { useContext, useEffect, useRef, useState } from 'react'
-import { ExpenseRecordContext } from '../../../../contexts/expense-record-context';
+import { TransactionRecordContext } from '../../../../contexts/transaction-record-context';
 import DatePicker from 'react-datepicker';
 import { XIcon } from '@phosphor-icons/react';
 import { CategoryIcons } from '../../../components/category';
@@ -14,7 +14,7 @@ export const RecentListElement = ({record, index}) => {
     const [ description, setDescription ] = useState(record.description);
     const [ amount, setAmount ] = useState(record.amount);
 
-    const { deleteRecord, updateRecord } = useContext(ExpenseRecordContext);
+    const { deleteRecord, updateRecord } = useContext(TransactionRecordContext);
     
     useEffect(() => {
         setId(record._id);

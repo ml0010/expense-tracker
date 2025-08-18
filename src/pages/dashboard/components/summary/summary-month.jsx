@@ -1,12 +1,12 @@
 import { useContext, useEffect, useState } from 'react'
-import { ExpenseRecordContext } from '../../../../contexts/expense-record-context';
-import { ExpenseFilterContext } from '../../../../contexts/expense-filter-context';
+import { TransactionRecordContext } from '../../../../contexts/transaction-record-context';
+import { ExpenseFilterContext } from '../../../../contexts/transaction-filter-context';
 import './summary.css';
 import { LoadingIconSmall } from '../../../components/loading-icon/loading';
 import { Link } from 'react-router-dom';
 
 export const MonthlySummary = () => {
-    const { isRecordLoaded, incomeRecords, expenseRecords, getTotal } = useContext(ExpenseRecordContext);
+    const { isRecordLoaded, incomeRecords, expenseRecords, getTotal } = useContext(TransactionRecordContext);
     const { filterPeriod } = useContext(ExpenseFilterContext);
 
     const getIncomeTotal = () => {

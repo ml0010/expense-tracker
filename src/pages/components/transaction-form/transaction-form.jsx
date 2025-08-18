@@ -1,12 +1,12 @@
 import { useContext, useEffect, useRef, useState } from 'react'
-import { ExpenseRecordContext } from '../../../contexts/expense-record-context';
+import { TransactionRecordContext } from '../../../contexts/transaction-record-context';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import { Category } from '../category';
-import './expense-form.css'
+import './transaction-form.css'
 import { MinusCircleIcon, PlusCircleIcon } from '@phosphor-icons/react';
 
-export const ExpenseForm = () => {
+export const TransactionForm = () => {
     
     const [ isFormOpen, setIsFormOpen ] = useState(false);
     const [ isExpense, setIsExpense ] = useState(false);
@@ -17,7 +17,7 @@ export const ExpenseForm = () => {
     const [ category, setCategory ] = useState("");
     const [ showFloatingButton, setShowFloatingButton ] = useState(false);   
 
-    const { userId, addRecord } = useContext(ExpenseRecordContext);
+    const { userId, addRecord } = useContext(TransactionRecordContext);
 
     useEffect(() => {
         const handleFloatingBttnsVisibility = () => {

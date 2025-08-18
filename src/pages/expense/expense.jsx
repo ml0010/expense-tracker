@@ -1,6 +1,6 @@
-import { ExpenseForm } from "../components/expense-form/expense-form";
-import { ExpenseFilterContextProvider } from "../../contexts/expense-filter-context";
-import { ExpenseList } from "../components/list/expense-list";
+import { TransactionForm } from "../components/transaction-form/transaction-form";
+import { ExpenseFilterContextProvider } from "../../contexts/transaction-filter-context";
+import { TransactionList } from "../components/transaction-list/transaction-list";
 import { ExpenseDaily } from "./components/expense-daily";
 import { ExpenseMonthly } from "./components/expense-monthly";
 import { MoneyIcon } from "@phosphor-icons/react";
@@ -24,7 +24,7 @@ export const Expense = () => {
             <ExpenseFilterContextProvider data="expense">
                 <div className="summary expense">
                     <h1 className="title"><MoneyIcon size={50} /> Expenses Tracker</h1>
-                    <ExpenseForm />
+                    <TransactionForm />
                     <div className="tracker">
                         <div className="boxes">
                             <div className="box">
@@ -57,7 +57,7 @@ export const Expense = () => {
                     </div>
                     <div className="list">
                         <h3>Transactions</h3>
-                        <ExpenseList />
+                        <TransactionList />
                     </div>
                 </div>
             </ExpenseFilterContextProvider>

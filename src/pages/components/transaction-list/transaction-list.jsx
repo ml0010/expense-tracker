@@ -1,16 +1,16 @@
 import { useContext, useEffect, useRef, useState } from 'react'
-import { ExpenseListElement } from './expense-list-element';
+import { TransactionListElement } from './transaction-list-element';
 import { MagnifyingGlassIcon, XIcon } from '@phosphor-icons/react';
-import { ExpenseFilterContext } from '../../../contexts/expense-filter-context';
+import { ExpenseFilterContext } from '../../../contexts/transaction-filter-context';
 import { EmptyList } from '../empty-list/empty-list'
-import "./expense-list.css";
-import { ExpenseRecordContext } from '../../../contexts/expense-record-context';
+import "./transaction-list.css";
+import { TransactionRecordContext } from '../../../contexts/transaction-record-context';
 import { LoadingIconSmall } from '../loading-icon/loading';
 import DatePicker from 'react-datepicker';
 
-export const ExpenseList = () => {
+export const TransactionList = () => {
 
-    const { isRecordLoaded } = useContext(ExpenseRecordContext);
+    const { isRecordLoaded } = useContext(TransactionRecordContext);
     const { recordsFiltered } = useContext(ExpenseFilterContext);
     
     const [ isSearch, setIsSearch ] = useState(false);
@@ -93,7 +93,7 @@ export const ExpenseList = () => {
                             {searchResult.length > 0 ? 
                                 <>
                                 {searchResult.map((record ,index) => (
-                                    <ExpenseListElement record={record} key={index}/>
+                                    <TransactionListElement record={record} key={index}/>
                                 ))}
                                 </> : 
                                 <tr>
@@ -107,7 +107,7 @@ export const ExpenseList = () => {
                             {recordsFiltered.length > 0 ? 
                                 <>
                                 {recordsFiltered.map((record ,index) => (
-                                    <ExpenseListElement record={record} key={index}/>
+                                    <TransactionListElement record={record} key={index}/>
                                 ))}
                                 </> : 
                                 <tr>

@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react'
-import { ExpenseRecordContext } from '../../../contexts/expense-record-context';
+import { TransactionRecordContext } from '../../../contexts/transaction-record-context';
 import Pie from './pie';
 import "./pie-charts.css";
 import { LoadingIconSmall } from '../loading-icon/loading';
@@ -7,7 +7,7 @@ import { LoadingIconSmall } from '../loading-icon/loading';
 export const ExpensePieChart = () => {
 
     const [ data, setData ] = useState([]);
-    const { isRecordLoaded, expenseRecords, getTotal } = useContext(ExpenseRecordContext);
+    const { isRecordLoaded, expenseRecords, getTotal } = useContext(TransactionRecordContext);
 
     const getCategoryData = () => {
         const category = [...new Set(expenseRecords.map(record => record.category))];
@@ -52,7 +52,7 @@ export const ExpensePieChart = () => {
 export const IncomePieChart = () => {
 
     const [ data, setData ] = useState([]);
-    const { isRecordLoaded, incomeRecords, getTotal } = useContext(ExpenseRecordContext);
+    const { isRecordLoaded, incomeRecords, getTotal } = useContext(TransactionRecordContext);
 
     const getIncomeData = () => {
         const incomeSources = [...new Set(incomeRecords.map(record => record.description))];

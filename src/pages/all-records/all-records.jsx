@@ -1,6 +1,6 @@
-import { ExpenseForm } from "../components/expense-form/expense-form";
-import { ExpenseFilterContext } from "../../contexts/expense-filter-context";
-import { ExpenseList } from "../components/list/expense-list";
+import { TransactionForm } from "../components/transaction-form/transaction-form";
+import { ExpenseFilterContext } from "../../contexts/transaction-filter-context";
+import { TransactionList } from "../components/transaction-list/transaction-list";
 import "../expense/expense.css"
 import { useContext, useEffect, useState } from "react";
 import { LoadingIcon } from "../components/loading-icon/loading";
@@ -29,10 +29,10 @@ export const AllRecords = () => {
         return (
             <div className="summary all-record">
                 <h1 className="title">All Records</h1>
-                <ExpenseForm />
+                <TransactionForm />
                 <div className="list">
                     <h3>Transactions</h3>
-                    <ExpenseList />
+                    <TransactionList />
                 </div>
             </div>
         )

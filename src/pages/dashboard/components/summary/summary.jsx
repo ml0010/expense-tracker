@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { ExpenseRecordContext } from '../../../../contexts/expense-record-context';
+import { useContext, useEffect, useState } from 'react'
+import { TransactionRecordContext } from '../../../../contexts/transaction-record-context';
 import "./summary.css"
 import { MinusCircleIcon, PlusCircleIcon } from '@phosphor-icons/react';
 import { LoadingIconSmall } from '../../../components/loading-icon/loading';
@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 
 export const Summary = () => {
 
-    const { isRecordLoaded, incomeRecords, expenseRecords, getTotal } = useContext(ExpenseRecordContext);
+    const { isRecordLoaded, incomeRecords, expenseRecords, getTotal } = useContext(TransactionRecordContext);
 
     const [ incomeTotal, setIncomeTotal ] = useState(getTotal(incomeRecords));
     const [ expenseTotal, setExpenseTotal ] = useState(getTotal(expenseRecords));

@@ -3,7 +3,7 @@ import { ClerkProvider } from '@clerk/clerk-react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Authentication from './pages/authentication/auth';
 import Dashboard from './pages/dashboard/dashboard';
-import { ExpenseRecordContextProvider } from './contexts/expense-record-context';
+import { TransactionRecordContextProvider } from './contexts/transaction-record-context';
 import { Navbar } from './navbar/navbar';
 import { ScrollToTop } from './scroll/scroll-to-top';
 import { Income } from './pages/income/income';
@@ -11,7 +11,7 @@ import { Expense } from './pages/expense/expense';
 import { AllRecords}  from './pages/all-records/all-records';
 import { BackButton } from './back-button/back-button';
 import { useEffect } from 'react';
-import { ExpenseFilterContextProvider } from './contexts/expense-filter-context';
+import { ExpenseFilterContextProvider } from './contexts/transaction-filter-context';
 
 
 
@@ -32,7 +32,7 @@ function App() {
                 publishableKey={CLERK_PUBLISHABLE_KEY}
                 afterSignOutUrl="/expense-tracker"
             >
-                <ExpenseRecordContextProvider>
+                <TransactionRecordContextProvider>
                     <Router basename="/expense-tracker" >
                         <Routes>
                             <Route path="/" element={<Authentication />} />
@@ -51,7 +51,7 @@ function App() {
                         <ScrollToTop />
                         <Navbar />
                     </Router>
-                </ExpenseRecordContextProvider>
+                </TransactionRecordContextProvider>
             </ClerkProvider>
         </div>
     );

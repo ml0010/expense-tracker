@@ -1,11 +1,11 @@
 import { useContext, useEffect, useRef, useState } from 'react'
-import { ExpenseRecordContext } from '../../../contexts/expense-record-context';
+import { TransactionRecordContext } from '../../../contexts/transaction-record-context';
 import DatePicker from 'react-datepicker';
 import { Category, CategoryIcons} from '../category';
 import { XIcon } from '@phosphor-icons/react';
 
 
-export const ExpenseListElement = ({record, index}) => {
+export const TransactionListElement = ({record, index}) => {
 
     const [ isEdit, setIsEdit ] = useState(false);
     const [ editField, setEditField ] = useState("");
@@ -16,7 +16,7 @@ export const ExpenseListElement = ({record, index}) => {
     const [ description, setDescription ] = useState(record.description);
     const [ amount, setAmount ] = useState(record.amount);
 
-    const { deleteRecord, updateRecord } = useContext(ExpenseRecordContext);
+    const { deleteRecord, updateRecord } = useContext(TransactionRecordContext);
     
     useEffect(() => {
         setId(record._id);

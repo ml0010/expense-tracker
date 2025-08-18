@@ -1,18 +1,18 @@
 import './dashboard.css'
 import { useContext, useState } from 'react'
-import { ExpenseRecordContext } from '../../contexts/expense-record-context';
-import { ExpenseForm } from '../components/expense-form/expense-form';
+import { TransactionRecordContext } from '../../contexts/transaction-record-context';
+import { TransactionForm } from '../components/transaction-form/transaction-form';
 import { Summary } from './components/summary/summary';
 import { RecentList } from './components/recent-list/recent-list';
 import { MonthlySummary } from './components/summary/summary-month';
-import { ExpenseFilterContextProvider } from '../../contexts/expense-filter-context';
+import { ExpenseFilterContextProvider } from '../../contexts/transaction-filter-context';
 import { Link } from 'react-router-dom';
 import { LineChart } from '../components/charts/line-chart';
 import { LoadingIcon, LoadingIconSmall } from '../components/loading-icon/loading';
 
 export const Dashboard = () => {
 
-    const { isRecordLoaded, incomeRecords, expenseRecords } = useContext(ExpenseRecordContext);
+    const { isRecordLoaded, incomeRecords, expenseRecords } = useContext(TransactionRecordContext);
     
     const [loading, setLoading] = useState(true);
 
@@ -26,7 +26,7 @@ export const Dashboard = () => {
         return (
             <div className="dashboard">
                 <h1>Dashboard</h1>
-                <ExpenseForm />
+                <TransactionForm />
                 <div className="boxes two">
                     <div className="box">
                         <Summary />

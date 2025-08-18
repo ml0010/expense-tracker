@@ -1,10 +1,10 @@
 import { useContext, useEffect, useState } from "react"
-import { ExpenseFilterContext } from "../../../contexts/expense-filter-context";
-import { ExpenseRecordContext } from "../../../contexts/expense-record-context";
+import { ExpenseFilterContext } from "../../../contexts/transaction-filter-context";
+import { TransactionRecordContext } from "../../../contexts/transaction-record-context";
 import { LoadingIconSmall } from "../../components/loading-icon/loading";
 
 export const IncomeYearly = () => {
-    const { isRecordLoaded, incomeRecords } = useContext(ExpenseRecordContext);
+    const { isRecordLoaded, incomeRecords } = useContext(TransactionRecordContext);
     const { filterPeriod, getDescriptionList } = useContext(ExpenseFilterContext);
 
     const [ records, setRecords ] = useState(filterPeriod(incomeRecords, "year"));

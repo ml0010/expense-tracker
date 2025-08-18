@@ -1,9 +1,9 @@
 import { useUser } from '@clerk/clerk-react';
 import { createContext, useEffect, useState } from 'react'
 
-export const ExpenseRecordContext = createContext(null);
+export const TransactionRecordContext = createContext(null);
 
-export const ExpenseRecordContextProvider = (props) => {
+export const TransactionRecordContextProvider = (props) => {
 
     const { user, isSignedIn } = useUser();
 
@@ -128,6 +128,6 @@ export const ExpenseRecordContextProvider = (props) => {
 
     const contextValue = { username, userId, records, isRecordLoaded, incomeRecords, expenseRecords, monthlyRecords, getTotal, addRecord, deleteRecord, updateRecord };
     return (
-        <ExpenseRecordContext.Provider value={contextValue}>{props.children}</ExpenseRecordContext.Provider>
+        <TransactionRecordContext.Provider value={contextValue}>{props.children}</TransactionRecordContext.Provider>
     )
 }

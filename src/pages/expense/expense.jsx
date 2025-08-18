@@ -1,5 +1,5 @@
 import { TransactionForm } from "../components/transaction-form/transaction-form";
-import { ExpenseFilterContextProvider } from "../../contexts/transaction-filter-context";
+import { TransactionFilterContextProvider } from "../../contexts/transaction-filter-context";
 import { TransactionList } from "../components/transaction-list/transaction-list";
 import { ExpenseDaily } from "./components/expense-daily";
 import { ExpenseMonthly } from "./components/expense-monthly";
@@ -21,7 +21,7 @@ export const Expense = () => {
         return <LoadingIcon />;
     } else {
         return (
-            <ExpenseFilterContextProvider data="expense">
+            <TransactionFilterContextProvider data="expense">
                 <div className="summary expense">
                     <h1 className="title"><MoneyIcon size={50} /> Expenses Tracker</h1>
                     <TransactionForm />
@@ -60,7 +60,7 @@ export const Expense = () => {
                         <TransactionList />
                     </div>
                 </div>
-            </ExpenseFilterContextProvider>
+            </TransactionFilterContextProvider>
         )
     }
 }

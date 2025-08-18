@@ -5,7 +5,7 @@ import { TransactionForm } from '../components/transaction-form/transaction-form
 import { Summary } from './components/summary/summary';
 import { RecentList } from './components/recent-list/recent-list';
 import { MonthlySummary } from './components/summary/summary-month';
-import { ExpenseFilterContextProvider } from '../../contexts/transaction-filter-context';
+import { TransactionFilterContextProvider } from '../../contexts/transaction-filter-context';
 import { Link } from 'react-router-dom';
 import { LineChart } from '../components/charts/line-chart';
 import { LoadingIcon, LoadingIconSmall } from '../components/loading-icon/loading';
@@ -32,9 +32,9 @@ export const Dashboard = () => {
                         <Summary />
                     </div>
                     <div className="box">
-                        <ExpenseFilterContextProvider>
+                        <TransactionFilterContextProvider>
                             <MonthlySummary />
-                        </ExpenseFilterContextProvider>
+                        </TransactionFilterContextProvider>
                     </div>
                 </div>
                 <div className="boxes three">

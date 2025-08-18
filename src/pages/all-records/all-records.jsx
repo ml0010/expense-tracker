@@ -1,5 +1,5 @@
 import { TransactionForm } from "../components/transaction-form/transaction-form";
-import { ExpenseFilterContext } from "../../contexts/transaction-filter-context";
+import { TransactionFilterContext } from "../../contexts/transaction-filter-context";
 import { TransactionList } from "../components/transaction-list/transaction-list";
 import "../expense/expense.css"
 import { useContext, useEffect, useState } from "react";
@@ -10,7 +10,7 @@ export const AllRecords = () => {
 
     const [loading, setLoading] = useState(true);
 
-    const { handlePeriodChange } = useContext(ExpenseFilterContext);
+    const { handlePeriodChange } = useContext(TransactionFilterContext);
 
     const location = useLocation();
     const { period, start, end } = location.state || "";

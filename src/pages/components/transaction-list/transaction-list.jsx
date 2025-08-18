@@ -1,7 +1,7 @@
 import { useContext, useEffect, useRef, useState } from 'react'
 import { TransactionListElement } from './transaction-list-element';
 import { MagnifyingGlassIcon, XIcon } from '@phosphor-icons/react';
-import { ExpenseFilterContext } from '../../../contexts/transaction-filter-context';
+import { TransactionFilterContext } from '../../../contexts/transaction-filter-context';
 import { EmptyList } from '../empty-list/empty-list'
 import "./transaction-list.css";
 import { TransactionRecordContext } from '../../../contexts/transaction-record-context';
@@ -11,7 +11,7 @@ import DatePicker from 'react-datepicker';
 export const TransactionList = () => {
 
     const { isRecordLoaded } = useContext(TransactionRecordContext);
-    const { recordsFiltered } = useContext(ExpenseFilterContext);
+    const { recordsFiltered } = useContext(TransactionFilterContext);
     
     const [ isSearch, setIsSearch ] = useState(false);
     const [ searchInput, setSearchInput ] = useState("");
@@ -139,7 +139,7 @@ const dateFormat = (date) => {
 
 export const PeriodFilter = () => {
 
-    const { currentPeriod, periodList, handlePeriodChange} = useContext(ExpenseFilterContext);
+    const { currentPeriod, periodList, handlePeriodChange} = useContext(TransactionFilterContext);
 
     const [ openForm, setOpenForm ] = useState(false);
 
@@ -171,7 +171,7 @@ export const PeriodFilter = () => {
 */
 export const DateSelector = (props) => {
 
-    const { periodList, handlePeriodChange } = useContext(ExpenseFilterContext);
+    const { periodList, handlePeriodChange } = useContext(TransactionFilterContext);
 
     const today = new Date();
 
@@ -260,7 +260,7 @@ export const DateSelector = (props) => {
 
 export const CategoryFilter = () => {
 
-    const { categoryList, addCategoryFilter } = useContext(ExpenseFilterContext);
+    const { categoryList, addCategoryFilter } = useContext(TransactionFilterContext);
     
     return (
         <div className="filter category-filter">
@@ -281,7 +281,7 @@ export const CategoryFilter = () => {
 }
 
 const FilterButtons = () => {
-    const { currentPeriod, periodList, handlePeriodChange, categoryFilterList, deleteCategoryFilter, deleteAllCategoryFilter } = useContext(ExpenseFilterContext);
+    const { currentPeriod, periodList, handlePeriodChange, categoryFilterList, deleteCategoryFilter, deleteAllCategoryFilter } = useContext(TransactionFilterContext);
 
     const handleDeleteAllFilters = () => {
         deleteAllCategoryFilter();

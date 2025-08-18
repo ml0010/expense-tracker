@@ -1,5 +1,5 @@
 import { TransactionForm } from "../components/transaction-form/transaction-form";
-import { ExpenseFilterContextProvider } from "../../contexts/transaction-filter-context";
+import { TransactionFilterContextProvider } from "../../contexts/transaction-filter-context";
 import { TransactionList } from "../components/transaction-list/transaction-list";
 import { IncomeMonthly } from "./components/income-monthly";
 import { IncomeYearly } from "./components/income-yearly";
@@ -21,7 +21,7 @@ export const Income = () => {
         return <LoadingIcon />;
     } else {
         return (
-            <ExpenseFilterContextProvider data="income">
+            <TransactionFilterContextProvider data="income">
                 <div className="summary income">
                     <h1 className="title"><PiggyBankIcon size={50} /> Income Tracker</h1>
                     <TransactionForm />
@@ -54,7 +54,7 @@ export const Income = () => {
                         <TransactionList />
                     </div>
                 </div>
-            </ExpenseFilterContextProvider>
+            </TransactionFilterContextProvider>
         )
     }
 }

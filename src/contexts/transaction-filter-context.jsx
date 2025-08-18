@@ -1,9 +1,9 @@
 import { createContext, useContext, useEffect, useState } from 'react'
 import { TransactionRecordContext } from './transaction-record-context';
 
-export const ExpenseFilterContext = createContext(null);
+export const TransactionFilterContext = createContext(null);
 
-export const ExpenseFilterContextProvider = (props) => {
+export const TransactionFilterContextProvider = (props) => {
 
     const { records, expenseRecords, incomeRecords } = useContext(TransactionRecordContext);
 
@@ -109,6 +109,6 @@ export const ExpenseFilterContextProvider = (props) => {
     const contextValue = { currentPeriod, periodList, recordsFiltered, setRecordsFiltered, handlePeriodChange, categoryList, categoryFilterList, addCategoryFilter, deleteCategoryFilter, deleteAllCategoryFilter, filterPeriod, getCategoryList, getDescriptionList };
 
     return (
-        <ExpenseFilterContext.Provider value={contextValue}>{props.children}</ExpenseFilterContext.Provider>
+        <TransactionFilterContext.Provider value={contextValue}>{props.children}</TransactionFilterContext.Provider>
     )
 }

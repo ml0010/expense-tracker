@@ -22,6 +22,7 @@ export const IncomeYearly = () => {
         <>
         {isRecordLoaded ?
             <div>
+                <h4>Breakdown</h4>
                 <table className="summary-table">
                     <thead>
                         <tr>

@@ -135,7 +135,10 @@ export const PeriodFilter = () => {
 
     const [ openForm, setOpenForm ] = useState(false);
 
+    console.log(currentPeriod);
+
     return (
+        
         <div className="filter period-filter">
             <p>Period</p>
             <div className="date-input">

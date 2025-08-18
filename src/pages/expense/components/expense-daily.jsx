@@ -19,6 +19,7 @@ export const ExpenseDaily = () => {
         <>
         {isRecordLoaded ? 
             <div>
+                <h4>Items</h4>
                 <table className="summary-table">
                     <thead>
                         <tr>

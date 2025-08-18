@@ -58,13 +58,13 @@ export const Dashboard = () => {
                     <div className="box">
                         <h2>Expense</h2>
                         {isRecordLoaded ?
-                        <>
+                        <div className="recent-transaction">
                             <div className="title">
                                 <p className="text">Recent Transactions</p>
                                 <Link className="link" to="../expense">See All</Link>
                             </div>
                             <RecentList records={expenseRecords} /> 
-                        </>
+                        </div>
                             : <LoadingIconSmall />
                         }
                     </div>

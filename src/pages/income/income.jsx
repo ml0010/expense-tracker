@@ -30,7 +30,6 @@ export const Income = () => {
                             <div className="box">
                                 <div className="box-content">
                                     <h3>Monthly Income</h3>
-                                    <h4>Items</h4>
                                     <IncomeMonthly />
                                 </div>
                             </div>
@@ -39,10 +38,7 @@ export const Income = () => {
                             <div className="box">
                                 <div className="box-content">
                                     <h3>Yearly Income</h3>
-                                    <div>
-                                        <h4>Breakdown</h4>
-                                        <IncomeYearly />
-                                    </div>
+                                    <IncomeYearly />
                                 </div>
                             </div>
                             <div className="box">

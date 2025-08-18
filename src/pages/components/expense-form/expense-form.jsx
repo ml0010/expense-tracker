@@ -61,6 +61,7 @@ export const ExpenseForm = () => {
         }
 
         addRecord(newRecord);
+        closeForm();
         resetInputs();
     };
 

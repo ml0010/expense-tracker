@@ -30,14 +30,12 @@ export const Expense = () => {
                             <div className="box">
                                 <div className="box-content">
                                     <h3>Daily Expenses</h3>
-                                    <h4>Items</h4>
                                     <ExpenseDaily />
                                 </div>
                             </div>
                             <div className="box">
                                 <div className="box-content">
                                     <h3>Monthly Expenses</h3>
-                                    <h4>Breakdown</h4>
                                     <ExpenseMonthly />
                                 </div>
                             </div>  
@@ -46,10 +44,7 @@ export const Expense = () => {
                             <div className="box">
                                 <div className="box-content">
                                     <h3>Yearly Expenses</h3>
-                                    <div>
-                                        <h4>Breakdown</h4>
-                                        <ExpenseYearly />
-                                    </div>
+                                    <ExpenseYearly />
                                 </div>
                             </div>
                             <div className="box">

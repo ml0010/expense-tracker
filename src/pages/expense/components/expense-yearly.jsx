@@ -22,6 +22,7 @@ export const ExpenseYearly = () => {
         <>
         {isRecordLoaded > 0 ?
             <div>
+                <h4>Breakdown</h4>
                 <table className="summary-table">
                     <thead>
                         <tr>

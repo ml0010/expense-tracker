@@ -58,7 +58,7 @@ export const TransactionList = () => {
             <div className="table-warpper">
                 <div className="filters">
                     <div className="select-filter" onChange={() => setLoading(true)}>
-                        <PeriodFilter loading={setLoading}/>
+                        <PeriodFilter />
                         <CategoryFilter />
                     </div>
                     <div className={`search-box ${isSearch? "active" : ""}`}>
@@ -248,7 +248,6 @@ export const DateSelector = (props) => {
                     rangeSeparator=" - "
                     isClearable={true}
                 />
-
             </div>
             <div>
                 <button className="button" value={periodSelected} onClick={(e) => {handleSubmit(e.target.value, startDate, endDate)}}>Confirm</button>

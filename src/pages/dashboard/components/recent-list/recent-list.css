@@ -8,8 +8,8 @@
     align-items: center;
     margin: 8px;
     border-radius: 15px;
-    background-color: white;
-    box-shadow: 0px 2px 8px rgba(36, 36, 36, 0.086);
+    background-color: var(--color-box2);
+    box-shadow: 0px 2px 8px var(--color-shadow);
 }
 .recent-list .element .input {
     border: none;

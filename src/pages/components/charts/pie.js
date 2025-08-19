@@ -58,6 +58,7 @@ export const Pie = (props) => {
 
     svg.append("text")
         .attr("id", "total")
+        .attr("fill", "var(--color-font)")
         .attr("text-anchor", "middle")
         .text(`€ ${format(props.total)}`);
 
@@ -78,7 +79,8 @@ export const Pie = (props) => {
         .append("div")
         .attr("class", "tooltip")
         .style("position", "absolute")
-        .style("background", "white")
+        .style("background", "var(--color-background")
+        .style("fill", "var(--color-font)")
         .style("z-index", "100");
         
     arc.append("path")
@@ -121,11 +123,11 @@ export const Pie = (props) => {
         .text((d) => {
             //console.log(d);
             return d.data.data.name})
-        .attr("fill", "black")
+        .attr("fill", "var(--color-font)")
         .attr("font-size", "6px");
 
     arc.append("polyline")
-        .attr("stroke", "black")
+        .attr("stroke", "var(--color-grey)")
         .attr("fill", "none")
         .attr("stroke-width", 0.2)
         .attr("points", (d) => {

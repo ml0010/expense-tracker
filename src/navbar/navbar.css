@@ -83,3 +83,6 @@
 .logout-button {
     padding-top: 20px;
 }
+.cl-userButton-root span{
+    color: var(--color-font);
+}

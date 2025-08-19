@@ -1,12 +1,12 @@
 
-.expense-form {
+.transaction-form {
     width: 100%;
     text-align: center;
 }
-.expense-form .expense-form-wrapper {
+.transaction-form .transaction-form-wrapper {
     width: 100vw;
     height: 100vh;
-    background-color: rgba(255, 255, 255, 0.948);
+    background-color: var(--color-wrapper);
     position: fixed;
     top: 50%;
     left: 50%;
@@ -14,8 +14,8 @@
     z-index: 100;
 
 }
-.expense-form .form {
-    background-color: white;
+.transaction-form .form {
+    background-color: var(--color-background);
     border-radius: 15px;
     padding: 40px;
     position: fixed;
@@ -23,26 +23,27 @@
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.366);
+    box-shadow: 0 4px 8px var(--color-shadow);
 }
-.expense-form .form-title {
+.transaction-form .form-title {
     font-weight: 700;
     font-size: 20px;
 }
-.expense-form .form-field {
+.transaction-form .form-field {
     display: grid;
     grid-template-columns: 1fr 2fr;
     align-items: center;
     padding: 5px;
 }
-.expense-form .form-field label {
+.transaction-form .form-field label {
     font-size: 14px;
     font-weight: 500;
 }
-.expense-form .form-field .input {
+.transaction-form .form-field .input {
     width: 100%;
     padding: 5px;
-    background-color: white;
+    background-color: var(--color-box1);
+    color: var(--color-font);
     border: 1px solid var(--color-grey);
 }
 
@@ -99,7 +100,7 @@
 }
 .floating-buttons .floating-button svg {
     border-radius: 50%;
-    background-color: white;
+    background-color: var(--color-background);
 }
 
 @media only screen and (max-width: 1300px) {

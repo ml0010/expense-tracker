@@ -1,17 +1,21 @@
 import { SignedIn, UserButton, useUser } from '@clerk/clerk-react'
 import './navbar.css'
 import { Menu } from './components/menu';
+import ToggleSwitch from '../toggle-switch/toggle-switch';
 
 export const Navbar = () => {
 
     const isSignedIn = useUser().isSignedIn;
 
     return (
-        <div className={`navbar ${isSignedIn? "" : "hidden"}`}>
-            <SignedIn>
-                <Menu />
-                <UserButton showName />
-            </SignedIn>
-        </div>
+        <>
+            <div className={`navbar ${isSignedIn? "" : "hidden"}`}>
+                <SignedIn>
+                    <Menu />
+                    <UserButton showName />
+                </SignedIn>
+            </div>
+            <ToggleSwitch />
+        </>
     )
 }

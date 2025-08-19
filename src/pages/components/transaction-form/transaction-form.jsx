@@ -95,7 +95,7 @@ export const TransactionForm = () => {
     };
 
     return (
-        <div className="expense-form">
+        <div className="transaction-form">
             <div className="standard-buttons">
                 <button className="standard-button" onClick={openIncomeForm}>
                     <p>Add Income</p>
@@ -119,7 +119,7 @@ export const TransactionForm = () => {
             </div>
             : <></> }
             {isFormOpen? 
-            <div className="expense-form-wrapper">
+            <div className="transaction-form-wrapper">
                 <form onSubmit={handleSubmit} className="form" ref={formRef}>
                     <p className="form-title">{isExpense? 'Add Your Expense' : 'Add Your Income'}</p>
                     <div className="form-field">

@@ -1,5 +1,5 @@
 import { useClerk, useUser } from '@clerk/clerk-react';
-import { ChartDonutIcon, ClipboardTextIcon, DotsThreeIcon, DotsThreeOutlineIcon, MoneyIcon, PiggyBankIcon, SignOutIcon, XIcon } from '@phosphor-icons/react'
+import { ChartDonutIcon, ClipboardTextIcon, ListIcon, MoneyIcon, PiggyBankIcon, SignOutIcon, XIcon } from '@phosphor-icons/react'
 import { useEffect, useRef, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom';
 
@@ -28,7 +28,7 @@ export const Menu = () => {
 
     return (
         <div className="menu">
-            <DotsThreeIcon size={30} onClick={() => setMenuOpen(!menuOpen)}/>
+            <ListIcon size={30} onClick={() => setMenuOpen(!menuOpen)}/>
             <div className={`menu-bar ${menuOpen ? "open" : ""}`} ref={menuRef}>
                 <div className="close-button">
                     <XIcon size={30} onClick={() => setMenuOpen(false)}/>

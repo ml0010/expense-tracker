@@ -151,7 +151,7 @@ export const TransactionListElement = ({record, index}) => {
                 </div>
             </td>
             <td>
-                <button className="delete-button" id={id} ><XIcon size={20} onClick={(e) => handleDelete(e.target.parentElement.id)} /></button>
+                <button className="delete-button" id={id} ><XIcon size={16} onClick={(e) => handleDelete(e.target.parentElement.id)} /></button>
             </td>
         </tr>
         </>

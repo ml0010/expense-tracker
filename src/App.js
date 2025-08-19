@@ -10,14 +10,15 @@ import { Income } from './pages/income/income';
 import { Expense } from './pages/expense/expense';
 import { AllRecords}  from './pages/all-records/all-records';
 import { BackButton } from './back-button/back-button';
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import { TransactionFilterContextProvider } from './contexts/transaction-filter-context';
-
-
+import { DarkModeContext, DarkModeContextProvider } from './contexts/dark-mode-context';
 
 const CLERK_PUBLISHABLE_KEY = 'pk_test_d29ydGh5LXR1bmEtMTYuY2xlcmsuYWNjb3VudHMuZGV2JA';
 
 function App() {
+
+    const { darkMode } = useContext(DarkModeContext);
 
     useEffect(() => {
         console.log(window.location.pathname);
@@ -27,7 +28,7 @@ function App() {
     });
 
     return (
-        <div className="App">
+        <div className={`App ${darkMode && 'dark-mode'}`}>
             <ClerkProvider 
                 publishableKey={CLERK_PUBLISHABLE_KEY}
                 afterSignOutUrl="/expense-tracker"

@@ -1,0 +1,60 @@
+.toggle-switch {
+    position: fixed;
+    top: 25px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.toggle {
+    height: 29px;
+    width: 68px;
+    background: var(--color-font);
+    border-radius: 40px;
+    padding: 2.5px;
+    margin: auto;
+    cursor: pointer;
+    border: 1px solid var(--color-font);
+}
+
+.toggle::before {
+    content: "";
+    display: block;
+    height: 29px;
+    width: 29px;
+    border-radius: 40px;
+    background: var(--color-background);
+    position: absolute;
+    z-index: 2;
+    transform: translate(0);
+    transition: transform 0.5s ease;;
+}
+
+.toggle.dark-mode::before {
+    transform: translateX(39.5px);
+}
+
+.toggle input {
+    display: none;
+}
+
+.toggle .icons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    margin: 0 5px;
+}
+
+.toggle .icons svg {
+    color: var(--color-background);
+    z-index: 0;
+}
+@media only screen and (max-width: 900px) {
+}
+@media only screen and (max-width: 600px) {
+    .toggle-switch {
+    }
+}
+@media only screen and (min-width: 600px) {
+}
+@media only screen and (min-width: 400px) {
+}

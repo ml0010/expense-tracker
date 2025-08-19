@@ -87,7 +87,8 @@ export const LineChart = () => {
                         .append("div")
                         .attr("class", "tooltip")
                         .style("position", "absolute")
-                        .style("background", "white")
+                        .style("background", "var(--color-background")
+                        .style("fill", "var(--color-font)")
                         .style("z-index", "100");
 
         svg.selectAll(".bar")

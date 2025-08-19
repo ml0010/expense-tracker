@@ -32,11 +32,11 @@ html, body {
     transition: 0.5s;
 }
 .App.dark-mode {
-    --color-background: #232323;
-    --color-font: #ffffff;
-    --color-box1: #313131;
-    --color-box2: #2d2d2d;
-    --color-shadow: rgba(110, 110, 110, 0.134);
+    --color-background: #242424;
+    --color-font: #f9f9f9;
+    --color-box1: rgb(45, 45, 45);
+    --color-box2: #222222;
+    --color-shadow: rgba(0, 0, 0, 0.287);
     --color-wrapper: rgba(48, 48, 48, 0.948);
 }
 .button {

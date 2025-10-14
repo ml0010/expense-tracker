@@ -19,8 +19,9 @@ export const ScrollToTop = () => {
     });
 
     return (
-        <div className='scrollToTop'>
-            <button className={`scrollBttn ${showScrollBttn ? 'active' : 'inactive'}`} onClick={handleScrollToTop}><CaretCircleUpIcon size={50} weight="fill" /></button>
+        <div className={`scroll-to-top ${showScrollBttn ? 'active' : 'inactive'}`}>
+            <p className="text">Scroll To Top</p>
+            <button className={`scroll-button ${showScrollBttn ? 'active' : 'inactive'}`} onClick={handleScrollToTop}><CaretCircleUpIcon size={50} weight="fill" /></button>
         </div>
     )
 }

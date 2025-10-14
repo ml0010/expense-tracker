@@ -65,11 +65,12 @@
     border-radius: 50px;
     background-color: transparent;
     width: 100%;
+    color: #313131;
 }
 .summary-month .bar-container .expense-bar {
     border-radius: 50px;
     background-color: var(--color-1);
-    color: white;
+    color: #313131;
 }
 .summary-month .bar-container .percent {
     font-size: 14px;
@@ -77,5 +78,4 @@
 }
 .summary-month .bar-container .percent.income-percent {
     text-align: right;
-
 }

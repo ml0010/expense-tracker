@@ -5,14 +5,12 @@ import Authentication from './pages/authentication/auth';
 import Dashboard from './pages/dashboard/dashboard';
 import { TransactionRecordContextProvider } from './contexts/transaction-record-context';
 import { Navbar } from './navbar/navbar';
-import { ScrollToTop } from './scroll/scroll-to-top';
 import { Income } from './pages/income/income';
 import { Expense } from './pages/expense/expense';
 import { AllRecords}  from './pages/all-records/all-records';
-import { BackButton } from './back-button/back-button';
 import { useContext, useEffect } from 'react';
 import { TransactionFilterContextProvider } from './contexts/transaction-filter-context';
-import { DarkModeContext, DarkModeContextProvider } from './contexts/dark-mode-context';
+import { DarkModeContext } from './contexts/dark-mode-context';
 
 const CLERK_PUBLISHABLE_KEY = 'pk_test_d29ydGh5LXR1bmEtMTYuY2xlcmsuYWNjb3VudHMuZGV2JA';
 
@@ -48,8 +46,6 @@ function App() {
                             <Route path="/monthly" element={<AllRecords />} />
                             <Route path="/*" element={<Authentication />} />
                         </Routes>
-                        <BackButton />
-                        <ScrollToTop />
                         <Navbar />
                     </Router>
                 </TransactionRecordContextProvider>

@@ -8,13 +8,13 @@
     --color-grey-border: rgba(175, 175, 175, 0.481);
     --color-grey-light: #f3f3f3;
     --color-background: #f9f9f9;
-    --color-button-hover: rgb(29, 159, 179);
-    --color-shadow: rgba(36, 36, 36, 0.086);
-    --color-wrapper: rgba(255, 255, 255, 0.948);
+    --color-button-hover: rgb(166, 231, 245);
+    --color-shadow: rgba(36, 36, 36, 0.261);
+    --color-wrapper: rgba(255, 255, 255, 0.311);
     --color-box1: rgb(255, 255, 255);
     --color-box2: rgba(255, 255, 255, 0.936);
-    --color-1: rgb(147, 197, 203);
-    --color-2: rgb(20, 160, 182);
+    --color-1: rgb(120, 195, 202);
+    --color-2: rgb(4, 141, 163);
     --color-3: rgb(226, 236, 238);
     
 }
@@ -22,14 +22,20 @@ html, body {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
+    scroll-behavior: smooth;
 }
 
 .App {
     color: var(--color-font);
-    width: 100vw;
+    width: 100%;
     min-height: 100vh;
-    background-color: var(--color-background);
-    transition: 0.5s;
+    transition: 0.2s;
+    background:
+        linear-gradient(var(--color-background), transparent),
+        linear-gradient(to top left, var(--color-1), transparent),
+        linear-gradient(to top right, var(--color-background), transparent);
+    background-blend-mode: screen;
+    background-attachment: fixed;
 }
 .App.dark-mode {
     --color-background: #242424;
@@ -37,8 +43,9 @@ html, body {
     --color-box1: rgb(45, 45, 45);
     --color-box2: #222222;
     --color-shadow: rgba(0, 0, 0, 0.287);
-    --color-wrapper: rgba(48, 48, 48, 0.948);
+    --color-wrapper: rgba(48, 48, 48, 0.316);
 }
+/*
 .button {
     border-radius: 10px;
     border: 1px solid var(--color-grey);
@@ -51,11 +58,49 @@ html, body {
     color: var(--color-font);
     cursor: pointer;
     transition: 0.25s ease-in-out;
+
+    display: inline-block;
+    position:relative;
+    overflow:hidden;
+
+}*/
+
+.button {
+    text-align: center;
+    display: inline-block;
+    padding: 13px 35px;
+    border: 1px solid var(--color-font);
+    border-radius: 10px;
+    cursor: pointer;
+    letter-spacing: 2px;
+    position:relative;
+    overflow:hidden;
+    margin: 10px 20px;
+    font-size: 0.9em;
+    font-weight: 500;
+    box-shadow: 0 7px 0px var(--color-2);
+    background-color: white;
 }
 
-.button:hover {
-    background-color: var(--color-button-hover);
-    color: var(--color-background);
+.button:before {
+    content: "";
+    position: absolute;
+    height: 0;
+    width: 100%;
+    background-color : var(--color-button-hover);
+    left: 0;
+    bottom: 0;
+    transition: all .3s;
+    opacity: 0.3;
+}
+
+.button:hover:before {
+    height: 100%;
+}
+.button:active {
+    top: 3px;
+    box-shadow: 0 2px 0px var(--color-2);
+    transition: all .2s;
 }
 
 

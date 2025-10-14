@@ -97,25 +97,21 @@ export const TransactionForm = () => {
     return (
         <div className="transaction-form">
             <div className="standard-buttons">
-                <button className="standard-button" onClick={openIncomeForm}>
-                    <p>Add Income</p>
-                    <PlusCircleIcon size={80} weight="fill" />
-                </button>
-                <button className="standard-button" onClick={openExpenseForm}>
-                    <p>Add Expense</p>
-                    <MinusCircleIcon size={80} weight="fill" />
-                </button>
+                <span className="add-button income" onClick={openIncomeForm}>
+                    <p>+</p>
+                </span>
+                <span className="add-button expense" onClick={openExpenseForm}>
+                    <p>-</p>
+                </span>
             </div>
             {showFloatingButton? 
             <div className="floating-buttons">
-                <div className={`floating-button income`} onClick={openIncomeForm}>
-                    <PlusCircleIcon size={80} weight="fill" />
-                    <p>Add Income</p>
-                </div>
-                <div className={`floating-button expense`} onClick={openExpenseForm}>
-                    <MinusCircleIcon size={80} weight="fill" />
-                    <p>Add Expense</p>
-            </div>
+                <span className="add-button income" onClick={openIncomeForm}>
+                    <p>+</p>
+                </span>
+                <span className="add-button expense" onClick={openExpenseForm}>
+                    <p>-</p>
+                </span>
             </div>
             : <></> }
             {isFormOpen? 
@@ -153,3 +149,15 @@ export const TransactionForm = () => {
         </div>
     )
 }
+
+
+/*
+<div className={`floating-button income`} onClick={openIncomeForm}>
+                    <PlusCircleIcon size={80} weight="fill" />
+                    <p>Add Income</p>
+                </div>
+                <div className={`floating-button expense`} onClick={openExpenseForm}>
+                    <MinusCircleIcon size={80} weight="fill" />
+                    <p>Add Expense</p>
+                </div>
+*/

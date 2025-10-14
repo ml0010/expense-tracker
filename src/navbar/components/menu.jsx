@@ -1,7 +1,8 @@
-import { useClerk, useUser } from '@clerk/clerk-react';
+import { useClerk, UserButton, useUser } from '@clerk/clerk-react';
 import { ChartDonutIcon, ClipboardTextIcon, ListIcon, MoneyIcon, PiggyBankIcon, SignOutIcon, XIcon } from '@phosphor-icons/react'
 import { useEffect, useRef, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom';
+import ToggleSwitch from './toggle-switch/toggle-switch'
 
 export const Menu = () => {
 
@@ -31,15 +32,27 @@ export const Menu = () => {
             <ListIcon size={30} onClick={() => setMenuOpen(!menuOpen)}/>
             <div className={`menu-bar ${menuOpen ? "open" : ""}`} ref={menuRef}>
                 <div className="close-button">
-                    <XIcon size={30} onClick={() => setMenuOpen(false)}/>
+                    <XIcon size={25} onClick={() => setMenuOpen(false)}/>
                 </div>
-                <p className="username">{user.fullName}</p>
+                <ToggleSwitch />
+                <h2>Menu</h2>
+                <hr className="line" />
                 <div className="links">
                     <Link className={`link ${currentPage === "dashboard" ? "active" : ""}`} to="/dashboard" onClick={() => setMenuOpen(false)}><ChartDonutIcon size={28} /> Dashboard</Link>
                     <Link className={`link ${currentPage === "income" ? "active" : ""}`} to="/income" onClick={() => setMenuOpen(false)}><PiggyBankIcon size={28} />Income</Link>
                     <Link className={`link ${currentPage === "expense" ? "active" : ""}`} to="/expense" onClick={() => setMenuOpen(false)}><MoneyIcon size={28} /> Expense</Link>
                     <Link className={`link ${currentPage === "all" ? "active" : ""}`} to="/all" state={{ period: "all" }} onClick={() => setMenuOpen(false)}><ClipboardTextIcon size={28} /> All Records</Link>
-                    <Link className={`link logout-button`} onClick={() => signOut({ redirectUrl: "/expense-tracker" })}><SignOutIcon size={28} />Sign Out</Link>
+                </div>
+                <hr className="line" />
+                <div className="user">
+                    <div className="user-info">
+                        <UserButton />
+                        <div className="user-detail">
+                            <p><b>{user.fullName}</b></p>
+                            <p>{user.primaryEmailAddress.emailAddress}</p>
+                        </div>
+                    </div>
+                    <Link className="logout-button" onClick={() => signOut({ redirectUrl: "/expense-tracker" })}><SignOutIcon size={20} /></Link>
                 </div>
             </div>
         </div>

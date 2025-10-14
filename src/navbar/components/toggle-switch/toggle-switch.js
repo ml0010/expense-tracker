@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { DarkModeContext } from '../contexts/dark-mode-context';
+import { DarkModeContext } from '../../../contexts/dark-mode-context';
 import { MoonIcon, SunIcon } from '@phosphor-icons/react';
 import './toggle-switch.css';
 

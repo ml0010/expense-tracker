@@ -12,7 +12,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 100;
-
+    backdrop-filter: blur(10px);
 }
 .transaction-form .form {
     background-color: var(--color-background);
@@ -47,6 +47,73 @@
     border: 1px solid var(--color-grey);
 }
 
+.add-button {
+    display: block;
+    width: 50px;
+    height: 50px;
+    line-height: 70px;
+    border-radius: 50%;
+    border: 3px solid var(--color-background);
+    background-color: var(--color-1);
+    box-shadow: 0 0 0 5px var(--color-1);
+    margin: 20px 3vw;
+    cursor: pointer;
+    position:relative;
+    overflow:hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.add-button p {
+    font-size: 30px;
+    color: var(--color-background);
+    font-weight: 600;
+}
+.add-button:before {
+    position: absolute;
+    height: 0;
+    width: 100%;
+    background-color : var(--color-1);
+    left: 0;
+    bottom: 0;
+    transition: all .2s ease-in-out;
+    font-size: 10px;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+}
+.add-button.income:before {
+    content: "Income";
+}
+.add-button.expense:before {
+    content: "Expense";
+}
+.add-button:hover:before {
+    height: 100%;
+    opacity: 1;
+}
+.add-button:active {
+    top: 2px;
+    transition: all .2s;
+}
+
+.standard-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.floating-buttons {
+    position: fixed;
+    top: 92%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    z-index: 100;
+}
+
+/*
 .standard-buttons {
     padding: 20px;
 }
@@ -78,14 +145,7 @@
     margin: 5px;
     font-weight: 600;
 }
-.floating-buttons {
-    position: fixed;
-    top: 92%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: flex;
-    z-index: 100;
-}
+
 .floating-buttons .floating-button {
     margin-right: 30px;
     margin-left: 30px;
@@ -102,7 +162,7 @@
     border-radius: 50%;
     background-color: var(--color-background);
 }
-
+*/
 @media only screen and (max-width: 1300px) {
 }
 @media only screen and (max-width: 900px) {

@@ -40,31 +40,37 @@ export const Dashboard = () => {
                 <div className="boxes three">
                     <div className="box">
                         <h2>Monthly Chart</h2>
-                        <LineChart />
+                        {isRecordLoaded ?
+                            <div>
+                                <Link className="link" to="/all" state={{ period: "month" }}>See More</Link>
+                                <LineChart />
+                            </div>
+                            : <LoadingIconSmall />
+                        }
                     </div>
                     <div className="box">
                         <h2>Income</h2>
                         {isRecordLoaded ?
-                        <>
-                            <div className="title">
-                                <p className="text">Recent Transactions</p>
+                            <div className="recent-transaction">
                                 <Link className="link" to="../income">See All</Link>
+                                <div className="title">
+                                    <p className="text">Recent Transactions</p>
+                                </div>
+                                <RecentList records={incomeRecords} /> 
                             </div>
-                            <RecentList records={incomeRecords} /> 
-                        </>
                             : <LoadingIconSmall />
                         }
                     </div>
                     <div className="box">
                         <h2>Expense</h2>
                         {isRecordLoaded ?
-                        <div className="recent-transaction">
-                            <div className="title">
-                                <p className="text">Recent Transactions</p>
+                            <div className="recent-transaction">
                                 <Link className="link" to="../expense">See All</Link>
+                                <div className="title">
+                                    <p className="text">Recent Transactions</p>
+                                </div>
+                                <RecentList records={expenseRecords} /> 
                             </div>
-                            <RecentList records={expenseRecords} /> 
-                        </div>
                             : <LoadingIconSmall />
                         }
                     </div>

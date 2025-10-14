@@ -85,7 +85,7 @@ export const TransactionFilterContextProvider = (props) => {
     const handlePeriodChange = (period, start, end) => {
         setCategoryList([]);
         setCategoryFilterList([]);
-        console.log(start, end);
+        //console.log(start, end);
         if (start && end) {
             setCustomStartDate(new Date(start));
             setCustomEndDate(new Date(end));

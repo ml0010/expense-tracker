@@ -17,10 +17,13 @@ export const BackButton = () => {
     const navigate = useNavigate();
     
     return (
-        <>
-        {isPreviousPage && 
-            <button className="back-button" onClick={() => navigate(-1)}><CaretCircleDoubleLeftIcon size={50} weight="fill" /></button>
-        }
-        </>
+        <div className='go-back'>
+            {isPreviousPage && 
+                <>
+                    <p className="text">Go Back</p>
+                    <button className="back-button" onClick={() => navigate(-1)}><CaretCircleDoubleLeftIcon size={50} weight="fill" /></button>
+                </>
+            }
+        </div>
     )
 }

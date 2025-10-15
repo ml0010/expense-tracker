@@ -59,23 +59,24 @@
     align-items: center;
     margin-bottom: 20px;
     background-color: var(--color-grey-light);
-    border-radius: 50px;
+    border-radius: 5px;
+    color: #313131;
+    overflow: hidden;
+}
+.summary-month .bar-container .bar {
+    text-align: center;
 }
 .summary-month .bar-container .income-bar {
-    border-radius: 50px;
     background-color: transparent;
-    width: 100%;
-    color: #313131;
 }
 .summary-month .bar-container .expense-bar {
-    border-radius: 50px;
     background-color: var(--color-1);
-    color: #313131;
 }
 .summary-month .bar-container .percent {
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 600;
+    margin: auto;
 }
-.summary-month .bar-container .percent.income-percent {
-    text-align: right;
+.summary-month .bar-container .expense-amount {
+    font-size: 10px;
 }

@@ -49,6 +49,7 @@ export const TransactionRecordContextProvider = (props) => {
             setIncomeRecords(incomeRecords);
             setExpenseRecords(expenseRecords);
             setMonthlyRecords(MonthlyRecords);
+            setIsRecordLoaded(true);
         }
     }, [records]);
 
@@ -80,6 +81,7 @@ export const TransactionRecordContextProvider = (props) => {
             if (response.ok) {
                 const newRecord = await response.json();
                 setRecords((prev) => [newRecord, ...prev]);
+                setIsRecordLoaded(false);
             }
         } catch (err) {
             console.log(err);
@@ -106,6 +108,7 @@ export const TransactionRecordContextProvider = (props) => {
                         }
                     })
                 );
+                setIsRecordLoaded(false);
             }
         } catch (err) {
             console.log(err);
@@ -120,6 +123,7 @@ export const TransactionRecordContextProvider = (props) => {
             if (response.ok) {
                 const deletedRecord = await response.json();
                 setRecords((prev) => prev.filter((record) => record._id !== deletedRecord._id));
+                setIsRecordLoaded(false);
             }
         } catch (err) {
             console.log(err);

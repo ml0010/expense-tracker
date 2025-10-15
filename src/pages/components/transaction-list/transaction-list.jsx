@@ -17,6 +17,7 @@ export const TransactionList = () => {
     const [ searchInput, setSearchInput ] = useState("");
     const [ searchResult, setSearchResult ] = useState([]);
     const [ loading, setLoading ] = useState(true);
+    const [ listLength, setListLength ] = useState(10);
 
     setTimeout(() => {
         setLoading(false);
@@ -92,7 +93,7 @@ export const TransactionList = () => {
                             <>
                             {searchResult.length > 0 ? 
                                 <>
-                                {searchResult.map((record ,index) => (
+                                {searchResult.slice(0, listLength).map((record ,index) => (
                                     <TransactionListElement record={record} key={index}/>
                                 ))}
                                 </> : 
@@ -106,7 +107,7 @@ export const TransactionList = () => {
                             <>
                             {recordsFiltered.length > 0 ? 
                                 <>
-                                {recordsFiltered.map((record ,index) => (
+                                {recordsFiltered.slice(0, listLength).map((record ,index) => (
                                     <TransactionListElement record={record} key={index}/>
                                 ))}
                                 </> : 
@@ -118,6 +119,7 @@ export const TransactionList = () => {
                             }
                             </>
                         }
+                        <button onClick={() => setListLength(listLength + 5)}>MORE</button>
                         </>
                         }
                     </tbody>

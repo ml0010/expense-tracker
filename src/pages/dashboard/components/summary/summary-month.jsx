@@ -63,7 +63,7 @@ export const MonthlySummary = () => {
                 <p className="days">{getDaysToGo()} days left</p>
                 <div className="bar-container">
                     {expenseTotal < 0 &&
-                        <div className="bar expense-bar " style={{width: `${expensePercentage}%`}}>
+                        <div className="bar expense-bar " style={{width: `${expensePercentage}%`, minWidth: '35px'}}>
                             {expensePercentage > 0 && 
                             <>
                                 <p className="percent expense-percent">{expensePercentage}%</p>

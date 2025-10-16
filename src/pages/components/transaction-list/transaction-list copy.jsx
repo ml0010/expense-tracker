@@ -11,10 +11,11 @@ import DatePicker from 'react-datepicker';
 export const TransactionList = () => {
 
     const { isRecordLoaded } = useContext(TransactionRecordContext);
-    const { recordsFiltered, setSearchText } = useContext(TransactionFilterContext);
+    const { recordsFiltered } = useContext(TransactionFilterContext);
     
     const [ isSearch, setIsSearch ] = useState(false);
     const [ searchInput, setSearchInput ] = useState("");
+    const [ searchResult, setSearchResult ] = useState([]);
     const [ loading, setLoading ] = useState(true);
     const [ listLength, setListLength ] = useState(10);
 
@@ -22,19 +23,20 @@ export const TransactionList = () => {
         setLoading(false);
     }, 1500);
 
-    /*
+    const startSearch = () => {
+        setIsSearch(true);
+        setSearchResult([...recordsFiltered]);
+    };
+    const finishSearch = () => {
+        setIsSearch(false);
+        setSearchInput("");
+        setSearchResult([]);
+    };
     const search = (input) => {
         setLoading(true);
         setSearchInput(input);
         const searchResults = recordsFiltered.filter((record) => (record.description.toLowerCase().includes(input.toLocaleLowerCase()) || record.category.toLowerCase().includes(input.toLocaleLowerCase())));
         setSearchResult([...searchResults]);
-    };
-    */
-
-    const handleTextSearch = () => {
-        console.log("searching: ", searchInput);
-        setSearchText(searchInput);
-        setSearchInput("");
     };
 
     let searchRef = useRef(null);
@@ -42,7 +44,7 @@ export const TransactionList = () => {
     useEffect(() => {
         let handler = (e)=>{
             if(searchRef.current && !searchRef.current.contains(e.target)){
-                setSearchInput("");
+                finishSearch();
             }
         };
         document.addEventListener("mousedown", handler);
@@ -62,16 +64,8 @@ export const TransactionList = () => {
                     </div>
                     <div className={`search-box ${isSearch? "active" : ""}`}>
                         <MagnifyingGlassIcon size={18} />
-                        <input className="search-input" 
-                                value={searchInput} 
-                                placeholder="Search" 
-                                onChange={(e)=>setSearchInput(e.target.value)} 
-                                onKeyDown={(e) => {e.key === 'Enter' && handleTextSearch()}} 
-                        />
-                        <XIcon className={`close-button ${searchInput.length > 0 ? "active" : ""}`} 
-                                onClick={() => setSearchInput("")} 
-                                size={13} 
-                        />
+                        <input className="search-input" value={searchInput} placeholder="Search" onChange={(e)=>search(e.target.value)} onClick={()=>startSearch()}></input>
+                        <XIcon className={`close-button ${isSearch? "active" : ""}`} onClick={() => finishSearch()} size={13} />
                     </div>
                 </div>
                 <div className="filter-lists">
@@ -95,6 +89,27 @@ export const TransactionList = () => {
                             </td>
                         </tr> : 
                         <>
+                        {isSearch ? 
+                            <>
+                            {searchResult.length > 0 ? 
+                                <>
+                                {searchResult.map((record ,index) => (
+                                    <TransactionListElement record={record} key={index}/>
+                                ))}
+                                {listLength < recordsFiltered.length &&
+                                    <tr>
+                                        <td className="see-more-button" colSpan="5" onClick={() => setListLength(listLength + 5)}>SEE MORE ({recordsFiltered.length - listLength} more)</td>
+                                    </tr>
+                                }
+                                </> : 
+                                <tr>
+                                    <td colSpan="5">
+                                    <EmptyList />
+                                    </td>
+                                </tr>
+                            }
+                            </> : 
+                            <>
                             {recordsFiltered.length > 0 ? 
                                 <>
                                 {recordsFiltered.slice(0, listLength).map((record ,index) => (
@@ -112,6 +127,8 @@ export const TransactionList = () => {
                                     </td>
                                 </tr>
                             }
+                            </>
+                        }
                         </>
                         }
                     </tbody>
@@ -132,7 +149,7 @@ const dateFormat = (date) => {
     return string;
 };
 
-const PeriodFilter = () => {
+export const PeriodFilter = () => {
 
     const { currentPeriod, periodList, handlePeriodChange} = useContext(TransactionFilterContext);
 
@@ -164,7 +181,7 @@ const PeriodFilter = () => {
                 <option value="custom" onClick={() => setIsCustom(true)}>Custom</option>
             </select>
 */
-const DateSelector = (props) => {
+export const DateSelector = (props) => {
 
     const { periodList, handlePeriodChange } = useContext(TransactionFilterContext);
 
@@ -175,7 +192,7 @@ const DateSelector = (props) => {
     const [endDate, setEndDate] = useState(null);
 
     const onChange = (dates) => {
-        //console.log(dates);
+        console.log(dates);
         const [start, end] = dates;
         setPeriodSelected("custom");
         setStartDate(setMinHour(start));
@@ -252,7 +269,7 @@ const DateSelector = (props) => {
     )
 }
 
-const CategoryFilter = () => {
+export const CategoryFilter = () => {
 
     const { categoryList, addCategoryFilter } = useContext(TransactionFilterContext);
     
@@ -274,15 +291,12 @@ const CategoryFilter = () => {
     )
 }
 
-const TextFilter = () => {};
-
 const FilterButtons = () => {
-    const { currentPeriod, periodList, handlePeriodChange, categoryFilterList, deleteCategoryFilter, deleteAllCategoryFilter, searchText, setSearchText } = useContext(TransactionFilterContext);
+    const { currentPeriod, periodList, handlePeriodChange, categoryFilterList, deleteCategoryFilter, deleteAllCategoryFilter } = useContext(TransactionFilterContext);
 
     const handleDeleteAllFilters = () => {
         deleteAllCategoryFilter();
         handlePeriodChange("all");
-        setSearchText(null);
     };
 
     const start = new Date(new Date(periodList[currentPeriod].start).setDate(new Date(periodList[currentPeriod].start).getDate() + 1));
@@ -308,23 +322,11 @@ const FilterButtons = () => {
         {categoryFilterList.length > 0 &&
             <div className="category-buttons">
                 {categoryFilterList.map((category, index) => 
-                    <button className="category-button" 
-                            key={index} 
-                            id={category} 
-                            onClick={(e) => deleteCategoryFilter(e.target.id)}
-                    >
-                        Category: {category} <XIcon size={13} />
-                    </button>
+                    <button className="category-button" key={index} id={category} onClick={(e) => deleteCategoryFilter(e.target.id)}>Category: {category} <XIcon size={13} /></button>
                 )}
+                <button className="delete-all-button" onClick={handleDeleteAllFilters}>Delete All</button>
             </div>
         }
-        {searchText &&
-            <div className="category-buttons">
-                <button className="category-button" onClick={() => setSearchText(null)}>Search: {searchText} <XIcon size={13} /></button>
-            </div>
-        }
-        <button className="delete-all-button" onClick={handleDeleteAllFilters}>Delete All</button>
-
         </>
     )
 };

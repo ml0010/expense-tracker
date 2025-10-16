@@ -14,6 +14,7 @@ export const TransactionFilterContextProvider = (props) => {
     const [ recordsFiltered, setRecordsFiltered ] = useState([]);
     const [ categoryList, setCategoryList ] = useState([]);
     const [ categoryFilterList, setCategoryFilterList ] = useState([]);
+    const [ searchText, setSearchText ] = useState(null);
 
     const [ month, setMonth ] = useState(new Date().getMonth());
     const [ year, setYear ] = useState(new Date().getFullYear());
@@ -45,28 +46,30 @@ export const TransactionFilterContextProvider = (props) => {
         const data = (dataSelection === "income" ? [...incomeRecords] : dataSelection === "expense" ? [...expenseRecords] : [...records]);
 
         if (data.length > 0 && currentPeriod) {
-            //console.log("getting record list");
             console.log("Period Selected: ", currentPeriod);
             //console.log(periodList[currentPeriod]);
-            const newRecords = filterPeriod(data, currentPeriod);
+            var newRecords = filterPeriod(data, currentPeriod);
 
             if (categoryFilterList.length > 0) {
-                const categoryFiltered = filterCategory(newRecords);
-                setRecordsFiltered([...categoryFiltered]);
-                return;
+                newRecords = filterCategory(newRecords);
             }
+            if (searchText) {
+                newRecords = filterText(newRecords);
+            } 
             setRecordsFiltered([...newRecords]);
         } 
-    }, [records, incomeRecords, expenseRecords, currentPeriod, categoryFilterList]);
+    }, [records, incomeRecords, expenseRecords, currentPeriod, categoryFilterList, searchText]);
 
     const filterPeriod = (records, period) => {
         return records.filter((record) => 
             new Date(record.date) >= periodList[period].start && 
             new Date(record.date) <= periodList[period].end);
     };
-
     const filterCategory = (records) => {
         return records.filter((record) => categoryFilterList.includes(record.category));
+    };
+    const filterText = (records) => {
+        return records.filter((record) => (record.description.toLowerCase().includes(searchText.toLocaleLowerCase())));
     };
 
     const getCategoryList = (records) => {
@@ -85,6 +88,7 @@ export const TransactionFilterContextProvider = (props) => {
     const handlePeriodChange = (period, start, end) => {
         setCategoryList([]);
         setCategoryFilterList([]);
+        setSearchText(null);
         //console.log(start, end);
         if (start && end) {
             setCustomStartDate(new Date(start));
@@ -106,7 +110,7 @@ export const TransactionFilterContextProvider = (props) => {
         setCategoryFilterList((prev) => prev.filter(item => item !== category));
     };
 
-    const contextValue = { currentPeriod, periodList, recordsFiltered, setRecordsFiltered, handlePeriodChange, categoryList, categoryFilterList, addCategoryFilter, deleteCategoryFilter, deleteAllCategoryFilter, filterPeriod, getCategoryList, getDescriptionList };
+    const contextValue = { currentPeriod, periodList, recordsFiltered, setRecordsFiltered, handlePeriodChange, categoryList, categoryFilterList, addCategoryFilter, deleteCategoryFilter, deleteAllCategoryFilter, filterPeriod, getCategoryList, getDescriptionList, searchText, setSearchText };
 
     return (
         <TransactionFilterContext.Provider value={contextValue}>{props.children}</TransactionFilterContext.Provider>

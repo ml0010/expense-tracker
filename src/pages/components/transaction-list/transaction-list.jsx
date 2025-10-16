@@ -93,9 +93,14 @@ export const TransactionList = () => {
                             <>
                             {searchResult.length > 0 ? 
                                 <>
-                                {searchResult.slice(0, listLength).map((record ,index) => (
+                                {searchResult.map((record ,index) => (
                                     <TransactionListElement record={record} key={index}/>
                                 ))}
+                                {listLength < recordsFiltered.length &&
+                                    <tr>
+                                        <td className="see-more-button" colSpan="5" onClick={() => setListLength(listLength + 5)}>SEE MORE ({recordsFiltered.length - listLength} more)</td>
+                                    </tr>
+                                }
                                 </> : 
                                 <tr>
                                     <td colSpan="5">
@@ -110,6 +115,11 @@ export const TransactionList = () => {
                                 {recordsFiltered.slice(0, listLength).map((record ,index) => (
                                     <TransactionListElement record={record} key={index}/>
                                 ))}
+                                {listLength < recordsFiltered.length &&
+                                    <tr>
+                                        <td className="see-more-button" colSpan="5" onClick={() => setListLength(listLength + 5)}>SEE MORE ({recordsFiltered.length - listLength} more)</td>
+                                    </tr>
+                                }
                                 </> : 
                                 <tr>
                                     <td colSpan="5">
@@ -119,11 +129,11 @@ export const TransactionList = () => {
                             }
                             </>
                         }
-                        <button onClick={() => setListLength(listLength + 5)}>MORE</button>
                         </>
                         }
                     </tbody>
                 </table>
+
             </div>
             : <LoadingIconSmall />
         }

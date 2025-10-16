@@ -222,6 +222,9 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 
 }
+.table .see-more-button {
+    cursor: pointer;
+}
 .element-wrapper {
     width: 100vw;
     height: 100vh;

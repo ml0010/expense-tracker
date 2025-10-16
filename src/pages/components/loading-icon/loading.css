@@ -42,9 +42,9 @@
 }
 
 .loading-icon-small > div {
-    width: 7px;
-    height: 7px;
-    margin: 3px 3px;
+    width: 5px;
+    height: 5px;
+    margin: 1.5px 1.5px;
     border-radius: 50%;
     background-color: var(--color-1);
     opacity: 1;

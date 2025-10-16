@@ -11,11 +11,11 @@ import DatePicker from 'react-datepicker';
 export const TransactionList = () => {
 
     const { isRecordLoaded } = useContext(TransactionRecordContext);
-    const { recordsFiltered, setSearchText } = useContext(TransactionFilterContext);
+    const { recordsFiltered } = useContext(TransactionFilterContext);
     
-    const [ searchInput, setSearchInput ] = useState("");
     const [ loading, setLoading ] = useState(true);
     const [ listLength, setListLength ] = useState(10);
+    const [ isListExtended, setIsListExtended ] = useState(false);
 
     useEffect(() => {
         setLoading(true);
@@ -26,53 +26,27 @@ export const TransactionList = () => {
         setLoading(false);
     }, 1500);
 
-    const handleTextSearch = () => {
-        console.log("searching: ", searchInput);
-        setSearchText(searchInput);
-        setSearchInput("");
+    const handleClickSeeMoreButton = () => {
+        setIsListExtended(true);
+        setTimeout(() => {
+            setIsListExtended(false);
+            setListLength(listLength + 5);
+        }, 500);
     };
-
-    let searchRef = useRef(null);
-
-    useEffect(() => {
-        let handler = (e)=>{
-            if(searchRef.current && !searchRef.current.contains(e.target)){
-                setSearchInput("");
-            }
-        };
-        document.addEventListener("mousedown", handler);
-        return() =>{
-            document.removeEventListener("mousedown", handler);
-        }
-    }, [searchRef]);
 
     return (
         <>
         {isRecordLoaded ? 
             <div className="table-warpper">
                 <div className="filters">
-                    <div className="select-filter">
-                        <PeriodFilter />
-                        <CategoryFilter />
-                    </div>
-                    <div className="search-box">
-                        <MagnifyingGlassIcon size={18} />
-                        <input className="search-input" 
-                                value={searchInput} 
-                                placeholder="Search" 
-                                onChange={(e)=>setSearchInput(e.target.value)} 
-                                onKeyDown={(e) => {e.key === 'Enter' && handleTextSearch()}} 
-                        />
-                        <XIcon className={`close-button ${searchInput.length > 0 ? "active" : ""}`} 
-                                onClick={() => setSearchInput("")} 
-                                size={13} 
-                        />
-                    </div>
+                    <PeriodFilter />
+                    <CategoryFilter />
+                    <TextFilter />
                 </div>
                 <div className="active-filter-list">
                     <FilterButtons />
                 </div>
-                <table className="table" ref={searchRef}>
+                <table className="table">
                     <thead>
                         <tr>
                             <th>Date</th>
@@ -97,7 +71,13 @@ export const TransactionList = () => {
                                 ))}
                                 {listLength < recordsFiltered.length &&
                                     <tr>
-                                        <td className="see-more-button" colSpan="5" onClick={() => setListLength(listLength + 5)}>SEE MORE ({recordsFiltered.length - listLength} more)</td>
+                                    {isListExtended ?
+                                        <td colSpan="5">
+                                            <LoadingIconSmall />
+                                        </td>
+                                        :
+                                        <td className="see-more-button" colSpan="5" onClick={handleClickSeeMoreButton}>SEE MORE ({recordsFiltered.length - listLength} more)</td>
+                                    }
                                     </tr>
                                 }
                                 </> : 
@@ -137,8 +117,17 @@ const PeriodFilter = () => {
         <div className="filter period-filter">
             <p>Period</p>
             <div className="date-input">
-                <input className="input" value={`${dateFormat(periodList[currentPeriod].start)} to ${dateFormat(periodList[currentPeriod].end)}`} onClick={() => setOpenForm(!openForm)} onChange={() => {}}/>
-                <button className={`date-default-button ${currentPeriod !== "all" ? "active" : ""}`} onClick={()=>handlePeriodChange("all")}><XIcon /></button>
+                <input 
+                    className="input" 
+                    value={`${dateFormat(periodList[currentPeriod].start)} to ${dateFormat(periodList[currentPeriod].end)}`} 
+                    onClick={() => setOpenForm(!openForm)} 
+                />
+                <button 
+                    className={`date-default-button ${currentPeriod !== "all" ? "active" : ""}`} 
+                    onClick={()=>handlePeriodChange("all")}
+                >
+                    <XIcon />
+                </button>
             </div>
             <div className={`date-selector ${openForm ? "active" : ""}`}>
                 <DateSelector close={()=>setOpenForm(false)}/>
@@ -228,7 +217,13 @@ const DateSelector = (props) => {
                 />
             </div>
             <div>
-                <button className="button" value={periodSelected} onClick={(e) => {handleSubmit(e.target.value, startDate, endDate)}}>Confirm</button>
+                <button 
+                    className="button" 
+                    value={periodSelected} 
+                    onClick={(e) => {handleSubmit(e.target.value, startDate, endDate)}}
+                >
+                    Confirm
+                </button>
                 <button className="button" onClick={handleClose}>Close</button>
             </div>
         </div>
@@ -255,6 +250,47 @@ const CategoryFilter = () => {
 
 const TextFilter = () => {
 
+    const { setSearchText } = useContext(TransactionFilterContext);
+
+    const [ searchInput, setSearchInput ] = useState("");
+
+    let searchRef = useRef(null);
+
+    useEffect(() => {
+        let handler = (e)=>{
+            if(searchRef.current && !searchRef.current.contains(e.target)){
+                setSearchInput("");
+            }
+        };
+        document.addEventListener("mousedown", handler);
+        return() =>{
+            document.removeEventListener("mousedown", handler);
+        }
+    }, [searchRef]);
+
+    const handleTextSearch = () => {
+        console.log("searching: ", searchInput);
+        setSearchText(searchInput);
+        setSearchInput("");
+    };
+
+    return (
+        <div className="search-box" ref={searchRef}>
+            <MagnifyingGlassIcon size={18} />
+            <input 
+                className="search-input" 
+                value={searchInput} 
+                placeholder="Search" 
+                onChange={(e)=>setSearchInput(e.target.value)} 
+                onKeyDown={(e) => {e.key === 'Enter' && handleTextSearch()}} 
+            />
+            <XIcon 
+                className={`close-button ${searchInput.length > 0 ? "active" : ""}`} 
+                onClick={() => setSearchInput("")} 
+                size={13} 
+            />
+        </div>
+    );
 };
 
 const FilterButtons = () => {

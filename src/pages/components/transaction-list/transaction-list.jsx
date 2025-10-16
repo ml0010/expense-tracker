@@ -13,23 +13,18 @@ export const TransactionList = () => {
     const { isRecordLoaded } = useContext(TransactionRecordContext);
     const { recordsFiltered, setSearchText } = useContext(TransactionFilterContext);
     
-    const [ isSearch, setIsSearch ] = useState(false);
     const [ searchInput, setSearchInput ] = useState("");
     const [ loading, setLoading ] = useState(true);
     const [ listLength, setListLength ] = useState(10);
 
+    useEffect(() => {
+        setLoading(true);
+        setListLength(10);
+    }, [recordsFiltered]);
+    
     setTimeout(() => {
         setLoading(false);
     }, 1500);
-
-    /*
-    const search = (input) => {
-        setLoading(true);
-        setSearchInput(input);
-        const searchResults = recordsFiltered.filter((record) => (record.description.toLowerCase().includes(input.toLocaleLowerCase()) || record.category.toLowerCase().includes(input.toLocaleLowerCase())));
-        setSearchResult([...searchResults]);
-    };
-    */
 
     const handleTextSearch = () => {
         console.log("searching: ", searchInput);
@@ -56,11 +51,11 @@ export const TransactionList = () => {
         {isRecordLoaded ? 
             <div className="table-warpper">
                 <div className="filters">
-                    <div className="select-filter" onChange={() => setLoading(true)}>
+                    <div className="select-filter">
                         <PeriodFilter />
                         <CategoryFilter />
                     </div>
-                    <div className={`search-box ${isSearch? "active" : ""}`}>
+                    <div className={`search-box`}>
                         <MagnifyingGlassIcon size={18} />
                         <input className="search-input" 
                                 value={searchInput} 
@@ -274,11 +269,9 @@ const CategoryFilter = () => {
     )
 }
 
-const TextFilter = () => {};
-
 const FilterButtons = () => {
     const { currentPeriod, periodList, handlePeriodChange, categoryFilterList, deleteCategoryFilter, deleteAllCategoryFilter, searchText, setSearchText } = useContext(TransactionFilterContext);
-
+    
     const handleDeleteAllFilters = () => {
         deleteAllCategoryFilter();
         handlePeriodChange("all");
@@ -323,8 +316,9 @@ const FilterButtons = () => {
                 <button className="category-button" onClick={() => setSearchText(null)}>Search: {searchText} <XIcon size={13} /></button>
             </div>
         }
-        <button className="delete-all-button" onClick={handleDeleteAllFilters}>Delete All</button>
-
+        {(currentPeriod !== "all" || categoryFilterList.length > 0 || categoryFilterList.length > 0 || searchText) &&
+            <button className="delete-all-button" onClick={handleDeleteAllFilters}>Delete All</button>
+        }
         </>
     )
 };

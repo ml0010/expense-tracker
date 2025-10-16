@@ -55,7 +55,7 @@ export const TransactionList = () => {
                         <PeriodFilter />
                         <CategoryFilter />
                     </div>
-                    <div className={`search-box`}>
+                    <div className="search-box">
                         <MagnifyingGlassIcon size={18} />
                         <input className="search-input" 
                                 value={searchInput} 
@@ -69,7 +69,7 @@ export const TransactionList = () => {
                         />
                     </div>
                 </div>
-                <div className="filter-lists">
+                <div className="active-filter-list">
                     <FilterButtons />
                 </div>
                 <table className="table" ref={searchRef}>
@@ -146,19 +146,7 @@ const PeriodFilter = () => {
         </div>
     )
 }
-/*
 
-            <input value={`${periodList[currentPeriod].start.toISOString().split('T')[0]} to ${periodList[currentPeriod].end.toISOString().split('T')[0]}`} onClick={() => setOpenForm(!openForm)} onChange={() => {}}/>
-
-
-            <select defaultValue={currentPeriod} onChange={(e) => handlePeriodChange(e.target.value)}>
-                <option value="all">All</option>
-                <option value="today">Today</option>
-                <option value="month">This Month</option>
-                <option value="year">This Year</option>
-                <option value="custom" onClick={() => setIsCustom(true)}>Custom</option>
-            </select>
-*/
 const DateSelector = (props) => {
 
     const { periodList, handlePeriodChange } = useContext(TransactionFilterContext);
@@ -248,13 +236,11 @@ const DateSelector = (props) => {
 }
 
 const CategoryFilter = () => {
-
     const { categoryList, addCategoryFilter } = useContext(TransactionFilterContext);
     
     return (
         <div className="filter category-filter">
-            {categoryList.length > 1 ?
-            <>
+            {categoryList.length > 1 && <>
                 <p>Category</p>
                 <select className="input" value="all" onChange={(e) => addCategoryFilter(e.target.value)}>
                     <option value="all">Select</option>
@@ -262,12 +248,14 @@ const CategoryFilter = () => {
                         <option key={index} value={`${category}`}>{category}</option>
                     )}
                 </select>
-            </>
-            : <></>
-            }
+            </>}
         </div>
     )
 }
+
+const TextFilter = () => {
+
+};
 
 const FilterButtons = () => {
     const { currentPeriod, periodList, handlePeriodChange, categoryFilterList, deleteCategoryFilter, deleteAllCategoryFilter, searchText, setSearchText } = useContext(TransactionFilterContext);
@@ -278,16 +266,14 @@ const FilterButtons = () => {
         setSearchText(null);
     };
 
-    const start = new Date(new Date(periodList[currentPeriod].start).setDate(new Date(periodList[currentPeriod].start).getDate() + 1));
-
+    //const start = new Date(new Date(periodList[currentPeriod].start).setDate(new Date(periodList[currentPeriod].start).getDate() + 1));
     //console.log(start);
 
     return (
-        <>
-        {currentPeriod !== "all" && 
-            <div className="date-buttons">
+        <div className="filter-buttons">
+            {currentPeriod !== "all" && 
                 <button 
-                    className="date-button" 
+                    className="filter-button date-button" 
                     id={currentPeriod} 
                     onClick={() => handlePeriodChange("all")}
                 >
@@ -296,40 +282,24 @@ const FilterButtons = () => {
                     currentPeriod.charAt(0).toUpperCase() + currentPeriod.slice(1)} <XIcon size={13} 
                 />
                 </button>
-            </div>
-        }
-        {categoryFilterList.length > 0 &&
-            <div className="category-buttons">
-                {categoryFilterList.map((category, index) => 
-                    <button className="category-button" 
+            }
+            {categoryFilterList.length > 0 &&
+                (categoryFilterList.map((category, index) => 
+                    <button className="filter-button category-button" 
                             key={index} 
                             id={category} 
                             onClick={(e) => deleteCategoryFilter(e.target.id)}
                     >
                         Category: {category} <XIcon size={13} />
                     </button>
-                )}
-            </div>
-        }
-        {searchText &&
-            <div className="category-buttons">
-                <button className="category-button" onClick={() => setSearchText(null)}>Search: {searchText} <XIcon size={13} /></button>
-            </div>
-        }
-        {(currentPeriod !== "all" || categoryFilterList.length > 0 || categoryFilterList.length > 0 || searchText) &&
-            <button className="delete-all-button" onClick={handleDeleteAllFilters}>Delete All</button>
-        }
-        </>
+                ))
+            }
+            {searchText &&
+                <button className="filter-button text-search-button" onClick={() => setSearchText(null)}>Search: {searchText} <XIcon size={13} /></button>
+            }
+            {(currentPeriod !== "all" || categoryFilterList.length > 0 || categoryFilterList.length > 0 || searchText) &&
+                <button className="delete-all-button" onClick={handleDeleteAllFilters}>Delete All</button>
+            }
+        </div>
     )
 };
-
-
-
-    /*
-    const getRows = (expense) => {
-        if(records) {
-            for (const [key, value] of Object.entries(expense)) {
-                console.log(`${key}: ${value}`);
-            }
-        }
-    };*/

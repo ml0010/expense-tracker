@@ -101,33 +101,32 @@
     opacity: 1;
 }
 
-.filter-lists {
+.active-filter-list {
     width: 100%;
     display: flex;
     justify-content:start;
     align-items: center;
     padding-bottom: 15px;
 }
-.filter-lists .category-buttons, .date-buttons{
+.active-filter-list .filter-buttons {
     display: flex;
 }
-.filter-lists .category-button, .date-button {
+.active-filter-list .filter-button {
     cursor: pointer;
     background-color: transparent;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    border: 1px solid var(--color-2);
-    color: var(--color-2);
+    background-color: var(--color-grey-border);
     border-radius: 15px;
-    padding: 3PX;
+    border: none;
+    padding: 5px 10px;
     margin: 3px;
     font-size: 12px;
     font-weight: 500;
-    padding-left: 7px;
 }
-.filter-lists .delete-all-button {
+.active-filter-list .delete-all-button {
     cursor: pointer;
     background-color: transparent;
     border: none;
@@ -136,11 +135,10 @@
     text-decoration: underline;
     padding-left: 15px;
 }
-.category-buttons .category-button:hover, .date-button:hover{
+.active-filter-list .filter-buttons .filter-button:hover {
     background-color: var(--color-button-hover);
-    color: var(--color-background);
 }
-.category-buttons .category-button svg , .date-button svg {
+.active-filter-list .filter-buttons .filter-button svg {
     background-color: transparent;
     padding: 2px;
     pointer-events: none;

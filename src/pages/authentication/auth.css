@@ -21,8 +21,9 @@ h1 {
 .header {
     position:relative;
     text-align:center;
-    background: linear-gradient(60deg, var(--color-3) 0%, var(--color-2) 100%);
+    /*background: linear-gradient(60deg, var(--color-3) 0%, var(--color-2) 100%);*/
     color:var(--color-font);
+    background-size: cover;
 }
 .inner-header {
     height: 75vh;
@@ -33,6 +34,7 @@ h1 {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    backdrop-filter: blur(1px);
 }
 .waves {
     position:relative;

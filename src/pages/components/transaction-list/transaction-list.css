@@ -177,6 +177,7 @@
     border-collapse: collapse;
     border: 1px solid var(--color-grey-border);
     font-size: 13px;
+    position: relative;
 }
 .ta
 .table th,
@@ -207,8 +208,10 @@
 }
 .table .see-more-button {
     cursor: pointer;
-    padding: 15px;
     font-size: 11px;
+    position: relative;
+    overflow: hidden;
+    height: 35px;
 }
 .element-wrapper {
     width: 100vw;

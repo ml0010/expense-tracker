@@ -13,18 +13,18 @@ export const TransactionList = () => {
     const { isRecordLoaded } = useContext(TransactionRecordContext);
     const { recordsFiltered } = useContext(TransactionFilterContext);
     
-    const [ loading, setLoading ] = useState(true);
+    const [ isLoading, setIsLoading ] = useState(true);
     const [ listLength, setListLength ] = useState(10);
     const [ isListExtended, setIsListExtended ] = useState(false);
 
     useEffect(() => {
-        setLoading(true);
+        setIsLoading(true);
         setListLength(10);
     }, [recordsFiltered]);
     
     setTimeout(() => {
-        setLoading(false);
-    }, 1500);
+        setIsLoading(false);
+    }, 300);
 
     const handleClickSeeMoreButton = () => {
         setIsListExtended(true);
@@ -57,41 +57,33 @@ export const TransactionList = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {loading ? 
-                        <tr>
-                            <td colSpan="5">
-                                <LoadingIconSmall />
-                            </td>
-                        </tr> : 
-                        <>
-                            {recordsFiltered.length > 0 ? 
-                                <>
-                                {recordsFiltered.slice(0, listLength).map((record ,index) => (
-                                    <TransactionListElement record={record} key={index}/>
-                                ))}
-                                {listLength < recordsFiltered.length &&
-                                    <tr>
-                                    {isListExtended ?
-                                        <td colSpan="5">
-                                            <LoadingIconSmall />
-                                        </td>
-                                        :
-                                        <td className="see-more-button" colSpan="5" onClick={handleClickSeeMoreButton}>SEE MORE ({recordsFiltered.length - listLength} more)</td>
-                                    }
-                                    </tr>
-                                }
-                                </> : 
+                        {recordsFiltered.length > 0 ? 
+                            <>
+                            {recordsFiltered.slice(0, listLength).map((record ,index) => (
+                                <TransactionListElement record={record} key={index}/>
+                            ))}
+                            {listLength < recordsFiltered.length &&
                                 <tr>
-                                    <td colSpan="5">
-                                    <EmptyList />
+                                    <td className="see-more-button" colSpan="5" onClick={handleClickSeeMoreButton}>
+                                        SEE MORE ({recordsFiltered.length - listLength} more)
+                                        {isListExtended && <LoadingIconSmall />}
                                     </td>
                                 </tr>
                             }
-                        </>
+                            </> : 
+                            <tr>
+                                <td colSpan="5">
+                                <EmptyList />
+                                </td>
+                            </tr>
+                        }
+                        {isLoading && 
+                            <tr>
+                                <LoadingIconSmall />
+                            </tr>                       
                         }
                     </tbody>
                 </table>
-
             </div>
             : <LoadingIconSmall />
         }

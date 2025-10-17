@@ -13,11 +13,12 @@
     transform: translate(-50%, -50%);
     z-index: 100;
     backdrop-filter: blur(10px);
+    
 }
 .transaction-form .form {
     background-color: var(--color-background);
-    border-radius: 15px;
-    padding: 40px;
+    border-radius: 5px;
+    padding: 30px;
     position: fixed;
     top: 50%;
     left: 50%;
@@ -168,6 +169,7 @@
 @media only screen and (max-width: 1300px) {
 }
 @media only screen and (max-width: 900px) {
+
 }
 @media only screen and (max-width: 600px) {
 }

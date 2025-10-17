@@ -22,8 +22,9 @@
     box-shadow: 0 2px 10px var(--color-shadow);
     background-color: var(--color-box1);
     display: grid;
-    align-items: center;
+    align-items: start;
     position: relative;
+    overflow: hidden;
 }
 .dashboard .box .title {
     width: 90%;

@@ -79,6 +79,18 @@ export const TransactionForm = () => {
         }
     }, [formRef]);
 
+    useEffect(() => {
+        const keyPressEvent = (e) => {
+            if (e.key === 'Escape' && isFormOpen) {
+                closeForm();
+            }
+        };
+        document.addEventListener("keydown", keyPressEvent);
+        return () => {
+            document.removeEventListener("keydown", keyPressEvent);
+        };
+    }, [isFormOpen]);
+
     const openIncomeForm = () => {
         setIsFormOpen(!isFormOpen);
         setIsExpense(false);
@@ -141,7 +153,7 @@ export const TransactionForm = () => {
                     }
                     <div className="form-buttons">
                         <button className="button" type="submit">Add Record</button>
-                        <button className="button" onClick={() => closeForm()}>Close</button>
+                        <button className="button" onClick={closeForm}>Close</button>
                     </div>
                 </form>
             </div>

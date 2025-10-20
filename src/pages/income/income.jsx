@@ -8,7 +8,8 @@ import "../expense/expense.css"
 import { LoadingIcon } from "../components/loading-icon/loading";
 import { useState } from "react";
 import { IncomePieChart } from "../components/charts/pie-charts";
-
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Scrollbar } from "swiper/modules";
 
 export const Income = () => {
     const [loading, setLoading] = useState(true);
@@ -25,29 +26,57 @@ export const Income = () => {
                 <div className="summary income">
                     <h1 className="title"><PiggyBankIcon size={50} /> Income Tracker</h1>
                     <TransactionForm />
-                    <div className="tracker">
-                        <div className="boxes">
-                            <div className="box">
+                    <div className="tracker-wrapper">
+                        <Swiper
+                            slidesPerView={3}
+                            spaceBetween={20}
+                            slidesPerGroup={1}
+                            centeredSlides={false}
+                            loop={false}
+                            loopFillGroupWithBlank={false}
+                            scrollbar={{ draggable: true }}
+                            navigation={true}
+                            modules={[Navigation, Scrollbar]}
+                            className="mySwiper"
+                        >
+                            <SwiperSlide>
                                 <div className="box-content">
                                     <h3>Monthly Income</h3>
                                     <IncomeMonthly />
                                 </div>
-                            </div>
-                        </div>
-                        <div className="boxes">
-                            <div className="box">
+                            </SwiperSlide>
+                            <SwiperSlide>
                                 <div className="box-content">
                                     <h3>Yearly Income</h3>
                                     <IncomeYearly />
                                 </div>
-                            </div>
-                            <div className="box">
-                                <div className="chart">
+                            </SwiperSlide>
+                            <SwiperSlide>
+                                <div className="box-content">
                                     <h3>Yearly Income Chart</h3>
                                     <IncomePieChart />
                                 </div>
-                            </div>
-                        </div>
+                            </SwiperSlide>
+                            
+                            <SwiperSlide>
+                                <div className="box-content">
+                                    <h3>Monthly Income</h3>
+                                    <IncomeMonthly />
+                                </div>
+                            </SwiperSlide>
+                            <SwiperSlide>
+                                <div className="box-content">
+                                <h3>Yearly Income</h3>
+                                <IncomeYearly />
+                                </div>
+                            </SwiperSlide>
+                            <SwiperSlide>
+                                <div className="box-content">
+                                    <h3>Yearly Income Chart</h3>
+                                    <IncomePieChart />
+                                </div>
+                            </SwiperSlide>
+                        </Swiper>
                     </div>
                     <div className="list">
                         <h3>Transactions</h3>

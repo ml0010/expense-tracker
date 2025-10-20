@@ -9,6 +9,8 @@ import "./expense.css"
 import { useState } from "react";
 import { LoadingIcon } from "../components/loading-icon/loading";
 import { ExpensePieChart } from "../components/charts/pie-charts";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Scrollbar } from "swiper/modules";
 
 export const Expense = () => {
     const [loading, setLoading] = useState(true);
@@ -25,35 +27,45 @@ export const Expense = () => {
                 <div className="summary expense">
                     <h1 className="title"><MoneyIcon size={50} /> Expenses Tracker</h1>
                     <TransactionForm />
-                    <div className="tracker">
-                        <div className="boxes">
-                            <div className="box">
+                    <div className="tracker-wrapper">
+                        <Swiper
+                            slidesPerView={3}
+                            spaceBetween={20}
+                            slidesPerGroup={1}
+                            centeredSlides={false}
+                            loop={false}
+                            loopFillGroupWithBlank={true}
+                            scrollbar={{ draggable: true }}
+                            navigation={true}
+                            modules={[Navigation, Scrollbar]}
+                            className="mySwiper"
+                        >
+                            <SwiperSlide>
                                 <div className="box-content">
                                     <h3>Daily Expenses</h3>
                                     <ExpenseDaily />
                                 </div>
-                            </div>
-                            <div className="box">
+                            </SwiperSlide>
+                            <SwiperSlide>
                                 <div className="box-content">
                                     <h3>Monthly Expenses</h3>
                                     <ExpenseMonthly />
                                 </div>
-                            </div>  
-                        </div>
-                        <div className="boxes">
-                            <div className="box">
+                            </SwiperSlide>
+                            <SwiperSlide>
                                 <div className="box-content">
                                     <h3>Yearly Expenses</h3>
                                     <ExpenseYearly />
                                 </div>
-                            </div>
-                            <div className="box">
-                                <div className="chart">
+                            </SwiperSlide>
+                            
+                            <SwiperSlide>
+                                <div className="box-content">
                                     <h3>Yearly Expenses Chart</h3>
                                     <ExpensePieChart />
                                 </div>
-                            </div>
-                        </div>
+                            </SwiperSlide>
+                        </Swiper>
                     </div>
                     <div className="list">
                         <h3>Transactions</h3>

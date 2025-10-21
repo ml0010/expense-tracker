@@ -6,14 +6,35 @@ import { ExpenseMonthly } from "./components/expense-monthly";
 import { MoneyIcon } from "@phosphor-icons/react";
 import { ExpenseYearly } from "./components/expense-yearly";
 import "./expense.css"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { LoadingIcon } from "../components/loading-icon/loading";
 import { ExpensePieChart } from "../components/charts/pie-charts";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Scrollbar } from "swiper/modules";
 
 export const Expense = () => {
-    const [loading, setLoading] = useState(true);
+    const [ loading, setLoading ] = useState(true);
+    const [ slides, setSlides ] = useState(1);
+
+    const setSlidesPerview = () => {
+        setSlides(
+            window.innerWidth <= 600
+                ? 1
+                : window.innerWidth <= 900
+                ? 2
+                : window.innerWidth > 900
+                ? 3
+                : 0
+        );
+    };
+
+    useEffect(() => {
+        setSlidesPerview();
+        window.addEventListener("resize", setSlidesPerview);
+        return () => {
+            window.removeEventListener("resize", setSlidesPerview);
+        };
+    }, []);
 
     setTimeout(() => {
         setLoading(false);
@@ -29,7 +50,7 @@ export const Expense = () => {
                     <TransactionForm />
                     <div className="tracker-wrapper">
                         <Swiper
-                            slidesPerView={3}
+                            slidesPerView={slides}
                             spaceBetween={20}
                             slidesPerGroup={1}
                             centeredSlides={false}

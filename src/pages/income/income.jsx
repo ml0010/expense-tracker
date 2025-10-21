@@ -6,13 +6,34 @@ import { IncomeYearly } from "./components/income-yearly";
 import { PiggyBankIcon } from "@phosphor-icons/react";
 import "../expense/expense.css"
 import { LoadingIcon } from "../components/loading-icon/loading";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IncomePieChart } from "../components/charts/pie-charts";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Scrollbar } from "swiper/modules";
 
 export const Income = () => {
-    const [loading, setLoading] = useState(true);
+    const [ loading, setLoading ] = useState(true);
+    const [ slides, setSlides ] = useState(1);
+
+    const setSlidesPerview = () => {
+        setSlides(
+            window.innerWidth <= 600
+                ? 1
+                : window.innerWidth <= 900
+                ? 2
+                : window.innerWidth > 900
+                ? 3
+                : 0
+        );
+    };
+
+    useEffect(() => {
+        setSlidesPerview();
+        window.addEventListener("resize", setSlidesPerview);
+        return () => {
+            window.removeEventListener("resize", setSlidesPerview);
+        };
+    }, []);
 
     setTimeout(() => {
         setLoading(false);
@@ -28,7 +49,7 @@ export const Income = () => {
                     <TransactionForm />
                     <div className="tracker-wrapper">
                         <Swiper
-                            slidesPerView={3}
+                            slidesPerView={slides}
                             spaceBetween={20}
                             slidesPerGroup={1}
                             centeredSlides={false}

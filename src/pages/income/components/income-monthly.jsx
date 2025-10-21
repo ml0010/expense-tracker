@@ -36,8 +36,8 @@ export const IncomeMonthly = () => {
                             <>
                                 {records.map((record, index) => 
                                 <tr key={index}>
-                                    <td>{record.date.slice(0, 10)}</td>
-                                    <td>{record.description}</td>
+                                    <td id="date">{record.date.slice(0, 10)}</td>
+                                    <td id="description">{record.description}</td>
                                     <td id="amount">{record.amount.toFixed(2)}</td>
                                 </tr>)}
                             </>

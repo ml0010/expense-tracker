@@ -6,11 +6,14 @@
 .dashboard-summary .total {
     display: flex;
     justify-content: space-around;
+    width: 100%;
 }
 .dashboard-summary .total .items {
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 18px;
+
 }
 .dashboard-summary .total .items svg {
     color: var(--color-1);
@@ -20,8 +23,6 @@
     font-weight: 600;
 }
 .dashboard-summary .total .items .text{
-    font-size: 14px;
-    color: var(--color-grey);
 }
 .dashboard-summary .balance-title {
     font-weight: 600;
@@ -49,8 +50,9 @@
     margin: 0px;
 }
 .summary-month .days {
-    font-size: 13px;
-    color: var(--color-grey);
+    font-size: 17px;
+    font-weight: 700;
+    margin: 20px 0;
 }
 .summary-month .bar-container {
     width: 100%;
@@ -64,7 +66,11 @@
     overflow: hidden;
 }
 .summary-month .bar-container .bar {
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 0;
 }
 .summary-month .bar-container .income-bar {
     background-color: transparent;
@@ -73,7 +79,7 @@
     background-color: var(--color-1);
 }
 .summary-month .bar-container .percent {
-    font-size: 13px;
+    font-size: 15px;
     font-weight: 600;
     margin: auto;
 }

@@ -20,9 +20,9 @@ export const Expense = () => {
         setSlides(
             window.innerWidth <= 600
                 ? 1
-                : window.innerWidth <= 900
+                : window.innerWidth <= 1100
                 ? 2
-                : window.innerWidth > 900
+                : window.innerWidth > 1100
                 ? 3
                 : 0
         );
@@ -46,7 +46,7 @@ export const Expense = () => {
         return (
             <TransactionFilterContextProvider data="expense">
                 <div className="summary expense">
-                    <h1 className="title"><MoneyIcon size={50} /> Expenses Tracker</h1>
+                    <h1 className="title"><MoneyIcon size={50} /> Expense</h1>
                     <TransactionForm />
                     <div className="tracker-wrapper">
                         <Swiper

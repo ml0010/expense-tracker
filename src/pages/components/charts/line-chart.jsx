@@ -3,7 +3,7 @@ import { TransactionRecordContext } from "../../../contexts/transaction-record-c
 import * as d3 from "d3";
 import "./line-chart.css";
 import { LoadingIconSmall } from "../loading-icon/loading";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export const LineChart = () => {
 
@@ -132,11 +132,13 @@ export const LineChart = () => {
     }, [data]);
 
     return (
-        <>
-        {isRecordLoaded > 0 ?
-            <div id="line-chart"></div>
-            : <LoadingIconSmall />
-        }
-        </>
+        <div className="monthly-chart">
+            <Link className="link" to="/all" state={{ period: "month" }}>See More</Link>
+            <span className="title">Monthly Chart</span>
+            {isRecordLoaded > 0 ?
+                <div id="line-chart"></div>
+                : <LoadingIconSmall />
+            }
+        </div>
     )
 }

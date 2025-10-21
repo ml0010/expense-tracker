@@ -21,11 +21,11 @@ export const Dashboard = () => {
 
     const setSlidesPerview = () => {
         setSlides(
-            window.innerWidth <= 700
+            window.innerWidth <= 600
                 ? 1
-                : window.innerWidth <= 1200
+                : window.innerWidth <= 1100
                 ? 2
-                : window.innerWidth > 1200
+                : window.innerWidth > 1100
                 ? 3
                 : 0
         );
@@ -78,29 +78,61 @@ export const Dashboard = () => {
                         </SwiperSlide>
                         <SwiperSlide>
                             <div className="box-content">
-                                <LineChart />
+                                <h2>Monthly Chart</h2>
+                                {isRecordLoaded ?
+                                    <div>
+                                        <Link className="link" to="/all" state={{ period: "month" }}>See More</Link>
+                                        <LineChart />
+                                    </div>
+                                    : <LoadingIconSmall />
+                                }
                             </div>
                         </SwiperSlide>
+                        
                     </Swiper>
                 </div>
-                <div className="boxes">
+                <div className="boxes two">
                     <div className="box">
-                        <span className="title">Income</span>
+                        <Summary />
+                    </div>
+                    <div className="box">
+                        <TransactionFilterContextProvider>
+                            <MonthlySummary />
+                        </TransactionFilterContextProvider>
+                    </div>
+                </div>
+                <div className="boxes three">
+                    <div className="box">
+                        <h2>Monthly Chart</h2>
+                        {isRecordLoaded ?
+                            <div>
+                                <Link className="link" to="/all" state={{ period: "month" }}>See More</Link>
+                                <LineChart />
+                            </div>
+                            : <LoadingIconSmall />
+                        }
+                    </div>
+                    <div className="box">
+                        <h2>Income</h2>
                         {isRecordLoaded ?
                             <div className="recent-transaction">
                                 <Link className="link" to="../income">See All</Link>
-                                <span className="description">Recent Transactions</span>
+                                <div className="title">
+                                    <p className="text">Recent Transactions</p>
+                                </div>
                                 <RecentList records={incomeRecords} /> 
                             </div>
                             : <LoadingIconSmall />
                         }
                     </div>
                     <div className="box">
-                        <span className="title">Expense</span>
+                        <h2>Expense</h2>
                         {isRecordLoaded ?
                             <div className="recent-transaction">
                                 <Link className="link" to="../expense">See All</Link>
-                                <span className="description">Recent Transactions</span>
+                                <div className="title">
+                                    <p className="text">Recent Transactions</p>
+                                </div>
                                 <RecentList records={expenseRecords} /> 
                             </div>
                             : <LoadingIconSmall />

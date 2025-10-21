@@ -58,30 +58,32 @@ export const MonthlySummary = () => {
         {isRecordLoaded ? 
             <div className="summary-month">
                 <Link className="link" to="/all" state={{ period: "month" }}>See More</Link>
-                <p className="text">Your expense this month is </p>
-                <p className="total">€ {(expenseTotal * -1).toFixed(2)}</p>
-                <p className="days">{getDaysToGo()} days left</p>
-                <div className="bar-container">
-                    {expenseTotal < 0 &&
-                        <div className="bar expense-bar " style={{width: `${expensePercentage}%`, minWidth: '35px'}}>
-                            {expensePercentage > 0 && 
-                            <>
-                                <p className="percent expense-percent">{expensePercentage}%</p>
-                                <p className="expense-amount">({expenseTotal}€)</p>
-                            </>
-                            }
-                        </div>
-                    }
-                    {incomeTotal > 0 &&
-                        <div className="bar income-bar" style={{width: `${incomePercentage}%`}}>
-                            {incomePercentage > 0 && 
-                            <>
-                                <p className="percent expense-percent">{incomePercentage}%</p>
-                                <p className="expense-amount">({incomeTotal}€)</p>
-                            </>
-                            }
-                        </div>
-                    }
+                <span className="title">Your expense this month is</span>
+                <div className="contents">
+                    <span className="balance">€ {(expenseTotal * -1).toFixed(2)}</span>
+                    <span className="days">{getDaysToGo()} days left</span>
+                    <div className="bar-container">
+                        {expenseTotal < 0 &&
+                            <div className="bar expense-bar " style={{width: `${expensePercentage}%`, minWidth: '35px'}}>
+                                {expensePercentage > 0 && 
+                                <>
+                                    <span className="percent expense-percent">{expensePercentage}%</span>
+                                    <span className="expense-amount">({expenseTotal.toFixed(0)}€)</span>
+                                </>
+                                }
+                            </div>
+                        }
+                        {incomeTotal > 0 &&
+                            <div className="bar income-bar" style={{width: `${incomePercentage}%`}}>
+                                {incomePercentage > 0 && 
+                                <>
+                                    <span className="percent income-percent">{incomePercentage}%</span>
+                                    <span className="expense-amount">({incomeTotal.toFixed(0)}€)</span>
+                                </>
+                                }
+                            </div>
+                        }
+                    </div>
                 </div>
             </div>
             : 

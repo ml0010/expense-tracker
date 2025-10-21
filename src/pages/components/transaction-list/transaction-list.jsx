@@ -107,7 +107,7 @@ const PeriodFilter = () => {
 
     return (
         <div className="filter period-filter">
-            <p>Period</p>
+            <span className="name">Period</span>
             <div className="date-input">
                 <input 
                     className="input" 
@@ -118,7 +118,7 @@ const PeriodFilter = () => {
                     className={`date-default-button ${currentPeriod !== "all" ? "active" : ""}`} 
                     onClick={()=>handlePeriodChange("all")}
                 >
-                    <XIcon />
+                    <XIcon size={13}/>
                 </button>
             </div>
             <div className={`date-selector ${openForm ? "active" : ""}`}>
@@ -228,7 +228,7 @@ const CategoryFilter = () => {
     return (
         <div className="filter category-filter">
             {categoryList.length > 1 && <>
-                <p>Category</p>
+                <span className="name">Category</span>
                 <select className="input" value="all" onChange={(e) => addCategoryFilter(e.target.value)}>
                     <option value="all">Select</option>
                     {categoryList.map((category, index) => 
@@ -267,7 +267,7 @@ const TextFilter = () => {
     };
 
     return (
-        <div className="search-box" ref={searchRef}>
+        <div className={`search-box ${searchInput.length > 0 ? "active" : ""}`} ref={searchRef}>
             <MagnifyingGlassIcon size={18} />
             <input 
                 className="search-input" 
@@ -277,7 +277,7 @@ const TextFilter = () => {
                 onKeyDown={(e) => {e.key === 'Enter' && handleTextSearch()}} 
             />
             <XIcon 
-                className={`close-button ${searchInput.length > 0 ? "active" : ""}`} 
+                className={"close-button"} 
                 onClick={() => setSearchInput("")} 
                 size={13} 
             />

@@ -10,14 +10,17 @@ export const Navbar = () => {
    return (
       <>
          <div className={`navbar ${isSignedIn? "" : "hidden"}`}>
-               <SignedIn>
-                  <Menu />
-                  <div className="user-button">
-                     <UserButton showName />
-                  </div>
-               </SignedIn>
+            <SignedIn>
+               <Menu />
+            </SignedIn>
          </div>
          <ScrollToTop />
       </>
    )
 }
+/*
+               <div className="user-button">
+                  <UserButton showName />
+               </div>
+               
+               */

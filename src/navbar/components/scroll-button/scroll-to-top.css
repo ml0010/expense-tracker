@@ -1,38 +1,43 @@
 .scroll-to-top {
     position: fixed;
     bottom: 30px;
-    right: 20px;
-    display: flex;
-    flex-direction: column;
+    right: 0;
     pointer-events: none;
 }
 .scroll-to-top.active {
     pointer-events: auto;
 }
-.scroll-to-top .text {
-    font-size: 10px;
-    font-weight: 600;
-    margin: 0;
-    opacity: 0;
-    transition: 0.2s ease-in-out;
-    text-align: center;
-    color: var(--color-font);
 
+.scroll-to-top.active .scroll-button {
+    opacity: 1;
 }
+
 .scroll-to-top .scroll-button {
-    background-color: transparent;
+    background-color: var(--color-font);
     border: none;
     opacity: 0;
     transition: 0.5s ease-in-out;
     cursor: pointer;
-    color: var(--color-font);
+    color: white;
+    padding: 8px;
+    position: relative;
+    display: flex;
+    align-items: center;
 }
-.scroll-to-top.active .scroll-button{
+.scroll-to-top .scroll-button .text {
+    font-size: 0;
+    font-weight: 600;
+    transition: 0.2s ease-in-out;
+    text-align: center;
+    color: white;
+    opacity: 0;
+}
+.scroll-to-top .scroll-button:hover .text {
+    font-size: 10px;
     opacity: 1;
+    margin: auto 5px;
 }
-.scroll-to-top:hover .text {
-    opacity: 1;
-}
+
 @media only screen and (max-width: 1300px) {
 }
 @media only screen and (max-width: 900px) {

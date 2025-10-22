@@ -1,4 +1,4 @@
-import { CaretCircleUpIcon } from '@phosphor-icons/react';
+import { ArrowUpIcon, CaretCircleUpIcon, CaretUpIcon } from '@phosphor-icons/react';
 import { useEffect, useState } from 'react'
 import './scroll-to-top.css'
 
@@ -20,8 +20,10 @@ export const ScrollToTop = () => {
 
     return (
         <div className={`scroll-to-top ${showScrollBttn ? 'active' : 'inactive'}`}>
-            <p className="text">Scroll To Top</p>
-            <button className={`scroll-button ${showScrollBttn ? 'active' : 'inactive'}`} onClick={handleScrollToTop}><CaretCircleUpIcon size={50} weight="fill" /></button>
+            <button className={`scroll-button ${showScrollBttn ? 'active' : 'inactive'}`} onClick={handleScrollToTop}>
+                <div className="text">Scroll To Top</div>
+                <ArrowUpIcon size={25} />
+            </button>
         </div>
     )
 }

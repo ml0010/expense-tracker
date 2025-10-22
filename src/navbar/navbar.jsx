@@ -1,7 +1,6 @@
 import { SignedIn, UserButton, useUser } from '@clerk/clerk-react'
 import './navbar.css'
 import { Menu } from './components/menu';
-import { BackButton } from './components/back-button/back-button';
 import { ScrollToTop } from './components/scroll-button/scroll-to-top';
 
 export const Navbar = () => {
@@ -18,7 +17,6 @@ export const Navbar = () => {
                     </div>
                 </SignedIn>
             </div>
-            <BackButton />
             <ScrollToTop />
         </>
     )

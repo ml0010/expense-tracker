@@ -8,34 +8,34 @@ import { useLocation } from "react-router-dom";
 
 export const AllRecords = () => {
 
-    const [loading, setLoading] = useState(true);
+   const [loading, setLoading] = useState(true);
 
-    const { handlePeriodChange } = useContext(TransactionFilterContext);
+   const { handlePeriodChange } = useContext(TransactionFilterContext);
 
-    const location = useLocation();
-    const { period, start, end } = location.state || "";
+   const location = useLocation();
+   const { period, start, end } = location.state || "";
 
-    useEffect(() => {
-        handlePeriodChange(period, start, end);
-    }, [period]);
+   useEffect(() => {
+      handlePeriodChange(period, start, end);
+   }, [period]);
 
-    setTimeout(() => {
-        setLoading(false);
-    }, 1500);
+   setTimeout(() => {
+      setLoading(false);
+   }, 1500);
 
-    if (loading) {
-        return <LoadingIcon />;
-    } else {
-        return (
-            <div className="summary all-record">
-                <h1 className="title">All Records</h1>
-                <TransactionForm />
-                <div className="list">
-                    <h3>Transactions</h3>
-                    <TransactionList />
-                </div>
-            </div>
-        )
-    }
+   if (loading) {
+      return <LoadingIcon />;
+   } else {
+      return (
+         <div className="summary all-record">
+               <h1 className="title">All Records</h1>
+               <TransactionForm />
+               <div className="list">
+                  <h3>Transactions</h3>
+                  <TransactionList />
+               </div>
+         </div>
+      )
+   }
 }
 export default AllRecords;

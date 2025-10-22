@@ -1,17 +1,17 @@
 #line-chart {
-    position: relative;
+   position: relative;
 }
 #chart {
-    text-align: center;
+   text-align: center;
 }
 .tooltip {
-    padding: 4px;
-    font-size: 11px;
-    text-align: left;
+   padding: 4px;
+   font-size: 11px;
+   text-align: left;
 }
 .bar {
-    cursor: pointer;
+   cursor: pointer;
 }
 .bar:hover {
-    fill : rgba(238, 238, 238, 0.443);
+   fill : rgba(238, 238, 238, 0.443);
 }

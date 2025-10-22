@@ -1,88 +1,88 @@
 .dashboard-summary {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
 }
 .dashboard-summary .total {
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
+   display: flex;
+   justify-content: space-around;
+   width: 100%;
 }
 .dashboard-summary .total .items {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 18px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   font-size: 18px;
 
 }
 .dashboard-summary .total .items svg {
-    color: var(--color-1);
-    padding-right: 15px;
+   color: var(--color-1);
+   padding-right: 15px;
 }
 .dashboard-summary .total .items .number{
-    font-weight: 600;
+   font-weight: 600;
 }
 .dashboard-summary .total .items .text{
 }
 .dashboard-summary .balance-title {
-    font-weight: 600;
-    margin: 0px;
+   font-weight: 600;
+   margin: 0px;
 }
 .dashboard-summary .balance-number {
-    font-size: 35px;
-    margin: 20px;
-    font-weight: 600;
-    color: var(--color-2);
+   font-size: 35px;
+   margin: 20px;
+   font-weight: 600;
+   color: var(--color-2);
 }
 
 .summary-month {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
 }
 .summary-month .text {
-    font-weight: 600;
+   font-weight: 600;
 }
 .summary-month .total {
-    color: var(--color-2);
-    font-size: 35px;
-    font-weight: 600;
-    margin: 0px;
+   color: var(--color-2);
+   font-size: 35px;
+   font-weight: 600;
+   margin: 0px;
 }
 .summary-month .days {
-    font-size: 17px;
-    font-weight: 700;
-    margin: 20px 0;
+   font-size: 17px;
+   font-weight: 700;
+   margin: 20px 0;
 }
 .summary-month .bar-container {
-    width: 100%;
-    display: flex;
-    position: relative;
-    align-items: center;
-    margin-bottom: 20px;
-    background-color: var(--color-grey-light);
-    border-radius: 5px;
-    color: #313131;
-    overflow: hidden;
+   width: 100%;
+   display: flex;
+   position: relative;
+   align-items: center;
+   margin-bottom: 20px;
+   background-color: var(--color-grey-light);
+   border-radius: 5px;
+   color: #313131;
+   overflow: hidden;
 }
 .summary-month .bar-container .bar {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 8px 0;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   padding: 8px 0;
 }
 .summary-month .bar-container .income-bar {
-    background-color: transparent;
+   background-color: transparent;
 }
 .summary-month .bar-container .expense-bar {
-    background-color: var(--color-1);
+   background-color: var(--color-1);
 }
 .summary-month .bar-container .percent {
-    font-size: 15px;
-    font-weight: 600;
-    margin: auto;
+   font-size: 15px;
+   font-weight: 600;
+   margin: auto;
 }
 .summary-month .bar-container .expense-amount {
-    font-size: 10px;
+   font-size: 10px;
 }

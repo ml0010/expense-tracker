@@ -1,26 +1,26 @@
 .go-back {
-    position: fixed;
-    bottom: 30px;
-    left: 20px;
-    display: flex;
-    flex-direction: column;
+   position: fixed;
+   bottom: 30px;
+   left: 20px;
+   display: flex;
+   flex-direction: column;
 }
 .go-back .text {
-    font-size: 10px;
-    font-weight: 600;
-    margin: 0;
-    opacity: 0;
-    transition: 0.2s ease-in-out;
-    text-align: center;
-    color: var(--color-font);
+   font-size: 10px;
+   font-weight: 600;
+   margin: 0;
+   opacity: 0;
+   transition: 0.2s ease-in-out;
+   text-align: center;
+   color: var(--color-font);
 }
 .go-back:hover .text {
-    opacity: 1;
+   opacity: 1;
 }
 .back-button {
-    background-color: transparent;
-    border: none;
-    transition: 0.5s ease-in-out;
-    cursor: pointer;
-    color: var(--color-font);
+   background-color: transparent;
+   border: none;
+   transition: 0.5s ease-in-out;
+   cursor: pointer;
+   color: var(--color-font);
 }

@@ -1,70 +1,70 @@
 .summary {
-    text-align: center;
-    max-width: 1400px;
-    margin: auto;
-    padding: 30px;
-    padding-bottom: 150px;
+   text-align: center;
+   max-width: 1400px;
+   margin: auto;
+   padding: 30px;
+   padding-bottom: 150px;
 }
 .title {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+   display: flex;
+   justify-content: center;
+   align-items: center;
 }
 .title svg {
-    padding-right: 30px;
+   padding-right: 30px;
 }
 
 .box-content {
-    display: block;
-    height: 100%;
-    margin: 5px 30px;
+   display: block;
+   height: 100%;
+   margin: 5px 30px;
 }
 .box-content h4 {
-    margin: 0;
-    margin-bottom: 8px;
-    font-weight: 500;
-    font-size: 13px;
-    width: 100%;
-    text-align: left;
+   margin: 0;
+   margin-bottom: 8px;
+   font-weight: 500;
+   font-size: 13px;
+   width: 100%;
+   text-align: left;
 }
 .box-content .summary-table {
-    border-collapse: collapse;
-    font-size: 12px;
-    width: 100%;
+   border-collapse: collapse;
+   font-size: 12px;
+   width: 100%;
 }
 .box-content .summary-table th,
 .box-content .summary-table td {
-    border-top: 1px solid var(--color-grey-border);
-    border-bottom: 1px solid var(--color-grey-border);
-    padding: 3px;
+   border-top: 1px solid var(--color-grey-border);
+   border-bottom: 1px solid var(--color-grey-border);
+   padding: 3px;
 
 }
 .box-content #amount {
-    padding-right: 10%;
-    text-align: right;
+   padding-right: 10%;
+   text-align: right;
 }
 .box-content .total {
-    font-size: 12px;
-    font-weight: 700;
-    text-align: right;
-    padding: 3px 5%;
-    padding-right: 10%;
+   font-size: 12px;
+   font-weight: 700;
+   text-align: right;
+   padding: 3px 5%;
+   padding-right: 10%;
 
 }
 .box-content.chart {
-    height: 100%;
+   height: 100%;
 }
 .box-content .chart .pie-chart {
-    max-width: 550px;
-    margin: auto;
+   max-width: 550px;
+   margin: auto;
 }
 .list {
-    margin: 30px 0;
-    padding: 10px 40px;
-    background-color: var(--color-box1);
-    border-radius: 3px;
-    border: 1px solid var(--color-grey-border);
-    box-sizing: border-box;
+   margin: 30px 0;
+   padding: 10px 40px;
+   background-color: var(--color-box1);
+   border-radius: 3px;
+   border: 1px solid var(--color-grey-border);
+   box-sizing: border-box;
 }
 
 @media only screen and (max-width: 1300px) {

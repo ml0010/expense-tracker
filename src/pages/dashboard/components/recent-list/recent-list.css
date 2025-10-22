@@ -1,74 +1,74 @@
 .recent-list {
-    width: 100%;
+   width: 100%;
 }
 
 .recent-list .element {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin: 8px;
-    border-radius: 5px;
-    border: 1px solid var(--color-grey-border);
-    background-color: transparent;
+   display: flex;
+   justify-content: space-around;
+   align-items: center;
+   margin: 8px;
+   border-radius: 5px;
+   border: 1px solid var(--color-grey-border);
+   background-color: transparent;
 }
 .recent-list .element:hover {
-    background-color: var(--color-background);
+   background-color: var(--color-background);
 }
 .recent-list .element .input {
-    border: none;
-    cursor: pointer;
-    background-color: transparent;
-    font-size: 12px;
-    max-width: 120px;
-    color: var(--color-font);
+   border: none;
+   cursor: pointer;
+   background-color: transparent;
+   font-size: 12px;
+   max-width: 120px;
+   color: var(--color-font);
 }
 
 .recent-list .element .input:hover {
-    color: var(--color-2);
+   color: var(--color-2);
 }
 .recent-list .element .input.edit {
-    background-color: var(--color-background);
+   background-color: var(--color-background);
 }
 .recent-list .element .category {
 }
 .recent-list .element .category .icon {
-    display: flex;
-    flex-direction: center;
-    align-items: center;
-    color: rgb(74, 74, 74);
-    border-radius: 50%;
-    padding: 5px;
+   display: flex;
+   flex-direction: center;
+   align-items: center;
+   color: rgb(74, 74, 74);
+   border-radius: 50%;
+   padding: 5px;
 }
 .recent-list .element .description {
-    font-size: 13px;
-    margin-bottom: -10px;
+   font-size: 13px;
+   margin-bottom: -10px;
 }
 .recent-list .element .date .input {
-    font-size: 11px;
-    color: var(--color-grey);
+   font-size: 11px;
+   color: var(--color-grey);
 }
 .recent-list .amount {
-    display: flex;    
-    flex-direction: row;
-    justify-content: end;
-    align-items: center;
+   display: flex;    
+   flex-direction: row;
+   justify-content: end;
+   align-items: center;
 }
 .recent-list #amount {
-    max-width: 70px;
-    font-size: 18px;
-    font-weight: 600;
+   max-width: 70px;
+   font-size: 18px;
+   font-weight: 600;
 }
 
 .recent-list .element .delete-button {
-    cursor: pointer;
-    background-color: transparent;
-    border: none;
+   cursor: pointer;
+   background-color: transparent;
+   border: none;
 }
 .recent-list .element .delete-button svg {
-    background-color: transparent;
+   background-color: transparent;
 }
 .recent-list .element .delete-button:hover {
-    color: var(--color-2);
+   color: var(--color-2);
 }
 @media only screen and (max-width: 1300px) {
 

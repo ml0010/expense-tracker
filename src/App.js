@@ -8,7 +8,7 @@ import { Navbar } from './navbar/navbar';
 import { Income } from './pages/income/income';
 import { Expense } from './pages/expense/expense';
 import { AllRecords}  from './pages/all-records/all-records';
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { TransactionFilterContextProvider } from './contexts/transaction-filter-context';
 import { DarkModeContext } from './contexts/dark-mode-context';
 
@@ -16,42 +16,45 @@ const CLERK_PUBLISHABLE_KEY = 'pk_test_d29ydGh5LXR1bmEtMTYuY2xlcmsuYWNjb3VudHMuZ
 
 function App() {
 
-    const { darkMode } = useContext(DarkModeContext);
+   const { darkMode } = useContext(DarkModeContext);
+   const [ showNav, setShowNev ] = useState(true);
 
-    useEffect(() => {
-        console.log(window.location.pathname);
-        if (window.location.pathname === "/") {
-            window.location.replace("/expense-tracker");
-        }
-    });
+   useEffect(() => {
+      console.log(window.location.pathname);
+      if (window.location.pathname === "/") {
+         window.location.replace("/expense-tracker");
+      }
+   });
 
-    return (
-        <div className={`App ${darkMode && 'dark-mode'}`}>
-            <ClerkProvider 
-                publishableKey={CLERK_PUBLISHABLE_KEY}
-                afterSignOutUrl="/expense-tracker"
-            >
-                <TransactionRecordContextProvider>
-                    <Router basename="/expense-tracker" >
-                        <Routes>
-                            <Route path="/" element={<Authentication />} />
-                            <Route path="/dashboard" element={<Dashboard />} />
-                            <Route path="/income" element={<Income />} />
-                            <Route path="/expense" element={<Expense />} />
-                            <Route path="/all" element={
-                                <TransactionFilterContextProvider>
-                                    <AllRecords />
-                                </TransactionFilterContextProvider>
-                            } />  
-                            <Route path="/monthly" element={<AllRecords />} />
-                            <Route path="/*" element={<Authentication />} />
-                        </Routes>
-                        <Navbar />
-                    </Router>
-                </TransactionRecordContextProvider>
-            </ClerkProvider>
-        </div>
-    );
+   return (
+      <div className={`App ${darkMode && 'dark-mode'}`}>
+         <ClerkProvider 
+               publishableKey={CLERK_PUBLISHABLE_KEY}
+               afterSignOutUrl="/expense-tracker"
+         >
+               <TransactionRecordContextProvider>
+                  <Router basename="/expense-tracker" >
+                     <div className='screen-toggle'>
+                           <Navbar />
+                           <Routes>
+                              <Route path="/" element={<Authentication />} />
+                              <Route path="/dashboard" element={<Dashboard />} />
+                              <Route path="/income" element={<Income />} />
+                              <Route path="/expense" element={<Expense />} />
+                              <Route path="/all" element={
+                                 <TransactionFilterContextProvider>
+                                       <AllRecords />
+                                 </TransactionFilterContextProvider>
+                              } />  
+                              <Route path="/monthly" element={<AllRecords />} />
+                              <Route path="/*" element={<Authentication />} />
+                           </Routes>
+                     </div>
+                  </Router>
+               </TransactionRecordContextProvider>
+         </ClerkProvider>
+      </div>
+   );
 }
 
 export default App;

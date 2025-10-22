@@ -1,310 +1,310 @@
 
 .list {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
 }
 .table-warpper {
-    width: 100%;
-    max-width: 900px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-bottom: 50px;
+   width: 100%;
+   max-width: 900px;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   padding-bottom: 50px;
 }
 
 .filters {
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    justify-content: center;
-    padding: 5px;
-    
+   width: 100%;
+   display: grid;
+   grid-template-columns: 1fr 1fr 1fr;
+   justify-content: center;
+   padding: 5px;
+   
 }
 .filters .filter {
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    padding-right: 10px;
-    margin: 5px 0;
+   display: flex;
+   justify-content: start;
+   align-items: center;
+   padding-right: 10px;
+   margin: 5px 0;
 }
 .filters .filter .name {
-    font-size: 13px;
-    padding-right: 10px;
-    font-weight: 700;
+   font-size: 13px;
+   padding-right: 10px;
+   font-weight: 700;
 }
 .filters .filter .input {
-    font-size: 13px;
+   font-size: 13px;
 }
 .filters .date-input, .filters select {
-    text-align: center;
-    background-color: transparent;
-    display: flex;
-    color: var(--color-grey);
-    border-radius: 2px;
-    border: 1px solid var(--color-grey);
+   text-align: center;
+   background-color: transparent;
+   display: flex;
+   color: var(--color-grey);
+   border-radius: 2px;
+   border: 1px solid var(--color-grey);
 }
 .filters .date-input .input {
-    border: none;
-    text-align: center;
-    background-color: transparent;
-    color: var(--color-grey);
+   border: none;
+   text-align: center;
+   background-color: transparent;
+   color: var(--color-grey);
 }
 
 .filters .date-selector {
-    display: none;
+   display: none;
 }
 .filters .date-selector.active {
-    display: block;
+   display: block;
 }
 
 .filters .date-filter {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 100;
-    background-color: var(--color-background);
-    padding: 40px;
-    border-radius: 5px;
-    box-shadow: 0 4px 8px var(--color-shadow);
+   position: fixed;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   z-index: 100;
+   background-color: var(--color-background);
+   padding: 40px;
+   border-radius: 5px;
+   box-shadow: 0 4px 8px var(--color-shadow);
 }
 .date-filter .date-filter-buttons .option {
-    border: none;
-    background-color: transparent;
-    font-size: 13px;
-    color: var(--color-font);
-    text-decoration: underline;
+   border: none;
+   background-color: transparent;
+   font-size: 13px;
+   color: var(--color-font);
+   text-decoration: underline;
 }
 .date-filter .date-picker {
-    padding: 20px;
-    display: flex;
+   padding: 20px;
+   display: flex;
 }
 .filters .date-default-button {
-    border: none;
-    background-color: transparent;
-    opacity: 0;
+   border: none;
+   background-color: transparent;
+   opacity: 0;
 }
 .filters .date-default-button.active {
-    opacity: 1;
+   opacity: 1;
 }
 
 
 
 .filters .search-box {
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    border-radius: 2px;
-    border: 1px solid var(--color-grey);
-    margin: 5px 0;
+   display: flex;
+   justify-content: start;
+   align-items: center;
+   border-radius: 2px;
+   border: 1px solid var(--color-grey);
+   margin: 5px 0;
 }
 .filters .search-box .close-button {
-    cursor: pointer;
-    color: var(--color-font);
-    opacity: 0;
+   cursor: pointer;
+   color: var(--color-font);
+   opacity: 0;
 }
 .filters .search-box.active .close-button{
-    opacity: 1;
+   opacity: 1;
 }
 .filters .search-box .search-input {
-    border: none;
-    background-color: transparent;
-    font-size: 13px;
-    color: var(--color-grey);
-    width: 80%;
+   border: none;
+   background-color: transparent;
+   font-size: 13px;
+   color: var(--color-grey);
+   width: 80%;
 }
 .filters .search-box.active .search-input {
-    color: red;
+   color: red;
 }
 .filters .search-box svg {
-    padding-left: 5px;
-    padding-right: 5px;
+   padding-left: 5px;
+   padding-right: 5px;
 }
 
 .active-filter-list {
-    width: 100%;
-    display: flex;
-    justify-content:start;
-    align-items: center;
-    padding-bottom: 15px;
+   width: 100%;
+   display: flex;
+   justify-content:start;
+   align-items: center;
+   padding-bottom: 15px;
 }
 .active-filter-list .filter-buttons {
-    display: flex;
+   display: flex;
 }
 .active-filter-list .filter-button {
-    cursor: pointer;
-    background-color: transparent;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--color-grey-border);
-    border-radius: 15px;
-    border: none;
-    padding: 5px 10px;
-    margin: 3px;
-    font-size: 12px;
-    font-weight: 500;
+   cursor: pointer;
+   background-color: transparent;
+   display: flex;
+   flex-direction: row;
+   justify-content: center;
+   align-items: center;
+   background-color: var(--color-grey-border);
+   border-radius: 15px;
+   border: none;
+   padding: 5px 10px;
+   margin: 3px;
+   font-size: 12px;
+   font-weight: 500;
 }
 .active-filter-list .delete-all-button {
-    cursor: pointer;
-    background-color: transparent;
-    border: none;
-    font-size: 11px;
-    color: var(--color-grey);
-    text-decoration: underline;
-    padding-left: 15px;
+   cursor: pointer;
+   background-color: transparent;
+   border: none;
+   font-size: 11px;
+   color: var(--color-grey);
+   text-decoration: underline;
+   padding-left: 15px;
 }
 .active-filter-list .filter-buttons .filter-button:hover {
-    background-color: var(--color-button-hover);
+   background-color: var(--color-button-hover);
 }
 .active-filter-list .filter-buttons .filter-button svg {
-    background-color: transparent;
-    padding: 2px;
-    pointer-events: none;
+   background-color: transparent;
+   padding: 2px;
+   pointer-events: none;
 }
 
 
 .table {
-    width: 100%;
-    border-collapse: collapse;
-    border: 1px solid var(--color-grey-border);
-    font-size: 13px;
-    position: relative;
+   width: 100%;
+   border-collapse: collapse;
+   border: 1px solid var(--color-grey-border);
+   font-size: 13px;
+   position: relative;
 }
 .ta
 .table th,
 .table td {
-    padding: 5px 6px;
-    text-align: center;
+   padding: 5px 6px;
+   text-align: center;
 }
 .table th {
-    padding: 15px;
-    background-color: var(--color-background);
+   padding: 15px;
+   background-color: var(--color-background);
 }
 .table tbody {
-    height: 200px;
+   height: 200px;
 }
 .table tbody tr {
-    border-top: 1px solid var(--color-grey-border);
+   border-top: 1px solid var(--color-grey-border);
 }
 
 /*
 .table tbody tr:nth-child(odd) {
-    background-color: #f7f7f7;
+   background-color: #f7f7f7;
 }*/
 
 .table tbody tr:hover {
-    background-color: var(--color-background);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+   background-color: var(--color-background);
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 
 }
 .table .see-more-button {
-    cursor: pointer;
-    font-size: 11px;
-    position: relative;
-    overflow: hidden;
-    height: 35px;
+   cursor: pointer;
+   font-size: 11px;
+   position: relative;
+   overflow: hidden;
+   height: 35px;
 }
 .element-wrapper {
-    width: 100vw;
-    height: 100vh;
-    background-color: transparent;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: none;
+   width: 100vw;
+   height: 100vh;
+   background-color: transparent;
+   position: fixed;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   display: none;
 }
 .element-wrapper.active {
-    display: block;
+   display: block;
 }
 .element {
-    z-index: 5000;
+   z-index: 5000;
 }
 .element .input {
-    border: none;
-    cursor: pointer;
-    background-color: transparent;
-    text-align: center;
-    padding: 5px;
-    font-size: 13px;
-    color: var(--color-font);
+   border: none;
+   cursor: pointer;
+   background-color: transparent;
+   text-align: center;
+   padding: 5px;
+   font-size: 13px;
+   color: var(--color-font);
 }
 .element .input:hover {
-    color: var(--color-2);
+   color: var(--color-2);
 }
 .element .input.edit {
-    background-color: var(--color-background);
-    color: red;
+   background-color: var(--color-background);
+   color: red;
 }
 .element .category {
-    display: flex;
+   display: flex;
 }
 .element .category .icons {
-    display: flex;
-    flex-direction: center;
-    align-items: center;
+   display: flex;
+   flex-direction: center;
+   align-items: center;
 }
 .element .delete-button {
-    cursor: pointer;
-    padding-right: 10px;
-    background-color: transparent;
-    color: var(--color-font);
-    border: none;
+   cursor: pointer;
+   padding-right: 10px;
+   background-color: transparent;
+   color: var(--color-font);
+   border: none;
 }
 .element .delete-button svg {
-    background-color: transparent;
+   background-color: transparent;
 }
 .element .delete-button:hover {
-    color: var(--color-2);
+   color: var(--color-2);
 }
 .element .input-wrapper {
-    display: flex;    
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+   display: flex;    
+   flex-direction: row;
+   justify-content: center;
+   align-items: center;
 }
 #amount {
-    width: 100px;
+   width: 100px;
 }
 
 
 @media only screen and (max-width: 1300px) {
-    .element .input {
-        padding: 2px;
-        font-size: 12px;
-    }
+   .element .input {
+      padding: 2px;
+      font-size: 12px;
+   }
 }
 @media only screen and (max-width: 900px) {
-    .table {
-        font-size: 11px;
-    }
-    .filters {
-        display: grid;
-        grid-template-columns: 1fr;
-    }
-    .filters .filter .name {
-        font-size: 11px;
-        padding-right: 5px;
-    }
-    .element .category .icons svg {
-        width: 80%;
-    }
-    .filters .filter .input {
-        font-size: 12px;
-    }
-    .search-box .search-input {
-        font-size: 12px;
-    }
-    .filters .date-input, .filters select {
-        height: 25px;
-    }
+   .table {
+      font-size: 11px;
+   }
+   .filters {
+      display: grid;
+      grid-template-columns: 1fr;
+   }
+   .filters .filter .name {
+      font-size: 11px;
+      padding-right: 5px;
+   }
+   .element .category .icons svg {
+      width: 80%;
+   }
+   .filters .filter .input {
+      font-size: 12px;
+   }
+   .search-box .search-input {
+      font-size: 12px;
+   }
+   .filters .date-input, .filters select {
+      height: 25px;
+   }
 }
 @media only screen and (max-width: 600px) {
 

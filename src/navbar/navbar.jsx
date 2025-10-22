@@ -5,19 +5,19 @@ import { ScrollToTop } from './components/scroll-button/scroll-to-top';
 
 export const Navbar = () => {
 
-    const isSignedIn = useUser().isSignedIn;
+   const isSignedIn = useUser().isSignedIn;
 
-    return (
-        <>
-            <div className={`navbar ${isSignedIn? "" : "hidden"}`}>
-                <SignedIn>
-                    <Menu />
-                    <div className="user-button">
-                        <UserButton showName />
-                    </div>
-                </SignedIn>
-            </div>
-            <ScrollToTop />
-        </>
-    )
+   return (
+      <>
+         <div className={`navbar ${isSignedIn? "" : "hidden"}`}>
+               <SignedIn>
+                  <Menu />
+                  <div className="user-button">
+                     <UserButton showName />
+                  </div>
+               </SignedIn>
+         </div>
+         <ScrollToTop />
+      </>
+   )
 }

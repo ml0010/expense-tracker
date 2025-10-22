@@ -6,98 +6,98 @@ import { LoadingIconSmall } from '../loading-icon/loading';
 
 export const ExpensePieChart = () => {
 
-    const [ data, setData ] = useState([]);
-    const { isRecordLoaded, expenseRecords, getTotal } = useContext(TransactionRecordContext);
+   const [ data, setData ] = useState([]);
+   const { isRecordLoaded, expenseRecords, getTotal } = useContext(TransactionRecordContext);
 
-    const getCategoryData = () => {
-        const category = [...new Set(expenseRecords.map(record => record.category))];
-        const data = [];
+   const getCategoryData = () => {
+      const category = [...new Set(expenseRecords.map(record => record.category))];
+      const data = [];
 
-        for (let i = 0; i < category.length; i++ ) {
-            let sum = 0;
-            for (let j = 0; j < expenseRecords.length; j++) {
-                if(expenseRecords[j].category === category[i])
-                    sum += expenseRecords[j].amount;
-            }
-            data.push({name: category[i], value: sum * -1});
-        }
-        //console.log(data);
-        return data;
-    };
+      for (let i = 0; i < category.length; i++ ) {
+         let sum = 0;
+         for (let j = 0; j < expenseRecords.length; j++) {
+               if(expenseRecords[j].category === category[i])
+                  sum += expenseRecords[j].amount;
+         }
+         data.push({name: category[i], value: sum * -1});
+      }
+      //console.log(data);
+      return data;
+   };
 
-    useEffect((() => {
-        if (expenseRecords.length > 0)
-            setData(getCategoryData());
-    }),[expenseRecords]);
+   useEffect((() => {
+      if (expenseRecords.length > 0)
+         setData(getCategoryData());
+   }),[expenseRecords]);
 
-    return (
-        <>
-        {isRecordLoaded ? 
-            <div className="pie-chart expense">
-                <Pie 
-                    data={data}
-                    width={320}
-                    height={320}
-                    total={getTotal(expenseRecords)}
-                    name={"expense"}
-                />
-            </div>
-            : <LoadingIconSmall />
-        }
-        </>
-    )
+   return (
+      <>
+      {isRecordLoaded ? 
+         <div className="pie-chart expense">
+               <Pie 
+                  data={data}
+                  width={320}
+                  height={320}
+                  total={getTotal(expenseRecords)}
+                  name={"expense"}
+               />
+         </div>
+         : <LoadingIconSmall />
+      }
+      </>
+   )
 }
 
 
 export const IncomePieChart = () => {
 
-    const [ data, setData ] = useState([]);
-    const { isRecordLoaded, incomeRecords, getTotal } = useContext(TransactionRecordContext);
+   const [ data, setData ] = useState([]);
+   const { isRecordLoaded, incomeRecords, getTotal } = useContext(TransactionRecordContext);
 
-    const getIncomeData = () => {
-        const incomeSources = [...new Set(incomeRecords.map(record => record.description))];
+   const getIncomeData = () => {
+      const incomeSources = [...new Set(incomeRecords.map(record => record.description))];
 
-        const data = [];
+      const data = [];
 
-        for (let i = 0; i < incomeSources.length; i++ ) {
-            let sum = 0;
-            for (let j = 0; j < incomeRecords.length; j++) {
-                if(incomeRecords[j].description === incomeSources[i])
-                    sum += incomeRecords[j].amount;
-            }
-            data.push({name: incomeSources[i], value: sum});
-        }
-        return data;
-    };
+      for (let i = 0; i < incomeSources.length; i++ ) {
+         let sum = 0;
+         for (let j = 0; j < incomeRecords.length; j++) {
+               if(incomeRecords[j].description === incomeSources[i])
+                  sum += incomeRecords[j].amount;
+         }
+         data.push({name: incomeSources[i], value: sum});
+      }
+      return data;
+   };
 
-    useEffect((() => {
-        if (incomeRecords.length > 0)
-            setData(getIncomeData());
-    }),[incomeRecords]);
+   useEffect((() => {
+      if (incomeRecords.length > 0)
+         setData(getIncomeData());
+   }),[incomeRecords]);
 
-    return (
-        <>
-        {isRecordLoaded ?
-            <div className="pie-chart income">
-                <Pie 
-                    data={data}
-                    width={320}
-                    height={320}
-                    total={getTotal(incomeRecords)}
-                    name={"income"}
-                />
-            </div>
-        : <LoadingIconSmall />
-        }
-        </>
-    )
+   return (
+      <>
+      {isRecordLoaded ?
+         <div className="pie-chart income">
+               <Pie 
+                  data={data}
+                  width={320}
+                  height={320}
+                  total={getTotal(incomeRecords)}
+                  name={"income"}
+               />
+         </div>
+      : <LoadingIconSmall />
+      }
+      </>
+   )
 }
 
-    /*
-    const test = [
-        {name:"Mark", value: 90},
-        {name:"Robert", value: 12},
-        {name:"Emily", value: 34},
-        {name:"Marion", value: 53},
-        {name:"Nicolas", value: 98},
-    ];*/
+   /*
+   const test = [
+      {name:"Mark", value: 90},
+      {name:"Robert", value: 12},
+      {name:"Emily", value: 34},
+      {name:"Marion", value: 53},
+      {name:"Nicolas", value: 98},
+   ];*/

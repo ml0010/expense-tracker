@@ -4,52 +4,52 @@ import { TransactionRecordContext } from "../../../contexts/transaction-record-c
 import { LoadingIconSmall } from "../../components/loading-icon/loading";
 
 export const ExpenseYearly = () => {
-    const { isRecordLoaded, expenseRecords } = useContext(TransactionRecordContext);
-    const { filterPeriod, getCategoryList } = useContext(TransactionFilterContext);
+   const { isRecordLoaded, expenseRecords } = useContext(TransactionRecordContext);
+   const { filterPeriod, getCategoryList } = useContext(TransactionFilterContext);
 
-    const [ records, setRecords ] = useState(filterPeriod(expenseRecords, "year"));
-    const [ category, setCategory ] = useState(getCategoryList(records));
+   const [ records, setRecords ] = useState(filterPeriod(expenseRecords, "year"));
+   const [ category, setCategory ] = useState(getCategoryList(records));
 
-    useEffect(() => {
-        if (expenseRecords.length > 0 ) {
-            const newData = filterPeriod(expenseRecords, "year");
-            setRecords(newData);
-            setCategory(getCategoryList(newData));
-        }
-    }, [expenseRecords]);
+   useEffect(() => {
+      if (expenseRecords.length > 0 ) {
+         const newData = filterPeriod(expenseRecords, "year");
+         setRecords(newData);
+         setCategory(getCategoryList(newData));
+      }
+   }, [expenseRecords]);
 
-    return (
-        <>
-        {isRecordLoaded > 0 ?
-            <div>
-                <h4>Breakdown</h4>
-                <table className="summary-table">
-                    <thead>
-                        <tr>
-                            <th>Category</th>
-                            <th>Amount</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {category.length === 0 ? 
-                            <tr>
-                                <td colSpan="2">No Transaction</td>
-                            </tr> : 
-                            <>
-                                {category.map((category, index) => 
-                                <tr key={index}>
-                                    <td>{category}</td>
-                                    <td id="amount">{(records.filter((record) => record.category === category).reduce((sum, record) => sum + record.amount, 0) * -1).toFixed(2)}</td>
-                                </tr>)}
-                            </>
-                        }
+   return (
+      <>
+      {isRecordLoaded > 0 ?
+         <div>
+               <h4>Breakdown</h4>
+               <table className="summary-table">
+                  <thead>
+                     <tr>
+                           <th>Category</th>
+                           <th>Amount</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     {category.length === 0 ? 
+                           <tr>
+                              <td colSpan="2">No Transaction</td>
+                           </tr> : 
+                           <>
+                              {category.map((category, index) => 
+                              <tr key={index}>
+                                 <td>{category}</td>
+                                 <td id="amount">{(records.filter((record) => record.category === category).reduce((sum, record) => sum + record.amount, 0) * -1).toFixed(2)}</td>
+                              </tr>)}
+                           </>
+                     }
 
-                    </tbody>
-                </table>
-                <p className="total">Total: € {(records.reduce((sum, record) => sum + record.amount, 0) * -1).toFixed(2)}</p>
-            </div>
-            : <LoadingIconSmall />
-        }
-        </>
-    )
+                  </tbody>
+               </table>
+               <p className="total">Total: € {(records.reduce((sum, record) => sum + record.amount, 0) * -1).toFixed(2)}</p>
+         </div>
+         : <LoadingIconSmall />
+      }
+      </>
+   )
 }

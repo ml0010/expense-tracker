@@ -1,40 +1,40 @@
 .scroll-to-top {
-    position: fixed;
-    bottom: 30px;
-    right: 0;
-    pointer-events: none;
+   position: fixed;
+   bottom: 30px;
+   right: 0;
+   pointer-events: none;
 }
 .scroll-to-top.active {
-    pointer-events: auto;
+   pointer-events: auto;
 }
 
 .scroll-to-top.active .scroll-button {
-    opacity: 1;
+   opacity: 1;
 }
 
 .scroll-to-top .scroll-button {
-    background-color: var(--color-font);
-    color: var(--color-background);
-    border: none;
-    opacity: 0;
-    transition: 0.5s ease-in-out;
-    cursor: pointer;
-    padding: 8px;
-    position: relative;
-    display: flex;
-    align-items: center;
+   background-color: var(--color-font);
+   color: var(--color-background);
+   border: none;
+   opacity: 0;
+   transition: 0.5s ease-in-out;
+   cursor: pointer;
+   padding: 8px;
+   position: relative;
+   display: flex;
+   align-items: center;
 }
 .scroll-to-top .scroll-button .text {
-    font-size: 0;
-    font-weight: 600;
-    transition: 0.2s ease-in-out;
-    text-align: center;
-    opacity: 0;
+   font-size: 0;
+   font-weight: 600;
+   transition: 0.2s ease-in-out;
+   text-align: center;
+   opacity: 0;
 }
 .scroll-to-top .scroll-button:hover .text {
-    font-size: 10px;
-    opacity: 1;
-    margin: auto 5px;
+   font-size: 10px;
+   opacity: 1;
+   margin: auto 5px;
 }
 
 @media only screen and (max-width: 1300px) {

@@ -6,7 +6,7 @@
 
     --color-font: #313131;
     --color-grey: #909090;
-    --color-grey-border: rgba(175, 175, 175, 0.481);
+    --color-grey-border: rgba(175, 175, 175, 0.734);
     --color-grey-light: #f3f3f3;
     --color-background: #f9f9f9;
     --color-button-hover: rgb(166, 231, 245);
@@ -17,6 +17,7 @@
     --color-1: rgb(120, 195, 202);
     --color-2: rgb(4, 141, 163);
     --color-3: rgb(226, 236, 238);
+
     
 }
 html, body {
@@ -31,20 +32,27 @@ html, body {
     width: 100%;
     min-height: 100vh;
     transition: 0.2s;
-    background:
-        linear-gradient(var(--color-background), transparent),
-        linear-gradient(to top left, var(--color-1), transparent),
-        linear-gradient(to top right, var(--color-background), transparent);
+    background: var(--color-background);
     background-blend-mode: screen;
     background-attachment: fixed;
 }
+
+/*
+    background:
+        linear-gradient(var(--color-background), transparent),
+        linear-gradient(to top left, var(--color-bg-1), transparent),
+        linear-gradient(to top right, var(--color-bg-2), transparent);
+*/
 .App.dark-mode {
-    --color-background: #242424;
+    --color-background: #13151C;
     --color-font: #f9f9f9;
-    --color-box1: rgb(45, 45, 45);
+    --color-box1: #1C1F29;
     --color-box2: #222222;
+
     --color-shadow: rgba(0, 0, 0, 0.287);
     --color-wrapper: rgba(48, 48, 48, 0.316);
+    --color-grey-border: #333742;
+
 }
 
 /*

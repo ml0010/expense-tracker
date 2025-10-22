@@ -14,11 +14,11 @@
 
 .scroll-to-top .scroll-button {
     background-color: var(--color-font);
+    color: var(--color-background);
     border: none;
     opacity: 0;
     transition: 0.5s ease-in-out;
     cursor: pointer;
-    color: white;
     padding: 8px;
     position: relative;
     display: flex;
@@ -29,7 +29,6 @@
     font-weight: 600;
     transition: 0.2s ease-in-out;
     text-align: center;
-    color: white;
     opacity: 0;
 }
 .scroll-to-top .scroll-button:hover .text {

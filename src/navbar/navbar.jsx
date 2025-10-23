@@ -11,8 +11,8 @@ export const Navbar = () => {
       <>
          <div className={`navbar ${isSignedIn? "" : "hidden"}`}>
             <SignedIn>
-               <MenuSide />
                <MenuBottom />
+               <MenuSide />
             </SignedIn>
          </div>
          <ScrollToTop />

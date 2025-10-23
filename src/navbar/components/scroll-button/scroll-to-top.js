@@ -1,4 +1,4 @@
-import { ArrowUpIcon, CaretCircleUpIcon, CaretUpIcon } from '@phosphor-icons/react';
+import { ArrowUpIcon } from '@phosphor-icons/react';
 import { useEffect, useState } from 'react'
 import './scroll-to-top.css'
 

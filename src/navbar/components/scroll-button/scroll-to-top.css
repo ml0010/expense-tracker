@@ -1,6 +1,6 @@
 .scroll-to-top {
    position: fixed;
-   bottom: 30px;
+   bottom: var(--nav-width);
    right: 0;
    pointer-events: none;
 }

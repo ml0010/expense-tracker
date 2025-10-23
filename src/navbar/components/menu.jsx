@@ -30,7 +30,9 @@ export const MenuSide = () => {
                         <p>{user.primaryEmailAddress.emailAddress}</p>
                   </div>
                </div>
-               <Link className={`logout-button ${!showMenu && "hidden"}`} onClick={() => signOut({ redirectUrl: "/expense-tracker" })}><SignOutIcon size={20} /></Link>
+               <Link className={`logout-button ${!showMenu && "hidden"}`} onClick={() => signOut({ redirectUrl: "/expense-tracker" })}>
+                  <SignOutIcon size={22} />
+               </Link>
             </div>
             <hr className="line" />
             <div className="links">

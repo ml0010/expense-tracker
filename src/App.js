@@ -1,5 +1,5 @@
 import './App.css';
-import { ClerkProvider } from '@clerk/clerk-react';
+import { ClerkProvider, useUser } from '@clerk/clerk-react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Authentication from './pages/authentication/auth';
 import Dashboard from './pages/dashboard/dashboard';
@@ -52,9 +52,10 @@ export default App;
 export const RouteList = () => {
 
    const { showMenu } = useContext(MenuToggleContext);
+   const isSignedIn = useUser().isSignedIn;
 
    return (
-      <div className={`pages ${showMenu && 'menu-active'}`}>
+      <div className={`pages ${isSignedIn && 'logged-in'} ${showMenu && 'menu-active'}`}>
          <Routes>
             <Route path="/" element={<Authentication />} />
             <Route path="/dashboard" element={<Dashboard />} />

@@ -19,9 +19,3 @@ export const Navbar = () => {
       </>
    )
 }
-/*
-               <div className="user-button">
-                  <UserButton showName />
-               </div>
-               
-               */

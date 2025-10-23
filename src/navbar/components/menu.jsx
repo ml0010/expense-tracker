@@ -1,6 +1,6 @@
 import { useClerk, UserButton, useUser } from '@clerk/clerk-react';
 import { ChartDonutIcon, ClipboardTextIcon, MoneyIcon, PiggyBankIcon, SignOutIcon, TextIndentIcon, TextOutdentIcon } from '@phosphor-icons/react'
-import { useContext } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom';
 import ToggleSwitch from './toggle-switch/toggle-switch'
 import { MenuToggleContext } from '../../contexts/menu-toggle-context';
@@ -10,11 +10,42 @@ export const MenuSide = () => {
    const { showMenu, setShowMenu } = useContext(MenuToggleContext);
    const { user } = useUser();
    const { signOut } = useClerk();
-   
+
    const currentPage = useLocation().pathname.substring(1);
+   
+   const [ isMenuBottom, setIsMenuBottom ] = useState(false);
+
+   const getScreenWidth = () => {
+      setIsMenuBottom( window.innerWidth <= 1100 ? true : false );
+   };
+
+   useEffect(() => {
+      getScreenWidth();
+      window.addEventListener("resize", setIsMenuBottom);
+      return () => {
+         window.removeEventListener("resize", setIsMenuBottom);
+      };
+   });
+
+
+   let menuRef = useRef(null);
+   
+   useEffect(() => {
+      let handler = (e)=>{
+         if(showMenu && isMenuBottom && menuRef.current && !menuRef.current.contains(e.target)) {
+            setShowMenu(false);
+         }
+      };
+      document.addEventListener("mousedown", handler);
+      
+      return() =>{
+         document.removeEventListener("mousedown", handler);
+      }
+   });
+
 
    return (
-      <div className={`menu-side ${showMenu ? "open" : "closed"}`}>
+      <div className={`menu-side ${showMenu ? "open" : "closed"}`} ref={menuRef}>
          <div className='menu-button'>
             {showMenu ? 
                <TextOutdentIcon size={28} weight="bold" onClick={() => setShowMenu(!showMenu)}/> : 
@@ -31,7 +62,7 @@ export const MenuSide = () => {
                   </div>
                </div>
                <Link className={`logout-button ${!showMenu && "hidden"}`} onClick={() => signOut({ redirectUrl: "/expense-tracker" })}>
-                  <SignOutIcon size={22} />
+                  <SignOutIcon size={22} weight="bold" />
                </Link>
             </div>
             <hr className="line" />

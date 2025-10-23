@@ -14,6 +14,17 @@
    cursor: pointer;
    border: 1px solid var(--color-font);
 }
+.toggle-minimal {
+   height: 29px;
+   width: 29px;
+   border-radius: 40px;
+   padding: 2.5px;
+   margin: auto;
+   cursor: pointer;
+   border: 1px solid var(--color-font);
+   background-color: var(--color-font);
+   color: var(--color-background);
+}
 
 .toggle::before {
    content: "";
@@ -32,16 +43,22 @@
    transform: translateX(39.5px);
 }
 
-.toggle input {
+.toggle input, .toggle-minimal input {
    display: none;
 }
 
-.toggle .icons {
+.toggle .icons{
    display: flex;
    justify-content: space-between;
    align-items: center;
    height: 100%;
    margin: 0 5px;
+}
+.toggle-minimal .icons {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 100%;
 }
 
 .toggle .icons svg {

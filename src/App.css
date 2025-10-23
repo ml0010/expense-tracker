@@ -17,7 +17,8 @@
    --color-1: rgb(120, 195, 202);
    --color-2: rgb(4, 141, 163);
    --color-3: rgb(226, 236, 238);
-   --nav-width: 230px;
+   --nav-width: 70px;
+   --nav-full-width: 230px;
 }
 html, body {
    margin: 0;
@@ -54,8 +55,11 @@ html, body {
    --color-grey-border: #333742;
 
 }
-.pages.menu-active {
+.pages {
    padding-left: calc(var(--nav-width) + 1rem);
+}
+.pages.menu-active {
+   padding-left: calc(var(--nav-full-width) + 1rem);
    transition: 0.5s ease-in-out;
 }
 /*

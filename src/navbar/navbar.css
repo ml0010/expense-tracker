@@ -1,10 +1,9 @@
 .navbar {
-   backdrop-filter: blur(15px);
    height: 100vh;
-   margin: auto;
-   background-color: rgb(204, 142, 142);
    position: fixed;
    top: 0;
+   backdrop-filter: blur(10px);
+   margin: auto;
 }
 .navbar.hidden {
    display: none;
@@ -17,7 +16,6 @@
    height: 100%;
    box-shadow: 0 2px 10px var(--color-shadow);
    width: var(--nav-width);
-   transition: 0.2s ease-in-out;
 }
 .menu.open {
    width: var(--nav-full-width);
@@ -175,4 +173,55 @@
 }
 .menu.open .menu-bar .line {
    width: 80%;
+}
+
+@media only screen and (max-width: 1100px) {
+   .navbar {
+      top: auto;
+      left: 50%;
+      bottom: 0;
+      transform: translate(-50%, -50%);
+      margin: 0 auto;
+      height: var(--nav-width);
+      width: 80vw;
+      transition: 0s ease-in-out;
+
+   }
+   .menu {
+      flex-direction: row;
+      width: 100%;
+      background-color: transparent;
+      border-radius: 50px;
+   }
+   .menu .menu-bar {
+      flex-direction: row;
+   }
+   .menu .menu-button {
+      display: none;
+   }
+   .menu .menu-bar .line {
+      display: none;
+   }
+   .menu .text-hover {
+      display: none;
+   }
+   .menu .links {
+      flex-direction: row;
+      height: 100%;
+      width: 100%;
+      margin: 0;
+   }
+   .menu .link {
+      background-color: blue;
+      margin: 0;
+   }
+
+
+
+}
+@media only screen and (max-width: 900px) {
+}
+@media only screen and (min-width: 600px) {
+}
+@media only screen and (min-width: 400px) {
 }

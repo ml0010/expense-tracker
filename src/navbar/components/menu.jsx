@@ -8,12 +8,10 @@ import { MenuToggleContext } from '../../contexts/menu-toggle-context';
 export const Menu = () => {
 
    const { showMenu, setShowMenu } = useContext(MenuToggleContext);
-
-   
-   const currentPage = useLocation().pathname.substring(1);
-
    const { user } = useUser();
    const { signOut } = useClerk();
+   
+   const currentPage = useLocation().pathname.substring(1);
 
    return (
       <div className={`menu ${showMenu && "open"}`}>

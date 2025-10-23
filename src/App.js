@@ -8,7 +8,7 @@ import { Navbar } from './navbar/navbar';
 import { Income } from './pages/income/income';
 import { Expense } from './pages/expense/expense';
 import { AllRecords}  from './pages/all-records/all-records';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import { TransactionFilterContextProvider } from './contexts/transaction-filter-context';
 import { DarkModeContext } from './contexts/dark-mode-context';
 import { MenuToggleContext, MenuToggleContextProvider } from './contexts/menu-toggle-context';

@@ -1,5 +1,5 @@
 import { useClerk, UserButton, useUser } from '@clerk/clerk-react';
-import { ChartDonutIcon, ClipboardTextIcon, ListIcon, MoneyIcon, PiggyBankIcon, SignOutIcon, TextIndentIcon, TextOutdentIcon, XIcon } from '@phosphor-icons/react'
+import { ChartDonutIcon, ClipboardTextIcon, MoneyIcon, PiggyBankIcon, SignOutIcon, TextIndentIcon, TextOutdentIcon } from '@phosphor-icons/react'
 import { useContext } from 'react'
 import { Link, useLocation } from 'react-router-dom';
 import ToggleSwitch from './toggle-switch/toggle-switch'
@@ -24,7 +24,16 @@ export const Menu = () => {
             }
          </div>
          <div className="menu-bar">
-            <ToggleSwitch />
+            <div className="user">
+               <div className="user-info">
+                  <UserButton />
+                  <div className={`user-detail ${!showMenu && "hidden"}`}>
+                        <p><b>{user.fullName}</b></p>
+                        <p>{user.primaryEmailAddress.emailAddress}</p>
+                  </div>
+               </div>
+               <Link className={`logout-button ${!showMenu && "hidden"}`} onClick={() => signOut({ redirectUrl: "/expense-tracker" })}><SignOutIcon size={20} /></Link>
+            </div>
             <hr className="line" />
             <div className="links">
                <Link 
@@ -70,16 +79,7 @@ export const Menu = () => {
                </Link>
             </div>
             <hr className="line" />
-            <div className="user">
-               <div className="user-info">
-                  <UserButton />
-                  <div className={`user-detail ${!showMenu && "hidden"}`}>
-                        <p><b>{user.fullName}</b></p>
-                        <p>{user.primaryEmailAddress.emailAddress}</p>
-                  </div>
-               </div>
-               <Link className={`logout-button ${!showMenu && "hidden"}`} onClick={() => signOut({ redirectUrl: "/expense-tracker" })}><SignOutIcon size={20} /></Link>
-            </div>
+            <ToggleSwitch />
          </div>
 
          

@@ -16,8 +16,8 @@ const ToggleSwitch = () => {
          <label className='label' htmlFor='toggle'>
             <div className={`toggle ${darkMode ? "dark-mode" : "light-mode"}`}>
                   <div className="icons">
-                     <MoonIcon size={24} />
-                     <SunIcon size={24} />
+                     <MoonIcon size={20} />
+                     <SunIcon size={20} />
                   </div>
                   <input
                      id="toggle"
@@ -32,7 +32,7 @@ const ToggleSwitch = () => {
          <label className='label' htmlFor='toggle'>
             <div className={`toggle-minimal ${darkMode ? "dark-mode" : "light-mode"}`}>
                   <div className="icons">
-                     {darkMode ? <MoonIcon size={24} /> : <SunIcon size={24} />} 
+                     {darkMode ? <MoonIcon size={20} /> : <SunIcon size={20} />} 
                   </div>
                   <input
                      id="toggle"

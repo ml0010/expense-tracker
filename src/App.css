@@ -17,8 +17,8 @@
    --color-1: rgb(120, 195, 202);
    --color-2: rgb(4, 141, 163);
    --color-3: rgb(226, 236, 238);
-   --nav-width: 70px;
-   --nav-full-width: 230px;
+   --nav-width: 65px;
+   --nav-full-width: 250px;
 }
 html, body {
    margin: 0;
@@ -60,7 +60,7 @@ html, body {
 }
 .pages.menu-active {
    padding-left: calc(var(--nav-full-width) + 1rem);
-   transition: 0.5s ease-in-out;
+   transition: 0.2s ease-in-out;
 }
 /*
 .button {

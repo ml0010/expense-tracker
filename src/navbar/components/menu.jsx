@@ -19,8 +19,8 @@ export const Menu = () => {
       <div className={`menu ${showMenu && "open"}`}>
          <div className='menu-button'>
             {showMenu ? 
-               <XIcon size={30} onClick={() => setShowMenu(!showMenu)}/> : 
-               <ListIcon size={30} onClick={() => setShowMenu(!showMenu)}/>
+               <XIcon size={28} onClick={() => setShowMenu(!showMenu)}/> : 
+               <ListIcon size={28} onClick={() => setShowMenu(!showMenu)}/>
             }
          </div>
          <div className={`menu-bar ${showMenu && "open"}`}>
@@ -31,21 +31,21 @@ export const Menu = () => {
                   className={`link ${currentPage === "dashboard" ? "active" : ""}`} 
                   to="/dashboard" 
                >
-                  <ChartDonutIcon size={28} />
+                  <ChartDonutIcon size={22} />
                   <span className={`text ${!showMenu && "hidden"}`}>Dashboard</span>
                </Link>
                <Link 
                   className={`link ${currentPage === "income" ? "active" : ""}`} 
                   to="/income" 
                >
-                  <PiggyBankIcon size={28} />
+                  <PiggyBankIcon size={22} />
                   <span className={`text ${!showMenu && "hidden"}`}>Income</span>
                </Link>
                <Link 
                   className={`link ${currentPage === "expense" ? "active" : ""}`} 
                   to="/expense" 
                >
-                  <MoneyIcon size={28} />
+                  <MoneyIcon size={22} />
                   <span className={`text ${!showMenu && "hidden"}`}>Expense</span>
                </Link>
                <Link 
@@ -53,7 +53,7 @@ export const Menu = () => {
                   to="/all" 
                   state={{ period: "all" }} 
                >
-                  <ClipboardTextIcon size={28} />
+                  <ClipboardTextIcon size={22} />
                   <span className={`text ${!showMenu && "hidden"}`}>All Records</span>
                </Link>
             </div>

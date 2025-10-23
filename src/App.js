@@ -36,8 +36,8 @@ function App() {
                <TransactionRecordContextProvider>
                   <Router basename="/expense-tracker" >
                         <MenuToggleContextProvider>
-                           <Navbar />
                            <RouteList />
+                           <Navbar />
                         </MenuToggleContextProvider>
                   </Router>
                </TransactionRecordContextProvider>

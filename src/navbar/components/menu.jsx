@@ -1,5 +1,5 @@
 import { useClerk, UserButton, useUser } from '@clerk/clerk-react';
-import { ChartDonutIcon, ClipboardTextIcon, ListIcon, MoneyIcon, PiggyBankIcon, SignOutIcon, XIcon } from '@phosphor-icons/react'
+import { ChartDonutIcon, ClipboardTextIcon, ListIcon, MoneyIcon, PiggyBankIcon, SignOutIcon, TextIndentIcon, TextOutdentIcon, XIcon } from '@phosphor-icons/react'
 import { useContext } from 'react'
 import { Link, useLocation } from 'react-router-dom';
 import ToggleSwitch from './toggle-switch/toggle-switch'
@@ -19,11 +19,11 @@ export const Menu = () => {
       <div className={`menu ${showMenu && "open"}`}>
          <div className='menu-button'>
             {showMenu ? 
-               <XIcon size={28} onClick={() => setShowMenu(!showMenu)}/> : 
-               <ListIcon size={28} onClick={() => setShowMenu(!showMenu)}/>
+               <TextOutdentIcon size={28} weight="bold" onClick={() => setShowMenu(!showMenu)}/> : 
+               <TextIndentIcon size={28} weight="bold" onClick={() => setShowMenu(!showMenu)}/>
             }
          </div>
-         <div className={`menu-bar ${showMenu && "open"}`}>
+         <div className="menu-bar">
             <ToggleSwitch />
             <hr className="line" />
             <div className="links">
@@ -33,6 +33,9 @@ export const Menu = () => {
                >
                   <ChartDonutIcon size={22} />
                   <span className={`text ${!showMenu && "hidden"}`}>Dashboard</span>
+                  <div className={`text-hover ${showMenu && "hidden"}`}>
+                     <span className='text'>Dashboard</span>
+                  </div>
                </Link>
                <Link 
                   className={`link ${currentPage === "income" ? "active" : ""}`} 
@@ -40,6 +43,9 @@ export const Menu = () => {
                >
                   <PiggyBankIcon size={22} />
                   <span className={`text ${!showMenu && "hidden"}`}>Income</span>
+                  <div className={`text-hover ${showMenu && "hidden"}`}>
+                     <span className='text'>Income</span>
+                  </div>
                </Link>
                <Link 
                   className={`link ${currentPage === "expense" ? "active" : ""}`} 
@@ -47,6 +53,9 @@ export const Menu = () => {
                >
                   <MoneyIcon size={22} />
                   <span className={`text ${!showMenu && "hidden"}`}>Expense</span>
+                  <div className={`text-hover ${showMenu && "hidden"}`}>
+                     <span className='text'>Expense</span>
+                  </div>
                </Link>
                <Link 
                   className={`link ${currentPage === "all" ? "active" : ""}`} 
@@ -55,6 +64,9 @@ export const Menu = () => {
                >
                   <ClipboardTextIcon size={22} />
                   <span className={`text ${!showMenu && "hidden"}`}>All Records</span>
+                  <div className={`text-hover ${showMenu && "hidden"}`}>
+                     <span className='text'>All Records</span>
+                  </div>
                </Link>
             </div>
             <hr className="line" />

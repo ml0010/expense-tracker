@@ -5,7 +5,7 @@ import { Link, useLocation } from 'react-router-dom';
 import ToggleSwitch from './toggle-switch/toggle-switch'
 import { MenuToggleContext } from '../../contexts/menu-toggle-context';
 
-export const Menu = () => {
+export const MenuSide = () => {
 
    const { showMenu, setShowMenu } = useContext(MenuToggleContext);
    const { user } = useUser();
@@ -14,7 +14,7 @@ export const Menu = () => {
    const currentPage = useLocation().pathname.substring(1);
 
    return (
-      <div className={`menu ${showMenu && "open"}`}>
+      <div className={`menu-side ${showMenu ? "open" : "closed"}`}>
          <div className='menu-button'>
             {showMenu ? 
                <TextOutdentIcon size={28} weight="bold" onClick={() => setShowMenu(!showMenu)}/> : 
@@ -79,8 +79,50 @@ export const Menu = () => {
             <hr className="line" />
             <ToggleSwitch />
          </div>
+      </div>
+   )
+}
 
-         
+export const MenuBottom = () => {
+   
+   const currentPage = useLocation().pathname.substring(1);
+
+   return (
+      <div className="menu-bottom">
+         <div className="menu-bar">
+            <div className="links">
+               <Link 
+                  className={`link ${currentPage === "dashboard" ? "active" : ""}`} 
+                  to="/dashboard" 
+               >
+                  <ChartDonutIcon size={23} weight="fill" />
+                  <span className="text">Dashboard</span>
+               </Link>
+               <Link 
+                  className={`link ${currentPage === "income" ? "active" : ""}`} 
+                  to="/income" 
+               >
+                  <PiggyBankIcon size={23} weight="fill" />
+                  <span className="text">Income</span>
+
+               </Link>
+               <Link 
+                  className={`link ${currentPage === "expense" ? "active" : ""}`} 
+                  to="/expense" 
+               >
+                  <MoneyIcon size={23} weight="fill" />
+                  <span className="text">Expense</span>
+               </Link>
+               <Link 
+                  className={`link ${currentPage === "all" ? "active" : ""}`} 
+                  to="/all" 
+                  state={{ period: "all" }} 
+               >
+                  <ClipboardTextIcon size={23} weight="fill" />
+                  <span className="text">All Records</span>
+               </Link>
+            </div>
+         </div>
       </div>
    )
 }

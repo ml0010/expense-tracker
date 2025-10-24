@@ -5,6 +5,7 @@
    transition: 0.1s ease-in-out;
    position: fixed;
    top: 0;
+   z-index: 100;
 }
 .navbar.hidden {
    display: none;
@@ -15,7 +16,7 @@
    flex-direction: column;
    height: 100%;
    width: var(--nav-width);
-   background-color: var(--color-background);
+   background-color: var(--color-box1);
    box-shadow: 0 2px 10px var(--color-shadow);
 }
 .menu-side.open {
@@ -103,7 +104,7 @@
 }
 .menu-side .menu-bar .link.active svg {
    background-color: var(--color-2);
-   color: var(--color-background);
+   color: var(--color-box1);
 }
 .menu-side .menu-bar .link .text-hover {
    position: absolute;
@@ -122,7 +123,7 @@
 .menu-side .menu-bar .link .text-hover .text {
    font-size: 13px;
    font-weight: 400;
-   color: var(--color-background);
+   color: var(--color-box1);
    background-color: var(--color-1);
    display: flex;
    justify-content: center;
@@ -164,7 +165,7 @@
 
 .menu-bottom {
    position: absolute;
-   background-color: var(--color-background);
+   background-color: var(--color-box1);
    width: 100vw;
    height: var(--nav-width);
    bottom: 0;

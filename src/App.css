@@ -17,8 +17,8 @@
    --color-1: rgb(120, 195, 202);
    --color-2: rgb(4, 141, 163);
    --color-3: rgb(226, 236, 238);
-   --nav-width: 65px;
-   --nav-full-width: 250px;
+   --nav-width: 70px;
+   --nav-full-width: 290px;
 }
 html, body {
    margin: 0;
@@ -60,10 +60,10 @@ html, body {
    padding: 0;
 }
 .pages.logged-in {
-   padding-left: calc(var(--nav-width) + 1rem);
+   padding-left: calc(var(--nav-width) + 0.5rem);
 }
 .pages.menu-active {
-   padding-left: calc(var(--nav-full-width) + 1rem);
+   padding-left: calc(var(--nav-full-width) + 0.5rem);
 }
 /*
 .button {

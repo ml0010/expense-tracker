@@ -1,11 +1,78 @@
 
 .transaction-form {
-   width: 100%;
-   text-align: center;
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: calc(100% - var(--nav-width));
+   padding-left: calc(var(--nav-width) + 0.5rem);
+   z-index: 1;
+   background-color: var(--color-box1);
+   border-bottom: 1px solid var(--color-grey-border);
+   min-height: 60px;
 }
+
+.add-button {
+   display: block;
+   border: 1px solid var(--color-grey-border);
+   border-radius: 2px;
+   background-color: var(--color-1);
+   margin: 10px 2vw;
+   cursor: pointer;
+   position:relative;
+   overflow:hidden;
+   font-size: 11px;
+   font-weight: 600;
+   padding: 10px 30px;
+}
+
+.add-button:before {
+   position: absolute;
+   height: 0;
+   width: 100%;
+   background-color : var(--color-1);
+   left: 0;
+   bottom: 0;
+   transition: all .2s ease-in-out;
+   font-size: 15px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   opacity: 0;
+}
+.add-button.income:before {
+   content: "INCOME";
+}
+.add-button.expense:before {
+   content: "EXPENSE";
+}
+.add-button:hover:before {
+   height: 100%;
+   opacity: 1;
+}
+.add-button:active {
+   top: 2px;
+   transition: all .2s;
+}
+
+.standard-buttons {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+.floating-buttons {
+   position: fixed;
+   top: 92%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   display: flex;
+   z-index: 100;
+}
+
+
+
 .transaction-form .transaction-form-wrapper {
-   width: 100vw;
-   height: 100vh;
+   width: 100%;
+   height: 100%;
    background-color: var(--color-wrapper);
    position: fixed;
    top: 50%;
@@ -13,7 +80,6 @@
    transform: translate(-50%, -50%);
    z-index: 100;
    backdrop-filter: blur(10px);
-   
 }
 .transaction-form .form {
    background-color: var(--color-background);
@@ -49,127 +115,15 @@
    border-radius: 2px;
 
 }
-
-.add-button {
-   display: block;
-   width: 50px;
-   height: 50px;
-   line-height: 70px;
-   border-radius: 50%;
-   border: 3px solid var(--color-background);
-   background-color: var(--color-1);
-   box-shadow: 0 0 0 5px var(--color-1);
-   margin: 20px 3vw;
-   cursor: pointer;
-   position:relative;
-   overflow:hidden;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-}
-.add-button p {
-   font-size: 30px;
-   color: var(--color-background);
-   font-weight: 600;
-}
-.add-button:before {
-   position: absolute;
-   height: 0;
-   width: 100%;
-   background-color : var(--color-1);
-   left: 0;
-   bottom: 0;
-   transition: all .2s ease-in-out;
-   font-size: 10px;
-   font-weight: 600;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   opacity: 0;
-}
-.add-button.income:before {
-   content: "Income";
-}
-.add-button.expense:before {
-   content: "Expense";
-}
-.add-button:hover:before {
-   height: 100%;
-   opacity: 1;
-}
-.add-button:active {
-   top: 2px;
-   transition: all .2s;
-}
-
-.standard-buttons {
-   display: flex;
-   justify-content: center;
-   align-items: center;
-}
-.floating-buttons {
-   position: fixed;
-   top: 92%;
-   left: 50%;
-   transform: translate(-50%, -50%);
-   display: flex;
-   z-index: 100;
-}
-
-/*
-.standard-buttons {
-   padding: 20px;
-}
-.standard-buttons .standard-button {
-   margin-right: 30px;
-   margin-left: 30px;
-   transition: 0.2s ease-in-out;
-   opacity: 0.8;
-   color: var(--color-1);
-   border: none;
-   background-color: transparent;
-   cursor: pointer;
-}
-.standard-buttons .standard-button:hover {
-   opacity: 1;
-}
-
-.standard-buttons .standard-button svg {
-   border-radius: 50%;
-   background-color: var(--color-background);
-   transition: 0.5s ease-in-out;
-}
-.standard-buttons .standard-button:hover svg {
-   color: var(--color-2);
-}
-.standard-buttons .standard-button p, .floating-buttons .floating-button p {
-   color: var(--color-font);
-   font-size: 11px;
-   margin: 5px;
-   font-weight: 600;
-}
-
-.floating-buttons .floating-button {
-   margin-right: 30px;
-   margin-left: 30px;
-   opacity: 0.3;
-   transition: 0.2s ease-in;
-   color: var(--color-grey);
-   cursor: pointer;
-}
-.floating-buttons .floating-button:hover {
-   opacity: 1;
-   color: var(--color-1);
-}
-.floating-buttons .floating-button svg {
-   border-radius: 50%;
-   background-color: var(--color-background);
-}
-*/
-@media only screen and (max-width: 1300px) {
+@media only screen and (max-width: 1100px) {
+   .transaction-form  {
+      width: 100%;
+      padding-left: 0;
+   }
 }
 @media only screen and (max-width: 900px) {
-
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (min-width: 600px) {
+}
+@media only screen and (min-width: 400px) {
 }

@@ -4,7 +4,6 @@ import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import { Category } from '../category';
 import './transaction-form.css'
-import { MenuToggleContext } from '../../../contexts/menu-toggle-context';
 
 export const TransactionForm = () => {
    
@@ -109,41 +108,55 @@ export const TransactionForm = () => {
    return (
       <div className="transaction-form">
          <div className="standard-buttons">
-               <span className="add-button income" onClick={openIncomeForm}>ADD INCOME</span>
-               <span className="add-button expense" onClick={openExpenseForm}>ADD EXPENSE</span>
+               <span className="add-button income" onClick={openIncomeForm}>
+                  <p>+</p>
+               </span>
+               <span className="add-button expense" onClick={openExpenseForm}>
+                  <p>-</p>
+               </span>
          </div>
-         {isFormOpen && 
-            <div className="transaction-form-wrapper">
-                  <form onSubmit={handleSubmit} className="form" ref={formRef}>
-                     <p className="form-title">{isExpense? 'Add Your Expense' : 'Add Your Income'}</p>
+         {showFloatingButton? 
+         <div className="floating-buttons">
+               <span className="add-button income" onClick={openIncomeForm}>
+                  <p>+</p>
+               </span>
+               <span className="add-button expense" onClick={openExpenseForm}>
+                  <p>-</p>
+               </span>
+         </div>
+         : <></> }
+         {isFormOpen? 
+         <div className="transaction-form-wrapper">
+               <form onSubmit={handleSubmit} className="form" ref={formRef}>
+                  <p className="form-title">{isExpense? 'Add Your Expense' : 'Add Your Income'}</p>
+                  <div className="form-field">
+                     <label>Date</label>
+                     <DatePicker className="input" selected={date} dateFormat="yyyy/MM/dd" onChange={(date) => setDate(date)} />
+                  </div>
+                  <div className="form-field">
+                     <label>Description</label>
+                     <input className="input" type="text" value={description} onChange={(e) => setDescription(e.target.value)} required></input>
+                  </div>
+                  <div className="form-field">
+                     <label>Amount</label>
+                     <input className="input" type="text" value={amount} onChange={(e) => setAmount(e.target.value)} required></input>
+                  </div>
+                  {isExpense ? 
                      <div className="form-field">
-                        <label>Date</label>
-                        <DatePicker className="input" selected={date} dateFormat="yyyy/MM/dd" onChange={(date) => setDate(date)} />
-                     </div>
-                     <div className="form-field">
-                        <label>Description</label>
-                        <input className="input" type="text" value={description} onChange={(e) => setDescription(e.target.value)} required></input>
-                     </div>
-                     <div className="form-field">
-                        <label>Amount</label>
-                        <input className="input" type="text" value={amount} onChange={(e) => setAmount(e.target.value)} required></input>
-                     </div>
-                     {isExpense ? 
-                        <div className="form-field">
-                              <label>Category</label>
-                              <select className="input" defaultValue="" onChange={(e) => setCategory(e.target.value)} required>
-                                 <option value="">Select a Category</option>
-                                 <Category />
-                              </select>
-                        </div> : <></>
-                     }
-                     <div className="form-buttons">
-                        <button className="button" type="submit">Add Record</button>
-                        <button className="button" onClick={closeForm}>Close</button>
-                     </div>
-                  </form>
-            </div>
-         }
+                           <label>Category</label>
+                           <select className="input" defaultValue="" onChange={(e) => setCategory(e.target.value)} required>
+                              <option value="">Select a Category</option>
+                              <Category />
+                           </select>
+                     </div> : <></>
+                  }
+                  <div className="form-buttons">
+                     <button className="button" type="submit">Add Record</button>
+                     <button className="button" onClick={closeForm}>Close</button>
+                  </div>
+               </form>
+         </div>
+         : <></>}
       </div>
    )
 }

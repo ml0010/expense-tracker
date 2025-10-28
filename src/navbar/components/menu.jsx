@@ -9,8 +9,8 @@ export const Menu = () => {
    return (
       <div className="menu">
          <MenuBottom />
-         <MenuSide />
          <TransactionForm />
+         <MenuSide />
       </div>
    );
 };

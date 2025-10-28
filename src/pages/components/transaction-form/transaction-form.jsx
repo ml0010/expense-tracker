@@ -95,7 +95,7 @@ export const TransactionForm = () => {
    };
 
    return (
-      <div className="transaction-form">
+      <div className={`transaction-form ${isFormOpen && 'open'}`}>
          <div className="standard-buttons">
                <span className="add-button income" onClick={openIncomeForm}>ADD INCOME</span>
                <span className="add-button expense" onClick={openExpenseForm}>ADD EXPENSE</span>

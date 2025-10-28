@@ -55,6 +55,7 @@ export const Income = () => {
                            centeredSlides={false}
                            loop={false}
                            loopFillGroupWithBlank={false}
+                           touchStartPreventDefault={false}
                            scrollbar={{ draggable: true }}
                            navigation={true}
                            modules={[Navigation, Scrollbar]}

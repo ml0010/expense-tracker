@@ -4,7 +4,6 @@ import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import { Category } from '../category';
 import './transaction-form.css'
-import { MenuToggleContext } from '../../../contexts/menu-toggle-context';
 
 export const TransactionForm = () => {
    
@@ -15,20 +14,9 @@ export const TransactionForm = () => {
    const [ description, setDescription ] = useState("");
    const [ amount, setAmount ] = useState("");
    const [ category, setCategory ] = useState("");
-   const [ showFloatingButton, setShowFloatingButton ] = useState(false);   
 
    const { userId, addRecord } = useContext(TransactionRecordContext);
 
-   useEffect(() => {
-      const handleFloatingBttnsVisibility = () => {
-         window.pageYOffset > 150 ? setShowFloatingButton(true) : setShowFloatingButton(false);
-      };
-      window.addEventListener('scroll', handleFloatingBttnsVisibility);
-      return () => {
-         window.addEventListener('scroll', handleFloatingBttnsVisibility);
-      };
-   });
-   
    const resetInputs = () => {
       setDate(new Date());
       setDescription("");

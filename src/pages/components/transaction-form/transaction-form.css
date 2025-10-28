@@ -5,10 +5,10 @@
    left: 0;
    width: calc(100% - var(--nav-width));
    padding-left: calc(var(--nav-width) + 0.5rem);
-   z-index: 1;
    background-color: var(--color-box1);
    border-bottom: 1px solid var(--color-grey-border);
    min-height: 60px;
+   z-index: -1;
 }
 
 .add-button {
@@ -65,10 +65,7 @@
    left: 50%;
    transform: translate(-50%, -50%);
    display: flex;
-   z-index: 100;
 }
-
-
 
 .transaction-form .transaction-form-wrapper {
    width: 100%;
@@ -78,7 +75,6 @@
    top: 50%;
    left: 50%;
    transform: translate(-50%, -50%);
-   z-index: 100;
    backdrop-filter: blur(10px);
 }
 .transaction-form .form {

@@ -56,6 +56,7 @@ export const Expense = () => {
                            centeredSlides={false}
                            loop={false}
                            loopFillGroupWithBlank={true}
+                           touchStartPreventDefault={false}
                            scrollbar={{ draggable: true }}
                            navigation={true}
                            modules={[Navigation, Scrollbar]}

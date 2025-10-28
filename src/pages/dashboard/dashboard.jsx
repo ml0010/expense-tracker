@@ -50,7 +50,6 @@ export const Dashboard = () => {
       return (
          <div className="dashboard">
                <h1>Dashboard</h1>
-               <TransactionForm />
                <div className="summary-wrapper">
                   <Swiper
                      slidesPerView={slides}
@@ -59,6 +58,7 @@ export const Dashboard = () => {
                      centeredSlides={false}
                      loop={false}
                      loopFillGroupWithBlank={true}
+                     touchStartPreventDefault={false}
                      scrollbar={{ draggable: true }}
                      navigation={true}
                      modules={[Navigation, Scrollbar]}

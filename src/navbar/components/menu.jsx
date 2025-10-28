@@ -4,6 +4,16 @@ import { useContext, useEffect, useRef, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom';
 import ToggleSwitch from './toggle-switch/toggle-switch'
 import { MenuToggleContext } from '../../contexts/menu-toggle-context';
+import { TransactionForm } from '../../pages/components/transaction-form/transaction-form';
+export const Menu = () => {
+   return (
+      <div className="menu">
+         <MenuBottom />
+         <MenuSide />
+         <TransactionForm />
+      </div>
+   );
+};
 
 export const MenuSide = () => {
 

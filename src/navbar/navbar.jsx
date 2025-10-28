@@ -1,8 +1,7 @@
 import { SignedIn, useUser } from '@clerk/clerk-react'
 import './navbar.css'
-import { Menu, MenuBottom, MenuSide } from './components/menu';
+import { Menu } from './components/menu';
 import { ScrollToTop } from './components/scroll-button/scroll-to-top';
-import { TransactionForm } from '../pages/components/transaction-form/transaction-form';
 
 export const Navbar = () => {
 
@@ -13,9 +12,9 @@ export const Navbar = () => {
          <div className={`navbar ${isSignedIn? "" : "hidden"}`}>
             <SignedIn>
                <Menu />
+               <ScrollToTop />
             </SignedIn>
          </div>
-         <ScrollToTop />
       </>
    )
 }

@@ -1,16 +1,18 @@
-import { AirplayIcon, BusIcon, CalculatorIcon, CatIcon, CherriesIcon, CoffeeBeanIcon, GasPumpIcon, GuitarIcon, HandCoinsIcon, HouseLineIcon, IslandIcon, PiggyBankIcon, PizzaIcon, PlugChargingIcon, ShoppingCartIcon } from '@phosphor-icons/react';
+import { AirplayIcon, BusIcon, CalculatorIcon, CatIcon, CherriesIcon, CoffeeBeanIcon, GasPumpIcon, GuitarIcon, HandCoinsIcon, HouseLineIcon, IslandIcon, PiggyBankIcon, PizzaIcon, PlugChargingIcon, ShoppingCartIcon, ToiletPaperIcon, PillIcon } from '@phosphor-icons/react';
 
 export const CategoryList = [
    "Grocery",
    "Rent",
    "Mortgage",
    "Entertaintment",
+   "Health",
    "Pet",
    "Eating-Out",
    "Coffee",
    "Transportation",
    "Fuel",
    "Home",
+   "Toiletries",
    "Utility",
    "Shopping",
    "Holiday",
@@ -83,6 +85,14 @@ export const CategoryIcons = [
       title: "Holiday",
       icon: IslandIcon,
       color: "#1c908eff"
+   },{
+      title: "Toiletries",
+      icon: ToiletPaperIcon,
+      color: "#0035d2ff"
+   },{
+      title: "Health",
+      icon: PillIcon,
+      color: "#00b937ff"
    }
 ];
 

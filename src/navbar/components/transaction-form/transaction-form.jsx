@@ -116,16 +116,16 @@ export const TransactionForm = () => {
                         <label>Amount</label>
                         <input className="input" type="text" value={amount} onChange={(e) => setAmount(e.target.value)} required></input>
                      </div>
-                     {isExpense ? 
+                     {isExpense && 
                         <div className="form-field">
                               <label>Category</label>
                               <select className="input" defaultValue="" onChange={(e) => setCategory(e.target.value)} required>
                                  <option value="">Select a Category</option>
                                  <Category />
                               </select>
-                        </div> : <></>
+                        </div>
                      }
-                     <div className="form-buttons">
+                     <div className="buttons">
                         <button className="button" type="submit">Add Record</button>
                         <button className="button" onClick={closeForm}>Close</button>
                      </div>

@@ -4,6 +4,7 @@ import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import { Category } from '../../../pages/components/category';
 import './transaction-form.css'
+import { MenuToggleContext } from '../../../contexts/menu-toggle-context';
 
 export const TransactionForm = () => {
    
@@ -16,6 +17,7 @@ export const TransactionForm = () => {
    const [ category, setCategory ] = useState("");
 
    const { userId, addRecord } = useContext(TransactionRecordContext);
+   const { showMenu } = useContext(MenuToggleContext);
 
    const resetInputs = () => {
       setDate(new Date());
@@ -95,7 +97,7 @@ export const TransactionForm = () => {
    };
 
    return (
-      <div className={`transaction-form ${isFormOpen && 'open'}`}>
+      <div className={`transaction-form ${isFormOpen && 'open'} ${showMenu && 'menu-active'}`}>
          <div className="standard-buttons">
                <span className="add-button income" onClick={openIncomeForm}>ADD INCOME</span>
                <span className="add-button expense" onClick={openExpenseForm}>ADD EXPENSE</span>

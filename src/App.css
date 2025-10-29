@@ -65,6 +65,16 @@ html, body {
 .pages.menu-active {
    padding-left: calc(var(--nav-full-width) + 0.5rem);
 }
+.pages .page-title {
+   font-size: 40px;
+   padding-top: var(--nav-width);
+}
+.pages .summary, .pages .dashboard {
+   text-align: center;
+   max-width: 1400px;
+   margin: auto;
+   padding: 0px 30px 130px 30px;
+}
 /*
 .button {
    text-align: center;
@@ -145,6 +155,7 @@ html, body {
 .sign-in-container {
    text-align: center;
 }
+
 input {
    border-radius: 2px;
    border: 1px solid var(--color-grey);

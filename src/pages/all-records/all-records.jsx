@@ -27,7 +27,7 @@ export const AllRecords = () => {
    } else {
       return (
          <div className="summary all-record">
-               <h1 className="title">All Records</h1>
+               <p className="page-title">All Records</p>
                <div className="list">
                   <h3>Transactions</h3>
                   <TransactionList />

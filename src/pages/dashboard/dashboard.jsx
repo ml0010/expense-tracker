@@ -22,9 +22,9 @@ export const Dashboard = () => {
       setSlides(
          window.innerWidth <= 800
                ? 1
-               : window.innerWidth <= 1250
+               : window.innerWidth <= 1300
                ? 2
-               : window.innerWidth > 1250
+               : window.innerWidth > 1300
                ? 3
                : 0
       );
@@ -48,7 +48,7 @@ export const Dashboard = () => {
    } else {
       return (
          <div className="dashboard">
-               <h1>Dashboard</h1>
+               <p className="page-title">Dashboard</p>
                <div className="summary-wrapper">
                   <Swiper
                      slidesPerView={slides}

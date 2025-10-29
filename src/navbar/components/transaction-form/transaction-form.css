@@ -12,6 +12,10 @@
 .transaction-form.open {
    z-index: 100;
 }
+.transaction-form.menu-active {
+   width: calc(100% - var(--nav-full-width));
+   padding-left: calc(var(--nav-full-width) + 0.5rem);
+}
 .add-button {
    display: block;
    border: 1px solid var(--color-grey-border);
@@ -126,7 +130,7 @@
 }
 
 @media only screen and (max-width: 1100px) {
-   .transaction-form  {
+   .transaction-form, .transaction-form.menu-active {
       width: 100%;
       padding-left: 0;
    }

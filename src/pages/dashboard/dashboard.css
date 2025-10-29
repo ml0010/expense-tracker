@@ -1,10 +1,3 @@
-.dashboard {
-   text-align: center;
-   max-width: 1400px;
-   margin: auto;
-   padding: 30px;
-   padding-bottom: 150px;
-}
 .dashboard .title {
    font-weight: 800;
    font-size: 25px;
@@ -12,7 +5,7 @@
    margin-bottom: 5px;
 }
 
-.box-content {
+.dashboard .box-content {
    display: block;
    max-height: 330px;
 }

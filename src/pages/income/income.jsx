@@ -2,7 +2,6 @@ import { TransactionFilterContextProvider } from "../../contexts/transaction-fil
 import { TransactionList } from "../components/transaction-list/transaction-list";
 import { IncomeMonthly } from "./components/income-monthly";
 import { IncomeYearly } from "./components/income-yearly";
-import { PiggyBankIcon } from "@phosphor-icons/react";
 import "../expense/expense.css"
 import { LoadingIcon } from "../components/loading-icon/loading";
 import { useEffect, useState } from "react";
@@ -44,7 +43,7 @@ export const Income = () => {
       return (
          <TransactionFilterContextProvider data="income">
                <div className="summary income">
-                  <h1 className="title"><PiggyBankIcon size={50} /> Income</h1>
+                  <p className="page-title">My Income</p>
                   <div className="tracker-wrapper">
                      <Swiper
                            slidesPerView={slides}

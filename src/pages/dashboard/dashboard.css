@@ -8,13 +8,17 @@
 .dashboard .title {
    font-weight: 800;
    font-size: 25px;
-   margin: 40px 0;
+   margin-top: 30px;
+   margin-bottom: 5px;
 }
 
 .box-content {
    display: block;
+   max-height: 330px;
 }
-
+.dashboard .contents-wrapper {
+   height: 100%;
+}
 .dashboard .contents {
    display: flex;
    flex-direction: column;
@@ -28,8 +32,8 @@
    gap: 20px;
 }
 .dashboard .box {
-   margin: 20px 0;
-   padding: 20px 30px;
+   margin: 30px 0;
+   padding: 10px 30px;
    background-color: var(--color-box1);
    border-radius: 3px;
    border: 1px solid var(--color-grey-border);
@@ -58,7 +62,7 @@
    color: var(--color-2);
 }
 .dashboard .balance {
-   font-size: 35px;
+   font-size: 40px;
    font-weight: 800;
    color: var(--color-2);
 

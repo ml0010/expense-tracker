@@ -20,11 +20,11 @@ export const Dashboard = () => {
 
    const setSlidesPerview = () => {
       setSlides(
-         window.innerWidth <= 700
+         window.innerWidth <= 800
                ? 1
-               : window.innerWidth <= 1200
+               : window.innerWidth <= 1250
                ? 2
-               : window.innerWidth > 1200
+               : window.innerWidth > 1250
                ? 3
                : 0
       );
@@ -64,21 +64,21 @@ export const Dashboard = () => {
                      className="mySwiper"
                   >
                      <SwiperSlide>
-                           <div className="box-content">
-                              <Summary />
-                           </div>
+                        <div className="box-content">
+                           <Summary />
+                        </div>
                      </SwiperSlide>
                      <SwiperSlide>
-                           <div className="box-content">
-                              <TransactionFilterContextProvider>
-                                 <MonthlySummary />
-                              </TransactionFilterContextProvider>
-                           </div>
+                        <div className="box-content">
+                           <TransactionFilterContextProvider>
+                              <MonthlySummary />
+                           </TransactionFilterContextProvider>
+                        </div>
                      </SwiperSlide>
                      <SwiperSlide>
-                           <div className="box-content">
-                              <LineChart />
-                           </div>
+                        <div className="box-content">
+                           <LineChart />
+                        </div>
                      </SwiperSlide>
                   </Swiper>
                </div>

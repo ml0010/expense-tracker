@@ -13,11 +13,10 @@
    justify-content: center;
    align-items: center;
    font-size: 18px;
-
 }
 .dashboard-summary .total .items svg {
    color: var(--color-1);
-   padding-right: 15px;
+   margin-right: 10px;
 }
 .dashboard-summary .total .items .number{
    font-weight: 600;
@@ -85,4 +84,12 @@
 }
 .summary-month .bar-container .expense-amount {
    font-size: 10px;
+}
+
+@media only screen and (max-width: 1300px) {
+}
+@media only screen and (max-width: 900px) {
+}
+@media only screen and (max-width: 600px) {
+
 }

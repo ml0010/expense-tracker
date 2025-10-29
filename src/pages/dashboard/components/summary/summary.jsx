@@ -21,7 +21,7 @@ export const Summary = () => {
    return (
       <>
       {isRecordLoaded ?  
-         <div className="dashboard-summary">
+         <div className="dashboard-summary contents-wrapper">
                <Link className="link" to="/all" state={{ period: "year" }}>See More</Link>
                <span className="title">Total Balance</span>
                <div className="contents">

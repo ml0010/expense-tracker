@@ -56,7 +56,7 @@ export const MonthlySummary = () => {
    return (
       <>
       {isRecordLoaded ? 
-         <div className="summary-month">
+         <div className="summary-month contents-wrapper">
                <Link className="link" to="/all" state={{ period: "month" }}>See More</Link>
                <span className="title">Your expense this month is</span>
                <div className="contents">

@@ -2,7 +2,7 @@ import { useContext, useEffect, useRef, useState } from 'react'
 import { TransactionRecordContext } from '../../../contexts/transaction-record-context';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
-import { Category } from '../category';
+import { Category } from '../../../pages/components/category';
 import './transaction-form.css'
 
 export const TransactionForm = () => {

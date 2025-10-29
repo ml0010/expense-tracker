@@ -1,4 +1,3 @@
-import { TransactionForm } from "../components/transaction-form/transaction-form";
 import { TransactionFilterContextProvider } from "../../contexts/transaction-filter-context";
 import { TransactionList } from "../components/transaction-list/transaction-list";
 import { ExpenseDaily } from "./components/expense-daily";
@@ -47,7 +46,6 @@ export const Expense = () => {
          <TransactionFilterContextProvider data="expense">
                <div className="summary expense">
                   <h1 className="title"><MoneyIcon size={50} /> Expense</h1>
-                  <TransactionForm />
                   <div className="tracker-wrapper">
                      <Swiper
                            slidesPerView={slides}

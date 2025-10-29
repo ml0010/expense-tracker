@@ -204,6 +204,7 @@
    .menu-side.closed {
       background-color: transparent;
       box-shadow: none;
+      height: 0;
    }
    .menu-side.closed .menu-bar {
       display: none;

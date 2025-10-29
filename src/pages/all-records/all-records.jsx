@@ -1,4 +1,3 @@
-import { TransactionForm } from "../components/transaction-form/transaction-form";
 import { TransactionFilterContext } from "../../contexts/transaction-filter-context";
 import { TransactionList } from "../components/transaction-list/transaction-list";
 import "../expense/expense.css"
@@ -29,7 +28,6 @@ export const AllRecords = () => {
       return (
          <div className="summary all-record">
                <h1 className="title">All Records</h1>
-               <TransactionForm />
                <div className="list">
                   <h3>Transactions</h3>
                   <TransactionList />

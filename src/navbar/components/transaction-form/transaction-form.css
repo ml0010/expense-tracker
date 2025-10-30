@@ -3,11 +3,14 @@
    position: fixed;
    top: 0;
    left: 0;
-   width: calc(100% - var(--nav-width));
+   width: calc(100vw - var(--nav-width));
    padding-left: calc(var(--nav-width) + 0.5rem);
    background-color: var(--color-box1);
    border-bottom: 1px solid var(--color-grey-border);
    min-height: 60px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
 }
 .transaction-form.open {
    z-index: 100;
@@ -16,12 +19,15 @@
    width: calc(100% - var(--nav-full-width));
    padding-left: calc(var(--nav-full-width) + 0.5rem);
 }
+.transaction-buttons {
+   display: flex;
+}
 .add-button {
    display: block;
-   border: 1px solid var(--color-grey-border);
    border-radius: 2px;
    background-color: var(--color-1);
-   margin: 10px 2vw;
+   color: var(--color-background);
+   margin: 0px 2vw;
    cursor: pointer;
    position: relative;
    overflow: hidden;
@@ -34,21 +40,22 @@
    position: absolute;
    height: 0;
    width: 100%;
-   background-color : var(--color-1);
+   background-color : var(--color-2);
+   color: var(--color-font);
    left: 0;
    bottom: 0;
    transition: all .2s ease-in-out;
-   font-size: 15px;
+   font-size: 11px;
    display: flex;
    justify-content: center;
    align-items: center;
    opacity: 0;
 }
 .add-button.income:before {
-   content: "INCOME";
+   content: "ADD INCOME";
 }
 .add-button.expense:before {
-   content: "EXPENSE";
+   content: "ADD EXPENSE";
 }
 .add-button:hover:before {
    height: 100%;
@@ -57,19 +64,6 @@
 .add-button:active {
    top: 2px;
    transition: all .2s;
-}
-
-.standard-buttons {
-   display: flex;
-   justify-content: center;
-   align-items: center;
-}
-.floating-buttons {
-   position: fixed;
-   top: 92%;
-   left: 50%;
-   transform: translate(-50%, -50%);
-   display: flex;
 }
 
 .transaction-form .transaction-form-wrapper {
@@ -131,7 +125,7 @@
 
 @media only screen and (max-width: 1100px) {
    .transaction-form, .transaction-form.menu-active {
-      width: 100%;
+      width: 100vw;
       padding-left: 0;
    }
 }

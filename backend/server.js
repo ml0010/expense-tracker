@@ -27,6 +27,7 @@ app.get("/", async(req, res) => {
     res.json("SERVER CONNECTED");
 });
 
+// Save new transaction
 app.post("/", async(req, res) => {
     try {
         let expense = new Expenses(req.body);
@@ -37,6 +38,7 @@ app.post("/", async(req, res) => {
     }
 })
 
+// Load the user's transactions using the user's login ID
 app.get("/expense-records/:userId", async(req, res) => {
     try {
         const userId = req.params.userId;
@@ -50,6 +52,7 @@ app.get("/expense-records/:userId", async(req, res) => {
     }
 });
 
+// Save change of the transaction by the transaction id
 app.put("/:id", async(req, res) => {
     try {
         const id = req.params.id;
@@ -68,6 +71,7 @@ app.put("/:id", async(req, res) => {
     }
 });
 
+// Delete user's transaction by the transaction id
 app.delete("/:id", async(req, res) => {
     try {
         const id = req.params.id;

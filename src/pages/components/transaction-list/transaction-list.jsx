@@ -38,52 +38,54 @@ export const TransactionList = () => {
       <>
       {isRecordLoaded ? 
          <div className="table-warpper">
-               <div className="filters">
-                  <PeriodFilter />
-                  <CategoryFilter />
-                  <TextFilter />
-               </div>
-               <div className="active-filter-list">
-                  <FilterButtons />
-               </div>
-               <table className="table">
-                  <thead>
+            <div className="filters">
+               <PeriodFilter />
+               <CategoryFilter />
+               <TextFilter />
+            </div>
+            <div className="active-filter-list">
+               <FilterButtons />
+            </div>
+            <table className="table">
+               <thead>
+                  <tr>
+                        <th>Date</th>
+                        <th>Category</th>
+                        <th>Description</th>
+                        <th>Amount</th>
+                        <th></th>
+                  </tr>
+               </thead>
+               <tbody>
+                  {recordsFiltered.length > 0 ? 
+                     <>
+                     {recordsFiltered.slice(0, listLength).map((record ,index) => (
+                        <TransactionListElement record={record} key={index}/>
+                     ))}
+                     {listLength < recordsFiltered.length &&
+                        <tr>
+                           <td className="see-more-button" colSpan="5" onClick={handleClickSeeMoreButton}>
+                                 SEE MORE ({recordsFiltered.length - listLength} more)
+                                 {isListExtended && <LoadingIconSmall />}
+                           </td>
+                        </tr>
+                     }
+                     </> : 
                      <tr>
-                           <th>Date</th>
-                           <th>Category</th>
-                           <th>Description</th>
-                           <th>Amount</th>
-                           <th></th>
+                        <td colSpan="5">
+                        <EmptyList />
+                        </td>
                      </tr>
-                  </thead>
-                  <tbody>
-                     {recordsFiltered.length > 0 ? 
-                           <>
-                           {recordsFiltered.slice(0, listLength).map((record ,index) => (
-                              <TransactionListElement record={record} key={index}/>
-                           ))}
-                           {listLength < recordsFiltered.length &&
-                              <tr>
-                                 <td className="see-more-button" colSpan="5" onClick={handleClickSeeMoreButton}>
-                                       SEE MORE ({recordsFiltered.length - listLength} more)
-                                       {isListExtended && <LoadingIconSmall />}
-                                 </td>
-                              </tr>
-                           }
-                           </> : 
-                           <tr>
-                              <td colSpan="5">
-                              <EmptyList />
-                              </td>
-                           </tr>
-                     }
-                     {isLoading && 
-                           <tr>
-                              <LoadingIconSmall />
-                           </tr>                       
-                     }
-                  </tbody>
-               </table>
+                  }
+                  {isLoading && 
+                     <tr>
+                        <td colSpan="5">
+                           <LoadingIconSmall />
+                        </td>
+                     </tr>                       
+                  }
+               </tbody>
+            </table>
          </div>
          : <LoadingIconSmall />
       }
@@ -113,6 +115,7 @@ const PeriodFilter = () => {
                   className="input" 
                   value={`${dateFormat(periodList[currentPeriod].start)} to ${dateFormat(periodList[currentPeriod].end)}`} 
                   onClick={() => setOpenForm(!openForm)} 
+                  readOnly
                />
                <button 
                   className={`date-default-button ${currentPeriod !== "all" ? "active" : ""}`} 
@@ -191,32 +194,32 @@ const DateSelector = (props) => {
       <div className="date-filter" ref={formRef}>
          <h3>Date Selector</h3>
          <div className="date-filter-buttons" >
-               <button className="option" value="all" onClick={(e) => handleClickOptions(e.target.value)}>All</button>
-               <button className="option" value="today" onClick={(e) => handleClickOptions(e.target.value)}>Today</button>
-               <button className="option" value="month" onClick={(e) => handleClickOptions(e.target.value)}>This Month</button>
-               <button className="option" value="year" onClick={(e) => handleClickOptions(e.target.value)}>This Year</button>
+            <button className="option" value="all" onClick={(e) => handleClickOptions(e.target.value)}>All</button>
+            <button className="option" value="today" onClick={(e) => handleClickOptions(e.target.value)}>Today</button>
+            <button className="option" value="month" onClick={(e) => handleClickOptions(e.target.value)}>This Month</button>
+            <button className="option" value="year" onClick={(e) => handleClickOptions(e.target.value)}>This Year</button>
          </div>
          <div className="date-picker">
-               <DatePicker 
-                  selected={startDate}
-                  onChange={onChange}
-                  startDate={startDate}
-                  endDate={endDate}
-                  maxDate={today}
-                  selectsRange
-                  rangeSeparator=" - "
-                  isClearable={true}
-               />
+            <DatePicker 
+               selected={startDate}
+               onChange={onChange}
+               startDate={startDate}
+               endDate={endDate}
+               maxDate={today}
+               selectsRange
+               rangeSeparator=" - "
+               isClearable={true}
+            />
          </div>
          <div>
-               <button 
-                  className="button" 
-                  value={periodSelected} 
-                  onClick={(e) => {handleSubmit(e.target.value, startDate, endDate)}}
-               >
-                  Confirm
-               </button>
-               <button className="button" onClick={handleClose}>Close</button>
+            <button 
+               className="button" 
+               value={periodSelected} 
+               onClick={(e) => {handleSubmit(e.target.value, startDate, endDate)}}
+            >
+               Confirm
+            </button>
+            <button className="button" onClick={handleClose}>Close</button>
          </div>
       </div>
    )
@@ -228,13 +231,13 @@ const CategoryFilter = () => {
    return (
       <div className="filter category-filter">
          {categoryList.length > 1 && <>
-               <span className="name">Category</span>
-               <select className="input" value="all" onChange={(e) => addCategoryFilter(e.target.value)}>
-                  <option value="all">Select</option>
-                  {categoryList.map((category, index) => 
-                     <option key={index} value={`${category}`}>{category}</option>
-                  )}
-               </select>
+            <span className="name">Category</span>
+            <select className="input" value="all" onChange={(e) => addCategoryFilter(e.target.value)}>
+               <option value="all">Select</option>
+               {categoryList.map((category, index) => 
+                  <option key={index} value={`${category}`}>{category}</option>
+               )}
+            </select>
          </>}
       </div>
    )

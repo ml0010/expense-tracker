@@ -28,7 +28,7 @@ export const TransactionRecordContextProvider = (props) => {
                                         .filter((record) => new Date(record.date).getMonth() === i);
             recordsByMonth[i] = recordsMonth;
         }
-        console.log(recordsByMonth);
+        //console.log(recordsByMonth);
         return recordsByMonth;
     };
 
@@ -59,7 +59,7 @@ export const TransactionRecordContextProvider = (props) => {
         try {
             if (response.ok) {
                 const records = await response.json();
-                console.log(records);
+                //console.log(records);
                 records.sort((a, b) => {return new Date(b.date) - new Date(a.date)});
                 setRecords(records);
                 setIsRecordLoaded(true);

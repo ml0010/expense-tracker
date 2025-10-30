@@ -44,7 +44,7 @@ export const Expense = () => {
       return (
          <TransactionFilterContextProvider data="expense">
                <div className="summary expense">
-                  <p className="page-title">My Expense</p>
+                  <p className="page-title">My Expenses</p>
                   <div className="tracker-wrapper">
                      <Swiper
                            slidesPerView={slides}
@@ -52,7 +52,7 @@ export const Expense = () => {
                            slidesPerGroup={1}
                            centeredSlides={false}
                            loop={false}
-                           loopFillGroupWithBlank={true}
+                           loopfillgroupwithblank="true"
                            touchStartPreventDefault={false}
                            scrollbar={{ draggable: true }}
                            navigation={true}

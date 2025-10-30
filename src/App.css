@@ -5,17 +5,18 @@
    font-family: "Quicksand", "Inter", "Helvetica", sans-serif;
 
    --color-font: #313131;
+   --color-font-edit: rgb(0, 157, 181);
    --color-grey: #909090;
-   --color-grey-border: rgba(175, 175, 175, 0.734);
+   --color-grey-border: rgba(225, 225, 225, 0.734);
    --color-grey-light: #f3f3f3;
    --color-background: #f9f9f9;
-   --color-button-hover: rgb(166, 231, 245);
+   --color-button-hover: rgb(16, 214, 232);
    --color-shadow: rgba(36, 36, 36, 0.261);
    --color-wrapper: rgba(255, 255, 255, 0.311);
    --color-box1: rgb(255, 255, 255);
    --color-box2: rgba(255, 255, 255, 0.936);
-   --color-1: rgb(120, 195, 202);
-   --color-2: rgb(4, 141, 163);
+   --color-1: rgb(115, 203, 211);
+   --color-2: rgb(2, 163, 188);
    --color-3: rgb(226, 236, 238);
    --nav-width: 70px;
    --nav-full-width: 290px;
@@ -52,7 +53,7 @@ html, body {
 
    --color-shadow: rgba(0, 0, 0, 0.287);
    --color-wrapper: rgba(48, 48, 48, 0.316);
-   --color-grey-border: #333742;
+   --color-grey-border: #22242a;
 
 }
 .pages {
@@ -127,7 +128,7 @@ html, body {
    position:relative;
    overflow:hidden;
    margin: 10px;
-   font-size: 0.9em;
+   font-size: 11.5px;
    font-weight: 500;
    background-color: white;
 }

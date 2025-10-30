@@ -56,7 +56,7 @@ export const Dashboard = () => {
                      slidesPerGroup={1}
                      centeredSlides={false}
                      loop={false}
-                     loopFillGroupWithBlank={true}
+                     loopfillgroupwithblank="true"
                      touchStartPreventDefault={false}
                      scrollbar={{ draggable: true }}
                      navigation={true}

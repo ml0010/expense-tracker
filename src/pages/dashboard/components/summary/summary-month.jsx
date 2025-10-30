@@ -26,7 +26,7 @@ export const MonthlySummary = () => {
    }
 
    useEffect(() => {
-      console.log("new summary: ", getIncomeTotal());
+      //console.log("new summary: ", getIncomeTotal());
       if (expenseRecords.length > 0 ) {
          setExpenseTotal(getExpenseTotal());
       } else {
@@ -48,8 +48,7 @@ export const MonthlySummary = () => {
          setExpensePercentage(100);
          setIncomePercentage(0);
       }
-
-      console.log(expenseTotal, " / ", incomeTotal);
+      //console.log(expenseTotal, " / ", incomeTotal);
 
    }, [isRecordLoaded]);
 

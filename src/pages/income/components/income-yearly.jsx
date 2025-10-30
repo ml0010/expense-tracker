@@ -22,30 +22,30 @@ export const IncomeYearly = () => {
       <>
       {isRecordLoaded ?
          <div>
-               <h4>Breakdown</h4>
-               <table className="summary-table">
-                  <thead>
+            <h4>Breakdown</h4>
+            <table className="summary-table">
+               <thead>
+                  <tr>
+                     <th>Category</th>
+                     <th>Amount</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  {category.length === 0 ? 
                      <tr>
-                           <th>Category</th>
-                           <th>Amount</th>
-                     </tr>
-                  </thead>
-                  <tbody>
-                     {category.length === 0 ? 
-                           <tr>
-                              <td colSpan="2">No Transaction</td>
-                           </tr> : 
-                           <>
-                              {category.map((category, index) => 
-                              <tr key={index}>
-                                 <td>{category}</td>
-                                 <td id="amount">{records.filter((record) => record.description === category).reduce((sum, record) => sum + record.amount, 0).toFixed(2)}</td>
-                              </tr>)}
-                           </>
-                     }
-                  </tbody>
-               </table>
-               <p className="total">Total: € {records.reduce((sum, record) => sum + record.amount, 0).toFixed(2)}</p>
+                        <td colSpan="2">No Transaction</td>
+                     </tr> : 
+                     <>
+                        {category.map((category, index) => 
+                        <tr key={index}>
+                           <td>{category}</td>
+                           <td id="amount">{records.filter((record) => record.description === category).reduce((sum, record) => sum + record.amount, 0).toFixed(2)}</td>
+                        </tr>)}
+                     </>
+                  }
+               </tbody>
+            </table>
+            <p className="total">Total: € {records.reduce((sum, record) => sum + record.amount, 0).toFixed(2)}</p>
          </div>: 
          <LoadingIconSmall />
       }

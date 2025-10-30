@@ -29,6 +29,12 @@ export const TransactionForm = () => {
 
    const handleSubmit = (e) => {
       e.preventDefault();
+      
+      // check amount is number
+      if(isNaN(amount)) {
+         alert("Your transaction amount must be a number.");
+         return;
+      }
 
       let newRecord;
 
@@ -98,7 +104,7 @@ export const TransactionForm = () => {
 
    return (
       <div className={`transaction-form ${isFormOpen && 'open'} ${showMenu && 'menu-active'}`}>
-         <div className="standard-buttons">
+         <div className="transaction-buttons">
                <span className="add-button income" onClick={openIncomeForm}>ADD INCOME</span>
                <span className="add-button expense" onClick={openExpenseForm}>ADD EXPENSE</span>
          </div>

@@ -11,6 +11,7 @@
    flex-direction: column;
    align-items: center;
    padding-bottom: 50px;
+   overflow: hidden;
 }
 
 .filters {
@@ -35,6 +36,7 @@
 }
 .filters .filter .input {
    font-size: 13px;
+   cursor: pointer;
 }
 .filters .date-input, .filters select {
    text-align: center;
@@ -174,13 +176,12 @@
    width: 100%;
    border-collapse: collapse;
    border: 1px solid var(--color-grey-border);
-   font-size: 13px;
+   font-size: 12px;
    position: relative;
 }
-.ta
 .table th,
 .table td {
-   padding: 5px 6px;
+   padding: 3px 0px;
    text-align: center;
 }
 .table th {
@@ -221,27 +222,36 @@
    transform: translate(-50%, -50%);
    display: none;
 }
-.element-wrapper.active {
+.element-wrapper.edit {
    display: block;
 }
 .element {
-   z-index: 5000;
+   z-index: 100;
 }
 .element .input {
-   border: none;
+   border: 1px solid transparent;
+   border-radius: 2px;
    cursor: pointer;
    background-color: transparent;
    text-align: center;
-   padding: 5px;
+   padding: 4px 0;
+   margin: 2px;
    font-size: 13px;
-   color: var(--color-font);
+}
+.element .input.plus {
+   color: blue;
+}
+.element .input.minus {
+   color: red;
 }
 .element .input:hover {
-   color: var(--color-2);
+   color: var(--color-1);
 }
 .element .input.edit {
    background-color: var(--color-background);
-   color: red;
+   color: var(--color-font-edit);
+   border: 1px solid var(--color-font-edit);
+
 }
 .element .category {
    display: flex;

@@ -5,8 +5,9 @@ export const MenuToggleContext = createContext();
 export const MenuToggleContextProvider = (props) => {
 
     const [ showMenu, setShowMenu ] = useState(false);
+    const [ showTransactionForm, setShowTransactionForm ] = useState(false);
 
-    const contextValue = { showMenu, setShowMenu };
+    const contextValue = { showMenu, setShowMenu, showTransactionForm, setShowTransactionForm };
 
     return (
         <MenuToggleContext.Provider value={contextValue}>{props.children}</MenuToggleContext.Provider>

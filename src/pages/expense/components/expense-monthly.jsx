@@ -5,7 +5,7 @@ import { LoadingIconSmall } from "../../components/loading-icon/loading";
 
 export const ExpenseMonthly = () => {
    const { isRecordLoaded, expenseRecords } = useContext(TransactionRecordContext);
-   const { filterPeriod, getCategoryList } = useContext(TransactionFilterContext);
+   const { currentMonth, currentYear, filterPeriod, getCategoryList } = useContext(TransactionFilterContext);
 
    const [ records, setRecords ] = useState(filterPeriod(expenseRecords, "month"));
    const [ category, setCategory ] = useState(getCategoryList(records));

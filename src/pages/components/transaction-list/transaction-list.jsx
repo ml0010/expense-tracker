@@ -22,9 +22,11 @@ export const TransactionList = () => {
       setListLength(10);
    }, [recordsFiltered]);
    
-   setTimeout(() => {
-      setIsLoading(false);
-   }, 300);
+   useEffect(() => {
+      setTimeout(() => {
+         setIsLoading(false);
+      }, 300);
+   }, [isLoading]);
 
    const handleClickSeeMoreButton = () => {
       setIsListExtended(true);

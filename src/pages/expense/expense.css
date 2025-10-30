@@ -4,6 +4,18 @@
    height: 100%;
    margin: 5px 30px;
 }
+.box-content .select-wrapper {
+   display: flex;
+   justify-content: end;
+}
+.box-content .select-wrapper select {
+   border: 1px solid var(--color-grey);
+   border-radius: 2px;
+   background-color: transparent;
+   font-size: 12px;
+   text-align: center;
+   color: var(--color-grey);
+}
 .box-content h4 {
    margin: 0;
    margin-bottom: 8px;
@@ -11,6 +23,9 @@
    font-size: 13px;
    width: 100%;
    text-align: left;
+}
+.box-content .table-wrapper {
+   position: relative;
 }
 .box-content .summary-table {
    border-collapse: collapse;

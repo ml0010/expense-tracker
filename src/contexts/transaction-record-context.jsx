@@ -32,6 +32,10 @@ export const TransactionRecordContextProvider = (props) => {
       return recordsByMonth;
    };
 
+   const sortByDate = (records) => {
+      return records.sort((a, b) => {return new Date(b.date) - new Date(a.date)});
+   };
+
    useEffect(() => {
       if (isSignedIn) {
          setUsername(user.externalAccounts[0].firstName);
@@ -42,6 +46,7 @@ export const TransactionRecordContextProvider = (props) => {
    }, [user]);
    
    useEffect(() => {
+      setRecords(sortByDate(records));
       if (records.length > 0) {
          const incomeRecords = records.filter((record) => record.category === "Income");
          const expenseRecords = records.filter((record) => record.category !== "Income");
@@ -60,8 +65,7 @@ export const TransactionRecordContextProvider = (props) => {
          if (response.ok) {
                const records = await response.json();
                //console.log(records);
-               records.sort((a, b) => {return new Date(b.date) - new Date(a.date)});
-               setRecords(records);
+               setRecords(sortByDate(records));
                setIsRecordLoaded(true);
          }
       } catch (err) {

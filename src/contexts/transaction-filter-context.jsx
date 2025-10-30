@@ -7,7 +7,8 @@ export const TransactionFilterContextProvider = (props) => {
 
    const { records, expenseRecords, incomeRecords } = useContext(TransactionRecordContext);
 
-   const [ dataSelection, setDataSelection ] = useState(props.data);  // income or expense
+   const dataSelection = props.data;  // income or expense
+
    const [ currentPeriod, setCurrentPeriod ] = useState(props.period || "all"); // periodList options
    const [ customStartDate, setCustomStartDate ] = useState(null);
    const [ customEndDate, setCustomEndDate ] = useState(null);
@@ -15,11 +16,6 @@ export const TransactionFilterContextProvider = (props) => {
    const [ categoryList, setCategoryList ] = useState([]);
    const [ categoryFilterList, setCategoryFilterList ] = useState([]);
    const [ searchText, setSearchText ] = useState(null);
-
-   /*
-   const [ month, setMonth ] = useState(new Date().getMonth());
-   const [ year, setYear ] = useState(new Date().getFullYear());
-   */
 
    const currentMonth = new Date().getMonth();
    const currentYear = new Date().getFullYear();

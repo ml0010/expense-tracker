@@ -6,21 +6,11 @@ import { LoadingIconSmall } from "../../components/loading-icon/loading";
 export const IncomeYearly = () => {
    const { isRecordLoaded, incomeRecords } = useContext(TransactionRecordContext);
    const { currentYear, filterPeriodByDates, getCategoryList } = useContext(TransactionFilterContext);
-
-   const getLastFewYears = () => {
-      const results = [];
-      const numberOfYears = 3;
-      for (let i = 0; i < numberOfYears; i++) {
-         const newYear = currentYear - i;
-         results.push(newYear);
-      }
-      return results;
-   };
    
    const [ isLoading, setIsLoading ] = useState(true);
    const [ records, setRecords ] = useState([]);
    const [ category, setCategory ] = useState(getCategoryList(records));
-   const [ yearList, setYearList ] = useState(getLastFewYears());
+   const [ yearList, setYearList ] = useState([]);
    const [ yearPeriod, setYearPeriod ] = useState([]);
    const [ yearSelected, setYearSelected ] = useState(0);
 
@@ -28,6 +18,21 @@ export const IncomeYearly = () => {
       setYearSelected(value);
       setIsLoading(true);
    };
+
+   const getLastFewYears = () => {
+      const results = [];
+      const yearMinimum = new Date(incomeRecords[incomeRecords.length-1].date).getFullYear();
+      for (let i = 0; i < (currentYear - yearMinimum + 1); i++) {
+         const newYear = currentYear - i;
+         if (newYear >= yearMinimum)
+            results.push(newYear);
+      }
+      setYearList(results);
+   };
+
+   useEffect(() => {
+      getLastFewYears();
+   }, [incomeRecords]);
 
    useEffect(() => {
       const year = [];

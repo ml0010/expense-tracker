@@ -7,20 +7,10 @@ export const ExpenseYearly = () => {
    const { isRecordLoaded, expenseRecords } = useContext(TransactionRecordContext);
    const { currentYear, filterPeriodByDates, getCategoryList } = useContext(TransactionFilterContext);
 
-   const getLastFewYears = () => {
-      const results = [];
-      const numberOfYears = 3;
-      for (let i = 0; i < numberOfYears; i++) {
-         const newYear = currentYear - i;
-         results.push(newYear);
-      }
-      return results;
-   };
-   
    const [ isLoading, setIsLoading ] = useState(true);
    const [ records, setRecords ] = useState([]);
    const [ category, setCategory ] = useState(getCategoryList(records));
-   const [ yearList, setYearList ] = useState(getLastFewYears());
+   const [ yearList, setYearList ] = useState([]);
    const [ yearPeriod, setYearPeriod ] = useState([]);
    const [ yearSelected, setYearSelected ] = useState(0);
 
@@ -28,6 +18,22 @@ export const ExpenseYearly = () => {
       setYearSelected(value);
       setIsLoading(true);
    };
+
+   const getLastFewYears = () => {
+      const results = [];
+      const yearMinimum = new Date(expenseRecords[expenseRecords.length-1].date).getFullYear();
+      for (let i = 0; i < (currentYear - yearMinimum + 1); i++) {
+         const newYear = currentYear - i;
+         if (newYear >= yearMinimum)
+            results.push(newYear);
+      }
+      setYearList(results);
+   };
+
+   useEffect(() => {
+      getLastFewYears();
+   }, [expenseRecords]);
+
 
    useEffect(() => {
       const year = [];

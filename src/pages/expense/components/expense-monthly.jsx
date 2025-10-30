@@ -5,7 +5,7 @@ import { LoadingIconSmall } from "../../components/loading-icon/loading";
 
 export const ExpenseMonthly = () => {
    const { isRecordLoaded, expenseRecords } = useContext(TransactionRecordContext);
-   const { currentMonth, currentYear, filterPeriodByDates, filterPeriod, getCategoryList } = useContext(TransactionFilterContext);
+   const { currentMonth, currentYear, filterPeriodByDates, getCategoryList } = useContext(TransactionFilterContext);
 
    const getLastFewMonths = () => {
       const results = [];

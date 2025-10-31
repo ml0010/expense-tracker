@@ -5,12 +5,12 @@
    font-family: "Quicksand", "Inter", "Helvetica", sans-serif;
 
    --color-font: #313131;
-   --color-font-edit: rgb(0, 157, 181);
+   --color-font-edit: rgb(0, 120, 138);
    --color-grey: #909090;
    --color-grey-border: rgba(225, 225, 225, 0.734);
    --color-grey-light: #f3f3f3;
    --color-background: #f9f9f9;
-   --color-button-hover: rgb(16, 214, 232);
+   --color-button-hover: rgb(131, 228, 237);
    --color-shadow: rgba(36, 36, 36, 0.261);
    --color-wrapper: rgba(255, 255, 255, 0.311);
    --color-box1: rgb(255, 255, 255);

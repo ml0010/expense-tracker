@@ -17,10 +17,12 @@ export const TransactionList = () => {
    const [ listLength, setListLength ] = useState(10);
    const [ isListExtended, setIsListExtended ] = useState(false);
 
+   /*
    useEffect(() => {
       setIsLoading(true);
       setListLength(10);
-   }, [recordsFiltered]);
+   }, []);
+   */
    
    useEffect(() => {
       setTimeout(() => {
@@ -51,11 +53,11 @@ export const TransactionList = () => {
             <table className="table">
                <thead>
                   <tr>
-                        <th>Date</th>
-                        <th>Category</th>
-                        <th>Description</th>
-                        <th>Amount</th>
-                        <th></th>
+                     <th>Date</th>
+                     <th>Category</th>
+                     <th>Description</th>
+                     <th>Amount</th>
+                     <th></th>
                   </tr>
                </thead>
                <tbody>
@@ -67,15 +69,15 @@ export const TransactionList = () => {
                      {listLength < recordsFiltered.length &&
                         <tr>
                            <td className="see-more-button" colSpan="5" onClick={handleClickSeeMoreButton}>
-                                 SEE MORE ({recordsFiltered.length - listLength} more)
-                                 {isListExtended && <LoadingIconSmall />}
+                              SEE MORE ({recordsFiltered.length - listLength} more)
+                              {isListExtended && <LoadingIconSmall />}
                            </td>
                         </tr>
                      }
                      </> : 
                      <tr>
                         <td colSpan="5">
-                        <EmptyList />
+                           <EmptyList />
                         </td>
                      </tr>
                   }
@@ -84,7 +86,7 @@ export const TransactionList = () => {
                         <td colSpan="5">
                            <LoadingIconSmall />
                         </td>
-                     </tr>                       
+                     </tr>
                   }
                </tbody>
             </table>

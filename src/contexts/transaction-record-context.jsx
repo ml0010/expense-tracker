@@ -106,9 +106,9 @@ export const TransactionRecordContextProvider = (props) => {
                setRecords((prev) => 
                   prev.map((record) => {
                      if(record._id === id) {
-                           return newRecord;
+                        return newRecord;
                      } else {
-                           return record;
+                        return record;
                      }
                   })
                );

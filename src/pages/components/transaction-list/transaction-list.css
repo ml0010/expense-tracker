@@ -192,7 +192,7 @@
    height: 200px;
 }
 .table tbody tr {
-   border-top: 1px solid var(--color-grey-border);
+   border: 1px solid var(--color-grey-border);
 }
 
 /*
@@ -201,9 +201,7 @@
 }*/
 
 .table tbody tr:hover {
-   background-color: var(--color-background);
-   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-
+   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
 }
 .table .see-more-button {
    cursor: pointer;
@@ -212,21 +210,9 @@
    overflow: hidden;
    height: 35px;
 }
-.element-wrapper {
-   width: 100vw;
-   height: 100vh;
-   background-color: transparent;
-   position: fixed;
-   top: 50%;
-   left: 50%;
-   transform: translate(-50%, -50%);
-   display: none;
-}
-.element-wrapper.edit {
-   display: block;
-}
 .element {
-   z-index: 100;
+   position: relative;
+   height: 40px;
 }
 .element .input {
    border: 1px solid transparent;
@@ -234,9 +220,12 @@
    cursor: pointer;
    background-color: transparent;
    text-align: center;
-   padding: 4px 0;
-   margin: 2px;
    font-size: 13px;
+   padding: 10px;
+}
+.element .input#amount {
+   max-width: 80px;
+   text-align: end;
 }
 .element .input.plus {
    color: blue;
@@ -251,7 +240,6 @@
    background-color: var(--color-background);
    color: var(--color-font-edit);
    border: 1px solid var(--color-font-edit);
-
 }
 .element .category {
    display: flex;
@@ -263,16 +251,13 @@
 }
 .element .delete-button {
    cursor: pointer;
-   padding-right: 10px;
+   margin-right: 10px;
    background-color: transparent;
    color: var(--color-font);
    border: none;
 }
-.element .delete-button svg {
-   background-color: transparent;
-}
 .element .delete-button:hover {
-   color: var(--color-2);
+   color: var(--color-font-edit);
 }
 .element .input-wrapper {
    display: flex;    
@@ -280,9 +265,7 @@
    justify-content: center;
    align-items: center;
 }
-#amount {
-   width: 100px;
-}
+
 
 
 @media only screen and (max-width: 1300px) {

@@ -77,7 +77,6 @@ export const Expense = () => {
                                  <SummaryYearly type="expense" />
                               </div>
                            </SwiperSlide>
-                           
                            <SwiperSlide>
                               <div className="box-content">
                                  <h3>Yearly Expenses Chart</h3>

@@ -121,7 +121,7 @@
    width: 80%;
 }
 .filters .search-box.active .search-input {
-   color: red;
+   color: var(--color-font-edit);
 }
 .filters .search-box svg {
    padding-left: 5px;
@@ -181,15 +181,15 @@
 }
 .table th,
 .table td {
-   padding: 3px 0px;
+   padding: 15px 0px;
    text-align: center;
 }
 .table th {
-   padding: 15px;
+   padding: 15px 0;
    background-color: var(--color-background);
 }
 .table tbody {
-   height: 200px;
+   height: 100px;
 }
 .table tbody tr {
    border: 1px solid var(--color-grey-border);
@@ -208,7 +208,6 @@
    font-size: 11px;
    position: relative;
    overflow: hidden;
-   height: 35px;
 }
 .element {
    position: relative;
@@ -221,10 +220,10 @@
    background-color: transparent;
    text-align: center;
    font-size: 13px;
-   padding: 10px;
+   width: 80%;
 }
 .element .input#amount {
-   max-width: 80px;
+   max-width: 50px;
    text-align: end;
 }
 .element .input.plus {
@@ -243,6 +242,8 @@
 }
 .element .category {
    display: flex;
+   justify-content: center;
+   align-items: center;
 }
 .element .category .icons {
    display: flex;
@@ -259,12 +260,6 @@
 .element .delete-button:hover {
    color: var(--color-font-edit);
 }
-.element .input-wrapper {
-   display: flex;    
-   flex-direction: row;
-   justify-content: center;
-   align-items: center;
-}
 
 
 
@@ -275,7 +270,7 @@
    }
 }
 @media only screen and (max-width: 900px) {
-   .table {
+   .element .input {
       font-size: 11px;
    }
    .filters {
@@ -286,8 +281,8 @@
       font-size: 11px;
       padding-right: 5px;
    }
-   .element .category .icons svg {
-      width: 80%;
+   .element .category .icons {
+      display: none;
    }
    .filters .filter .input {
       font-size: 12px;
@@ -300,5 +295,13 @@
    }
 }
 @media only screen and (max-width: 600px) {
-
+   .element .category .icons {
+      display: block;
+   }
+   .element .category .input {
+      display: none;
+   }
+   .element .input {
+      font-size: 10px;
+   }
 }

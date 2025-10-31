@@ -147,7 +147,7 @@ export const TransactionListElement = ({record, index}) => {
                </td>
                <td>
                   <div className="input-wrapper">
-                     <span>€</span> 
+                     <span className="euro">€</span> 
                      <input 
                         className={`input ${amount > 0 ? 'plus' : 'minus'} ${editField === "amount"  ? "edit" : ""}`} 
                         id="amount"

@@ -20,14 +20,12 @@
    grid-template-columns: 1fr 1fr 1fr;
    justify-content: center;
    padding: 5px;
-   
 }
 .filters .filter {
    display: flex;
    justify-content: start;
    align-items: center;
-   padding-right: 10px;
-   margin: 5px 0;
+   margin: 5px 10px;
 }
 .filters .filter .name {
    font-size: 13px;
@@ -37,20 +35,14 @@
 .filters .filter .input {
    font-size: 13px;
    cursor: pointer;
-}
-.filters .date-input, .filters select {
+   padding: 5px 0;
+   width: 100%;
    text-align: center;
    background-color: transparent;
    display: flex;
    color: var(--color-grey);
    border-radius: 2px;
    border: 1px solid var(--color-grey);
-}
-.filters .date-input .input {
-   border: none;
-   text-align: center;
-   background-color: transparent;
-   color: var(--color-grey);
 }
 
 .filters .date-selector {
@@ -86,14 +78,7 @@
    padding: 20px;
    display: flex;
 }
-.filters .date-default-button {
-   border: none;
-   background-color: transparent;
-   opacity: 0;
-}
-.filters .date-default-button.active {
-   opacity: 1;
-}
+
 
 
 
@@ -103,14 +88,13 @@
    align-items: center;
    border-radius: 2px;
    border: 1px solid var(--color-grey);
-   margin: 5px 0;
 }
 .filters .search-box .close-button {
    cursor: pointer;
    color: var(--color-font);
    opacity: 0;
 }
-.filters .search-box.active .close-button{
+.filters .search-box.active .close-button {
    opacity: 1;
 }
 .filters .search-box .search-input {
@@ -118,7 +102,8 @@
    background-color: transparent;
    font-size: 13px;
    color: var(--color-grey);
-   width: 80%;
+   width: 100%;
+   padding: 5px 0;
 }
 .filters .search-box.active .search-input {
    color: var(--color-font-edit);
@@ -264,18 +249,13 @@
 
 
 @media only screen and (max-width: 1300px) {
-   .element .input {
-      padding: 2px;
-      font-size: 12px;
-   }
 }
 @media only screen and (max-width: 900px) {
    .element .input {
       font-size: 11px;
    }
    .filters {
-      display: grid;
-      grid-template-columns: 1fr;
+      grid-template-columns: 1fr 1fr;
    }
    .filters .filter .name {
       font-size: 11px;
@@ -290,9 +270,6 @@
    .search-box .search-input {
       font-size: 12px;
    }
-   .filters .date-input, .filters select {
-      height: 25px;
-   }
 }
 @media only screen and (max-width: 600px) {
    .element .category .icons {
@@ -303,5 +280,8 @@
    }
    .element .input {
       font-size: 10px;
+   }
+   .filters {
+      grid-template-columns: 1fr;
    }
 }

@@ -86,23 +86,23 @@ export const Dashboard = () => {
                   <div className="box">
                      <span className="title">Income</span>
                      {isRecordLoaded ?
-                           <div className="recent-transaction">
-                              <Link className="link" to="../income">See All</Link>
-                              <span className="description">Recent Transactions</span>
-                              <RecentList records={incomeRecords} /> 
-                           </div>
-                           : <LoadingIconSmall />
+                        <div className="recent-transaction">
+                           <Link className="link" to="../income">See All</Link>
+                           <span className="description">Recent Transactions</span>
+                           <RecentList records={incomeRecords} /> 
+                        </div>
+                        : <LoadingIconSmall />
                      }
                   </div>
                   <div className="box">
                      <span className="title">Expense</span>
                      {isRecordLoaded ?
-                           <div className="recent-transaction">
-                              <Link className="link" to="../expense">See All</Link>
-                              <span className="description">Recent Transactions</span>
-                              <RecentList records={expenseRecords} /> 
-                           </div>
-                           : <LoadingIconSmall />
+                        <div className="recent-transaction">
+                           <Link className="link" to="../expense">See All</Link>
+                           <span className="description">Recent Transactions</span>
+                           <RecentList records={expenseRecords} /> 
+                        </div>
+                        : <LoadingIconSmall />
                      }
                   </div>
                </div>

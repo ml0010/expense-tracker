@@ -107,27 +107,19 @@ const dateFormat = (date) => {
 
 const PeriodFilter = () => {
 
-   const { currentPeriod, periodList, handlePeriodChange} = useContext(TransactionFilterContext);
+   const { currentPeriod, periodList } = useContext(TransactionFilterContext);
 
    const [ openForm, setOpenForm ] = useState(false);
 
    return (
       <div className="filter period-filter">
          <span className="name">Period</span>
-         <div className="date-input">
-               <input 
-                  className="input" 
-                  value={`${dateFormat(periodList[currentPeriod].start)} to ${dateFormat(periodList[currentPeriod].end)}`} 
-                  onClick={() => setOpenForm(!openForm)} 
-                  readOnly
-               />
-               <button 
-                  className={`date-default-button ${currentPeriod !== "all" ? "active" : ""}`} 
-                  onClick={()=>handlePeriodChange("all")}
-               >
-                  <XIcon size={13}/>
-               </button>
-         </div>
+         <input 
+            className="input" 
+            value={`${dateFormat(periodList[currentPeriod].start)} to ${dateFormat(periodList[currentPeriod].end)}`} 
+            onClick={() => setOpenForm(!openForm)} 
+            readOnly
+         />
          <div className={`date-selector ${openForm ? "active" : ""}`}>
                <DateSelector close={()=>setOpenForm(false)}/>
          </div>
@@ -274,19 +266,19 @@ const TextFilter = () => {
    };
 
    return (
-      <div className={`search-box ${searchInput.length > 0 ? "active" : ""}`} ref={searchRef}>
+      <div className={`filter search-box ${searchInput.length > 0 ? "active" : ""}`} ref={searchRef}>
          <MagnifyingGlassIcon size={18} />
          <input 
-               className="search-input" 
-               value={searchInput} 
-               placeholder="Search" 
-               onChange={(e)=>setSearchInput(e.target.value)} 
-               onKeyDown={(e) => {e.key === 'Enter' && handleTextSearch()}} 
+            className="search-input" 
+            value={searchInput} 
+            placeholder="Search" 
+            onChange={(e)=>setSearchInput(e.target.value)} 
+            onKeyDown={(e) => {e.key === 'Enter' && handleTextSearch()}} 
          />
          <XIcon 
-               className={"close-button"} 
-               onClick={() => setSearchInput("")} 
-               size={13} 
+            className={"close-button"} 
+            onClick={() => setSearchInput("")} 
+            size={13} 
          />
       </div>
    );

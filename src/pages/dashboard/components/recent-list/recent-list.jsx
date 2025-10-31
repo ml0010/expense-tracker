@@ -3,7 +3,7 @@ import './recent-list.css'
 
 export const RecentList = ({records}) => {
 
-   const numberOfRecords = "5";
+   const numberOfRecords = "6";
 
    return (
       <div className="recent-list">

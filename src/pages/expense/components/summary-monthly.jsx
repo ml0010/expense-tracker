@@ -16,13 +16,15 @@ export const SummaryMonthly = ({ type }) => {
    const [ monthSelected, setMonthSelected ] = useState(0);
 
    useEffect(() => {
-      if (type === "expense") {
-         setRecords(expenseRecords);
-         getLastFewMonths(expenseRecords);
-      }
-      else if (type === "income") {
-         setRecords(incomeRecords);
-         getLastFewMonths(incomeRecords);
+      if(isRecordLoaded) {
+         if (type === "expense") {
+            setRecords(expenseRecords);
+            getLastFewMonths(expenseRecords);
+         }
+         else if (type === "income") {
+            setRecords(incomeRecords);
+            getLastFewMonths(incomeRecords);
+         }
       }
    }, [isRecordLoaded, type]);
 

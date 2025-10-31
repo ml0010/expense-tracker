@@ -17,10 +17,10 @@
 .recent-list .element .input {
    border: none;
    cursor: pointer;
-   background-color: transparent;
    font-size: 12px;
    max-width: 120px;
    color: var(--color-font);
+   margin: 2px;
 }
 
 .recent-list .element .input:hover {
@@ -35,13 +35,9 @@
    display: flex;
    flex-direction: center;
    align-items: center;
-   color: rgb(74, 74, 74);
-   border-radius: 50%;
-   padding: 5px;
 }
 .recent-list .element .description {
    font-size: 13px;
-   margin-bottom: -10px;
 }
 .recent-list .element .date .input {
    font-size: 11px;

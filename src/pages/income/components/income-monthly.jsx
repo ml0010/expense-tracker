@@ -9,13 +9,27 @@ export const IncomeMonthly = () => {
 
    const getLastFewMonths = () => {
       const results = [];
-      const numberOfMonths = 12;
-      for (let i = 0; i < numberOfMonths; i++) {
-         const newMonth = currentMonth - i;
-         if (newMonth < 0) 
-            results.push({"month": newMonth + 12, "year" : currentYear - 1});
-         else
-            results.push({"month": newMonth, "year" : currentYear});
+      const yearMin = new Date(incomeRecords[incomeRecords.length-1].date).getFullYear();
+      const monthMin = new Date(incomeRecords[incomeRecords.length-1].date).getMonth();
+      const numberOfMonths = 1000;
+      
+      for (let year = currentYear; year >= yearMin; year--) {
+         var startMonth = null;
+         var lastMonth = null;
+
+         if (year === currentYear) {
+            startMonth = currentMonth;
+            lastMonth = 0;
+         } else if (year === yearMin) {
+            startMonth = 12;
+            lastMonth = monthMin;
+         } else {
+            startMonth = 12;
+            lastMonth = 0;
+         }
+         for (let month = startMonth; (month >= lastMonth && results.length < numberOfMonths); month--) {
+            results.push({"month": month, "year" : year});
+         }
       }
       return results;
    };

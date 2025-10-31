@@ -1,53 +1,57 @@
 import { useContext, useEffect, useState } from "react"
-import { TransactionFilterContext } from "../../../contexts/transaction-filter-context";
-import { TransactionRecordContext } from "../../../contexts/transaction-record-context";
-import { LoadingIconSmall } from "../../components/loading-icon/loading";
+import { TransactionFilterContext } from "../../../../contexts/transaction-filter-context";
+import { TransactionRecordContext } from "../../../../contexts/transaction-record-context";
+import { LoadingIconSmall } from "../../../components/loading-icon/loading";
 
-export const ExpenseMonthly = () => {
+export const ExpenseYearly = () => {
    const { isRecordLoaded, expenseRecords } = useContext(TransactionRecordContext);
-   const { currentMonth, currentYear, filterPeriodByDates, getCategoryList } = useContext(TransactionFilterContext);
-
-   const getLastFewMonths = () => {
-      const results = [];
-      const numberOfMonths = 12;
-      for (let i = 0; i < numberOfMonths; i++) {
-         const newMonth = currentMonth - i;
-         if (newMonth < 0) 
-            results.push({"month": newMonth + 12, "year" : currentYear - 1});
-         else
-            results.push({"month": newMonth, "year" : currentYear});
-      }
-      return results;
-   };
+   const { currentYear, filterPeriodByDates, getCategoryList } = useContext(TransactionFilterContext);
 
    const [ isLoading, setIsLoading ] = useState(true);
    const [ records, setRecords ] = useState([]);
-   const [ category, setCategory ] = useState([]);
-   const [ monthList, setMonthList ] = useState(getLastFewMonths());
-   const [ monthPeriod, setMonthPeriod ] = useState([]);
-   const [ monthSelected, setMonthSelected ] = useState(0);
+   const [ category, setCategory ] = useState(getCategoryList(records));
+   const [ yearList, setYearList ] = useState([]);
+   const [ yearPeriod, setYearPeriod ] = useState([]);
+   const [ yearSelected, setYearSelected ] = useState(0);
 
    const handleSelect = (value) => {
-      setMonthSelected(value);
+      setYearSelected(value);
       setIsLoading(true);
    };
 
-   useEffect(() => {
-      const month = [];
-      monthList.map((item) => month.push({
-         "start" : new Date(item.year, item.month, 1),
-         "end": new Date(item.year, item.month + 1, 0, 23, 59, 59)
-      }));
-      setMonthPeriod(month);
-   }, [monthList]);
+   const getLastFewYears = () => {
+      const results = [];
+      const yearMinimum = new Date(expenseRecords[expenseRecords.length-1].date).getFullYear();
+      for (let i = 0; i < (currentYear - yearMinimum + 1); i++) {
+         const newYear = currentYear - i;
+         if (newYear >= yearMinimum)
+            results.push(newYear);
+      }
+      setYearList(results);
+   };
 
    useEffect(() => {
-      if (expenseRecords.length > 0 && monthPeriod.length > 0) {
-         const newData = filterPeriodByDates(expenseRecords, monthPeriod[monthSelected].start, monthPeriod[monthSelected].end);
+      getLastFewYears();
+   }, [expenseRecords]);
+
+
+   useEffect(() => {
+      const year = [];
+      yearList.map((item) => year.push({
+         "start" : new Date(item, 0, 1),
+         "end": new Date(item, 12, 0, 23, 59, 59)
+      }));
+      setYearPeriod(year);
+   }, [yearList]);
+
+   useEffect(() => {
+      if (expenseRecords.length > 0 && yearPeriod.length > 0) {
+         const newData = filterPeriodByDates(expenseRecords, yearPeriod[yearSelected].start, yearPeriod[yearSelected].end);
          setRecords(newData);
          setCategory(getCategoryList(newData));
       }
-   }, [expenseRecords, monthPeriod, monthSelected]);
+   }, [expenseRecords, yearPeriod, yearSelected]);
+
 
    useEffect(() => {
       setTimeout(() => {
@@ -55,13 +59,12 @@ export const ExpenseMonthly = () => {
       }, 500);
    }, [isLoading]);
 
-
    return (
       <div>
          <div className="select-wrapper">
-            <select defaultValue={monthSelected} onChange={(e) => {handleSelect(e.target.value)}}>
-               {monthList.map((item, index) => 
-                  <option value={index} key={index}>{item.year}-{item.month < 9 && "0"}{item.month + 1}</option>
+            <select defaultValue={yearSelected} onChange={(e) => {handleSelect(e.target.value)}}>
+               {yearList.map((year, index) => 
+                  <option value={index} key={index}>{year}</option>
                )}
             </select>
          </div>
@@ -91,7 +94,7 @@ export const ExpenseMonthly = () => {
                   </tbody>
                </table>
                <p className="total">Total: € {(records.reduce((sum, record) => sum + record.amount, 0) * -1).toFixed(2)}</p>
-               {isLoading && <LoadingIconSmall />}
+               {isLoading && <LoadingIconSmall />}            
             </div>
             : <LoadingIconSmall />
          }

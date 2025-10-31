@@ -3,37 +3,28 @@ import { TransactionFilterContext } from "../../../contexts/transaction-filter-c
 import { TransactionRecordContext } from "../../../contexts/transaction-record-context";
 import { LoadingIconSmall } from "../../components/loading-icon/loading";
 
-export const ExpenseYearly = () => {
-   const { isRecordLoaded, expenseRecords } = useContext(TransactionRecordContext);
+export const SummaryYearly = ({ type }) => {
+   const { isRecordLoaded, expenseRecords, incomeRecords } = useContext(TransactionRecordContext);
    const { currentYear, filterPeriodByDates, getCategoryList } = useContext(TransactionFilterContext);
 
-   const [ isLoading, setIsLoading ] = useState(true);
    const [ records, setRecords ] = useState([]);
-   const [ category, setCategory ] = useState(getCategoryList(records));
+   const [ outputRecords, setOutputRecords ] = useState([]);
+   const [ isLoading, setIsLoading ] = useState(true);
+   const [ category, setCategory ] = useState([]);
    const [ yearList, setYearList ] = useState([]);
    const [ yearPeriod, setYearPeriod ] = useState([]);
    const [ yearSelected, setYearSelected ] = useState(0);
 
-   const handleSelect = (value) => {
-      setYearSelected(value);
-      setIsLoading(true);
-   };
-
-   const getLastFewYears = () => {
-      const results = [];
-      const yearMinimum = new Date(expenseRecords[expenseRecords.length-1].date).getFullYear();
-      for (let i = 0; i < (currentYear - yearMinimum + 1); i++) {
-         const newYear = currentYear - i;
-         if (newYear >= yearMinimum)
-            results.push(newYear);
-      }
-      setYearList(results);
-   };
-
    useEffect(() => {
-      getLastFewYears();
-   }, [expenseRecords]);
-
+      if (type === "expense") {
+         setRecords(expenseRecords);
+         getLastFewYears(expenseRecords);
+      }
+      else if (type === "income") {
+         setRecords(incomeRecords);
+         getLastFewYears(incomeRecords);
+      }
+   }, [isRecordLoaded, type]);
 
    useEffect(() => {
       const year = [];
@@ -45,12 +36,12 @@ export const ExpenseYearly = () => {
    }, [yearList]);
 
    useEffect(() => {
-      if (expenseRecords.length > 0 && yearPeriod.length > 0) {
-         const newData = filterPeriodByDates(expenseRecords, yearPeriod[yearSelected].start, yearPeriod[yearSelected].end);
-         setRecords(newData);
+      if (records.length > 0 && yearPeriod.length > 0) {
+         const newData = filterPeriodByDates(records, yearPeriod[yearSelected].start, yearPeriod[yearSelected].end);
+         setOutputRecords(newData);
          setCategory(getCategoryList(newData));
       }
-   }, [expenseRecords, yearPeriod, yearSelected]);
+   }, [records, yearPeriod, yearSelected]);
 
 
    useEffect(() => {
@@ -59,6 +50,22 @@ export const ExpenseYearly = () => {
       }, 500);
    }, [isLoading]);
 
+   const handleSelect = (value) => {
+      setYearSelected(value);
+      setIsLoading(true);
+   };
+
+   const getLastFewYears = (records) => {
+      const results = [];
+      const yearMinimum = new Date(records[records.length-1].date).getFullYear();
+      for (let i = 0; i < (currentYear - yearMinimum + 1); i++) {
+         const newYear = currentYear - i;
+         if (newYear >= yearMinimum)
+            results.push(newYear);
+      }
+      setYearList(results);
+   };
+   
    return (
       <div>
          <div className="select-wrapper">
@@ -87,13 +94,13 @@ export const ExpenseYearly = () => {
                            {category.map((category, index) => 
                            <tr key={index}>
                               <td>{category}</td>
-                              <td id="amount">{(records.filter((record) => record.category === category).reduce((sum, record) => sum + record.amount, 0) * -1).toFixed(2)}</td>
+                              <td id="amount">{(outputRecords.filter((record) => record.category === category).reduce((sum, record) => sum + record.amount, 0)).toFixed(2)}</td>
                            </tr>)}
                         </>
                      }
                   </tbody>
                </table>
-               <p className="total">Total: € {(records.reduce((sum, record) => sum + record.amount, 0) * -1).toFixed(2)}</p>
+               <p className="total">Total: € {(outputRecords.reduce((sum, record) => sum + record.amount, 0)).toFixed(2)}</p>
                {isLoading && <LoadingIconSmall />}            
             </div>
             : <LoadingIconSmall />

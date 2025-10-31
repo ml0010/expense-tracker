@@ -1,14 +1,14 @@
 import { TransactionFilterContextProvider } from "../../contexts/transaction-filter-context";
 import { TransactionList } from "../components/transaction-list/transaction-list";
 import { ExpenseDaily } from "./components/expense-daily";
-import { ExpenseMonthly } from "./components/expense-monthly";
-import { ExpenseYearly } from "./components/expense-yearly";
-import "./expense.css"
+import "./summary.css"
 import { useEffect, useState } from "react";
 import { LoadingIcon } from "../components/loading-icon/loading";
 import { ExpensePieChart } from "../components/charts/pie-charts";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Scrollbar } from "swiper/modules";
+import { SummaryMonthly } from "./components/summary-monthly";
+import { SummaryYearly } from "./components/summary-yearly";
 
 export const Expense = () => {
    const [ loading, setLoading ] = useState(true);
@@ -68,13 +68,13 @@ export const Expense = () => {
                            <SwiperSlide>
                               <div className="box-content">
                                  <h3>Monthly Expenses</h3>
-                                 <ExpenseMonthly />
+                                 <SummaryMonthly type="expense" />
                               </div>
                            </SwiperSlide>
                            <SwiperSlide>
                               <div className="box-content">
                                  <h3>Yearly Expenses</h3>
-                                 <ExpenseYearly />
+                                 <SummaryYearly type="expense" />
                               </div>
                            </SwiperSlide>
                            

@@ -1,18 +1,21 @@
 import { TransactionFilterContextProvider } from "../../contexts/transaction-filter-context";
 import { TransactionList } from "../components/transaction-list/transaction-list";
-import { IncomeMonthly } from "./components/income-monthly";
-import { IncomeYearly } from "./components/income-yearly";
-import "../expense/expense.css"
+import "./summary.css"
 import { LoadingIcon } from "../components/loading-icon/loading";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { IncomePieChart } from "../components/charts/pie-charts";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Scrollbar } from "swiper/modules";
+import { TransactionRecordContext } from "../../contexts/transaction-record-context";
+import { SummaryMonthly } from "./components/summary-monthly";
+import { SummaryYearly } from "./components/summary-yearly";
 
 export const Income = () => {
    const [ loading, setLoading ] = useState(true);
    const [ slides, setSlides ] = useState(1);
 
+   const { incomeRecords } = useContext(TransactionRecordContext);
+   
    const setSlidesPerview = () => {
       setSlides(
          window.innerWidth <= 600
@@ -61,13 +64,13 @@ export const Income = () => {
                      <SwiperSlide>
                         <div className="box-content">
                            <h3>Monthly Income</h3>
-                           <IncomeMonthly />
+                           <SummaryMonthly type="income" />
                         </div>
-                     </SwiperSlide>
+                     </SwiperSlide>                
                      <SwiperSlide>
                         <div className="box-content">
                            <h3>Yearly Income</h3>
-                           <IncomeYearly />
+                           <SummaryYearly type="income" />
                         </div>
                      </SwiperSlide>
                      <SwiperSlide>

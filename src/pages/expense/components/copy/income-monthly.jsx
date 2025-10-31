@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react"
-import { TransactionFilterContext } from "../../../contexts/transaction-filter-context";
-import { TransactionRecordContext } from "../../../contexts/transaction-record-context";
-import { LoadingIconSmall } from "../../components/loading-icon/loading";
+import { TransactionFilterContext } from "../../../../contexts/transaction-filter-context";
+import { TransactionRecordContext } from "../../../../contexts/transaction-record-context";
+import { LoadingIconSmall } from "../../../components/loading-icon/loading";
 
 export const IncomeMonthly = () => {
    const { isRecordLoaded, incomeRecords } = useContext(TransactionRecordContext);

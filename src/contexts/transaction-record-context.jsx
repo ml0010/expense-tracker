@@ -35,6 +35,15 @@ export const TransactionRecordContextProvider = (props) => {
    const sortByDate = (records) => {
       return records.sort((a, b) => {return new Date(b.date) - new Date(a.date)});
    };
+   const sortByReversedDate = () => {
+      return records.sort((a, b) => {return new Date(a.date) - new Date(b.date)});
+   };
+   const sortByAmount = (records) => {
+      return records.sort((a, b) => {return b.amount - a.amount});
+   };
+   const sortByReversedAmount = (records) => {
+      return records.sort((a, b) => {return a.amount - b.amount});
+   };
 
    useEffect(() => {
       if (isSignedIn) {
@@ -134,7 +143,7 @@ export const TransactionRecordContextProvider = (props) => {
       }
    };
 
-   const contextValue = { username, userId, records, isRecordLoaded, incomeRecords, expenseRecords, monthlyRecords, getTotal, addRecord, deleteRecord, updateRecord };
+   const contextValue = { username, userId, records, isRecordLoaded, incomeRecords, expenseRecords, monthlyRecords, getTotal, addRecord, deleteRecord, updateRecord, sortByDate, sortByReversedDate, sortByAmount, sortByReversedAmount };
    return (
       <TransactionRecordContext.Provider value={contextValue}>{props.children}</TransactionRecordContext.Provider>
    )

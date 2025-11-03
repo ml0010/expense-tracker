@@ -1,6 +1,6 @@
 import { useContext, useEffect, useRef, useState } from 'react'
 import { TransactionListElement } from './transaction-list-element';
-import { MagnifyingGlassIcon, XIcon } from '@phosphor-icons/react';
+import { CaretDownIcon, CaretUpIcon, MagnifyingGlassIcon, XIcon } from '@phosphor-icons/react';
 import { TransactionFilterContext } from '../../../contexts/transaction-filter-context';
 import { EmptyList } from '../empty-list/empty-list'
 import "./transaction-list.css";
@@ -10,12 +10,14 @@ import DatePicker from 'react-datepicker';
 
 export const TransactionList = () => {
 
-   const { isRecordLoaded } = useContext(TransactionRecordContext);
-   const { recordsFiltered } = useContext(TransactionFilterContext);
+   const { isRecordLoaded, sortByDate, sortByReversedDate, sortByAmount, sortByReversedAmount } = useContext(TransactionRecordContext);
+   const { recordsFiltered, setRecordsFiltered } = useContext(TransactionFilterContext);
    
    const [ isLoading, setIsLoading ] = useState(true);
    const [ listLength, setListLength ] = useState(10);
    const [ isListExtended, setIsListExtended ] = useState(false);
+   const [ isDateReverse, setIsDateReverse ] = useState(false);
+   const [ isAmountReverse, setIsAmountReverse ] = useState(false);
 
    /*
    useEffect(() => {
@@ -38,6 +40,23 @@ export const TransactionList = () => {
       }, 500);
    };
 
+   const handleClickDateSort = () => {
+      setIsDateReverse(!isDateReverse);
+      if(isDateReverse) {
+         setRecordsFiltered(sortByDate(recordsFiltered));
+      } else {
+         setRecordsFiltered(sortByReversedDate(recordsFiltered));
+      }
+   };
+   const handleClickAmountSort = () => {
+      setIsAmountReverse(!isAmountReverse);
+      if(isAmountReverse) {
+         setRecordsFiltered(sortByAmount(recordsFiltered));
+      } else {
+         setRecordsFiltered(sortByReversedAmount(recordsFiltered));
+      }
+   };
+
    return (
       <>
       {isRecordLoaded ? 
@@ -53,10 +72,14 @@ export const TransactionList = () => {
             <table className="table">
                <thead>
                   <tr>
-                     <th>Date</th>
+                     <th className="date-th sortable" onClick={handleClickDateSort}>
+                        <span className="text">Date</span>
+                        {isDateReverse ? <CaretUpIcon size={12} weight="fill" /> : <CaretDownIcon size={12} weight="fill" />}</th>
                      <th>Category</th>
                      <th>Description</th>
-                     <th>Amount</th>
+                     <th className="amount-th sortable" onClick={handleClickAmountSort}>
+                        <span className="text">Amount</span>
+                        {isAmountReverse ? <CaretUpIcon size={12} weight="fill" /> : <CaretDownIcon size={12} weight="fill" />}</th>
                      <th></th>
                   </tr>
                </thead>

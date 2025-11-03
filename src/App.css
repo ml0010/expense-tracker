@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600&display=swap');
 
 :root {
-   font-family: "Quicksand", "Inter", "Helvetica", sans-serif;
+   font-family: "Helvetica", "Quicksand", "Inter", sans-serif;
 
    --color-font: #313131;
    --color-font-edit: rgb(0, 120, 138);

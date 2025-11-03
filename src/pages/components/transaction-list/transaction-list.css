@@ -194,6 +194,15 @@
    position: relative;
    overflow: hidden;
 }
+.table .sortable {
+   cursor: pointer;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+.table .sortable .text {
+   margin-right: 5px;
+}
 .element {
    position: relative;
    height: 40px;

@@ -36,7 +36,7 @@
    position: relative;
    overflow: hidden;
 }
-.dashboard .box .description {
+.dashboard .box .recent-transaction .text {
    width: 100%;
    display: flex;
    justify-content: space-between;
@@ -56,7 +56,7 @@
 }
 .dashboard .balance {
    font-size: 40px;
-   font-weight: 800;
+   font-weight: 500;
    color: var(--color-2);
 
 }
@@ -71,7 +71,7 @@
 }
 .arc:hover .text {
    font-size: 11px;
-   font-weight: 800;
+   font-weight: 700;
    transition: font 300ms ease 100ms;
 }
 

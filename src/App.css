@@ -168,13 +168,13 @@ select {
    border-radius: 5px;
    padding: 5px;
 }
+*/
+
+
+
 input:focus{
    outline: none;
-}*/
-
-
-
-
+}
 
 .swiper {
    margin-left: auto;

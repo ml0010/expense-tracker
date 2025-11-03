@@ -206,6 +206,7 @@
 .element {
    position: relative;
    height: 40px;
+
 }
 .element .input {
    border: 1px solid transparent;
@@ -215,16 +216,17 @@
    text-align: center;
    font-size: 13px;
    width: 80%;
+   color: var(--color-font);
 }
 .element .input#amount {
    max-width: 50px;
    text-align: end;
 }
 .element .input.plus {
-   color: blue;
+   color: rgba(97, 135, 250, 0.901);
 }
 .element .input.minus {
-   color: red;
+   color: rgb(197, 13, 13);
 }
 .element .input:hover {
    color: var(--color-1);
@@ -245,17 +247,15 @@
    align-items: center;
 }
 .element .delete-button {
-   cursor: pointer;
-   margin-right: 10px;
    background-color: transparent;
-   color: var(--color-font);
    border: none;
 }
-.element .delete-button:hover {
+.element .delete-button svg {
+   cursor: pointer;
+}
+.element .delete-button svg:hover {
    color: var(--color-font-edit);
 }
-
-
 
 @media only screen and (max-width: 1300px) {
 }

@@ -10,7 +10,7 @@ export const ScrollToTop = () => {
    };
    useEffect(() => {
       const handleScrollBttnVisibility = () => {
-         window.pageYOffset > 250 ? setShowScrollBttn(true) : setShowScrollBttn(false);
+         window.pageYOffset > 150 ? setShowScrollBttn(true) : setShowScrollBttn(false);
       };
       window.addEventListener('scroll', handleScrollBttnVisibility);
       return () => {

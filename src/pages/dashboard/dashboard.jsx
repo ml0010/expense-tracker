@@ -88,7 +88,7 @@ export const Dashboard = () => {
                      {isRecordLoaded ?
                         <div className="recent-transaction">
                            <Link className="link" to="../income">See All</Link>
-                           <span className="description">Recent Transactions</span>
+                           <span className="text">Recent Transactions</span>
                            <RecentList records={incomeRecords} /> 
                         </div>
                         : <LoadingIconSmall />
@@ -99,7 +99,7 @@ export const Dashboard = () => {
                      {isRecordLoaded ?
                         <div className="recent-transaction">
                            <Link className="link" to="../expense">See All</Link>
-                           <span className="description">Recent Transactions</span>
+                           <span className="text">Recent Transactions</span>
                            <RecentList records={expenseRecords} /> 
                         </div>
                         : <LoadingIconSmall />

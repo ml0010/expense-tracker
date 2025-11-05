@@ -106,8 +106,8 @@ export const TransactionForm = () => {
    return (
       <div className={`transaction-form ${isFormOpen && 'open'} ${showMenu && 'menu-active'}`}>
          <div className="transaction-buttons">
-            <span className="button income" onClick={openIncomeForm}>ADD INCOME</span>
-            <span className="button expense" onClick={openExpenseForm}>ADD EXPENSE</span>
+            <div className="button" onClick={openIncomeForm}>ADD INCOME</div>
+            <div className="button" onClick={openExpenseForm}>ADD EXPENSE</div>
          </div>
          {isFormOpen && 
             <>

@@ -19,6 +19,10 @@
    width: calc(100% - var(--nav-full-width));
    padding-left: calc(var(--nav-full-width) + 0.5rem);
 }
+.transaction-form .transaction-buttons {
+   height: 100%;
+   display: flex;
+}
 .transaction-form .background {
    position: absolute;
    width: 100vw;
@@ -43,6 +47,7 @@
    position: relative;
    padding: 30px 0;
    min-width: 500px;
+
 }
 .transaction-form .form-title {
    font-weight: 600;
@@ -58,7 +63,7 @@
 }
 .transaction-form .form-field label {
    font-size: 14px;
-   font-weight: 500;
+   font-weight: 600;
    text-align: end;
 }
 .transaction-form .form-field .input {

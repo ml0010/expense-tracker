@@ -115,11 +115,11 @@
    padding-left: var(--nav-width);
    border-radius: 7px;
    left: -200px;
-   transition: 0.2s ease-in-out;
+   transition: 0.15s ease-in-out;
    z-index: -1;
 }
 .menu-side .menu-bar .link:hover .text-hover {
-   left: -8px;
+   left: -11px;
 }
 .menu-side .menu-bar .link .text-hover .text {
    font-size: 13px;

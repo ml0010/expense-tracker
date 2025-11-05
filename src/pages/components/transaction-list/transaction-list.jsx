@@ -19,13 +19,6 @@ export const TransactionList = () => {
    const [ isDateReverse, setIsDateReverse ] = useState(false);
    const [ isAmountReverse, setIsAmountReverse ] = useState(false);
 
-   /*
-   useEffect(() => {
-      setIsLoading(true);
-      setListLength(10);
-   }, []);
-   */
-   
    useEffect(() => {
       setTimeout(() => {
          setIsLoading(false);
@@ -136,7 +129,7 @@ const PeriodFilter = () => {
 
    return (
       <div className="filter period-filter">
-         <span className="name">Period</span>
+         <span className="filter-title">Period</span>
          <input 
             className="input" 
             value={`${dateFormat(periodList[currentPeriod].start)} to ${dateFormat(periodList[currentPeriod].end)}`} 
@@ -144,8 +137,9 @@ const PeriodFilter = () => {
             readOnly
          />
          <div className={`date-selector ${openForm ? "active" : ""}`}>
-               <DateSelector close={()=>setOpenForm(false)}/>
+            <DateSelector close={()=>setOpenForm(false)}/>
          </div>
+
       </div>
    )
 }
@@ -210,37 +204,42 @@ const DateSelector = (props) => {
    }, [formRef]);
 
    return (
-      <div className="date-filter" ref={formRef}>
-         <h3>Date Selector</h3>
-         <div className="date-filter-buttons" >
-            <button className="option" value="all" onClick={(e) => handleClickOptions(e.target.value)}>All</button>
-            <button className="option" value="today" onClick={(e) => handleClickOptions(e.target.value)}>Today</button>
-            <button className="option" value="month" onClick={(e) => handleClickOptions(e.target.value)}>This Month</button>
-            <button className="option" value="year" onClick={(e) => handleClickOptions(e.target.value)}>This Year</button>
+      <>
+         <div className="background"></div>
+         <div className="date-filter-wrapper">
+            <div className="date-filter" ref={formRef}>
+               <h3>Date Selector</h3>
+               <div className="date-filter-buttons" >
+                  <button className="option" value="all" onClick={(e) => handleClickOptions(e.target.value)}>All</button>
+                  <button className="option" value="today" onClick={(e) => handleClickOptions(e.target.value)}>Today</button>
+                  <button className="option" value="month" onClick={(e) => handleClickOptions(e.target.value)}>This Month</button>
+                  <button className="option" value="year" onClick={(e) => handleClickOptions(e.target.value)}>This Year</button>
+               </div>
+               <div className="date-picker">
+                  <DatePicker 
+                     selected={startDate}
+                     onChange={onChange}
+                     startDate={startDate}
+                     endDate={endDate}
+                     maxDate={today}
+                     selectsRange
+                     rangeSeparator=" - "
+                     isClearable={true}
+                  />
+               </div>
+               <button 
+                  className="button" 
+                  value={periodSelected} 
+                  onClick={(e) => {handleSubmit(e.target.value, startDate, endDate)}}
+               >
+                  Confirm
+               </button>
+               <span className="close-button" onClick={handleClose}>
+                  <XIcon size={15} />
+               </span>
+            </div>
          </div>
-         <div className="date-picker">
-            <DatePicker 
-               selected={startDate}
-               onChange={onChange}
-               startDate={startDate}
-               endDate={endDate}
-               maxDate={today}
-               selectsRange
-               rangeSeparator=" - "
-               isClearable={true}
-            />
-         </div>
-         <div>
-            <button 
-               className="button" 
-               value={periodSelected} 
-               onClick={(e) => {handleSubmit(e.target.value, startDate, endDate)}}
-            >
-               Confirm
-            </button>
-            <button className="button" onClick={handleClose}>Close</button>
-         </div>
-      </div>
+      </>
    )
 }
 
@@ -250,7 +249,7 @@ const CategoryFilter = () => {
    return (
       <div className="filter category-filter">
          {categoryList.length > 1 && <>
-            <span className="name">Category</span>
+            <span className="filter-title">Category</span>
             <select className="input" value="all" onChange={(e) => addCategoryFilter(e.target.value)}>
                <option value="all">Select</option>
                {categoryList.map((category, index) => 
@@ -301,7 +300,7 @@ const TextFilter = () => {
          <XIcon 
             className={"close-button"} 
             onClick={() => setSearchInput("")} 
-            size={13} 
+            size={15} 
          />
       </div>
    );

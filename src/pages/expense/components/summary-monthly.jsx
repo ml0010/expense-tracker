@@ -50,11 +50,10 @@ export const SummaryMonthly = ({ type }) => {
       };
 
       if(isRecordLoaded) {
-         if (type === "expense") {
+         if (type === "expense" && expenseRecords.length > 0) {
             setRecords(expenseRecords);
             getLastFewMonths(expenseRecords);
-         }
-         else if (type === "income") {
+         } else if (type === "income" && incomeRecords.length > 0) {
             setRecords(incomeRecords);
             getLastFewMonths(incomeRecords);
          }

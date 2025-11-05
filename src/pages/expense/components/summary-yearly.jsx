@@ -34,11 +34,11 @@ export const SummaryYearly = ({ type }) => {
       };
 
       if(isRecordLoaded) {
-         if (type === "expense") {
+         if (type === "expense" && expenseRecords.length > 0) {
             setRecords(expenseRecords);
             getLastFewYears(expenseRecords);
          }
-         else if (type === "income") {
+         else if (type === "income" && incomeRecords.length > 0) {
             setRecords(incomeRecords);
             getLastFewYears(incomeRecords);
          }

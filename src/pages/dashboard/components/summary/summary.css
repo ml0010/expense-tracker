@@ -60,9 +60,9 @@
    align-items: center;
    margin-bottom: 20px;
    background-color: var(--color-grey-light);
-   border-radius: 5px;
    color: #313131;
    overflow: hidden;
+   min-height: 40px;
 }
 .summary-month .bar-container .bar {
    display: flex;

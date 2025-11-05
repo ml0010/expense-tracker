@@ -5,6 +5,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { Category } from '../../../pages/components/category';
 import './transaction-form.css'
 import { MenuToggleContext } from '../../../contexts/menu-toggle-context';
+import { XIcon } from '@phosphor-icons/react';
 
 export const TransactionForm = () => {
    
@@ -40,19 +41,19 @@ export const TransactionForm = () => {
 
       if (isExpense) {
          newRecord = {
-               userId: userId,
-               date: date,
-               description: description,
-               amount: Number(amount * -1),
-               category: category
+            userId: userId,
+            date: date,
+            description: description,
+            amount: Number(amount),
+            category: category
          };
       } else {
          newRecord = {
-               userId: userId,
-               date: date,
-               description: description,
-               amount: Number(amount),
-               category: "Income"
+            userId: userId,
+            date: date,
+            description: description,
+            amount: Number(amount),
+            category: "Income"
          };
       }
 
@@ -60,32 +61,6 @@ export const TransactionForm = () => {
       closeForm();
       resetInputs();
    };
-
-   let formRef = useRef(null);
-
-   useEffect(() => {
-      let handler = (e)=>{
-         if(formRef.current && !formRef.current.contains(e.target)){
-               closeForm();
-         }
-      };
-      document.addEventListener("mousedown", handler);
-      return() =>{
-         document.removeEventListener("mousedown", handler);
-      }
-   }, [formRef]);
-
-   useEffect(() => {
-      const keyPressEvent = (e) => {
-         if (e.key === 'Escape' && isFormOpen) {
-               closeForm();
-         }
-      };
-      document.addEventListener("keydown", keyPressEvent);
-      return () => {
-         document.removeEventListener("keydown", keyPressEvent);
-      };
-   }, [isFormOpen]);
 
    const openIncomeForm = () => {
       setIsFormOpen(!isFormOpen);
@@ -102,20 +77,57 @@ export const TransactionForm = () => {
       resetInputs();
    };
 
+   let formRef = useRef(null);
+
+   useEffect(() => {
+      let handler = (e)=>{
+         if(formRef.current && !formRef.current.contains(e.target)){
+            closeForm();
+         }
+      };
+      document.addEventListener("mousedown", handler);
+      return() =>{
+         document.removeEventListener("mousedown", handler);
+      }
+   }, [formRef]);
+
+   useEffect(() => {
+      const keyPressEvent = (e) => {
+         if (e.key === 'Escape' && isFormOpen) {
+            closeForm();
+         }
+      };
+      document.addEventListener("keydown", keyPressEvent);
+      return () => {
+         document.removeEventListener("keydown", keyPressEvent);
+      };
+   }, [isFormOpen]);
+
    return (
       <div className={`transaction-form ${isFormOpen && 'open'} ${showMenu && 'menu-active'}`}>
          <div className="transaction-buttons">
-               <span className="add-button income" onClick={openIncomeForm}>ADD INCOME</span>
-               <span className="add-button expense" onClick={openExpenseForm}>ADD EXPENSE</span>
+            <span className="button income" onClick={openIncomeForm}>ADD INCOME</span>
+            <span className="button expense" onClick={openExpenseForm}>ADD EXPENSE</span>
          </div>
          {isFormOpen && 
-            <div className="transaction-form-wrapper">
+            <>
+               <div className="background"></div>
+               <div className="transaction-form-wrapper">
                   <form onSubmit={handleSubmit} className="form" ref={formRef}>
-                     <p className="form-title">{isExpense? 'Add Your Expense' : 'Add Your Income'}</p>
+                     <div className="form-title">{isExpense? 'Add Your Expense' : 'Add Your Income'}</div>
                      <div className="form-field">
                         <label>Date</label>
                         <DatePicker className="input" selected={date} dateFormat="yyyy/MM/dd" onChange={(date) => setDate(date)} />
                      </div>
+                     {isExpense && 
+                        <div className="form-field">
+                           <label>Category</label>
+                           <select className="input" defaultValue="" onChange={(e) => setCategory(e.target.value)} required>
+                              <option value="">Select a Category</option>
+                              <Category />
+                           </select>
+                        </div>
+                     }
                      <div className="form-field">
                         <label>Description</label>
                         <input className="input" type="text" value={description} onChange={(e) => setDescription(e.target.value)} required></input>
@@ -124,21 +136,14 @@ export const TransactionForm = () => {
                         <label>Amount</label>
                         <input className="input" type="text" value={amount} onChange={(e) => setAmount(e.target.value)} required></input>
                      </div>
-                     {isExpense && 
-                        <div className="form-field">
-                              <label>Category</label>
-                              <select className="input" defaultValue="" onChange={(e) => setCategory(e.target.value)} required>
-                                 <option value="">Select a Category</option>
-                                 <Category />
-                              </select>
-                        </div>
-                     }
-                     <div className="buttons">
-                        <button className="button" type="submit">Add Record</button>
-                        <button className="button" onClick={closeForm}>Close</button>
-                     </div>
+
+                     <button className="button" type="submit">Add Record</button>
+                     <span className="close-button" onClick={closeForm}>
+                        <XIcon size={15} />
+                     </span>
                   </form>
-            </div>
+               </div>
+            </>
          }
       </div>
    )

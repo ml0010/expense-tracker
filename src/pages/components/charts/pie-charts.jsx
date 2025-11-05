@@ -19,7 +19,7 @@ export const ExpensePieChart = () => {
                if(expenseRecords[j].category === category[i])
                   sum += expenseRecords[j].amount;
          }
-         data.push({name: category[i], value: sum * -1});
+         data.push({ name: category[i], value: sum });
       }
       //console.log(data);
       return data;
@@ -34,13 +34,13 @@ export const ExpensePieChart = () => {
       <>
       {isRecordLoaded ? 
          <div className="pie-chart expense">
-               <Pie 
-                  data={data}
-                  width={320}
-                  height={320}
-                  total={getTotal(expenseRecords)}
-                  name={"expense"}
-               />
+            <Pie 
+               data={data}
+               width={320}
+               height={320}
+               total={getTotal(expenseRecords)}
+               name={"expense"}
+            />
          </div>
          : <LoadingIconSmall />
       }

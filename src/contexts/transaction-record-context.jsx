@@ -45,6 +45,83 @@ export const TransactionRecordContextProvider = (props) => {
       return records.sort((a, b) => {return a.amount - b.amount});
    };
 
+
+   const fetchRecords = async () => {
+      if(!user) return;
+      const response = await fetch(`https://expense-tracker-qvcr.onrender.com/expense-records/${user.id}`);
+      try {
+         if (response.ok) {
+            const records = await response.json();
+            //console.log(records);
+            setRecords(sortByDate(records));
+            setIsRecordLoaded(true);
+         }
+      } catch (err) {
+         console.log(err);
+      }
+   };
+
+   const addRecord = async (record) => {
+      const response = await fetch("https://expense-tracker-qvcr.onrender.com", {
+         method: "POST",
+         body: JSON.stringify(record),
+         headers: {
+               "Content-Type": "application/json"
+         }
+      });
+      try {
+         if (response.ok) {
+            const newRecord = await response.json();
+            setRecords((prev) => [newRecord, ...prev]);
+            setIsRecordLoaded(false);
+         }
+      } catch (err) {
+         console.log(err);
+      }
+   };
+
+   const updateRecord = async (id, newRecord) => {
+      const response = await fetch(`https://expense-tracker-qvcr.onrender.com/${id}`, {
+         method: "PUT",
+         body: JSON.stringify(newRecord),
+         headers: {
+               "Content-Type": "application/json"
+         }
+      });
+      try {
+         if (response.ok) {
+            const newRecord = await response.json();
+            setRecords((prev) => 
+               prev.map((record) => {
+                  if(record._id === id) {
+                     return newRecord;
+                  } else {
+                     return record;
+                  }
+               })
+            );
+            setIsRecordLoaded(false);
+         }
+      } catch (err) {
+         console.log(err);
+      }
+   };
+
+   const deleteRecord = async (id) => {
+      const response = await fetch(`https://expense-tracker-qvcr.onrender.com/${id}`, {
+         method: "DELETE"
+      });
+      try {
+         if (response.ok) {
+            const deletedRecord = await response.json();
+            setRecords((prev) => prev.filter((record) => record._id !== deletedRecord._id));
+            setIsRecordLoaded(false);
+         }
+      } catch (err) {
+         console.log(err);
+      }
+   };
+
    useEffect(() => {
       if (isSignedIn) {
          setUsername(user.externalAccounts[0].firstName);
@@ -66,82 +143,6 @@ export const TransactionRecordContextProvider = (props) => {
          setIsRecordLoaded(true);
       }
    }, [records]);
-
-   const fetchRecords = async () => {
-      if(!user) return;
-      const response = await fetch(`https://expense-tracker-qvcr.onrender.com/expense-records/${user.id}`);
-      try {
-         if (response.ok) {
-               const records = await response.json();
-               //console.log(records);
-               setRecords(sortByDate(records));
-               setIsRecordLoaded(true);
-         }
-      } catch (err) {
-         console.log(err);
-      }
-   };
-
-   const addRecord = async (record) => {
-      const response = await fetch("https://expense-tracker-qvcr.onrender.com", {
-         method: "POST",
-         body: JSON.stringify(record),
-         headers: {
-               "Content-Type": "application/json"
-         }
-      });
-      try {
-         if (response.ok) {
-               const newRecord = await response.json();
-               setRecords((prev) => [newRecord, ...prev]);
-               setIsRecordLoaded(false);
-         }
-      } catch (err) {
-         console.log(err);
-      }
-   };
-
-   const updateRecord = async (id, newRecord) => {
-      const response = await fetch(`https://expense-tracker-qvcr.onrender.com/${id}`, {
-         method: "PUT",
-         body: JSON.stringify(newRecord),
-         headers: {
-               "Content-Type": "application/json"
-         }
-      });
-      try {
-         if (response.ok) {
-               const newRecord = await response.json();
-               setRecords((prev) => 
-                  prev.map((record) => {
-                     if(record._id === id) {
-                        return newRecord;
-                     } else {
-                        return record;
-                     }
-                  })
-               );
-               setIsRecordLoaded(false);
-         }
-      } catch (err) {
-         console.log(err);
-      }
-   };
-
-   const deleteRecord = async (id) => {
-      const response = await fetch(`https://expense-tracker-qvcr.onrender.com/${id}`, {
-         method: "DELETE"
-      });
-      try {
-         if (response.ok) {
-               const deletedRecord = await response.json();
-               setRecords((prev) => prev.filter((record) => record._id !== deletedRecord._id));
-               setIsRecordLoaded(false);
-         }
-      } catch (err) {
-         console.log(err);
-      }
-   };
 
    const contextValue = { username, userId, records, isRecordLoaded, incomeRecords, expenseRecords, monthlyRecords, getTotal, addRecord, deleteRecord, updateRecord, sortByDate, sortByReversedDate, sortByAmount, sortByReversedAmount };
    return (

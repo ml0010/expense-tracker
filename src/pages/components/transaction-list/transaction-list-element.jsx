@@ -145,7 +145,7 @@ export const TransactionListElement = ({record, index}) => {
                <div className="input-wrapper">
                   <span className="euro">€</span> 
                   <input 
-                     className={`input ${amount > 0 ? 'plus' : 'minus'} ${editField === "amount"  ? "edit" : ""}`} 
+                     className={`input ${category === "Income" ? 'plus' : 'minus'} ${editField === "amount"  ? "edit" : ""}`} 
                      id="amount"
                      value={amount || ""}
                      onChange={(e) => handleChange(setAmount, e.target.value)} 

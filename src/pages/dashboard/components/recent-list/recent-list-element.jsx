@@ -131,7 +131,8 @@ export const RecentListElement = ({record, index}) => {
          <div className="amount-wrapper">
             <span className="euro">€</span> 
             <input 
-               className={`amount input ${editField === "amount"  ? "edit" : ""}`} 
+               className={`amount input ${editField === "amount"  ? "edit" : ""}`}
+               id="amount" 
                value={amount}
                onChange={(e) => handleChange(setAmount, e.target.value)} 
                onClick={(e) => handleOnclick(e.target.id)}

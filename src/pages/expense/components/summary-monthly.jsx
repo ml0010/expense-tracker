@@ -15,7 +15,40 @@ export const SummaryMonthly = ({ type }) => {
    const [ monthPeriod, setMonthPeriod ] = useState([]);
    const [ monthSelected, setMonthSelected ] = useState(0);
 
+   const handleSelect = (value) => {
+      setMonthSelected(value);
+      setIsLoading(true);
+   };
+
    useEffect(() => {
+
+      const getLastFewMonths = (records) => {
+         const results = [];
+         const yearMin = new Date(records[records.length-1].date).getFullYear();
+         const monthMin = new Date(records[records.length-1].date).getMonth();
+         const numberOfMonths = 6;
+         
+         for (let year = currentYear; year >= yearMin; year--) {
+            var startMonth = null;
+            var lastMonth = null;
+
+            if (year === currentYear) {
+               startMonth = currentMonth;
+               lastMonth = 0;
+            } else if (year === yearMin) {
+               startMonth = 12;
+               lastMonth = monthMin;
+            } else {
+               startMonth = 12;
+               lastMonth = 0;
+            }
+            for (let month = startMonth; (month >= lastMonth && results.length < numberOfMonths); month--) {
+               results.push({"month": month, "year" : year});
+            }
+         }
+         setMonthList(results);
+      };
+
       if(isRecordLoaded) {
          if (type === "expense") {
             setRecords(expenseRecords);
@@ -26,7 +59,7 @@ export const SummaryMonthly = ({ type }) => {
             getLastFewMonths(incomeRecords);
          }
       }
-   }, [isRecordLoaded, type]);
+   }, [isRecordLoaded, type, incomeRecords, expenseRecords, currentMonth, currentYear]);
 
 
    useEffect(() => {
@@ -35,7 +68,7 @@ export const SummaryMonthly = ({ type }) => {
          setOutputRecords(newData);
          setCategory(getCategoryList(newData));
       }
-   }, [records, monthPeriod, monthSelected]);
+   }, [records, monthPeriod, monthSelected, filterPeriodByDates, getCategoryList]);
 
    useEffect(() => {
       const month = [];
@@ -51,39 +84,6 @@ export const SummaryMonthly = ({ type }) => {
          setIsLoading(false);
       }, 500);
    }, [isLoading]);
-
-
-   const getLastFewMonths = (records) => {
-      const results = [];
-      const yearMin = new Date(records[records.length-1].date).getFullYear();
-      const monthMin = new Date(records[records.length-1].date).getMonth();
-      const numberOfMonths = 1000;
-      
-      for (let year = currentYear; year >= yearMin; year--) {
-         var startMonth = null;
-         var lastMonth = null;
-
-         if (year === currentYear) {
-            startMonth = currentMonth;
-            lastMonth = 0;
-         } else if (year === yearMin) {
-            startMonth = 12;
-            lastMonth = monthMin;
-         } else {
-            startMonth = 12;
-            lastMonth = 0;
-         }
-         for (let month = startMonth; (month >= lastMonth && results.length < numberOfMonths); month--) {
-            results.push({"month": month, "year" : year});
-         }
-      }
-      setMonthList(results);
-   };
-
-   const handleSelect = (value) => {
-      setMonthSelected(value);
-      setIsLoading(true);
-   };
 
    return (
       <div>

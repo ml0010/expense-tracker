@@ -21,7 +21,7 @@ export const LineChart = () => {
          const incomeTotal = getTotal(records.filter((record) => record.category === "Income"));
          const expenseTotal = getTotal(records.filter((record) => record.category !== "Income"));
 
-         data.push({month: month, income: incomeTotal, expense: `${expenseTotal < 0 ? expenseTotal * -1 : expenseTotal}`});
+         data.push({month: month, income: incomeTotal, expense: expenseTotal});
       });
       //console.log(data);
       return data;

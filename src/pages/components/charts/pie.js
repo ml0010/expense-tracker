@@ -36,6 +36,7 @@ export const Pie = (props) => {
          data.map((data) => {
                const category = CategoryIcons.find((category) => category.title === data.data.name);
                colorList.push(category.color);
+               return 0;
          });
          return colorList;
       }
@@ -65,7 +66,7 @@ export const Pie = (props) => {
    svg.append("text")
       .attr("id", "description")
       .attr("y", "15")
-      .attr("font-size", "8px")
+      .attr("font-size", "10px")
       .attr("fill", "var(--color-grey)")
       .attr("text-anchor", "middle")
       .text("Total Amount");
@@ -97,7 +98,7 @@ export const Pie = (props) => {
          
          const left = (centroid[0] + margin.left) * (svgDim.width / width);
          const top = (centroid[1] + margin.top) * (svgDim.height / height);
-         const tooltipText = `<b>${d.data.data.name}</b><br>€ ${format(d.data.value)}<br>(${format(d.data.value / props.total * -100)}%)`;
+         const tooltipText = `<b>${d.data.data.name}</b><br>€ ${format(d.data.value)}<br>(${format(d.data.value / props.total * 100)}%)`;
          
          tooltip.style("top", `${top + 110}px`)
                   .style("left", `${left + 190}px`)
@@ -124,7 +125,7 @@ export const Pie = (props) => {
          //console.log(d);
          return d.data.data.name})
       .attr("fill", "var(--color-font)")
-      .attr("font-size", "6px");
+      .attr("font-size", "8px");
 
    arc.append("polyline")
       .attr("stroke", "var(--color-grey)")
@@ -142,7 +143,6 @@ export const Pie = (props) => {
 
    return (
       <div id="pie-chart"></div>
-      
    );
 }
 

@@ -15,16 +15,35 @@ export const SummaryYearly = ({ type }) => {
    const [ yearPeriod, setYearPeriod ] = useState([]);
    const [ yearSelected, setYearSelected ] = useState(0);
 
+   const handleSelect = (value) => {
+      setYearSelected(value);
+      setIsLoading(true);
+   };
+
    useEffect(() => {
-      if (type === "expense") {
-         setRecords(expenseRecords);
-         getLastFewYears(expenseRecords);
+
+      const getLastFewYears = (records) => {
+         const results = [];
+         const yearMinimum = new Date(records[records.length-1].date).getFullYear();
+         for (let i = 0; i < (currentYear - yearMinimum + 1); i++) {
+            const newYear = currentYear - i;
+            if (newYear >= yearMinimum)
+               results.push(newYear);
+         }
+         setYearList(results);
+      };
+
+      if(isRecordLoaded) {
+         if (type === "expense") {
+            setRecords(expenseRecords);
+            getLastFewYears(expenseRecords);
+         }
+         else if (type === "income") {
+            setRecords(incomeRecords);
+            getLastFewYears(incomeRecords);
+         }
       }
-      else if (type === "income") {
-         setRecords(incomeRecords);
-         getLastFewYears(incomeRecords);
-      }
-   }, [isRecordLoaded, type]);
+   }, [isRecordLoaded, type, incomeRecords, expenseRecords, currentYear]);
 
    useEffect(() => {
       const year = [];
@@ -41,7 +60,7 @@ export const SummaryYearly = ({ type }) => {
          setOutputRecords(newData);
          setCategory(getCategoryList(newData));
       }
-   }, [records, yearPeriod, yearSelected]);
+   }, [records, yearPeriod, yearSelected, filterPeriodByDates, getCategoryList]);
 
 
    useEffect(() => {
@@ -50,22 +69,6 @@ export const SummaryYearly = ({ type }) => {
       }, 500);
    }, [isLoading]);
 
-   const handleSelect = (value) => {
-      setYearSelected(value);
-      setIsLoading(true);
-   };
-
-   const getLastFewYears = (records) => {
-      const results = [];
-      const yearMinimum = new Date(records[records.length-1].date).getFullYear();
-      for (let i = 0; i < (currentYear - yearMinimum + 1); i++) {
-         const newYear = currentYear - i;
-         if (newYear >= yearMinimum)
-            results.push(newYear);
-      }
-      setYearList(results);
-   };
-   
    return (
       <div>
          <div className="select-wrapper">

@@ -13,7 +13,7 @@ export const ExpenseDaily = () => {
       if (expenseRecords.length > 0 ) {
          setRecords(filterPeriod(expenseRecords, "today"));
       }
-   }, [expenseRecords]);
+   }, [expenseRecords, filterPeriod]);
 
    return (
       <>
@@ -40,13 +40,13 @@ export const ExpenseDaily = () => {
                            <td>{record.date.slice(0, 10)}</td>
                            <td>{record.category}</td>
                            <td>{record.description}</td>
-                           <td id="amount">{(record.amount  * -1).toFixed(2)}</td>
+                           <td id="amount">{(record.amount).toFixed(2)}</td>
                         </tr>)}
                      </>
                   }
                </tbody>
             </table>
-            <p className="total">Total: € {(records.reduce((sum, record) => sum + record.amount, 0) * -1).toFixed(2)}</p>
+            <p className="total">Total: € {(records.reduce((sum, record) => sum + record.amount, 0)).toFixed(2)}</p>
          </div> : 
          <LoadingIconSmall />
       }

@@ -3,12 +3,13 @@ import "./all-records.css"
 import { useState } from "react";
 import { LoadingIcon } from "../components/loading-icon/loading";
 import { TransactionFilterContextProvider } from "../../contexts/transaction-filter-context";
-import { RowsIcon, SquaresFourIcon } from "@phosphor-icons/react";
+import { CaretDownIcon, CheckIcon, RowsIcon, SquaresFourIcon } from "@phosphor-icons/react";
 
 export const AllRecords = () => {
 
    const [ loading, setLoading ] = useState(true);
-   const [ data, setData ] = useState("");
+   const [ isDataSelectorOpen, setIsDataSelectorOpen ] = useState(false);
+   const [ data, setData ] = useState("all");
    const [ isList, setIsList ] = useState(true);
 
    setTimeout(() => {
@@ -18,6 +19,7 @@ export const AllRecords = () => {
    const handleDataChange = (data) => {
       setData(data);
       setLoading(true);
+      setIsDataSelectorOpen(false);
    };
 
    if (loading) {
@@ -26,10 +28,25 @@ export const AllRecords = () => {
       return (
          <div className="all-record">
             <div className="setting">
-               <div className="transaction-type">
-                  <span id="all" onClick={(e) => {handleDataChange(e.target.id)}}>My Transactions</span>
-                  <span id="income" onClick={(e) => {handleDataChange(e.target.id)}}>Income Transactions</span>
-                  <span id="expense" onClick={(e) => {handleDataChange(e.target.id)}}>Expense Transactions</span>
+               <div className="transaction-selector">
+                  <div className="current-data" onClick={() => {setIsDataSelectorOpen(!isDataSelectorOpen)}}>
+                     {data === "expense" ? "Expense Transactions" : (data === "income" ? "Income Transactions" : "My Transactions")} 
+                     <CaretDownIcon size={18} />
+                  </div>
+                  <div className={`transaction-type ${isDataSelectorOpen && "open"}`}>
+                     <div id="all" onClick={(e) => {handleDataChange(e.target.id)}}>
+                        <span>All Transactions</span>
+                        <CheckIcon size={20} weight="bold" className={`${data !== "all" && "hidden"}`}/>
+                     </div>
+                     <div id="income" onClick={(e) => {handleDataChange(e.target.id)}}>
+                        <span>Income Transactions</span>
+                        <CheckIcon size={20} weight="bold" className={`${data !== "income" && "hidden"}`}/>
+                     </div>
+                     <div id="expense" onClick={(e) => {handleDataChange(e.target.id)}}>
+                        <span>Expense Transactions</span>
+                        <CheckIcon size={20} weight="bold" className={`${data !== "expense" && "hidden"}`}/>
+                     </div>
+                  </div>
                </div>
                <div className="list-type" onClick={() => setIsList(!isList)}>
                   {isList ? <RowsIcon size={25} /> : <SquaresFourIcon size={25} />}

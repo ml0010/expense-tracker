@@ -15,12 +15,32 @@
    left: 0;
    width: calc(100vw - var(--nav-width) - 2rem);
 }
-.transaction-type {
-   display: flex;
-   flex-direction: column;
+.current-data {
    cursor: pointer;
    font-size: 25px;
    font-weight: 600;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   gap: 10px
+}
+.transaction-type {
+   cursor: pointer;
+   padding: 10px;
+   background-color: var(--color-box1);
+   border-radius: 3px;
+   border: 1px solid var(--color-grey-border);
+   display: none;
+   flex-direction: column;
+   justify-content: center;
+   align-items: start;
+   position: absolute;
+}
+.transaction-type.open {
+   display: flex;
+}
+.hidden {
+   color: transparent;
 }
 .list-type {
    cursor: pointer;

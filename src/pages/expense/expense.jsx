@@ -43,53 +43,53 @@ export const Expense = () => {
    } else {
       return (
          <TransactionFilterContextProvider data="expense">
-               <div className="summary expense">
-                  <p className="page-title">My Expenses</p>
-                  <div className="tracker-wrapper">
-                     <Swiper
-                           slidesPerView={slides}
-                           spaceBetween={20}
-                           slidesPerGroup={1}
-                           centeredSlides={false}
-                           loop={false}
-                           loopfillgroupwithblank="true"
-                           touchStartPreventDefault={false}
-                           scrollbar={{ draggable: true }}
-                           navigation={true}
-                           modules={[Navigation, Scrollbar]}
-                           className="mySwiper"
-                     >
-                           <SwiperSlide>
-                              <div className="box-content">
-                                 <h3>Daily Expenses</h3>
-                                 <ExpenseDaily />
-                              </div>
-                           </SwiperSlide>
-                           <SwiperSlide>
-                              <div className="box-content">
-                                 <h3>Monthly Expenses</h3>
-                                 <SummaryMonthly type="expense" />
-                              </div>
-                           </SwiperSlide>
-                           <SwiperSlide>
-                              <div className="box-content">
-                                 <h3>Yearly Expenses</h3>
-                                 <SummaryYearly type="expense" />
-                              </div>
-                           </SwiperSlide>
-                           <SwiperSlide>
-                              <div className="box-content">
-                                 <h3>Yearly Expenses Chart</h3>
-                                 <ExpensePieChart />
-                              </div>
-                           </SwiperSlide>
-                     </Swiper>
-                  </div>
-                  <div className="list">
-                     <h3>Transactions</h3>
-                     <TransactionList />
-                  </div>
+            <div className="summary expense">
+               <p className="page-title">My Expenses</p>
+               <div className="tracker-wrapper">
+                  <Swiper
+                     slidesPerView={slides}
+                     spaceBetween={20}
+                     slidesPerGroup={1}
+                     centeredSlides={false}
+                     loop={false}
+                     loopfillgroupwithblank="true"
+                     touchStartPreventDefault={false}
+                     scrollbar={{ draggable: true }}
+                     navigation={true}
+                     modules={[Navigation, Scrollbar]}
+                     className="mySwiper"
+                  >
+                     <SwiperSlide>
+                        <div className="box-content">
+                           <h3>Daily Expenses</h3>
+                           <ExpenseDaily />
+                        </div>
+                     </SwiperSlide>
+                     <SwiperSlide>
+                        <div className="box-content">
+                           <h3>Monthly Expenses</h3>
+                           <SummaryMonthly type="expense" />
+                        </div>
+                     </SwiperSlide>
+                     <SwiperSlide>
+                        <div className="box-content">
+                           <h3>Yearly Expenses</h3>
+                           <SummaryYearly type="expense" />
+                        </div>
+                     </SwiperSlide>
+                     <SwiperSlide>
+                        <div className="box-content">
+                           <h3>Yearly Expenses Chart</h3>
+                           <ExpensePieChart />
+                        </div>
+                     </SwiperSlide>
+                  </Swiper>
                </div>
+               <div className="list">
+                  <h3>Transactions</h3>
+                  <TransactionList />
+               </div>
+            </div>
          </TransactionFilterContextProvider>
       )
    }

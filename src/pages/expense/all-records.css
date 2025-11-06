@@ -22,7 +22,7 @@
    display: flex;
    justify-content: center;
    align-items: center;
-   gap: 10px
+   gap: 10px;
 }
 .transaction-type {
    cursor: pointer;
@@ -39,7 +39,23 @@
 .transaction-type.open {
    display: flex;
 }
-.hidden {
+.transaction-type div {
+   width: 100%;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   gap: 8px;
+   font-size: 17px;
+   margin: 5px 0;
+}
+.transaction-type span {
+   pointer-events: none;
+}
+.transaction-type svg {
+   pointer-events: none;
+   color: var(--color-2);
+}
+.transaction-type .hidden {
    color: transparent;
 }
 .list-type {

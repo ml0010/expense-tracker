@@ -177,12 +177,15 @@
    margin: 20px 0;
 }
 
-.table .line {
+.line {
+   font-size: 14px;
+   font-weight: 600;
    display: grid;
    grid-template-columns: 1fr 1.2fr 2fr 1fr 0.2fr;
    border-bottom: 1px solid var(--color-grey-border);
    position: relative;
    padding: 10px 0;
+   width: 100%;
 }
 
 .table .see-more-button {
@@ -195,13 +198,13 @@
    justify-content: center;
    align-items: center;
 }
-.table .sortable {
+.sortable {
    cursor: pointer;
    display: flex;
    justify-content: center;
    align-items: center;
 }
-.table .sortable .text {
+.sortable .text {
    margin-right: 5px;
 }
 

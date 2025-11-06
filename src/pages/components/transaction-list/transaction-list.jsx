@@ -54,14 +54,6 @@ export const TransactionList = () => {
       <>
       {isRecordLoaded ? 
          <div className="table-warpper">
-            <div className="filters">
-               <PeriodFilter />
-               <CategoryFilter />
-               <TextFilter />
-            </div>
-            <div className="active-filter-list">
-               <FilterButtons />
-            </div>
             <div className="table">
                <div className="title line">
                   <div className="date-th sortable" onClick={handleClickDateSort}>
@@ -98,6 +90,20 @@ export const TransactionList = () => {
       </>
    )
 }
+export const TransactionListFilters = () => {
+   return (
+      <>
+         <div className="filters">
+            <PeriodFilter />
+            <CategoryFilter />
+            <TextFilter />
+         </div>
+         <div className="active-filter-list">
+            <FilterButtons />
+         </div>
+      </>
+   );
+};
 
 const dateFormat = (date) => {
    const y = date.getFullYear();
@@ -136,9 +142,9 @@ const DateSelector = (props) => {
 
    const today = new Date();
 
-   const [periodSelected, setPeriodSelected] = useState(null);
-   const [startDate, setStartDate] = useState(null);
-   const [endDate, setEndDate] = useState(null);
+   const [ periodSelected, setPeriodSelected ] = useState(null);
+   const [ startDate, setStartDate ] = useState(null);
+   const [ endDate, setEndDate ] = useState(null);
 
    const onChange = (dates) => {
       //console.log(dates);

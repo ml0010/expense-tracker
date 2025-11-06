@@ -35,7 +35,7 @@ export const TransactionFilterContextProvider = (props) => {
          end: new Date(currentYear, 12, 0, 23, 59, 59)
       },
       "all" : {
-         start: new Date(records.length > 0 ? records[records.length-1].date : 0),
+         start: new Date(records.length > 0 ? new Date(Math.min(...records.map((record) => new Date(record.date)))) : 0),
          end: new Date()
       },
       "custom" : {

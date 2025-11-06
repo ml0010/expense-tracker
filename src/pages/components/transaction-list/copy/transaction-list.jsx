@@ -62,50 +62,36 @@ export const TransactionList = () => {
             <div className="active-filter-list">
                <FilterButtons />
             </div>
-            <table className="table">
-               <thead>
-                  <tr>
-                     <th className="date-th sortable" onClick={handleClickDateSort}>
-                        <span className="text">Date</span>
-                        {isDateReverse ? <CaretUpIcon size={12} weight="fill" /> : <CaretDownIcon size={12} weight="fill" />}</th>
-                     <th>Category</th>
-                     <th>Description</th>
-                     <th className="amount-th sortable" onClick={handleClickAmountSort}>
-                        <span className="text">Amount</span>
-                        {isAmountReverse ? <CaretUpIcon size={12} weight="fill" /> : <CaretDownIcon size={12} weight="fill" />}</th>
-                     <th></th>
-                  </tr>
-               </thead>
-               <tbody>
-                  {recordsFiltered.length > 0 ? 
-                     <>
-                     {recordsFiltered.slice(0, listLength).map((record ,index) => (
-                        <TransactionListElement record={record} key={index}/>
-                     ))}
-                     {listLength < recordsFiltered.length &&
-                        <tr>
-                           <td className="see-more-button" colSpan="5" onClick={handleClickSeeMoreButton}>
-                              SEE MORE ({recordsFiltered.length - listLength} more)
-                              {isListExtended && <LoadingIconSmall />}
-                           </td>
-                        </tr>
-                     }
-                     </> : 
-                     <tr>
-                        <td colSpan="5">
-                           <EmptyList />
-                        </td>
-                     </tr>
+            <div className="table">
+               <div className="title line">
+                  <div className="date-th sortable" onClick={handleClickDateSort}>
+                     <span className="text">Date</span>
+                     {isDateReverse ? <CaretUpIcon size={12} weight="fill" /> : <CaretDownIcon size={12} weight="fill" />}
+                  </div>
+                  <div>Category</div>
+                  <div>Description</div>
+                  <div className="amount-th sortable" onClick={handleClickAmountSort}>
+                     <span className="text">Amount</span>
+                     {isAmountReverse ? <CaretUpIcon size={12} weight="fill" /> : <CaretDownIcon size={12} weight="fill" />}
+                  </div>
+                  <div></div>
+               </div>
+               {recordsFiltered.length > 0 ? 
+                  <>
+                  {recordsFiltered.slice(0, listLength).map((record ,index) => (
+                     <TransactionListElement record={record} key={index}/>
+                  ))}
+                  {listLength < recordsFiltered.length &&
+                     <div className="see-more-button" onClick={handleClickSeeMoreButton}>
+                        SEE MORE ({recordsFiltered.length - listLength} more)
+                        {isListExtended && <LoadingIconSmall />}
+                     </div>
                   }
-                  {isLoading && 
-                     <tr>
-                        <td colSpan="5">
-                           <LoadingIconSmall />
-                        </td>
-                     </tr>
-                  }
-               </tbody>
-            </table>
+                  </> : 
+                  <EmptyList />
+               }
+               {isLoading && <LoadingIconSmall />}
+            </div>
          </div>
          : <LoadingIconSmall />
       }

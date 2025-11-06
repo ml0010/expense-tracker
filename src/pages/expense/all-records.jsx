@@ -1,4 +1,4 @@
-import { TransactionList } from "../components/transaction-list/transaction-list";
+import { TransactionList, TransactionListFilters } from "../components/transaction-list/transaction-list";
 import "./all-records.css"
 import { useState } from "react";
 import { LoadingIcon } from "../components/loading-icon/loading";
@@ -27,36 +27,39 @@ export const AllRecords = () => {
    } else {
       return (
          <div className="all-record">
-            <div className="setting">
-               <div className="transaction-selector">
-                  <div className="current-data" onClick={() => {setIsDataSelectorOpen(!isDataSelectorOpen)}}>
-                     {data === "expense" ? "Expense Transactions" : (data === "income" ? "Income Transactions" : "My Transactions")} 
-                     <CaretDownIcon size={18} />
-                  </div>
-                  <div className={`transaction-type ${isDataSelectorOpen && "open"}`}>
-                     <div id="all" onClick={(e) => {handleDataChange(e.target.id)}}>
-                        <span>All Transactions</span>
-                        <CheckIcon size={20} weight="bold" className={`${data !== "all" && "hidden"}`}/>
-                     </div>
-                     <div id="income" onClick={(e) => {handleDataChange(e.target.id)}}>
-                        <span>Income Transactions</span>
-                        <CheckIcon size={20} weight="bold" className={`${data !== "income" && "hidden"}`}/>
-                     </div>
-                     <div id="expense" onClick={(e) => {handleDataChange(e.target.id)}}>
-                        <span>Expense Transactions</span>
-                        <CheckIcon size={20} weight="bold" className={`${data !== "expense" && "hidden"}`}/>
-                     </div>
-                  </div>
+            <TransactionFilterContextProvider data={data}>
+               <div className={`transaction-list ${!isList && "box"}`}>
+                     <TransactionList />
                </div>
-               <div className="list-type" onClick={() => setIsList(!isList)}>
-                  {isList ? <RowsIcon size={25} /> : <SquaresFourIcon size={25} />}
-               </div>
+               <div className="filter-bar">
+                  <div className="list-setting">
+                     <div className="transaction-selector">
+                        <div className="current-data" onClick={() => {setIsDataSelectorOpen(!isDataSelectorOpen)}}>
+                           {data === "expense" ? "Expense Transactions" : (data === "income" ? "Income Transactions" : "My Transactions")} 
+                           <CaretDownIcon size={18} />
+                        </div>
+                        <div className={`transaction-type ${isDataSelectorOpen && "open"}`}>
+                           <div id="all" onClick={(e) => {handleDataChange(e.target.id)}}>
+                              <span>All Transactions</span>
+                              <CheckIcon size={20} weight="bold" className={`${data !== "all" && "hidden"}`}/>
+                           </div>
+                           <div id="income" onClick={(e) => {handleDataChange(e.target.id)}}>
+                              <span>Income Transactions</span>
+                              <CheckIcon size={20} weight="bold" className={`${data !== "income" && "hidden"}`}/>
+                           </div>
+                           <div id="expense" onClick={(e) => {handleDataChange(e.target.id)}}>
+                              <span>Expense Transactions</span>
+                              <CheckIcon size={20} weight="bold" className={`${data !== "expense" && "hidden"}`}/>
+                           </div>
+                        </div>
+                     </div>
+                     <div className="list-type" onClick={() => setIsList(!isList)}>
+                        {isList ? <RowsIcon size={25} /> : <SquaresFourIcon size={25} />}
+                     </div>
+                  </div>
+               <TransactionListFilters />
             </div>
-            <div className={`transaction-list ${!isList && "box"}`}>
-               <TransactionFilterContextProvider data={data}>
-                  <TransactionList />
-               </TransactionFilterContextProvider>
-            </div>
+            </TransactionFilterContextProvider>
          </div>
       )
    }

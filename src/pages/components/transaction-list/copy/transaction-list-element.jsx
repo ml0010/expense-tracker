@@ -94,9 +94,9 @@ export const TransactionListElement = ({record, index}) => {
    });
 
    return (
-      <>
-         <tr id={id} className="element" ref={listRef} key={index}>
-            <td onClick={() => {handleOnclick("date")}}>
+      <div className="element-wrapper">
+         <div id={id} className="element line" ref={listRef} key={index}>
+            <div onClick={() => {handleOnclick("date")}}>
                <DatePicker 
                   className={`input ${editField === "date" ? "edit" : ""}`}
                   id="date" 
@@ -107,12 +107,12 @@ export const TransactionListElement = ({record, index}) => {
                      handleDateChange(newDate);
                   }}
                />
-            </td>
-            <td>
+            </div>
+            <div>
                <div className="category">
                   {CategoryIcons.map((category, index) => {
                      if (category.title === record.category) {
-                           return <div className="icons" style={{color: category.color}} key={index}><category.icon size={21} weight="regular" /></div>;
+                        return <div className="icons" style={{color: category.color}} key={index}><category.icon size={21} weight="regular" /></div>;
                      }
                      return null;
                   })}
@@ -121,8 +121,8 @@ export const TransactionListElement = ({record, index}) => {
                      id="category" 
                      value={category || ""} 
                      onChange={(e) => {
-                           handleChange(setCategory, e.target.value);
-                           handleCategoryChange(e.target.value);
+                        handleChange(setCategory, e.target.value);
+                        handleCategoryChange(e.target.value);
                      }} 
                      onMouseDown={(e) => {handleOnclick(e.target.id)}} 
                   >
@@ -130,8 +130,8 @@ export const TransactionListElement = ({record, index}) => {
                      <Category />
                   </select>
                </div>
-            </td>
-            <td>
+            </div>
+            <div>
                <input 
                   className={`input ${editField === "description"  ? "edit" : ""}`} 
                   id="description" 
@@ -140,8 +140,8 @@ export const TransactionListElement = ({record, index}) => {
                   onClick={(e) => handleOnclick(e.target.id)}
                   onKeyDown={(e) => handleEditSubmit(e)}
                />
-            </td>
-            <td>
+            </div>
+            <div>
                <div className="input-wrapper">
                   <span className="euro">€</span> 
                   <input 
@@ -153,14 +153,12 @@ export const TransactionListElement = ({record, index}) => {
                      onKeyDown={(e) => handleEditSubmit(e)}
                   />
                </div>
-            </td>
-            <td>
-               <button className="delete-button" id={id} >
-                  <XIcon size={15} onClick={(e) => handleDelete(e.target.parentElement.id)} />
-               </button>
-            </td>
-            {isEdit && <td colSpan="5"><LoadingIconSmall /></td>}
-         </tr>
-      </>
+            </div>
+            <button className="delete-button" id={id} >
+               <XIcon size={15} onClick={(e) => handleDelete(e.target.parentElement.id)} />
+            </button>
+            {isEdit && <div><LoadingIconSmall /></div>}
+         </div>
+      </div>
    )
 }

@@ -2,19 +2,16 @@ import { TransactionFilterContextProvider } from "../../contexts/transaction-fil
 import { TransactionList } from "../components/transaction-list/transaction-list";
 import "./summary.css"
 import { LoadingIcon } from "../components/loading-icon/loading";
-import { useContext, useEffect, useState } from "react";
+import {  useEffect, useState } from "react";
 import { IncomePieChart } from "../components/charts/pie-charts";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Scrollbar } from "swiper/modules";
-import { TransactionRecordContext } from "../../contexts/transaction-record-context";
 import { SummaryMonthly } from "./components/summary-monthly";
 import { SummaryYearly } from "./components/summary-yearly";
 
 export const Income = () => {
    const [ loading, setLoading ] = useState(true);
    const [ slides, setSlides ] = useState(1);
-
-   const { incomeRecords } = useContext(TransactionRecordContext);
    
    const setSlidesPerview = () => {
       setSlides(

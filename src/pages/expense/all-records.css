@@ -1,3 +1,75 @@
-.all-record .list {
-   width: 100%;
+.all-record {
+   max-width: 1100px;
+   height: 100%;
+   margin: 0 15px;
+}
+.setting {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   padding-left: calc(var(--nav-width) + 2rem);
+   padding-top: calc(var(--nav-width) + 0.5rem);
+   background-color: var(--color-box1);
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: calc(100vw - var(--nav-width) - 2rem);
+}
+.transaction-type {
+   display: flex;
+   flex-direction: column;
+   cursor: pointer;
+   font-size: 25px;
+   font-weight: 600;
+}
+.list-type {
+   cursor: pointer;
+}
+.transaction-list {
+   margin: 30px 0;
+   padding: 10px 40px;
+   border-radius: 3px;
+   box-sizing: border-box;
+}
+.transaction-list.box .table {
+   display: grid;
+   grid-template-columns: 1fr 1fr 1fr;
+   gap: 30px;
+}
+.transaction-list.box .table .title {
+   display: none;
+}
+.transaction-list.box .table .element-wrapper {
+   padding: 8px;
+   border-radius: 3px;
+   border: 1px solid var(--color-grey-border);
+   background-color: var(--color-box1);
+}
+.transaction-list.box .table .element, .transaction-list.box .table .see-more-button {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   position: relative;
+   border: none;
+}
+.transaction-list.box .delete-button {
+   position: absolute;
+   top: 0;
+   right: 0;
+}
+
+
+@media only screen and (max-width: 1100px) {
+   .setting {
+      width: 100%;
+      padding-left: 0;
+   }
+}
+@media only screen and (max-width: 900px) {
+}
+@media only screen and (max-width: 700px) {
+
+}
+@media only screen and (max-width: 400px) {
 }

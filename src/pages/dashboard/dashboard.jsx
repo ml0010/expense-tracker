@@ -15,7 +15,7 @@ export const Dashboard = () => {
 
    const { isRecordLoaded, incomeRecords, expenseRecords } = useContext(TransactionRecordContext);
    
-   const [loading, setLoading] = useState(true);
+   const [ loading, setLoading ] = useState(true);
    const [ slides, setSlides ] = useState(1);
 
    const setSlidesPerview = () => {

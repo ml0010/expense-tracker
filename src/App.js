@@ -29,8 +29,8 @@ function App() {
    return (
       <div className={`App ${darkMode && 'dark-mode'}`}>
          <ClerkProvider 
-               publishableKey={CLERK_PUBLISHABLE_KEY}
-               afterSignOutUrl="/expense-tracker"
+            publishableKey={CLERK_PUBLISHABLE_KEY}
+            afterSignOutUrl="/expense-tracker"
          >
             <MenuToggleContextProvider>
                <TransactionRecordContextProvider>
@@ -46,11 +46,9 @@ function App() {
       </div>
    );
 }
-
 export default App;
 
 export const RouteList = () => {
-
    const { showMenu } = useContext(MenuToggleContext);
    const isSignedIn = useUser().isSignedIn;
 

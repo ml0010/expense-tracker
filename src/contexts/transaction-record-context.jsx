@@ -35,16 +35,6 @@ export const TransactionRecordContextProvider = (props) => {
    const sortByDate = (records) => {
       return records.sort((a, b) => {return new Date(b.date) - new Date(a.date)});
    };
-   const sortByReversedDate = () => {
-      return records.sort((a, b) => {return new Date(a.date) - new Date(b.date)});
-   };
-   const sortByAmount = (records) => {
-      return records.sort((a, b) => {return b.amount - a.amount});
-   };
-   const sortByReversedAmount = (records) => {
-      return records.sort((a, b) => {return a.amount - b.amount});
-   };
-
 
    const fetchRecords = async () => {
       if(!user) return;
@@ -66,7 +56,7 @@ export const TransactionRecordContextProvider = (props) => {
          method: "POST",
          body: JSON.stringify(record),
          headers: {
-               "Content-Type": "application/json"
+            "Content-Type": "application/json"
          }
       });
       try {
@@ -85,7 +75,7 @@ export const TransactionRecordContextProvider = (props) => {
          method: "PUT",
          body: JSON.stringify(newRecord),
          headers: {
-               "Content-Type": "application/json"
+            "Content-Type": "application/json"
          }
       });
       try {
@@ -144,7 +134,7 @@ export const TransactionRecordContextProvider = (props) => {
       }
    }, [records]);
 
-   const contextValue = { username, userId, records, isRecordLoaded, incomeRecords, expenseRecords, monthlyRecords, getTotal, addRecord, deleteRecord, updateRecord, sortByDate, sortByReversedDate, sortByAmount, sortByReversedAmount };
+   const contextValue = { username, userId, records, isRecordLoaded, incomeRecords, expenseRecords, monthlyRecords, getTotal, addRecord, deleteRecord, updateRecord };
    return (
       <TransactionRecordContext.Provider value={contextValue}>{props.children}</TransactionRecordContext.Provider>
    )

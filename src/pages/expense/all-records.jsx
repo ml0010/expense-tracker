@@ -1,4 +1,4 @@
-import { TransactionList, TransactionListFilters } from "../components/transaction-list/transaction-list";
+import { TransactionList, TransactionListFilters, TransactionListTableHead } from "../components/transaction-list/transaction-list";
 import "./all-records.css"
 import { useState } from "react";
 import { LoadingIcon } from "../components/loading-icon/loading";
@@ -29,7 +29,7 @@ export const AllRecords = () => {
          <div className="all-record">
             <TransactionFilterContextProvider data={data}>
                <div className={`transaction-list ${!isList && "box"}`}>
-                     <TransactionList />
+                  <TransactionList />
                </div>
                <div className="filter-bar">
                   <div className="list-setting">
@@ -57,8 +57,9 @@ export const AllRecords = () => {
                         {isList ? <RowsIcon size={25} /> : <SquaresFourIcon size={25} />}
                      </div>
                   </div>
-               <TransactionListFilters />
-            </div>
+                  <TransactionListFilters />
+                  <TransactionListTableHead />
+               </div>
             </TransactionFilterContextProvider>
          </div>
       )

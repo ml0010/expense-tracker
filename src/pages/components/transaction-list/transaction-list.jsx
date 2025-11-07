@@ -10,14 +10,12 @@ import DatePicker from 'react-datepicker';
 
 export const TransactionList = () => {
 
-   const { isRecordLoaded, sortByDate, sortByReversedDate, sortByAmount, sortByReversedAmount } = useContext(TransactionRecordContext);
-   const { recordsFiltered, setRecordsFiltered } = useContext(TransactionFilterContext);
+   const { isRecordLoaded } = useContext(TransactionRecordContext);
+   const { recordsFiltered, isFilteredRecordsReady } = useContext(TransactionFilterContext);
    
    const [ isLoading, setIsLoading ] = useState(true);
    const [ listLength, setListLength ] = useState(10);
    const [ isListExtended, setIsListExtended ] = useState(false);
-   const [ isDateReverse, setIsDateReverse ] = useState(false);
-   const [ isAmountReverse, setIsAmountReverse ] = useState(false);
 
    useEffect(() => {
       setTimeout(() => {
@@ -32,6 +30,40 @@ export const TransactionList = () => {
          setListLength(listLength + 5);
       }, 500);
    };
+
+   return (
+      <>
+      {isRecordLoaded ? 
+         <div className="table-warpper">
+            <div className="table">
+               {recordsFiltered.length > 0 ? 
+                  <>
+                  {recordsFiltered.slice(0, listLength).map((record ,index) => (
+                     <TransactionListElement record={record} key={index}/>
+                  ))}
+                  {listLength < recordsFiltered.length &&
+                     <div className="see-more-button" onClick={handleClickSeeMoreButton}>
+                        SEE MORE ({recordsFiltered.length - listLength} more)
+                        {isListExtended && <LoadingIconSmall />}
+                     </div>
+                  }
+                  </> : 
+                  <EmptyList />
+               }
+               {isLoading && <LoadingIconSmall />}
+               {isFilteredRecordsReady ? "TRUE" : "FALSE"}
+            </div>
+         </div>
+         : <LoadingIconSmall />
+      }
+      </>
+   )
+}
+
+export const TransactionListTableHead = () => {
+   const { recordsFiltered, setRecordsFiltered, sortByDate, sortByReversedDate, sortByAmount, sortByReversedAmount } = useContext(TransactionFilterContext);
+   const [ isDateReverse, setIsDateReverse ] = useState(false);
+   const [ isAmountReverse, setIsAmountReverse ] = useState(false);
 
    const handleClickDateSort = () => {
       setIsDateReverse(!isDateReverse);
@@ -51,45 +83,22 @@ export const TransactionList = () => {
    };
 
    return (
-      <>
-      {isRecordLoaded ? 
-         <div className="table-warpper">
-            <div className="table">
-               <div className="title line">
-                  <div className="date-th sortable" onClick={handleClickDateSort}>
-                     <span className="text">Date</span>
-                     {isDateReverse ? <CaretUpIcon size={12} weight="fill" /> : <CaretDownIcon size={12} weight="fill" />}
-                  </div>
-                  <div>Category</div>
-                  <div>Description</div>
-                  <div className="amount-th sortable" onClick={handleClickAmountSort}>
-                     <span className="text">Amount</span>
-                     {isAmountReverse ? <CaretUpIcon size={12} weight="fill" /> : <CaretDownIcon size={12} weight="fill" />}
-                  </div>
-                  <div></div>
-               </div>
-               {recordsFiltered.length > 0 ? 
-                  <>
-                  {recordsFiltered.slice(0, listLength).map((record ,index) => (
-                     <TransactionListElement record={record} key={index}/>
-                  ))}
-                  {listLength < recordsFiltered.length &&
-                     <div className="see-more-button" onClick={handleClickSeeMoreButton}>
-                        SEE MORE ({recordsFiltered.length - listLength} more)
-                        {isListExtended && <LoadingIconSmall />}
-                     </div>
-                  }
-                  </> : 
-                  <EmptyList />
-               }
-               {isLoading && <LoadingIconSmall />}
-            </div>
+      <div className="title line">
+         <div className="date-th sortable" onClick={handleClickDateSort}>
+            <span className="text">Date</span>
+            {isDateReverse ? <CaretUpIcon size={12} weight="fill" /> : <CaretDownIcon size={12} weight="fill" />}
          </div>
-         : <LoadingIconSmall />
-      }
-      </>
-   )
-}
+         <div>Category</div>
+         <div>Description</div>
+         <div className="amount-th sortable" onClick={handleClickAmountSort}>
+            <span className="text">Amount</span>
+            {isAmountReverse ? <CaretUpIcon size={12} weight="fill" /> : <CaretDownIcon size={12} weight="fill" />}
+         </div>
+         <div></div>
+      </div>
+   );
+};
+
 export const TransactionListFilters = () => {
    return (
       <>

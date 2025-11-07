@@ -12,7 +12,10 @@ export const TransactionFilterContextProvider = (props) => {
    const [ currentPeriod, setCurrentPeriod ] = useState(props.period || "all"); // periodList options
    const [ customStartDate, setCustomStartDate ] = useState(null);
    const [ customEndDate, setCustomEndDate ] = useState(null);
+
    const [ recordsFiltered, setRecordsFiltered ] = useState([]);
+   const [ isFilteredRecordsReady, setIsFilteredRecordsReady ] = useState(false);
+
    const [ categoryList, setCategoryList ] = useState([]);
    const [ categoryFilterList, setCategoryFilterList ] = useState([]);
    const [ searchText, setSearchText ] = useState(null);
@@ -43,7 +46,37 @@ export const TransactionFilterContextProvider = (props) => {
          end: customEndDate
       }
    };
-   
+
+   const sortByDate = (records) => {
+      setIsFilteredRecordsReady(false);
+      return records.sort((a, b) => {return new Date(b.date) - new Date(a.date)});
+   };
+   const sortByReversedDate = (records) => {
+      setIsFilteredRecordsReady(false);
+      return records.sort((a, b) => {return new Date(a.date) - new Date(b.date)});
+   };
+   const sortByAmount = (records) => {
+      setIsFilteredRecordsReady(false);
+      return records.sort((a, b) => {return b.amount - a.amount});
+   };
+   const sortByReversedAmount = (records) => {
+      setIsFilteredRecordsReady(false);
+      return records.sort((a, b) => {return a.amount - b.amount});
+   };
+
+   useEffect(() => {
+      console.log("DATA FILETRED");
+      setIsFilteredRecordsReady(false);
+   }, [recordsFiltered]);
+
+   useEffect(() => {
+      if(!isFilteredRecordsReady) {
+         setTimeout(() => {
+            setIsFilteredRecordsReady(true);
+         }, 500);
+      }
+   }, [isFilteredRecordsReady]);
+
    useEffect(() => {
       const data = (dataSelection === "income" ? [...incomeRecords] : dataSelection === "expense" ? [...expenseRecords] : [...records]);
 
@@ -119,7 +152,7 @@ export const TransactionFilterContextProvider = (props) => {
       setCategoryFilterList((prev) => prev.filter(item => item !== category));
    };
 
-   const contextValue = { currentMonth, currentYear, currentPeriod, periodList, recordsFiltered, setRecordsFiltered, handlePeriodChange, categoryList, categoryFilterList, addCategoryFilter, deleteCategoryFilter, deleteAllCategoryFilter, filterPeriod, filterPeriodByDates, getCategoryList, getDescriptionList, searchText, setSearchText };
+   const contextValue = { currentMonth, currentYear, currentPeriod, periodList, recordsFiltered, setRecordsFiltered, handlePeriodChange, categoryList, categoryFilterList, addCategoryFilter, deleteCategoryFilter, deleteAllCategoryFilter, filterPeriod, filterPeriodByDates, getCategoryList, getDescriptionList, searchText, setSearchText, isFilteredRecordsReady, sortByDate, sortByReversedDate, sortByAmount, sortByReversedAmount };
 
    return (
       <TransactionFilterContext.Provider value={contextValue}>{props.children}</TransactionFilterContext.Provider>

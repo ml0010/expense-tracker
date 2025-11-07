@@ -1,5 +1,5 @@
 import { TransactionFilterContextProvider } from "../../contexts/transaction-filter-context";
-import { TransactionList, TransactionListFilters } from "../components/transaction-list/transaction-list";
+import { TransactionList, TransactionListFilters, TransactionListTableHead } from "../components/transaction-list/transaction-list";
 import { ExpenseDaily } from "./components/expense-daily";
 import "./summary.css"
 import { useEffect, useState } from "react";
@@ -88,6 +88,7 @@ export const Expense = () => {
                <div className="list">
                   <h3>Transactions</h3>
                   <TransactionListFilters />
+                  <TransactionListTableHead />
                   <TransactionList />
                </div>
             </div>

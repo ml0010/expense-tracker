@@ -28,9 +28,6 @@ export const AllRecords = () => {
       return (
          <div className="all-record">
             <TransactionFilterContextProvider data={data}>
-               <div className={`transaction-list ${!isList && "box"}`}>
-                  <TransactionList />
-               </div>
                <div className="filter-bar">
                   <div className="list-setting">
                      <div className="transaction-selector">
@@ -59,6 +56,9 @@ export const AllRecords = () => {
                   </div>
                   <TransactionListFilters />
                   <TransactionListTableHead />
+               </div>
+               <div className={`transaction-list ${!isList && "box"}`}>
+                  <TransactionList />
                </div>
             </TransactionFilterContextProvider>
          </div>

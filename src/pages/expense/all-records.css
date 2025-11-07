@@ -1,14 +1,24 @@
 .all-record {
-   height: 100%;
-   margin: 0 15px;
    display: flex;
+   flex-direction: column;
    justify-content: center;
-   padding-top: calc(var(--nav-width) + 0.5rem);
+   background-color: var(--color-box1);
 }
 .filter-bar {
    display: flex;
    flex-direction: column;
-   justify-content: center;
+   justify-content: space-between;
+   align-items: center;
+   min-height: calc(var(--nav-width) * 2);
+   padding: 0 30px;
+   margin-top: 30px;
+}
+
+/*
+.filter-bar {
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
    align-items: center;
    padding-left: calc(var(--nav-width) + 2rem);
    padding-top: calc(var(--nav-width) + 0.5rem);
@@ -17,7 +27,9 @@
    top: 0;
    left: 0;
    width: calc(100vw - var(--nav-width) - 2rem);
+   height: 200px;
 }
+*/
 .list-setting {
    display: flex;
    justify-content: space-between;
@@ -69,11 +81,20 @@
 .list-type {
    cursor: pointer;
 }
+
 .transaction-list {
-   margin: 30px 0;
-   padding: 10px 40px;
-   border-radius: 3px;
+   display: flex;
+   justify-content: center;
+   align-items: start;
    box-sizing: border-box;
+   height: calc(100vh - 400px);
+   overflow-y: auto;
+   scrollbar-width: thin;
+   padding: 0 30px;
+}
+
+.transaction-list.box {
+   padding: 20px;
 }
 .transaction-list.box .table {
    display: grid;

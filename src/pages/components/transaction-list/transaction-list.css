@@ -207,37 +207,6 @@
    margin-right: 5px;
 }
 
-/*
-
-.table th,
-.table td {
-   padding: 15px 0px;
-   text-align: center;
-}
-.table th {
-   padding: 15px 0;
-   background-color: var(--color-background);
-}
-.table tbody {
-   height: 100px;
-}
-.table tbody tr {
-   border: 1px solid var(--color-grey-border);
-}
-
-
-.table tbody tr:nth-child(odd) {
-   background-color: #f7f7f7;
-
-.table tbody tr:hover {
-   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-}
-
-*/
-
-
 .element .input {
    border: 1px solid transparent;
    border-radius: 2px;

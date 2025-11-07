@@ -11,7 +11,7 @@ import DatePicker from 'react-datepicker';
 export const TransactionList = () => {
 
    const { isRecordLoaded } = useContext(TransactionRecordContext);
-   const { recordsFiltered, isFilteredRecordsReady } = useContext(TransactionFilterContext);
+   const { recordsFiltered } = useContext(TransactionFilterContext);
    
    const [ isLoading, setIsLoading ] = useState(true);
    const [ listLength, setListLength ] = useState(10);
@@ -51,7 +51,6 @@ export const TransactionList = () => {
                   <EmptyList />
                }
                {isLoading && <LoadingIconSmall />}
-               {isFilteredRecordsReady ? "TRUE" : "FALSE"}
             </div>
          </div>
          : <LoadingIconSmall />

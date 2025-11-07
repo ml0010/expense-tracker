@@ -48,64 +48,64 @@ export const Dashboard = () => {
    } else {
       return (
          <div className="dashboard">
-               <p className="page-title">Dashboard</p>
-               <div className="summary-wrapper">
-                  <Swiper
-                     slidesPerView={slides}
-                     spaceBetween={20}
-                     slidesPerGroup={1}
-                     centeredSlides={false}
-                     loop={false}
-                     loopfillgroupwithblank="true"
-                     touchStartPreventDefault={false}
-                     scrollbar={{ draggable: true }}
-                     navigation={true}
-                     modules={[Navigation, Scrollbar]}
-                     className="mySwiper"
-                  >
-                     <SwiperSlide>
-                        <div className="box-content">
-                           <Summary />
-                        </div>
-                     </SwiperSlide>
-                     <SwiperSlide>
-                        <div className="box-content">
-                           <TransactionFilterContextProvider>
-                              <MonthlySummary />
-                           </TransactionFilterContextProvider>
-                        </div>
-                     </SwiperSlide>
-                     <SwiperSlide>
-                        <div className="box-content">
-                           <LineChart />
-                        </div>
-                     </SwiperSlide>
-                  </Swiper>
+            <p className="page-title">Dashboard</p>
+            <div className="summary-wrapper">
+               <Swiper
+                  slidesPerView={slides}
+                  spaceBetween={20}
+                  slidesPerGroup={1}
+                  centeredSlides={false}
+                  loop={false}
+                  loopfillgroupwithblank="true"
+                  touchStartPreventDefault={false}
+                  scrollbar={{ draggable: true }}
+                  navigation={true}
+                  modules={[Navigation, Scrollbar]}
+                  className="mySwiper"
+               >
+                  <SwiperSlide>
+                     <div className="box-content">
+                        <Summary />
+                     </div>
+                  </SwiperSlide>
+                  <SwiperSlide>
+                     <div className="box-content">
+                        <TransactionFilterContextProvider>
+                           <MonthlySummary />
+                        </TransactionFilterContextProvider>
+                     </div>
+                  </SwiperSlide>
+                  <SwiperSlide>
+                     <div className="box-content">
+                        <LineChart />
+                     </div>
+                  </SwiperSlide>
+               </Swiper>
+            </div>
+            <div className="boxes">
+               <div className="box">
+                  <span className="title">Income</span>
+                  {isRecordLoaded ?
+                     <div className="recent-transaction">
+                        <Link className="link" to="../income">See All</Link>
+                        <span className="text">Recent Transactions</span>
+                        <RecentList records={incomeRecords} /> 
+                     </div>
+                     : <LoadingIconSmall />
+                  }
                </div>
-               <div className="boxes">
-                  <div className="box">
-                     <span className="title">Income</span>
-                     {isRecordLoaded ?
-                        <div className="recent-transaction">
-                           <Link className="link" to="../income">See All</Link>
-                           <span className="text">Recent Transactions</span>
-                           <RecentList records={incomeRecords} /> 
-                        </div>
-                        : <LoadingIconSmall />
-                     }
-                  </div>
-                  <div className="box">
-                     <span className="title">Expense</span>
-                     {isRecordLoaded ?
-                        <div className="recent-transaction">
-                           <Link className="link" to="../expense">See All</Link>
-                           <span className="text">Recent Transactions</span>
-                           <RecentList records={expenseRecords} /> 
-                        </div>
-                        : <LoadingIconSmall />
-                     }
-                  </div>
+               <div className="box">
+                  <span className="title">Expense</span>
+                  {isRecordLoaded ?
+                     <div className="recent-transaction">
+                        <Link className="link" to="../expense">See All</Link>
+                        <span className="text">Recent Transactions</span>
+                        <RecentList records={expenseRecords} /> 
+                     </div>
+                     : <LoadingIconSmall />
+                  }
                </div>
+            </div>
          </div>
       )
    }

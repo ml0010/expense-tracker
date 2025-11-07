@@ -27,7 +27,9 @@ html, body {
    margin: 0;
    padding: 0;
    overflow-x: hidden;
+   overflow-y: hidden;
    scroll-behavior: smooth;
+   scrollbar-color: var(--color-1) var(--color-background);
 }
 
 .App {
@@ -63,11 +65,14 @@ html, body {
    padding: 0;
 }
 .pages.logged-in {
-   padding-left: calc(var(--nav-width) + 0.5rem);
-   padding-top: calc(var(--nav-width) + 0.5rem);
+   margin-left: calc(var(--nav-width));
+   margin-top: calc(var(--nav-width) - 0.55rem);
+   overflow-y: auto;
+   scrollbar-width: thin;
+   max-height: calc(100vh - var(--nav-width) + 0.35rem);
 }
 .pages.menu-active {
-   padding-left: calc(var(--nav-full-width) + 0.5rem);
+   margin-left: calc(var(--nav-full-width));
 }
 .pages .page-title {
    font-size: 40px;
@@ -324,10 +329,10 @@ display: none;
 
 @media only screen and (max-width: 1100px) {
    .pages.logged-in {
-      padding-left: 0;
+      margin-left: 0;
    }
    .pages.menu-active {
-      padding-left: 0;
+      margin-left: 0;
    }
 }
 @media only screen and (max-width: 900px) {

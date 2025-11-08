@@ -74,3 +74,129 @@
 .loading-icon-small > div:nth-child(3) {
    animation-delay: 0.4s;
 }
+
+
+.loading-icon-spinner {
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   background-color: var(--color-box1);
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+.loading-icon-spinner .loader {
+   width: 30px;
+   height: 30px;
+   border: 5px dotted var(--color-1);
+   border-radius: 50%;
+   display: inline-block;
+   position: relative;
+   box-sizing: border-box;
+   animation: rotation 2s linear infinite;
+}
+
+@keyframes rotation {
+   0% {
+      transform: rotate(0deg);
+   }
+   100% {
+      transform: rotate(360deg);
+   }
+} 
+
+
+
+
+
+
+.spinner {
+   color: var(--color-2);
+   display: inline-block;
+   position: relative;
+
+   width: 100vw;
+   height: 100vh;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   background-color: rgba(255, 255, 255, 0.819);
+   backdrop-filter: blur(10px);
+}
+.spinner div {
+   transform-origin: 40px 40px;
+   animation: spinner 1.2s linear infinite;
+}
+.spinner div:after {
+   content: " ";
+   display: block;
+   position: absolute;
+   top: 25px;
+   left: 38px;
+   width: 3px;
+   height: 6px;
+   border-radius: 20%;
+   background: var(--color-2);
+}
+.spinner div:nth-child(1) {
+   transform: rotate(0deg);
+   animation-delay: -1.1s;
+}
+.spinner div:nth-child(2) {
+   transform: rotate(30deg);
+   animation-delay: -1s;
+}
+.spinner div:nth-child(3) {
+   transform: rotate(60deg);
+   animation-delay: -0.9s;
+}
+.spinner div:nth-child(4) {
+   transform: rotate(90deg);
+   animation-delay: -0.8s;
+}
+.spinner div:nth-child(5) {
+   transform: rotate(120deg);
+   animation-delay: -0.7s;
+}
+.spinner div:nth-child(6) {
+   transform: rotate(150deg);
+   animation-delay: -0.6s;
+}
+.spinner div:nth-child(7) {
+   transform: rotate(180deg);
+   animation-delay: -0.5s;
+}
+.spinner div:nth-child(8) {
+   transform: rotate(210deg);
+   animation-delay: -0.4s;
+}
+.spinner div:nth-child(9) {
+   transform: rotate(240deg);
+   animation-delay: -0.3s;
+}
+.spinner div:nth-child(10) {
+   transform: rotate(270deg);
+   animation-delay: -0.2s;
+}
+.spinner div:nth-child(11) {
+   transform: rotate(300deg);
+   animation-delay: -0.1s;
+}
+.spinner div:nth-child(12) {
+   transform: rotate(330deg);
+   animation-delay: 0s;
+}
+@keyframes spinner {
+   0% {
+      opacity: 1;
+   }
+   100% {
+      opacity: 0;
+   }
+}

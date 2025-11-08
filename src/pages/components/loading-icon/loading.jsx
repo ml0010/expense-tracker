@@ -18,3 +18,32 @@ export const LoadingIconSmall = () => {
       </div>
    )
 }
+
+export const LoadingIconSpinner = () => {
+   return (
+      <div className="loading-icon-spinner">
+         <div className="loader"></div>
+      </div>
+   )
+}
+
+
+
+export const LoadingSpinner = () => {
+   return (
+      <div className="spinner">
+         <div></div>
+         <div></div>
+         <div></div>
+         <div></div>
+         <div></div>
+         <div></div>
+         <div></div>
+         <div></div>
+         <div></div>
+         <div></div>
+         <div></div>
+         <div></div>
+      </div>
+  );
+};

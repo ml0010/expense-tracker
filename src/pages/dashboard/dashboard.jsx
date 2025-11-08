@@ -7,7 +7,7 @@ import { MonthlySummary } from './components/summary/summary-month';
 import { TransactionFilterContextProvider } from '../../contexts/transaction-filter-context';
 import { Link } from 'react-router-dom';
 import { LineChart } from '../components/charts/line-chart';
-import { LoadingIcon, LoadingIconSmall } from '../components/loading-icon/loading';
+import { LoadingIcon, LoadingIconSmall, LoadingIconSpinner, LoadingSpinner } from '../components/loading-icon/loading';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Scrollbar } from 'swiper/modules';
 
@@ -105,6 +105,9 @@ export const Dashboard = () => {
                      : <LoadingIconSmall />
                   }
                </div>
+            </div>
+            <div className='loading-screen-wrapper'>
+               <LoadingIconSpinner />
             </div>
          </div>
       )

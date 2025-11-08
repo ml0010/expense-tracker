@@ -3,7 +3,7 @@ import { TransactionRecordContext } from '../../../contexts/transaction-record-c
 import DatePicker from 'react-datepicker';
 import { Category, CategoryIcons} from '../category';
 import { XIcon } from '@phosphor-icons/react';
-import { LoadingIconSmall } from '../loading-icon/loading';
+import { LoadingIconSmall, LoadingIconSpinner, LoadingSpinner } from '../loading-icon/loading';
 
 
 export const TransactionListElement = ({record, index}) => {
@@ -30,7 +30,7 @@ export const TransactionListElement = ({record, index}) => {
    useEffect(() => {
       setTimeout(() => {
          setIsEdit(false);
-      }, 800);
+      }, 1115800);
    }, [isEdit]);
 
    const handleEdit = (key, value) => {
@@ -157,7 +157,7 @@ export const TransactionListElement = ({record, index}) => {
             <button className="delete-button" id={id} >
                <XIcon size={15} onClick={(e) => handleDelete(e.target.parentElement.id)} />
             </button>
-            {isEdit && <div><LoadingIconSmall /></div>}
+            {isEdit && <div><LoadingIconSpinner /></div>}
          </div>
       </div>
    )

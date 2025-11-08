@@ -160,7 +160,14 @@ select {
 }
 */
 
-
+.loading-screen-wrapper {
+   width: 100vw;
+   height: calc(100vh - var(--nav-width) + 0.35rem);
+   margin-left: calc(var(--nav-width) / 2);
+   position: absolute;
+   top: 0;
+   left: 0;
+}
 
 input:focus{
    outline: none;
@@ -333,6 +340,9 @@ display: none;
    }
    .pages.menu-active {
       margin-left: 0;
+   }
+   .loading-screen-wrapper {
+      margin: 0;
    }
 }
 @media only screen and (max-width: 900px) {

@@ -3,7 +3,7 @@ import { TransactionList, TransactionListFilters, TransactionListTableHead } fro
 import { ExpenseDaily } from "./components/expense-daily";
 import "./summary.css"
 import { useEffect, useState } from "react";
-import { LoadingIcon } from "../components/loading-icon/loading";
+import { LoadingIconSpinner } from "../components/loading-icon/loading";
 import { ExpensePieChart } from "../components/charts/pie-charts";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Scrollbar } from "swiper/modules";
@@ -39,7 +39,11 @@ export const Expense = () => {
    }, 1500);
 
    if (loading) {
-      return <LoadingIcon />;
+      return (
+         <div className='loading-screen-wrapper'>
+            <LoadingIconSpinner />
+         </div>
+      );
    } else {
       return (
          <TransactionFilterContextProvider data="expense">

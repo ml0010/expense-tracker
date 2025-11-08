@@ -1,7 +1,7 @@
 import { TransactionList, TransactionListFilters, TransactionListTableHead } from "../components/transaction-list/transaction-list";
 import "./all-records.css"
 import { useState } from "react";
-import { LoadingIcon } from "../components/loading-icon/loading";
+import { LoadingIconSpinner } from "../components/loading-icon/loading";
 import { TransactionFilterContextProvider } from "../../contexts/transaction-filter-context";
 import { CaretDownIcon, CheckIcon, RowsIcon, SquaresFourIcon } from "@phosphor-icons/react";
 
@@ -23,7 +23,11 @@ export const AllRecords = () => {
    };
 
    if (loading) {
-      return <LoadingIcon />;
+      return (
+         <div className='loading-screen-wrapper'>
+            <LoadingIconSpinner />
+         </div>
+      );
    } else {
       return (
          <div className="all-record">

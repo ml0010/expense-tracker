@@ -1,7 +1,7 @@
 import { TransactionFilterContextProvider } from "../../contexts/transaction-filter-context";
 import { TransactionList, TransactionListFilters } from "../components/transaction-list/transaction-list";
 import "./summary.css"
-import { LoadingIcon } from "../components/loading-icon/loading";
+import { LoadingIconSpinner } from "../components/loading-icon/loading";
 import {  useEffect, useState } from "react";
 import { IncomePieChart } from "../components/charts/pie-charts";
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -38,7 +38,11 @@ export const Income = () => {
    }, 1500);
 
    if (loading) {
-      return <LoadingIcon />;
+      return (
+         <div className='loading-screen-wrapper'>
+            <LoadingIconSpinner />
+         </div>
+      );
    } else {
       return (
          <TransactionFilterContextProvider data="income">

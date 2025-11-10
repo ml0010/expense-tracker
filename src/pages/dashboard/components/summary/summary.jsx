@@ -25,7 +25,7 @@ export const Summary = () => {
             <Link className="link" to="/all" state={{ period: "year" }}>See More</Link>
             <span className="title">Total Balance</span>
             <div className="contents">
-               <span className="balance">€ {(incomeTotal + expenseTotal).toFixed(2)}</span>
+               <span className="balance">€ {(incomeTotal - expenseTotal).toFixed(2)}</span>
                <div className="total">
                   <div className="items">
                         <PlusCircleIcon size={50}/>

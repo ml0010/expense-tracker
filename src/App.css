@@ -175,7 +175,7 @@ input:focus{
    margin-left: auto;
    margin-right: auto;
    position: relative;
-   overflow: hidden;
+   overflow: visible;
    list-style: none;
    padding: 0;
    /* Fix of Webkit flickering */
@@ -297,8 +297,8 @@ input:focus{
       display: none !important;
    }
    svg {
-      width: 100%;
-      height: 100%;
+      width: 80%;
+      height: 80%;
       object-fit: contain;
       transform-origin: center;
       fill: currentColor;

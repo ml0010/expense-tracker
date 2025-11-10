@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from 'react'
 import { TransactionRecordContext } from '../../../../contexts/transaction-record-context';
 import { TransactionFilterContext } from '../../../../contexts/transaction-filter-context';
 import './summary.css';
-import { LoadingIconSmall } from '../../../components/loading-icon/loading';
+import { LoadingIconSmall, LoadingIconSpinner } from '../../../components/loading-icon/loading';
 import { Link } from 'react-router-dom';
 
 export const MonthlySummary = () => {
@@ -113,9 +113,7 @@ export const MonthlySummary = () => {
             </div>
          </div>
          : 
-         <>
-            <LoadingIconSmall />
-         </>
+         <LoadingIconSpinner />
       }
       </>
    )

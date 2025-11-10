@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { TransactionRecordContext } from "../../../contexts/transaction-record-context";
 import * as d3 from "d3";
 import "./line-chart.css";
-import { LoadingIconSmall } from "../loading-icon/loading";
+import { LoadingIconSpinner } from "../loading-icon/loading";
 import { Link, useNavigate } from "react-router-dom";
 
 export const LineChart = () => {
@@ -132,12 +132,12 @@ export const LineChart = () => {
    }, [data]);
 
    return (
-      <div className="monthly-chart">
+      <div className="monthly-chart contents-wrapper">
          <Link className="link" to="/all" state={{ period: "month" }}>See More</Link>
          <span className="title">Monthly Chart</span>
          {isRecordLoaded > 0 ?
-               <div id="line-chart"></div>
-               : <LoadingIconSmall />
+            <div id="line-chart"></div>
+            : <LoadingIconSpinner />
          }
       </div>
    )

@@ -1,13 +1,13 @@
 import { useContext, useEffect, useState } from "react"
 import { TransactionFilterContext } from "../../../contexts/transaction-filter-context";
 import { TransactionRecordContext } from "../../../contexts/transaction-record-context";
-import { LoadingIconSmall } from "../../components/loading-icon/loading";
+import { LoadingIconSmall, LoadingIconSpinner } from "../../components/loading-icon/loading";
 
 export const ExpenseDaily = () => {
    const { isRecordLoaded, expenseRecords } = useContext(TransactionRecordContext);
    const { filterPeriod } = useContext(TransactionFilterContext);
 
-   const [ records, setRecords ] = useState(filterPeriod(expenseRecords, "month"));
+   const [ records, setRecords ] = useState(filterPeriod(expenseRecords, "today"));
 
    useEffect(() => {
       if (expenseRecords.length > 0 ) {
@@ -48,7 +48,7 @@ export const ExpenseDaily = () => {
             </table>
             <p className="total">Total: € {(records.reduce((sum, record) => sum + record.amount, 0)).toFixed(2)}</p>
          </div> : 
-         <LoadingIconSmall />
+         <LoadingIconSpinner />
       }
       </>
       

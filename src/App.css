@@ -36,7 +36,6 @@ html, body {
    color: var(--color-font);
    width: 100%;
    min-height: 100vh;
-   transition: 0.2s;
    background: var(--color-background);
    background-blend-mode: screen;
    background-attachment: fixed;
@@ -54,14 +53,13 @@ html, body {
    --color-font: #f9f9f9;
    --color-box1: #1C1F29;
    --color-box2: #222222;
-
    --color-shadow: rgba(0, 0, 0, 0.287);
    --color-wrapper: rgba(48, 48, 48, 0.316);
    --color-grey-border: #22242a;
+   transition: 0.2s ease-in-out;
 
 }
 .pages {
-   transition: 0.2s ease-in-out;
    padding: 0;
 }
 .pages.logged-in {

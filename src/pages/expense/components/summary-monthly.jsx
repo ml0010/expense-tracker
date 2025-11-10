@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react"
 import { TransactionFilterContext } from "../../../contexts/transaction-filter-context";
 import { TransactionRecordContext } from "../../../contexts/transaction-record-context";
-import { LoadingIconSmall } from "../../components/loading-icon/loading";
+import { LoadingIconSpinner } from "../../components/loading-icon/loading";
 
 export const SummaryMonthly = ({ type }) => {
    const { isRecordLoaded, expenseRecords, incomeRecords } = useContext(TransactionRecordContext);
@@ -9,7 +9,7 @@ export const SummaryMonthly = ({ type }) => {
 
    const [ records, setRecords ] = useState([]);
    const [ outputRecords, setOutputRecords ] = useState([]);
-   const [ isLoading, setIsLoading ] = useState(true);
+   const [ isLoading, setIsLoading ] = useState(false);
    const [ category, setCategory ] = useState([]);
    const [ monthList, setMonthList ] = useState([]);
    const [ monthPeriod, setMonthPeriod ] = useState([]);
@@ -149,9 +149,12 @@ export const SummaryMonthly = ({ type }) => {
                   }
                </table>
                <p className="total">Total: € {(outputRecords.reduce((sum, record) => sum + record.amount, 0)).toFixed(2)}</p>
-               {isLoading && <LoadingIconSmall />}
+               {isLoading && 
+                  <LoadingIconSpinner />
+               }
             </div>
-            : <LoadingIconSmall />
+            :          
+            <LoadingIconSpinner />
          }
       </div>
    )

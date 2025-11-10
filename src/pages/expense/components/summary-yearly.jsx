@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react"
 import { TransactionFilterContext } from "../../../contexts/transaction-filter-context";
 import { TransactionRecordContext } from "../../../contexts/transaction-record-context";
-import { LoadingIconSmall } from "../../components/loading-icon/loading";
+import { LoadingIconSpinner } from "../../components/loading-icon/loading";
 
 export const SummaryYearly = ({ type }) => {
    const { isRecordLoaded, expenseRecords, incomeRecords } = useContext(TransactionRecordContext);
@@ -104,9 +104,9 @@ export const SummaryYearly = ({ type }) => {
                   </tbody>
                </table>
                <p className="total">Total: € {(outputRecords.reduce((sum, record) => sum + record.amount, 0)).toFixed(2)}</p>
-               {isLoading && <LoadingIconSmall />}            
+               {isLoading && <LoadingIconSpinner />}            
             </div>
-            : <LoadingIconSmall />
+            : <LoadingIconSpinner />
          }
       </div>
    )

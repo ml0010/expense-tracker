@@ -1,6 +1,6 @@
 import { TransactionList, TransactionListFilters, TransactionListTableHead } from "../components/transaction-list/transaction-list";
 import "./all-records.css"
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { LoadingIconSpinner } from "../components/loading-icon/loading";
 import { TransactionFilterContextProvider } from "../../contexts/transaction-filter-context";
 import { CaretDownIcon, CheckIcon, RowsIcon, SquaresFourIcon } from "@phosphor-icons/react";
@@ -22,6 +22,20 @@ export const AllRecords = () => {
       setIsDataSelectorOpen(false);
    };
 
+   let selectorRef = useRef(null);
+
+   useEffect(() => {
+      let handler = (e)=>{
+         if(selectorRef.current && !selectorRef.current.contains(e.target)) {
+            setIsDataSelectorOpen(false);
+         }
+      };
+      document.addEventListener("mousedown", handler);
+      return() =>{
+         document.removeEventListener("mousedown", handler);
+      }
+   }, [selectorRef]);
+
    if (loading) {
       return (
          <div className='loading-screen-wrapper'>
@@ -34,7 +48,7 @@ export const AllRecords = () => {
             <TransactionFilterContextProvider data={data}>
                <div className="filter-bar">
                   <div className="list-setting">
-                     <div className="transaction-selector">
+                     <div className="transaction-selector" ref={selectorRef}>
                         <div className="current-data" onClick={() => {setIsDataSelectorOpen(!isDataSelectorOpen)}}>
                            {data === "expense" ? "Expense Transactions" : (data === "income" ? "Income Transactions" : "My Transactions")} 
                            <CaretDownIcon size={18} />

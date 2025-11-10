@@ -13,7 +13,7 @@ export const TransactionList = () => {
    const { isRecordLoaded } = useContext(TransactionRecordContext);
    const { recordsFiltered } = useContext(TransactionFilterContext);
    
-   const [ isLoading, setIsLoading ] = useState(true);
+   const [ isLoading, setIsLoading ] = useState(false);
    const [ listLength, setListLength ] = useState(10);
    const [ isListExtended, setIsListExtended ] = useState(false);
 
@@ -53,7 +53,7 @@ export const TransactionList = () => {
                {isLoading && <LoadingIconSmall />}
             </div>
          </div>
-         : <LoadingIconSmall />
+         : <></>
       }
       </>
    )

@@ -26,7 +26,7 @@ export const AllRecords = () => {
 
    useEffect(() => {
       let handler = (e)=>{
-         if(selectorRef.current && !selectorRef.current.contains(e.target) && isDataSelectorOpen) {
+         if(selectorRef.current && !selectorRef.current.contains(e.target)) {
             setIsDataSelectorOpen(false);
          }
       };
@@ -79,6 +79,17 @@ export const AllRecords = () => {
                </div>
                <div className={`transaction-list ${!isList && "box"}`}>
                   <TransactionListAll />
+               </div>
+               <div className="transaction-summary">
+                  <div className="totals">
+                     <div className="total">Income</div>
+                     <div className="total">Expense</div>
+                     <div className="total">Profit / Loss</div>
+                  </div>
+                  <div className="symbols">
+                     <span className="symbol">-</span>
+                     <span className="symbol">=</span>
+                  </div>
                </div>
             </TransactionFilterContextProvider>
          </div>

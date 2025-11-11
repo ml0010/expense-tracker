@@ -64,7 +64,7 @@ html, body {
 }
 .pages.logged-in {
    margin-left: calc(var(--nav-width));
-   margin-top: calc(var(--nav-width) - 0.55rem);
+   margin-top: calc(var(--nav-width));
    overflow-y: auto;
    scrollbar-width: thin;
    max-height: calc(100vh - var(--nav-width) + 0.35rem);

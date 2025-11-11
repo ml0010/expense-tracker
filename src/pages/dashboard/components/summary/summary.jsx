@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from 'react'
 import { TransactionRecordContext } from '../../../../contexts/transaction-record-context';
 import "./summary.css"
 import { MinusCircleIcon, PlusCircleIcon } from '@phosphor-icons/react';
-import { LoadingIconSmall } from '../../../components/loading-icon/loading';
+import { LoadingIconSpinner } from '../../../components/loading-icon/loading';
 import { Link } from 'react-router-dom';
 
 
@@ -45,9 +45,7 @@ export const Summary = () => {
             </div>
          </div>
          : 
-         <>
-               <LoadingIconSmall /> 
-         </>
+         <LoadingIconSpinner />
       }
       </>
    )

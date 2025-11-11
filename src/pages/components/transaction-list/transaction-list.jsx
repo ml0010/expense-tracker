@@ -5,7 +5,7 @@ import { TransactionFilterContext } from '../../../contexts/transaction-filter-c
 import { EmptyList } from '../empty-list/empty-list'
 import "./transaction-list.css";
 import { TransactionRecordContext } from '../../../contexts/transaction-record-context';
-import { LoadingIconSmall } from '../loading-icon/loading';
+import { LoadingIconSmall, LoadingIconSpinner } from '../loading-icon/loading';
 import DatePicker from 'react-datepicker';
 
 export const TransactionList = () => {
@@ -33,8 +33,8 @@ export const TransactionList = () => {
 
    return (
       <>
-      {isRecordLoaded ? 
          <div className="table-warpper">
+         {isRecordLoaded ? 
             <div className="table">
                {recordsFiltered.length > 0 ? 
                   <>
@@ -52,9 +52,9 @@ export const TransactionList = () => {
                }
                {isLoading && <LoadingIconSmall />}
             </div>
+         : <LoadingIconSpinner />
+         }
          </div>
-         : <></>
-      }
       </>
    )
 }

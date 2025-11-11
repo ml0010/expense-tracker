@@ -7,7 +7,7 @@ import { MonthlySummary } from './components/summary/summary-month';
 import { TransactionFilterContextProvider } from '../../contexts/transaction-filter-context';
 import { Link } from 'react-router-dom';
 import { LineChart } from '../components/charts/line-chart';
-import { LoadingIconSmall, LoadingIconSpinner } from '../components/loading-icon/loading';
+import { LoadingIconSpinner } from '../components/loading-icon/loading';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Scrollbar } from 'swiper/modules';
 
@@ -95,7 +95,7 @@ export const Dashboard = () => {
                         <span className="text">Recent Transactions</span>
                         <RecentList records={incomeRecords} /> 
                      </div>
-                     : <LoadingIconSmall />
+                     : <LoadingIconSpinner />
                   }
                </div>
                <div className="box">
@@ -106,7 +106,7 @@ export const Dashboard = () => {
                         <span className="text">Recent Transactions</span>
                         <RecentList records={expenseRecords} /> 
                      </div>
-                     : <LoadingIconSmall />
+                     : <LoadingIconSpinner />
                   }
                </div>
             </div>

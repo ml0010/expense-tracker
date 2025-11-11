@@ -1,4 +1,4 @@
-import { TransactionList, TransactionListAll, TransactionListFilters, TransactionListTableHead } from "../components/transaction-list/transaction-list";
+import { TransactionListAll, TransactionListFilters, TransactionListTableHead } from "../components/transaction-list/transaction-list";
 import "./all-records.css"
 import { useEffect, useRef, useState } from "react";
 import { LoadingIconSpinner } from "../components/loading-icon/loading";
@@ -84,7 +84,7 @@ export const AllRecords = () => {
                   <div className="totals">
                      <div className="total">Income</div>
                      <div className="total">Expense</div>
-                     <div className="total">Profit / Loss</div>
+                     <div className="total">Balance</div>
                   </div>
                   <div className="symbols">
                      <span className="symbol">-</span>

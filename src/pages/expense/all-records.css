@@ -3,7 +3,7 @@
    flex-direction: column;
    justify-content: center;
    background-color: var(--color-box1);
-   height:  calc(100vh - var(--nav-width) + 0.3rem);
+   height: calc(100vh - var(--nav-width));
 ;
 }
 .filter-bar {
@@ -13,7 +13,7 @@
    align-items: center;
    height: calc(var(--nav-width) * 3);
    padding: 0 30px;
-   padding-top: 15px;
+   margin-top: 15px;
 }
 
 .table-filters {

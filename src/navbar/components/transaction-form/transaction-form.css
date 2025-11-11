@@ -7,7 +7,7 @@
    padding-left: calc(var(--nav-width) + 0.5rem);
    background-color: var(--color-box1);
    border-bottom: 1px solid var(--color-grey-border);
-   min-height: 60px;
+   height: var(--nav-width);
    display: flex;
    justify-content: center;
    align-items: center;
@@ -22,6 +22,8 @@
 .transaction-form .transaction-buttons {
    height: 100%;
    display: flex;
+   justify-content: center;
+   align-items: center;
 }
 .transaction-form .background {
    position: absolute;

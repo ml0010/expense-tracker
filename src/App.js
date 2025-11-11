@@ -50,10 +50,12 @@ export default App;
 
 export const RouteList = () => {
    const { showMenu } = useContext(MenuToggleContext);
+   const { handleScrollButttonVisibility } = useContext(MenuToggleContext);
+
    const isSignedIn = useUser().isSignedIn;
 
    return (
-      <div className={`pages ${isSignedIn && 'logged-in'} ${showMenu && 'menu-active'}`}>
+      <div id="pages" className={`pages ${isSignedIn && 'logged-in'} ${showMenu && 'menu-active'}`} onScroll={handleScrollButttonVisibility}>
          <Routes>
             <Route path="/" element={<Authentication />} />
             <Route path="/dashboard" element={<Dashboard />} />
@@ -61,7 +63,7 @@ export const RouteList = () => {
             <Route path="/expense" element={<Expense />} />
             <Route path="/all" element={
                <TransactionFilterContextProvider>
-                     <AllRecords />
+                  <AllRecords />
                </TransactionFilterContextProvider>
             } />  
             <Route path="/monthly" element={<AllRecords />} />

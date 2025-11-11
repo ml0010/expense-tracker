@@ -160,7 +160,7 @@ select {
 
 .loading-screen-wrapper {
    width: 100vw;
-   height: calc(100vh - var(--nav-width) + 0.35rem);
+   height: calc(100vh - var(--nav-width));
    margin-left: calc(var(--nav-width) / 2);
    position: absolute;
    top: 0;

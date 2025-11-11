@@ -1,4 +1,4 @@
-import { TransactionList, TransactionListFilters, TransactionListTableHead } from "../components/transaction-list/transaction-list";
+import { TransactionList, TransactionListAll, TransactionListFilters, TransactionListTableHead } from "../components/transaction-list/transaction-list";
 import "./all-records.css"
 import { useEffect, useRef, useState } from "react";
 import { LoadingIconSpinner } from "../components/loading-icon/loading";
@@ -26,7 +26,7 @@ export const AllRecords = () => {
 
    useEffect(() => {
       let handler = (e)=>{
-         if(selectorRef.current && !selectorRef.current.contains(e.target)) {
+         if(selectorRef.current && !selectorRef.current.contains(e.target) && isDataSelectorOpen) {
             setIsDataSelectorOpen(false);
          }
       };
@@ -72,11 +72,13 @@ export const AllRecords = () => {
                         {isList ? <RowsIcon size={25} /> : <SquaresFourIcon size={25} />}
                      </div>
                   </div>
-                  <TransactionListFilters />
-                  <TransactionListTableHead />
+                  <div className="table-filters">
+                     <TransactionListFilters />
+                     <TransactionListTableHead />
+                  </div>
                </div>
                <div className={`transaction-list ${!isList && "box"}`}>
-                  <TransactionList />
+                  <TransactionListAll />
                </div>
             </TransactionFilterContextProvider>
          </div>

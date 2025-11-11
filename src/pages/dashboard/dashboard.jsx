@@ -21,12 +21,12 @@ export const Dashboard = () => {
    const setSlidesPerview = () => {
       setSlides(
          window.innerWidth <= 800
-               ? 1
-               : window.innerWidth <= 1300
-               ? 2
-               : window.innerWidth > 1300
-               ? 3
-               : 0
+            ? 1
+            : window.innerWidth <= 1300
+            ? 2
+            : window.innerWidth > 1300
+            ? 3
+            : 0
       );
    };
 

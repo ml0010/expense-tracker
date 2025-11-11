@@ -59,6 +59,32 @@ export const TransactionList = () => {
    )
 }
 
+export const TransactionListAll = () => {
+
+   const { isRecordLoaded } = useContext(TransactionRecordContext);
+   const { recordsFiltered } = useContext(TransactionFilterContext);
+
+   return (
+      <>
+         <div className="table-warpper">
+            {isRecordLoaded ? 
+               <div className="table">
+                  {recordsFiltered.length > 0 ? 
+                     <>
+                        {recordsFiltered.map((record ,index) => (
+                           <TransactionListElement record={record} key={index}/>
+                        ))}
+                     </> : 
+                     <EmptyList />
+                  }
+               </div>
+            : <LoadingIconSpinner />
+            }
+         </div>
+      </>
+   )
+}
+
 export const TransactionListTableHead = () => {
    const { recordsFiltered, setRecordsFiltered, sortByDate, sortByReversedDate, sortByAmount, sortByReversedAmount } = useContext(TransactionFilterContext);
    const [ isDateReverse, setIsDateReverse ] = useState(false);
@@ -99,17 +125,24 @@ export const TransactionListTableHead = () => {
 };
 
 export const TransactionListFilters = () => {
+   const { isRecordLoaded } = useContext(TransactionRecordContext);
+   
    return (
       <>
-         <div className="filters">
-            <PeriodFilter />
-            <CategoryFilter />
-            <TextFilter />
-         </div>
-         <div className="active-filter-list">
-            <FilterButtons />
-         </div>
+         { isRecordLoaded &&       
+         <>
+            <div className="filters">
+               <PeriodFilter />
+               <CategoryFilter />
+               <TextFilter />
+            </div>
+            <div className="active-filter-list">
+               <FilterButtons />
+            </div>
+         </> 
+         }
       </>
+
    );
 };
 

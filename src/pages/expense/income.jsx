@@ -1,5 +1,5 @@
 import { TransactionFilterContextProvider } from "../../contexts/transaction-filter-context";
-import { TransactionList, TransactionListFilters } from "../components/transaction-list/transaction-list";
+import { TransactionList, TransactionListFilters, TransactionListTableHead } from "../components/transaction-list/transaction-list";
 import "./summary.css"
 import { LoadingIconSpinner } from "../components/loading-icon/loading";
 import {  useEffect, useState } from "react";
@@ -85,6 +85,7 @@ export const Income = () => {
                <div className="list">
                   <h3>Transactions</h3>
                   <TransactionListFilters />
+                  <TransactionListTableHead />
                   <TransactionList />
                </div>
             </div>

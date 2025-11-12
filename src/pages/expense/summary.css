@@ -14,6 +14,7 @@
    font-size: 12px;
    text-align: center;
    color: var(--color-grey);
+   padding: 3px;
 }
 .box-content h4 {
    margin: 0;

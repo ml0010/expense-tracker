@@ -28,18 +28,18 @@ export const Summary = () => {
                <span className="balance">€ {(incomeTotal - expenseTotal).toFixed(2)}</span>
                <div className="total">
                   <div className="items">
-                        <PlusCircleIcon size={50}/>
-                        <span>
-                           <p className="text">Income</p>
-                           <p className="number">€ {incomeTotal.toFixed(2)}</p>
-                        </span>
+                     <PlusCircleIcon size={45}/>
+                     <span className="data">
+                        <span className="text">Income</span>
+                        <span className="number">€{incomeTotal.toFixed(2)}</span>
+                     </span>
                   </div>
                   <div className="items">
-                        <MinusCircleIcon size={50}/>
-                        <span>
-                           <p className="text">Expense</p>
-                           <p className="number">€ {expenseTotal.toFixed(2)}</p>
-                        </span>
+                     <MinusCircleIcon size={45}/>
+                     <span className="data">
+                        <span className="text">Expense</span>
+                        <span className="number">€{expenseTotal.toFixed(2)}</span>
+                     </span>
                   </div>
                </div>
             </div>

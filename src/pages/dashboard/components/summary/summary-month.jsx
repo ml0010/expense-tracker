@@ -46,24 +46,24 @@ export const MonthlySummary = () => {
 
       if (incomeLeft > 0 && expenseSpent <= 0) {
          // income but no expense
-         console.log("ONLY INCOME");
+         //console.log("ONLY INCOME");
          setExpensePercentage(0);
          setExpenseTotal(0);
          setIncomePercentage(100);
 
       } else if (incomeLeft <= 0 && expenseSpent > 0 && incomeTotal === 0) {
          // no income but expense
-         console.log("ONLY EXPENSE");
+         //console.log("ONLY EXPENSE");
          setExpensePercentage(100);
          setIncomePercentage(0);
          setIncomeTotal(0);
       } else if (incomeLeft <= 0 && expenseSpent > 0 && incomeTotal !== 0) {
          // no income but expense
-         console.log("EXPENSE BIGGER THAN INCOME");
+         //console.log("EXPENSE BIGGER THAN INCOME");
          setExpensePercentage(100);
          setIncomePercentage(100 - expenseSpent.toFixed(0));
       } else {
-         console.log("BOTH!");
+         //console.log("BOTH!");
          setIncomeTotal(getIncomeTotal());
          setExpensePercentage(expenseSpent.toFixed(0));
          setIncomePercentage(incomeLeft.toFixed(0));
@@ -100,14 +100,14 @@ export const MonthlySummary = () => {
                      </div>
                   }
                </div>
-               <div className='numbers'>
-                  <div>
-                     <span>Income: </span>
-                     <span>€ {incomeTotal}</span>
+               <div className="totals">
+                  <div className="items">
+                     <span className="text">Income </span>
+                     <span className="number">€{incomeTotal.toFixed(2)}</span>
                   </div>                 
-                  <div>
-                     <span>Balance: </span>
-                     <span>€ {incomeTotal - expenseTotal}</span>
+                  <div className="items">
+                     <span className="text">Balance </span>
+                     <span className="number">€{(incomeTotal - expenseTotal).toFixed(2)}</span>
                   </div>
                </div>
             </div>

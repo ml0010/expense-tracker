@@ -15,6 +15,7 @@ export const ExpenseDaily = () => {
    useEffect(() => {
 
       const dates = [];
+
       for (let i = 0; i < 7; i++) {
          const start = new Date();
          start.setDate(new Date().getDate() - i);
@@ -26,9 +27,13 @@ export const ExpenseDaily = () => {
          const year = start.getFullYear();
          const month = (start.getMonth() + 1).toString();
          const date = start.getDate().toString();
-
          const newDate = year + "-" + `${month.length === 1 ? "0" + month : month}` + "-" + `${date.length === 1 ? "0" + date : date}`;
-         dates.push({"date": newDate, "start": start, "end": end});
+
+         if (new Date(Math.min(...expenseRecords.map((record) => new Date(record.date)))) < start) {
+            dates.push({"date": newDate, "start": start, "end": end});
+         } else {
+            return;
+         }
       }
       setDateList(dates);
    }, [expenseRecords]);
@@ -39,53 +44,60 @@ export const ExpenseDaily = () => {
       }
    }, [dateSelected, dateList]);
 
+   useEffect(() => {
+      setTimeout(() => {
+         setIsLoading(false);
+      }, 500);
+   }, [isLoading]);
+
    const handleDateChange = (value) => {
       setDateSelected(value);
+      setIsLoading(true);
    };
 
    return (
       <div>
-      <div className="select-wrapper">
-         <select defaultValue={""} onChange={(e) => {handleDateChange(e.target.value)}}>
-            {dateList.map((date, index) => 
-               <option value={index} key={index}>{date["date"]}</option>
-            )}
-         </select>
-      </div>
-      {isRecordLoaded ? 
-         <div>
-            <h4>Items</h4>
-            <table className="summary-table">
-               <thead>
-                  <tr>
-                     <th>Date</th>
-                     <th>Category</th>
-                     <th>Description</th>
-                     <th>Amount</th>
-                  </tr>
-               </thead>
-               <tbody>
-                  {records.length === 0 ? 
+         <div className="select-wrapper">
+            <select defaultValue={""} onChange={(e) => {handleDateChange(e.target.value)}}>
+               {dateList.map((date, index) => 
+                  <option value={index} key={index}>{date["date"]}</option>
+               )}
+            </select>
+         </div>
+         {isRecordLoaded ? 
+            <div className="table-wrapper">
+               <h4>Items</h4>
+               <table className="summary-table">
+                  <thead>
                      <tr>
-                        <td colSpan="4">No Transaction</td>
-                     </tr> : 
-                     <>
-                        {records.map((record, index) => 
-                        <tr key={index}>
-                           <td>{record.date.slice(0, 10)}</td>
-                           <td>{record.category}</td>
-                           <td>{record.description}</td>
-                           <td id="amount">{(record.amount).toFixed(2)}</td>
-                        </tr>)}
-                     </>
-                  }
-               </tbody>
-            </table>
-            <p className="total">Total: € {(records.reduce((sum, record) => sum + record.amount, 0)).toFixed(2)}</p>
-         </div> : 
-         <LoadingIconSpinner />
-      }
+                        <th>Date</th>
+                        <th>Category</th>
+                        <th>Description</th>
+                        <th>Amount</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     {records.length === 0 ? 
+                        <tr>
+                           <td colSpan="4">No Transaction</td>
+                        </tr> : 
+                        <>
+                           {records.map((record, index) => 
+                           <tr key={index}>
+                              <td>{record.date.slice(0, 10)}</td>
+                              <td>{record.category}</td>
+                              <td>{record.description}</td>
+                              <td id="amount">{(record.amount).toFixed(2)}</td>
+                           </tr>)}
+                        </>
+                     }
+                  </tbody>
+               </table>
+               <p className="total">Total: € {(records.reduce((sum, record) => sum + record.amount, 0)).toFixed(2)}</p>
+               {isLoading && <LoadingIconSpinner />}
+            </div> : 
+            <LoadingIconSpinner />
+         }
       </div>
-      
    )
 }

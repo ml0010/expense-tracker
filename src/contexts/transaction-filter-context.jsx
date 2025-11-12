@@ -64,10 +64,12 @@ export const TransactionFilterContextProvider = (props) => {
       return records.sort((a, b) => {return a.amount - b.amount});
    };
 
+   /*
    useEffect(() => {
       console.log("DATA FILETRED");
       setIsFilteredRecordsReady(false);
    }, [recordsFiltered]);
+   */
 
    useEffect(() => {
       if(!isFilteredRecordsReady) {
@@ -81,7 +83,7 @@ export const TransactionFilterContextProvider = (props) => {
       const data = (dataSelection === "income" ? [...incomeRecords] : dataSelection === "expense" ? [...expenseRecords] : [...records]);
 
       if (data.length > 0 && currentPeriod) {
-         console.log("Period Selected: ", currentPeriod);
+         //console.log("Period Selected: ", currentPeriod);
          //console.log(periodList[currentPeriod]);
          var newRecords = filterPeriod(data, currentPeriod);
 

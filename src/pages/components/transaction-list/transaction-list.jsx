@@ -84,6 +84,46 @@ export const TransactionListAll = () => {
       </>
    )
 }
+export const TransactionSummaryBox = () => {
+   const { isRecordLoaded, incomeRecords, expenseRecords, getTotal } = useContext(TransactionRecordContext);
+
+   const [ incomeTotal, setIncomeTotal ] = useState(getTotal(incomeRecords));
+   const [ expenseTotal, setExpenseTotal ] = useState(getTotal(expenseRecords));
+   const [ balance, setBalance ] = useState(incomeTotal - expenseTotal);
+
+   useEffect(() => {
+      setIncomeTotal(getTotal(incomeRecords));
+      setExpenseTotal(getTotal(expenseRecords));
+      setBalance(incomeTotal - expenseTotal);
+   }, [incomeRecords, expenseRecords]);
+
+   return (
+      <>
+         {isRecordLoaded &&       
+         <div className="transaction-summary">
+            <div className="totals">
+               <div className="total">
+                  <span className="number">€{incomeTotal.toFixed(2)}</span>
+                  <span className="description">Income</span>
+               </div>
+               <div className="total">
+                  <span className="number">€{expenseTotal.toFixed(2)}</span>
+                  <span className="description">Expense</span>
+               </div>
+               <div className="total">
+                  <span className={`number ${balance < 0 ? "minus" : "plus"}`}>{balance === 0 ? "" : balance > 0 ? "+ " : "- "}€{balance.toFixed(2)}</span>
+                  <span className="description">Saving / Loss</span>
+               </div>
+            </div>
+            <div className="symbols">
+               <span className="symbol">-</span>
+               <span className="symbol">=</span>
+            </div>
+         </div>
+         }
+      </>
+   )
+}
 
 export const TransactionListTableHead = () => {
    const { recordsFiltered, setRecordsFiltered, sortByDate, sortByReversedDate, sortByAmount, sortByReversedAmount } = useContext(TransactionFilterContext);
@@ -130,7 +170,7 @@ export const TransactionListFilters = () => {
    return (
       <>
          { isRecordLoaded &&       
-         <>
+         <div className="filter-wrapper">
             <div className="filters">
                <PeriodFilter />
                <CategoryFilter />
@@ -139,7 +179,7 @@ export const TransactionListFilters = () => {
             <div className="active-filter-list">
                <FilterButtons />
             </div>
-         </> 
+         </div> 
          }
       </>
 

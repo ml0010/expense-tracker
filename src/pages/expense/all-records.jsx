@@ -1,4 +1,4 @@
-import { TransactionListAll, TransactionListFilters, TransactionListTableHead } from "../components/transaction-list/transaction-list";
+import { TransactionListAll, TransactionListFilters, TransactionListTableHead, TransactionSummaryBox } from "../components/transaction-list/transaction-list";
 import "./all-records.css"
 import { useEffect, useRef, useState } from "react";
 import { LoadingIconSpinner } from "../components/loading-icon/loading";
@@ -80,17 +80,7 @@ export const AllRecords = () => {
                <div className={`transaction-list ${!isList && "box"}`}>
                   <TransactionListAll />
                </div>
-               <div className="transaction-summary">
-                  <div className="totals">
-                     <div className="total">Income</div>
-                     <div className="total">Expense</div>
-                     <div className="total">Balance</div>
-                  </div>
-                  <div className="symbols">
-                     <span className="symbol">-</span>
-                     <span className="symbol">=</span>
-                  </div>
-               </div>
+               <TransactionSummaryBox />
             </TransactionFilterContextProvider>
          </div>
       )

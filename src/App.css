@@ -34,6 +34,7 @@ html, body {
 
 .App {
    color: var(--color-font);
+
    width: 100%;
    min-height: 100vh;
    background: var(--color-background);

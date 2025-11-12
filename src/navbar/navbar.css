@@ -59,7 +59,7 @@
 }
 .menu-side .user .user-info p {
    font-size: 12px;
-   margin: 2px;
+   margin: 0 2px;
 }
 .menu-side .logout-button {
    color: var(--color-font);
@@ -77,18 +77,18 @@
    text-decoration: none;
    text-underline-offset: 8px;
    color: var(--color-font);
-   font-size: 15px;
-   font-weight: 600;
+   font-size: 22px;
+   font-weight: 300;
    display: flex;
    justify-content: center;
    align-items: center;
    position: relative;
-   padding: 10px 0;
+   padding: 5px 0;
    margin-bottom: 10px;
 }
 .menu-side.open .menu-bar .link {
    display: grid;
-   grid-template-columns: 1fr 2fr;
+   grid-template-columns: 1fr 2.5fr;
 }
 .menu-side .menu-bar .link:hover {
    color: var(--color-2);
@@ -98,7 +98,7 @@
    color: var(--color-2);
 }
 .menu-side .menu-bar .link svg {
-   padding: 5px;
+   padding: 8px;
    border-radius: 50%;
 }
 .menu-side .menu-bar .link.active svg {

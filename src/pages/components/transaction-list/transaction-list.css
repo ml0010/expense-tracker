@@ -93,16 +93,24 @@
    font-size: 13px;
    color: var(--color-font);
    text-decoration: underline;
+   cursor: pointer;
 }
 .filters .date-filter .date-picker {
    padding: 20px;
    display: flex;
+   cursor: pointer;
 }
 .filters .date-filter .close-button {
    position: absolute;
    top: 0;
    right: 0;
    cursor: pointer;
+}
+.react-datepicker__close-icon::after{
+   background-color: transparent;
+   color: var(--color-font);
+   font-size: 15px;
+
 }
 
 .filters .search-box {

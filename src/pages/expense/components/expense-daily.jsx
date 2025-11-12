@@ -1,22 +1,57 @@
 import { useContext, useEffect, useState } from "react"
 import { TransactionFilterContext } from "../../../contexts/transaction-filter-context";
 import { TransactionRecordContext } from "../../../contexts/transaction-record-context";
-import { LoadingIconSmall, LoadingIconSpinner } from "../../components/loading-icon/loading";
+import { LoadingIconSpinner } from "../../components/loading-icon/loading";
 
 export const ExpenseDaily = () => {
    const { isRecordLoaded, expenseRecords } = useContext(TransactionRecordContext);
-   const { filterPeriod } = useContext(TransactionFilterContext);
+   const { filterPeriodByDates } = useContext(TransactionFilterContext);
 
-   const [ records, setRecords ] = useState(filterPeriod(expenseRecords, "today"));
+   const [ records, setRecords ] = useState([]);
+   const [ dateList, setDateList ] = useState([]);
+   const [ dateSelected, setDateSelected ] = useState(0);
+   const [ isLoading, setIsLoading ] = useState(true);
 
    useEffect(() => {
-      if (expenseRecords.length > 0 ) {
-         setRecords(filterPeriod(expenseRecords, "today"));
+
+      const dates = [];
+      for (let i = 0; i < 7; i++) {
+         const start = new Date();
+         start.setDate(new Date().getDate() - i);
+         start.setHours(0, 0, 0, 0);         
+         const end = new Date();
+         end.setDate(new Date().getDate() - i);
+         end.setHours(23, 59, 59, 0);
+
+         const year = start.getFullYear();
+         const month = (start.getMonth() + 1).toString();
+         const date = start.getDate().toString();
+
+         const newDate = year + "-" + `${month.length === 1 ? "0" + month : month}` + "-" + `${date.length === 1 ? "0" + date : date}`;
+         dates.push({"date": newDate, "start": start, "end": end});
       }
-   }, [expenseRecords, filterPeriod]);
+      setDateList(dates);
+   }, [expenseRecords]);
+
+   useEffect(() => {
+      if (expenseRecords.length > 0 && dateList.length > 0) {
+         setRecords(filterPeriodByDates(expenseRecords, dateList[dateSelected].start, dateList[dateSelected].end));
+      }
+   }, [dateSelected, dateList]);
+
+   const handleDateChange = (value) => {
+      setDateSelected(value);
+   };
 
    return (
-      <>
+      <div>
+      <div className="select-wrapper">
+         <select defaultValue={""} onChange={(e) => {handleDateChange(e.target.value)}}>
+            {dateList.map((date, index) => 
+               <option value={index} key={index}>{date["date"]}</option>
+            )}
+         </select>
+      </div>
       {isRecordLoaded ? 
          <div>
             <h4>Items</h4>
@@ -50,7 +85,7 @@ export const ExpenseDaily = () => {
          </div> : 
          <LoadingIconSpinner />
       }
-      </>
+      </div>
       
    )
 }

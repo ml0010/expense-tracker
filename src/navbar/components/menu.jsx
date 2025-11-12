@@ -81,7 +81,7 @@ export const MenuSide = () => {
                   className={`link ${currentPage === "dashboard" ? "active" : ""}`} 
                   to="/dashboard" 
                >
-                  <ChartDonutIcon size={22} />
+                  <ChartDonutIcon size={20} />
                   <span className={`text ${!showMenu && "hidden"}`}>Dashboard</span>
                   <div className={`text-hover ${showMenu && "hidden"}`}>
                      <span className='text'>Dashboard</span>
@@ -91,7 +91,7 @@ export const MenuSide = () => {
                   className={`link ${currentPage === "income" ? "active" : ""}`} 
                   to="/income" 
                >
-                  <PiggyBankIcon size={22} />
+                  <PiggyBankIcon size={20} />
                   <span className={`text ${!showMenu && "hidden"}`}>Income</span>
                   <div className={`text-hover ${showMenu && "hidden"}`}>
                      <span className='text'>Income</span>
@@ -101,7 +101,7 @@ export const MenuSide = () => {
                   className={`link ${currentPage === "expense" ? "active" : ""}`} 
                   to="/expense" 
                >
-                  <MoneyIcon size={22} />
+                  <MoneyIcon size={20} />
                   <span className={`text ${!showMenu && "hidden"}`}>Expense</span>
                   <div className={`text-hover ${showMenu && "hidden"}`}>
                      <span className='text'>Expense</span>
@@ -112,7 +112,7 @@ export const MenuSide = () => {
                   to="/all" 
                   state={{ period: "all" }} 
                >
-                  <ClipboardTextIcon size={22} />
+                  <ClipboardTextIcon size={20} />
                   <span className={`text ${!showMenu && "hidden"}`}>All Records</span>
                   <div className={`text-hover ${showMenu && "hidden"}`}>
                      <span className='text'>All Records</span>

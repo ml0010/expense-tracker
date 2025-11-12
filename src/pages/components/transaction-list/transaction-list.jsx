@@ -200,6 +200,18 @@ const PeriodFilter = () => {
 
    const [ openForm, setOpenForm ] = useState(false);
 
+   useEffect(() => {
+      const keyPressEvent = (e) => {
+         if (e.key === 'Escape' && openForm) {
+            setOpenForm(false);
+         }
+      };
+      document.addEventListener("keydown", keyPressEvent);
+      return () => {
+         document.removeEventListener("keydown", keyPressEvent);
+      };
+   }, [openForm]);
+
    return (
       <div className="filter period-filter">
          <span className="filter-title">Period</span>
@@ -276,6 +288,7 @@ const DateSelector = (props) => {
       }
    }, [formRef]);
 
+
    return (
       <>
          <div className="background"></div>
@@ -298,6 +311,8 @@ const DateSelector = (props) => {
                      selectsRange
                      rangeSeparator=" - "
                      isClearable={true}
+                     placeholderText="Click here"
+                     showIcon
                   />
                </div>
                <button 

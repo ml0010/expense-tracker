@@ -16,7 +16,6 @@ export const TransactionRecordContextProvider = (props) => {
    const [ expenseRecords, setExpenseRecords ] = useState([]);
    const [ monthlyRecords, setMonthlyRecords ] = useState([]); 
 
-
    const getTotal = (records) => {
       return records.reduce((sum, record) => {return sum + record.amount}, 0);
    };

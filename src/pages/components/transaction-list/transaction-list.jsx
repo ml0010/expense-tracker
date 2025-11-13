@@ -87,15 +87,18 @@ export const TransactionListAll = () => {
 export const TransactionSummaryBox = () => {
    const { isRecordLoaded, incomeRecords, expenseRecords, getTotal } = useContext(TransactionRecordContext);
 
-   const [ incomeTotal, setIncomeTotal ] = useState(getTotal(incomeRecords));
-   const [ expenseTotal, setExpenseTotal ] = useState(getTotal(expenseRecords));
-   const [ balance, setBalance ] = useState(incomeTotal - expenseTotal);
+   const [ incomeTotal, setIncomeTotal ] = useState(0);
+   const [ expenseTotal, setExpenseTotal ] = useState(0);
+   const [ balance, setBalance ] = useState(0);
 
    useEffect(() => {
       setIncomeTotal(getTotal(incomeRecords));
       setExpenseTotal(getTotal(expenseRecords));
-      setBalance(incomeTotal - expenseTotal);
    }, [incomeRecords, expenseRecords]);
+
+   useEffect(() => {
+      setBalance(incomeTotal - expenseTotal);
+   }, [incomeTotal, expenseTotal]);
 
    return (
       <>
@@ -170,16 +173,16 @@ export const TransactionListFilters = () => {
    return (
       <>
          { isRecordLoaded &&       
-         <div className="filter-wrapper">
-            <div className="filters">
-               <PeriodFilter />
-               <CategoryFilter />
-               <TextFilter />
-            </div>
-            <div className="active-filter-list">
-               <FilterButtons />
-            </div>
-         </div> 
+            <div className="filter-wrapper">
+               <div className="filters">
+                  <PeriodFilter />
+                  <CategoryFilter />
+                  <TextFilter />
+               </div>
+               <div className="active-filter-list">
+                  <FilterButtons />
+               </div>
+            </div> 
          }
       </>
 
@@ -187,6 +190,7 @@ export const TransactionListFilters = () => {
 };
 
 const dateFormat = (date) => {
+   console.log(date);
    const y = date.getFullYear();
    const m = date.getMonth() + 1;
    const d = date.getDate();
@@ -212,6 +216,8 @@ const PeriodFilter = () => {
       };
    }, [openForm]);
 
+   console.log(currentPeriod, periodList);
+
    return (
       <div className="filter period-filter">
          <span className="filter-title">Period</span>
@@ -224,7 +230,6 @@ const PeriodFilter = () => {
          <div className={`date-selector ${openForm ? "active" : ""}`}>
             <DateSelector close={()=>setOpenForm(false)}/>
          </div>
-
       </div>
    )
 }

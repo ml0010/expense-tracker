@@ -21,8 +21,8 @@
 .recent-list .element .input {
    border: 1px solid transparent;
    cursor: pointer;
-   font-size: 13px;
-   font-weight: 500;
+   font-size: 12px;
+   font-weight: 300;
 }
 .recent-list .element .input:hover {
    color: var(--color-2);
@@ -35,14 +35,15 @@
    flex-direction: center;
    align-items: center;
 }
+
+.recent-list .element .input#description {
+   text-align: center;
+}
 .recent-list .amount-wrapper {
    display: flex;    
    flex-direction: row;
    justify-content: end;
    align-items: center;
-}
-.recent-list .amount-wrapper .euro {
-   font-size: 14px;
 }
 .recent-list .amount-wrapper .amount {
    font-size: 15px;

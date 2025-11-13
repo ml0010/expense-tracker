@@ -1,16 +1,29 @@
 import { TransactionListAll, TransactionListFilters, TransactionListTableHead, TransactionSummaryBox } from "../components/transaction-list/transaction-list";
 import "./all-records.css"
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { LoadingIconSpinner } from "../components/loading-icon/loading";
-import { TransactionFilterContextProvider } from "../../contexts/transaction-filter-context";
+import { TransactionFilterContext, TransactionFilterContextProvider } from "../../contexts/transaction-filter-context";
 import { CaretDownIcon, CheckIcon, RowsIcon, SquaresFourIcon } from "@phosphor-icons/react";
+import { useLocation } from "react-router-dom";
+import { TransactionRecordContext } from "../../contexts/transaction-record-context";
 
 export const AllRecords = () => {
+
+   const { handlePeriodChange } = useContext(TransactionFilterContext);
+   
+   const location = useLocation();
+   const { period, start, end } = location.state || "";
 
    const [ loading, setLoading ] = useState(true);
    const [ isDataSelectorOpen, setIsDataSelectorOpen ] = useState(false);
    const [ data, setData ] = useState("all");
    const [ isList, setIsList ] = useState(true);
+
+
+   useEffect(() => {
+      console.log(location);
+      handlePeriodChange(period, start, end);
+   }, [location]);
 
    setTimeout(() => {
       setLoading(false);
@@ -45,7 +58,7 @@ export const AllRecords = () => {
    } else {
       return (
          <div className="all-record">
-            <TransactionFilterContextProvider data={data}>
+            <TransactionFilterContextProvider data={data} period={period}>
                <div className="filter-bar">
                   <div className="list-setting">
                      <div className="transaction-selector" ref={selectorRef}>

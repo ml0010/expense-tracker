@@ -1,8 +1,8 @@
-import { TransactionFilterContext } from "../../contexts/transaction-filter-context";
-import { TransactionList } from "../components/transaction-list/transaction-list";
+import { TransactionFilterContext } from "../../../../contexts/transaction-filter-context";
+import { TransactionList } from "../../../components/transaction-list/transaction-list";
 import "../expense/summary.css"
 import { useContext, useEffect, useState } from "react";
-import { LoadingIcon } from "../components/loading-icon/loading";
+import { LoadingIcon } from "../../../components/loading-icon/loading";
 import { useLocation } from "react-router-dom";
 
 export const AllRecords = () => {

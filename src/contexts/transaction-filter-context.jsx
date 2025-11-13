@@ -133,14 +133,14 @@ export const TransactionFilterContextProvider = (props) => {
       setCategoryList([]);
       setCategoryFilterList([]);
       setSearchText(null);
-      //console.log(start, end);
+      console.log(period, start, end);
+      
       if (start && end) {
-         setCustomStartDate(new Date(start));
-         setCustomEndDate(new Date(end));
-         setCurrentPeriod(period);
-      } else {
-         setCurrentPeriod(period);
-      }
+         console.log("CUSTOM START AND END VALUE");
+         setCustomStartDate(start);
+         setCustomEndDate(end);
+      } 
+      setCurrentPeriod(period);
    };
 
    const addCategoryFilter = (category) => {

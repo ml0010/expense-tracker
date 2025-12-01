@@ -59,6 +59,7 @@ export const TransactionList = () => {
    )
 }
 
+
 export const TransactionListAll = () => {
 
    const { isRecordLoaded } = useContext(TransactionRecordContext);

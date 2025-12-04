@@ -59,30 +59,27 @@ export const TransactionList = () => {
    )
 }
 
-
 export const TransactionListAll = () => {
 
    const { isRecordLoaded } = useContext(TransactionRecordContext);
    const { recordsFiltered } = useContext(TransactionFilterContext);
 
    return (
-      <>
-         <div className="table-warpper">
-            {isRecordLoaded ? 
-               <div className="table">
-                  {recordsFiltered.length > 0 ? 
-                     <>
-                        {recordsFiltered.map((record ,index) => (
-                           <TransactionListElement record={record} key={index}/>
-                        ))}
-                     </> : 
-                     <EmptyList />
-                  }
-               </div>
-            : <LoadingIconSpinner />
-            }
-         </div>
-      </>
+      <div className="table-warpper">
+         {isRecordLoaded ? 
+            <div className="table">
+               {recordsFiltered.length > 0 ? 
+                  <>
+                     {recordsFiltered.map((record ,index) => (
+                        <TransactionListElement record={record} key={index}/>
+                     ))}
+                  </> : 
+                  <EmptyList />
+               }
+            </div>
+         : <LoadingIconSpinner />
+         }
+      </div>
    )
 }
 export const TransactionSummaryBox = () => {
